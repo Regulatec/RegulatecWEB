@@ -1,489 +1,439 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RegulaTec</title>
-  <style>
-    :root {
-      --slate-50: #f8fafc;
-      --slate-100: #f1f5f9;
-      --slate-200: #e2e8f0;
-      --slate-300: #cbd5e1;
-      --slate-400: #94a3b8;
-      --slate-500: #64748b;
-      --slate-600: #475569;
-      --slate-900: #0f172a;
-      --white: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * {
-      box-sizing: border-box;
-    }
+<title>RegulaTec</title>
 
-    html {
-      scroll-behavior: smooth;
-    }
+<style>
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--white);
-      color: var(--slate-900);
-      line-height: 1.6;
-    }
+:root{
+--slate-50:#f8fafc;
+--slate-100:#f1f5f9;
+--slate-200:#e2e8f0;
+--slate-300:#cbd5e1;
+--slate-400:#94a3b8;
+--slate-500:#64748b;
+--slate-600:#475569;
+--slate-900:#0f172a;
+}
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+*{
+box-sizing:border-box;
+}
 
-    .container {
-      max-width: 1152px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:white;
+color:var(--slate-900);
+line-height:1.6;
+}
 
-    .header {
-      border-bottom: 1px solid var(--slate-200);
-    }
+a{
+text-decoration:none;
+color:inherit;
+}
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 0;
-      gap: 20px;
-    }
+.container{
+max-width:1150px;
+margin:auto;
+padding:0 24px;
+}
 
-    .brand-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin: 0;
-    }
+header{
+border-bottom:1px solid var(--slate-200);
+}
 
-    .brand-subtitle {
-      font-size: 0.9rem;
-      color: var(--slate-500);
-      margin: 4px 0 0;
-    }
+.header-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 18px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: 0.2s ease;
-    }
+.brand-title{
+font-size:20px;
+font-weight:700;
+margin:0;
+}
 
-    .btn-outline {
-      border: 1px solid var(--slate-300);
-      background: transparent;
-    }
+.brand-subtitle{
+font-size:13px;
+color:var(--slate-500);
+margin-top:4px;
+}
 
-    .btn-outline:hover {
-      background: var(--slate-50);
-    }
+.btn{
+padding:12px 20px;
+border-radius:18px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+display:inline-block;
+}
 
-    .btn-dark {
-      background: var(--slate-900);
-      color: var(--white);
-      border: 1px solid var(--slate-900);
-    }
+.btn-outline{
+border:1px solid var(--slate-300);
+}
 
-    .btn-dark:hover {
-      opacity: 0.92;
-    }
+.btn-outline:hover{
+background:var(--slate-50);
+}
 
-    .section {
-      padding: 80px 0;
-    }
+.btn-dark{
+background:var(--slate-900);
+color:white;
+}
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
-    }
+section{
+padding:80px 0;
+}
 
-    .eyebrow {
-      margin: 0 0 12px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--slate-500);
-    }
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
 
-    .hero-title,
-    .section-title,
-    .cta-title {
-      margin: 0;
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
+.hero-title{
+font-size:46px;
+font-weight:800;
+line-height:1.2;
+}
 
-    .hero-title {
-      font-size: 3rem;
-    }
+.hero-text{
+color:var(--slate-600);
+font-size:18px;
+margin-top:24px;
+}
 
-    .section-title,
-    .cta-title {
-      font-size: 2rem;
-    }
+.actions{
+margin-top:30px;
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
 
-    .hero-text,
-    .section-text,
-    .cta-text {
-      color: var(--slate-600);
-      font-size: 1.1rem;
-      line-height: 1.9;
-    }
+.card{
+background:var(--slate-50);
+border:1px solid var(--slate-200);
+border-radius:30px;
+padding:30px;
+}
 
-    .hero-text {
-      max-width: 640px;
-      margin-top: 24px;
-    }
+.support-item{
+background:white;
+border:1px solid var(--slate-100);
+border-radius:16px;
+padding:14px;
+margin-top:10px;
+}
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
+.services{
+background:var(--slate-50);
+border-top:1px solid var(--slate-200);
+border-bottom:1px solid var(--slate-200);
+}
 
-    .hero-card {
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: 32px;
-      padding: 32px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-    }
+.services-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:40px;
+}
 
-    .hero-card-title {
-      margin: 0;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--slate-500);
-    }
+.service{
+background:white;
+border:1px solid var(--slate-200);
+border-radius:20px;
+padding:25px;
+}
 
-    .support-list {
-      margin-top: 24px;
-      display: grid;
-      gap: 16px;
-    }
+.process{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
 
-    .support-item {
-      background: var(--white);
-      border: 1px solid var(--slate-100);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-      font-weight: 600;
-    }
+.step{
+display:flex;
+gap:14px;
+border:1px solid var(--slate-200);
+border-radius:16px;
+padding:14px;
+margin-bottom:12px;
+}
 
-    .services-section {
-      background: var(--slate-50);
-      border-top: 1px solid var(--slate-200);
-      border-bottom: 1px solid var(--slate-200);
-    }
+.step-number{
+width:36px;
+height:36px;
+border-radius:50%;
+background:var(--slate-900);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+}
 
-    .services-intro {
-      max-width: 700px;
-    }
+.value{
+background:var(--slate-900);
+color:white;
+}
 
-    .services-grid {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
+.contact-box{
+background:var(--slate-50);
+border:1px solid var(--slate-200);
+border-radius:30px;
+padding:40px;
+text-align:center;
+}
 
-    .card {
-      background: var(--white);
-      border: 1px solid var(--slate-200);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-    }
+.contact-buttons{
+display:flex;
+gap:12px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:20px;
+}
 
-    .card h3 {
-      margin: 0;
-      font-size: 1.25rem;
-    }
+@media(max-width:900px){
 
-    .card p {
-      margin: 16px 0 0;
-      color: var(--slate-600);
-      font-size: 0.95rem;
-      line-height: 1.9;
-    }
+.hero,
+.process,
+.services-grid{
+grid-template-columns:1fr;
+}
 
-    .process-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: start;
-    }
+.hero-title{
+font-size:32px;
+}
 
-    .steps {
-      display: grid;
-      gap: 16px;
-    }
+}
 
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      border: 1px solid var(--slate-200);
-      border-radius: 18px;
-      padding: 16px;
-    }
+</style>
 
-    .step-number {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      border-radius: 999px;
-      background: var(--slate-900);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .step-text {
-      margin: 4px 0 0;
-      font-weight: 600;
-    }
-
-    .value-section {
-      background: var(--slate-900);
-      color: var(--white);
-    }
-
-    .value-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .value-section .eyebrow {
-      color: var(--slate-400);
-    }
-
-    .value-text {
-      color: #cbd5e1;
-      line-height: 1.9;
-      font-size: 1.05rem;
-    }
-
-    .contact-box {
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: 32px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    @media (max-width: 992px) {
-      .hero-grid,
-      .process-grid,
-      .value-grid,
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-title {
-        font-size: 2.3rem;
-      }
-
-      .section-title,
-      .cta-title {
-        font-size: 1.8rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .section {
-        padding: 64px 0;
-      }
-
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-title {
-        font-size: 2rem;
-      }
-
-      .contact-box,
-      .hero-card,
-      .card {
-        padding: 24px;
-      }
-    }
-  </style>
 </head>
+
 <body>
-  <div>
-    <header class="header">
-      <div class="container header-inner">
-        <div>
-          <p class="brand-title">RegulaTec</p>
-          <p class="brand-subtitle">Acompañamiento normativo y certificación</p>
-        </div>
-        <a href="#contacto" class="btn btn-outline">Contacto</a>
-      </div>
-    </header>
 
-    <main>
-      <section class="section">
-        <div class="container">
-          <div class="hero-grid">
-            <div>
-              <p class="eyebrow">Consultoría simple y efectiva</p>
-              <h1 class="hero-title">
-                Acompañamos a empresas en su preparación para certificaciones normativas.
-              </h1>
-              <p class="hero-text">
-                Ayudamos a ordenar procesos, documentación y evidencias para avanzar con seguridad hacia certificaciones ISO y otros estándares de cumplimiento.
-              </p>
-              <div class="hero-actions">
-                <a href="#servicios" class="btn btn-dark">Ver servicios</a>
-                <a href="#proceso" class="btn btn-outline">Cómo trabajamos</a>
-              </div>
-            </div>
 
-            <div class="hero-card">
-              <p class="hero-card-title">En qué apoyamos</p>
-              <div class="support-list">
-                <div class="support-item">Certificaciones ISO</div>
-                <div class="support-item">Procesos documentales</div>
-                <div class="support-item">Auditorías internas</div>
-                <div class="support-item">Mejora continua</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<header>
 
-      <section id="servicios" class="section services-section">
-        <div class="container">
-          <div class="services-intro">
-            <p class="eyebrow">Servicios</p>
-            <h2 class="section-title">Un acompañamiento claro, práctico y cercano</h2>
-          </div>
+<div class="container header-inner">
 
-          <div class="services-grid">
-            <div class="card">
-              <h3>Diagnóstico inicial</h3>
-              <p>
-                Evaluamos la situación actual de la empresa, detectamos brechas y definimos una hoja de ruta clara para preparar el proceso de certificación.
-              </p>
-            </div>
+<div>
+<p class="brand-title">RegulaTec</p>
+<p class="brand-subtitle">Acompañamiento normativo y certificación</p>
+</div>
 
-            <div class="card">
-              <h3>Implementación documental</h3>
-              <p>
-                Apoyamos en la creación, orden y mejora de políticas, procedimientos, registros e indicadores necesarios para cumplir con los requisitos normativos.
-              </p>
-            </div>
+<a href="mailto:ventas@regulatec.cl?subject=Consulta%20sobre%20certificación" class="btn btn-outline">
+Contacto
+</a>
 
-            <div class="card">
-              <h3>Acompañamiento a certificación</h3>
-              <p>
-                Guiamos a la empresa durante la preparación de auditorías internas y externas, con foco en certificaciones ISO y otros marcos de cumplimiento.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+</div>
 
-      <section id="proceso" class="section">
-        <div class="container">
-          <div class="process-grid">
-            <div>
-              <p class="eyebrow">Proceso</p>
-              <h2 class="section-title">Cómo trabajamos con cada empresa</h2>
-              <p class="section-text" style="margin-top: 20px; max-width: 700px;">
-                Adaptamos el acompañamiento al tamaño, rubro y nivel de avance de cada organización. Nuestro objetivo es que el proceso sea entendible, ordenado y sostenible en el tiempo.
-              </p>
-            </div>
+</header>
 
-            <div class="steps">
-              <div class="step">
-                <div class="step-number">1</div>
-                <p class="step-text">Levantamiento y diagnóstico</p>
-              </div>
-              <div class="step">
-                <div class="step-number">2</div>
-                <p class="step-text">Plan de trabajo y priorización</p>
-              </div>
-              <div class="step">
-                <div class="step-number">3</div>
-                <p class="step-text">Implementación y capacitación</p>
-              </div>
-              <div class="step">
-                <div class="step-number">4</div>
-                <p class="step-text">Auditoría interna y mejora</p>
-              </div>
-              <div class="step">
-                <div class="step-number">5</div>
-                <p class="step-text">Preparación para certificación</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section value-section">
-        <div class="container">
-          <div class="value-grid">
-            <div>
-              <p class="eyebrow">Valor</p>
-              <h2 class="cta-title">Más que documentos: ayudamos a instalar una forma de trabajo</h2>
-            </div>
-            <p class="value-text">
-              Buscamos que la certificación no sea solo un requisito, sino una oportunidad para ordenar procesos, mejorar la gestión y fortalecer la confianza de clientes, equipos y aliados.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <section id="contacto" class="section">
-        <div class="container" style="max-width: 900px;">
-          <div class="contact-box">
-            <p class="eyebrow">Contacto</p>
-            <h2 class="section-title">Conversemos sobre tu proceso de certificación</h2>
-            <p class="cta-text" style="margin-top: 16px;">
-              Podemos apoyar desde la etapa inicial de diagnóstico hasta la preparación final para auditoría y certificación.
-            </p>
-            <div class="contact-actions">
-              <a href="mailto:contacto@regulatec.cl" class="btn btn-dark">contacto@regulatec.cl</a>
-              <a href="tel:+56000000000" class="btn btn-outline">+56 00 000 0000</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+<section>
+
+<div class="container hero">
+
+<div>
+
+<p style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--slate-500)">
+CONSULTORÍA SIMPLE Y EFECTIVA
+</p>
+
+<h1 class="hero-title">
+Acompañamos a empresas en su preparación para certificaciones normativas
+</h1>
+
+<p class="hero-text">
+Ayudamos a ordenar procesos, documentación y evidencias para avanzar con seguridad hacia certificaciones ISO y otros estándares de cumplimiento.
+</p>
+
+<div class="actions">
+
+<a href="#servicios" class="btn btn-dark">
+Ver servicios
+</a>
+
+<a href="#proceso" class="btn btn-outline">
+Cómo trabajamos
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<p style="font-size:14px;font-weight:700;color:var(--slate-500)">
+En qué apoyamos
+</p>
+
+<div class="support-item">Certificaciones ISO</div>
+<div class="support-item">Procesos documentales</div>
+<div class="support-item">Auditorías internas</div>
+<div class="support-item">Mejora continua</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="servicios" class="services">
+
+<div class="container">
+
+<h2 style="font-size:30px;margin:0">
+Un acompañamiento claro, práctico y cercano
+</h2>
+
+<div class="services-grid">
+
+<div class="service">
+<h3>Diagnóstico inicial</h3>
+<p>
+Evaluamos la situación actual de la empresa, detectamos brechas y definimos una hoja de ruta clara para preparar el proceso de certificación.
+</p>
+</div>
+
+<div class="service">
+<h3>Implementación documental</h3>
+<p>
+Apoyamos en la creación, orden y mejora de políticas, procedimientos, registros e indicadores necesarios para cumplir con los requisitos normativos.
+</p>
+</div>
+
+<div class="service">
+<h3>Acompañamiento a certificación</h3>
+<p>
+Guiamos a la empresa durante la preparación de auditorías internas y externas, con foco en certificaciones ISO y otros marcos de cumplimiento.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="proceso">
+
+<div class="container process">
+
+<div>
+
+<h2>Cómo trabajamos con cada empresa</h2>
+
+<p style="color:var(--slate-600)">
+Adaptamos el acompañamiento al tamaño, rubro y nivel de avance de cada organización. Nuestro objetivo es que el proceso sea entendible, ordenado y sostenible en el tiempo.
+</p>
+
+</div>
+
+
+<div>
+
+<div class="step">
+<div class="step-number">1</div>
+<p>Levantamiento y diagnóstico</p>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<p>Plan de trabajo y priorización</p>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<p>Implementación y capacitación</p>
+</div>
+
+<div class="step">
+<div class="step-number">4</div>
+<p>Auditoría interna y mejora</p>
+</div>
+
+<div class="step">
+<div class="step-number">5</div>
+<p>Preparación para certificación</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="value">
+
+<div class="container">
+
+<h2>
+Más que documentos: ayudamos a instalar una forma de trabajo
+</h2>
+
+<p style="color:#cbd5e1">
+Buscamos que la certificación no sea solo un requisito, sino una oportunidad para ordenar procesos, mejorar la gestión y fortalecer la confianza de clientes, equipos y aliados.
+</p>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<div class="contact-box">
+
+<h2>Conversemos sobre tu proceso de certificación</h2>
+
+<p style="color:var(--slate-600)">
+Podemos apoyar desde el diagnóstico inicial hasta la preparación final para auditoría y certificación.
+</p>
+
+<div class="contact-buttons">
+
+<a href="mailto:ventas@regulatec.cl?subject=Consulta%20sobre%20certificación" class="btn btn-dark">
+Email ventas@regulatec.cl
+</a>
+
+<a href="tel:+56997290659" class="btn btn-outline">
+Llamar +56 9 9729 0659
+</a>
+
+<a href="https://wa.me/56997290659?text=Hola%20quiero%20información%20sobre%20certificaciones%20ISO" class="btn btn-outline">
+WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
 </body>
 </html>
