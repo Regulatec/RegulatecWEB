@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | Captación de clientes</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 460px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      text-align: center;
+    }
+    p {
+      margin: 0 0 24px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    form {
+      display: grid;
+      gap: 14px;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input:focus {
+      border-color: #25d366;
+      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+    }
+    button {
+      margin-top: 8px;
+      border: none;
+      background: #25d366;
+      color: #fff;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    button:hover { background: #1ebe5b; }
+    button:active { transform: scale(0.99); }
+    .nota {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Contáctanos</h1>
+    <p>Déjanos tus datos y te escribiremos a la brevedad.</p>
+
+    <form id="leadForm">
+      <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required />
+      </div>
+
+      <div>
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" name="apellido" required />
+      </div>
+
+      <div>
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required />
+      </div>
+
+      <div>
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" required />
+      </div>
+
+      <div>
+        <label for="empresa">Nombre de empresa</label>
+        <input type="text" id="empresa" name="empresa" required />
+      </div>
+
+      <button type="submit">Contacto</button>
+    </form>
+
+    <div class="nota">Configura el número de WhatsApp en el script antes de publicarla.</div>
+  </div>
+
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const apellido = document.getElementById('apellido').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const correo = document.getElementById('correo').value.trim();
+      const empresa = document.getElementById('empresa').value.trim();
+
+      // Reemplazar por tu número en formato internacional sin + ni espacios.
+      const whatsappNumber = '56912345678';
+
+      const mensaje = `Hola, quiero solicitar contacto.%0A%0A` +
+        `Nombre: ${encodeURIComponent(nombre)}%0A` +
+        `Apellido: ${encodeURIComponent(apellido)}%0A` +
+        `Teléfono: ${encodeURIComponent(telefono)}%0A` +
+        `Correo: ${encodeURIComponent(correo)}%0A` +
+        `Empresa: ${encodeURIComponent(empresa)}`;
+
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
+      window.open(whatsappUrl, '_blank');
+    });
+  </script>
+</body>
+</html>
