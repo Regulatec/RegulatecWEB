@@ -1,4 +1,74 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | RegulaTec</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 460px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .logo {
+      max-width: 180px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+    }
+    p {
+      margin: 0 0 24px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    form {
+      display: grid;
+      gap: 14px;
+      text-align: left;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input:focus {
+      border-color: #25d366;
+      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+    }
+    button {
+      margin-top: 8px;
+      border: none;
+      background: #25d366;
+      color: #fff;
+      padding: 14px;
       border-radius: 10px;
       font-size: 16px;
       font-weight: 700;
@@ -17,6 +87,9 @@
 </head>
 <body>
   <div class="card">
+
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" class="logo">
+
     <h1>Contáctanos</h1>
     <p>Déjanos tus datos y te escribiremos a la brevedad.</p>
 
@@ -49,7 +122,7 @@
       <button type="submit">Contacto</button>
     </form>
 
-    <div class="nota">Configura el número de WhatsApp en el script antes de publicarla.</div>
+    <div class="nota">Serás redirigido a WhatsApp para completar el contacto.</div>
   </div>
 
   <script>
@@ -62,8 +135,7 @@
       const correo = document.getElementById('correo').value.trim();
       const empresa = document.getElementById('empresa').value.trim();
 
-      // Reemplazar por tu número en formato internacional sin + ni espacios.
-      const whatsappNumber = '56912345678';
+      const whatsappNumber = '56997290659';
 
       const mensaje = `Hola, quiero solicitar contacto.%0A%0A` +
         `Nombre: ${encodeURIComponent(nombre)}%0A` +
@@ -78,4 +150,3 @@
   </script>
 </body>
 </html>
-
