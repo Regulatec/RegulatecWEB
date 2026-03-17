@@ -59,18 +59,19 @@
 
       <div>
         <label>Servicio requerido</label>
-        <div class="opciones">
-          <label><input type="radio" name="servicio" value="ISO 9001" required> ISO 9001</label>
-          <label><input type="radio" name="servicio" value="ISO 14001"> ISO 14001</label>
-          <label><input type="radio" name="servicio" value="ISO 45001"> ISO 45001</label>
-          <label><input type="radio" name="servicio" value="ISO 27001"> ISO 27001</label>
-          <label><input type="radio" name="servicio" value="ISO 22000"> ISO 22000</label>
-          <label><input type="radio" name="servicio" value="ISO 50001"> ISO 50001</label>
-          <label><input type="radio" name="servicio" value="Diagnóstico"> Diagnóstico</label>
-          <label><input type="radio" name="servicio" value="Auditoría"> Auditoría</label>
-          <label><input type="radio" name="servicio" value="Mantenimiento"> Mantenimiento</label>
-          <label><input type="radio" name="servicio" value="Otro"> Otro</label>
-        </div>
+        <select id="servicio" required style="width:100%; padding:12px; border-radius:10px; border:1px solid #d1d5db; font-size:15px;">
+          <option value="" disabled selected>Selecciona un servicio</option>
+          <option value="ISO 9001">ISO 9001 (Calidad)</option>
+          <option value="ISO 14001">ISO 14001 (Medio Ambiente)</option>
+          <option value="ISO 45001">ISO 45001 (Seguridad y Salud)</option>
+          <option value="ISO 27001">ISO 27001 (Seguridad de la Información)</option>
+          <option value="ISO 22000">ISO 22000 (Inocuidad Alimentaria)</option>
+          <option value="ISO 50001">ISO 50001 (Gestión Energética)</option>
+          <option value="Diagnóstico">Diagnóstico inicial</option>
+          <option value="Auditoría">Auditoría interna</option>
+          <option value="Mantenimiento">Mantenimiento y mejora</option>
+          <option value="Otro">Otro</option>
+        </select>
       </div>
 
       <div class="botones">
@@ -90,7 +91,7 @@
         telefono: document.getElementById('telefono').value,
         correo: document.getElementById('correo').value,
         empresa: document.getElementById('empresa').value,
-        servicio: document.querySelector('input[name="servicio"]:checked')?.value || ''
+        servicio: document.getElementById('servicio').value
       };
     }
 
