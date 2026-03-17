@@ -6,83 +6,21 @@
   <title>Contacto | RegulaTec</title>
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #1f2937;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 24px;
-    }
-    .card {
-      width: 100%;
-      max-width: 460px;
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    .logo {
-      max-width: 180px;
-      margin-bottom: 16px;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 26px;
-    }
-    p {
-      margin: 0 0 24px;
-      color: #6b7280;
-      font-size: 14px;
-    }
-    form {
-      display: grid;
-      gap: 14px;
-      text-align: left;
-    }
-    label {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: block;
-    }
-    input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    input:focus {
-      border-color: #25d366;
-      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
-    }
-    button {
-      margin-top: 8px;
-      border: none;
-      background: #25d366;
-      color: #fff;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
-    button:hover { background: #1ebe5b; }
-    button:active { transform: scale(0.99); }
-    .nota {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #6b7280;
-      text-align: center;
-    }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f6f8; color: #1f2937; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+    .card { width: 100%; max-width: 460px; background: #ffffff; border-radius: 16px; padding: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; }
+    .logo { max-width: 180px; margin-bottom: 16px; }
+    h1 { margin: 0 0 8px; font-size: 26px; }
+    p { margin: 0 0 24px; color: #6b7280; font-size: 14px; }
+    form { display: grid; gap: 14px; text-align: left; }
+    label { font-size: 14px; font-weight: 600; margin-bottom: 6px; display: block; }
+    input { width: 100%; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 15px; }
+    .opciones { display: grid; gap: 8px; }
+    .opciones label { font-weight: normal; display: flex; align-items: center; gap: 8px; }
+    .botones { display: grid; gap: 10px; margin-top: 10px; }
+    button { border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; }
+    .whatsapp { background: #25d366; color: #fff; }
+    .correo { background: #2563eb; color: #fff; }
+    .nota { margin-top: 14px; font-size: 12px; color: #6b7280; text-align: center; }
   </style>
 </head>
 <body>
@@ -91,62 +29,89 @@
     <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" class="logo">
 
     <h1>Contáctanos</h1>
-    <p>Déjanos tus datos y te escribiremos a la brevedad.</p>
+    <p>Déjanos tus datos y elige cómo prefieres que te contactemos.</p>
 
     <form id="leadForm">
       <div>
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required />
+        <label>Nombre</label>
+        <input type="text" id="nombre" required />
       </div>
 
       <div>
-        <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" name="apellido" required />
+        <label>Apellido</label>
+        <input type="text" id="apellido" required />
       </div>
 
       <div>
-        <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" required />
+        <label>Teléfono</label>
+        <input type="tel" id="telefono" required />
       </div>
 
       <div>
-        <label for="correo">Correo</label>
-        <input type="email" id="correo" name="correo" required />
+        <label>Correo</label>
+        <input type="email" id="correo" required />
       </div>
 
       <div>
-        <label for="empresa">Nombre de empresa</label>
-        <input type="text" id="empresa" name="empresa" required />
+        <label>Empresa</label>
+        <input type="text" id="empresa" required />
       </div>
 
-      <button type="submit">Contacto</button>
+      <div>
+        <label>Servicio requerido</label>
+        <div class="opciones">
+          <label><input type="radio" name="servicio" value="ISO 9001" required> ISO 9001</label>
+          <label><input type="radio" name="servicio" value="ISO 14001"> ISO 14001</label>
+          <label><input type="radio" name="servicio" value="ISO 45001"> ISO 45001</label>
+          <label><input type="radio" name="servicio" value="ISO 27001"> ISO 27001</label>
+          <label><input type="radio" name="servicio" value="ISO 22000"> ISO 22000</label>
+          <label><input type="radio" name="servicio" value="ISO 50001"> ISO 50001</label>
+          <label><input type="radio" name="servicio" value="Diagnóstico"> Diagnóstico</label>
+          <label><input type="radio" name="servicio" value="Auditoría"> Auditoría</label>
+          <label><input type="radio" name="servicio" value="Mantenimiento"> Mantenimiento</label>
+          <label><input type="radio" name="servicio" value="Otro"> Otro</label>
+        </div>
+      </div>
+
+      <div class="botones">
+        <button type="button" class="whatsapp" onclick="enviarWhatsApp()">Contactar por WhatsApp</button>
+        <button type="button" class="correo" onclick="enviarCorreo()">Contactar por Correo</button>
+      </div>
     </form>
 
-    <div class="nota">Serás redirigido a WhatsApp para completar el contacto.</div>
+    <div class="nota">Se abrirá WhatsApp o tu cliente de correo con la información cargada.</div>
   </div>
 
   <script>
-    document.getElementById('leadForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+    function obtenerDatos() {
+      return {
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        telefono: document.getElementById('telefono').value,
+        correo: document.getElementById('correo').value,
+        empresa: document.getElementById('empresa').value,
+        servicio: document.querySelector('input[name="servicio"]:checked')?.value || ''
+      };
+    }
 
-      const nombre = document.getElementById('nombre').value.trim();
-      const apellido = document.getElementById('apellido').value.trim();
-      const telefono = document.getElementById('telefono').value.trim();
-      const correo = document.getElementById('correo').value.trim();
-      const empresa = document.getElementById('empresa').value.trim();
+    function construirMensaje(data) {
+      return `Nombre: ${data.nombre}\nApellido: ${data.apellido}\nTeléfono: ${data.telefono}\nCorreo: ${data.correo}\nEmpresa: ${data.empresa}\nServicio: ${data.servicio}`;
+    }
 
-      const whatsappNumber = '56997290659';
+    function enviarWhatsApp() {
+      const data = obtenerDatos();
+      const mensaje = encodeURIComponent(construirMensaje(data));
+      const url = `https://wa.me/56997290659?text=${mensaje}`;
+      window.open(url, '_blank');
+    }
 
-      const mensaje = `Hola, quiero solicitar contacto.%0A%0A` +
-        `Nombre: ${encodeURIComponent(nombre)}%0A` +
-        `Apellido: ${encodeURIComponent(apellido)}%0A` +
-        `Teléfono: ${encodeURIComponent(telefono)}%0A` +
-        `Correo: ${encodeURIComponent(correo)}%0A` +
-        `Empresa: ${encodeURIComponent(empresa)}`;
-
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
-      window.open(whatsappUrl, '_blank');
-    });
+    function enviarCorreo() {
+      const data = obtenerDatos();
+      const asunto = encodeURIComponent('Solicitud de contacto - RegulaTec');
+      const cuerpo = encodeURIComponent(construirMensaje(data));
+      const mailto = `mailto:ventas@regulatec.cl?subject=${asunto}&body=${cuerpo}`;
+      window.location.href = mailto;
+    }
   </script>
 </body>
 </html>
