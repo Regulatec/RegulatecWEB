@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RegulaTec | Compliance Corporativo · Modelo de Prevención de Delitos · ISO en Chile</title>
-  <meta name="description" content="Consultoría en compliance corporativo, modelo de prevención de delitos e ISO 37001 / ISO 37301 en Chile." />
+  <meta name="description" content="Compliance corporativo, modelo de prevención de delitos e implementación de sistemas de cumplimiento con enfoque legal y tecnológico en Chile." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
@@ -18,68 +18,33 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--ff-body); background: var(--navy); color: var(--cream); overflow-x: hidden; }
-
     .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
     .tag { display:inline-block; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); border:1px solid var(--border); padding:5px 14px; border-radius:2px; margin-bottom:20px; }
     .section-title { font-family:var(--ff-head); font-size:clamp(2rem,4vw,3.2rem); font-weight:600; line-height:1.1; color:var(--white); margin-bottom:16px; }
     .section-sub { font-size:1rem; line-height:1.75; color:var(--gray); }
     .divider { width:48px; height:1px; background:var(--gold); margin:20px 0; opacity:.7; }
-
     .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s var(--ease),transform .6s var(--ease); }
     .reveal.visible { opacity:1; transform:none; }
 
     /* NAV */
-    nav {
-      position:fixed; top:0; left:0; right:0; z-index:200;
-      padding:0 32px; height:70px;
-      display:flex; align-items:center; justify-content:space-between;
-      background:rgba(11,22,41,0.96); backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(255,255,255,0.06);
-    }
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:0 32px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,22,41,0.96); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,0.06); }
     .nav-logo img { height:34px; filter:brightness(0) invert(1); opacity:.9; }
     .nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
     .nav-links a { font-size:.78rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); text-decoration:none; transition:color .2s; }
     .nav-links a:hover { color:var(--white); }
-    .nav-cta-btn {
-      display:inline-flex; align-items:center; gap:7px;
-      background:var(--gold); color:var(--navy);
-      font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
-      padding:10px 20px; border-radius:2px; text-decoration:none;
-      transition:background .2s, transform .2s; white-space:nowrap;
-    }
+    .nav-cta-btn { display:inline-flex; align-items:center; gap:7px; background:var(--gold); color:var(--navy); font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:10px 20px; border-radius:2px; text-decoration:none; transition:background .2s, transform .2s; white-space:nowrap; }
     .nav-cta-btn:hover { background:var(--gold2); transform:translateY(-1px); }
     .nav-cta-btn svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
 
     /* TOP BAR */
-    .top-bar {
-      background:var(--gold); color:var(--navy);
-      text-align:center; padding:10px 32px;
-      font-size:.78rem; font-weight:600; letter-spacing:.08em;
-      display:flex; align-items:center; justify-content:center; gap:10px;
-      position:relative; z-index:201;
-    }
+    .top-bar { background:var(--gold); color:var(--navy); text-align:center; padding:10px 32px; font-size:.78rem; font-weight:600; letter-spacing:.08em; display:flex; align-items:center; justify-content:center; gap:10px; position:relative; z-index:201; }
     .top-bar a { color:var(--navy); text-decoration:underline; text-underline-offset:3px; }
 
     /* HERO */
-    #hero {
-      min-height:100vh; display:flex; align-items:center;
-      padding-top:110px; position:relative; overflow:hidden;
-    }
-    .hero-bg {
-      position:absolute; inset:0;
-      background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(184,154,90,.08) 0%,transparent 60%),
-        linear-gradient(135deg,#0b1629 0%,#0e1e38 50%,#0b1629 100%);
-    }
-    .hero-grid {
-      position:absolute; inset:0;
-      background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-      background-size:80px 80px;
-      mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
-    }
-    .hero-layout {
-      position:relative; z-index:1; width:100%;
-      display:grid; grid-template-columns:1fr 420px; gap:60px; align-items:center;
-    }
+    #hero { min-height:100vh; display:flex; align-items:center; padding-top:110px; position:relative; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(184,154,90,.08) 0%,transparent 60%), linear-gradient(135deg,#0b1629 0%,#0e1e38 50%,#0b1629 100%); }
+    .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:80px 80px; mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%); }
+    .hero-layout { position:relative; z-index:1; width:100%; display:grid; grid-template-columns:1fr 400px; gap:60px; align-items:center; }
     .hero-title { font-family:var(--ff-head); font-size:clamp(2.8rem,5.5vw,4.8rem); font-weight:600; line-height:1.05; color:var(--white); animation:fadeUp .7s var(--ease) .1s both; }
     .hero-title em { font-style:italic; color:var(--gold2); }
     .hero-sub { font-size:1.05rem; color:var(--gray); line-height:1.75; margin-top:18px; animation:fadeUp .7s var(--ease) .2s both; }
@@ -89,38 +54,19 @@
     .trust-line { display:flex; align-items:center; gap:10px; font-size:.84rem; color:var(--cream); }
     .trust-line svg { width:15px; height:15px; stroke:var(--gold); fill:none; stroke-width:2.5; flex-shrink:0; }
 
-    /* HERO FORM CARD */
-    .hero-form-card {
-      background:var(--navy2); border:1px solid var(--border);
-      padding:36px 32px; position:relative;
-      animation:fadeUp .7s var(--ease) .25s both;
-    }
-    .hero-form-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:2px;
-      background:linear-gradient(90deg,var(--gold),var(--gold2));
-    }
+    /* HERO FORM — 3 campos */
+    .hero-form-card { background:var(--navy2); border:1px solid var(--border); padding:36px 32px; position:relative; animation:fadeUp .7s var(--ease) .25s both; }
+    .hero-form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold2)); }
     .form-heading { font-family:var(--ff-head); font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:6px; }
     .form-sub { font-size:.82rem; color:var(--gray); margin-bottom:24px; line-height:1.5; }
     .form-group { margin-bottom:14px; }
     .form-group label { display:block; font-size:.72rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); margin-bottom:6px; }
-    .form-group input, .form-group select {
-      width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
-      color:var(--cream); font-family:var(--ff-body); font-size:.88rem;
-      padding:11px 14px; border-radius:2px; outline:none;
-      transition:border-color .2s, background .2s; appearance:none;
-    }
+    .form-group input { width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:var(--cream); font-family:var(--ff-body); font-size:.88rem; padding:11px 14px; border-radius:2px; outline:none; transition:border-color .2s, background .2s; }
     .form-group input::placeholder { color:rgba(138,154,181,.5); }
-    .form-group input:focus, .form-group select:focus { border-color:var(--gold); background:rgba(184,154,90,.05); }
-    .form-group select option { background:var(--navy2); color:var(--cream); }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .btn-form {
-      width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
-      background:var(--gold); color:var(--navy);
-      font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
-      padding:14px 20px; border-radius:2px; border:none; cursor:pointer;
-      transition:background .2s, transform .2s; margin-top:6px;
-    }
+    .form-group input:focus { border-color:var(--gold); background:rgba(184,154,90,.05); }
+    .btn-form { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:14px 20px; border-radius:2px; border:none; cursor:pointer; transition:background .2s, transform .2s; margin-top:6px; }
     .btn-form:hover { background:var(--gold2); transform:translateY(-1px); }
+    .btn-form:disabled { opacity:.6; cursor:not-allowed; transform:none; }
     .btn-form svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
     .form-privacy { font-size:.7rem; color:rgba(138,154,181,.6); text-align:center; margin-top:10px; }
     .form-success { display:none; text-align:center; padding:20px 0; }
@@ -136,7 +82,7 @@
     @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
 
-    /* TRUST BAR */
+    /* TRUST */
     #confianza { padding:80px 0; }
     .trust-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:48px; }
     .trust-card { background:var(--navy); padding:40px 36px; transition:background .3s; }
@@ -146,20 +92,18 @@
     .trust-card-title { font-size:.9rem; font-weight:500; color:var(--cream); margin:10px 0 6px; }
     .trust-card-text { font-size:.84rem; line-height:1.65; color:var(--gray); }
 
+    /* SECTORES */
+    #sectores { padding:80px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+    .sectores-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:44px; }
+    .sector-card { background:var(--navy); padding:32px 24px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; transition:background .3s; }
+    .sector-card:hover { background:rgba(17,32,64,.9); }
+    .sector-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:2px; }
+    .sector-icon svg { width:22px; height:22px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+    .sector-name { font-size:.8rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--cream); line-height:1.3; }
+
     /* LEAD MAGNET */
-    #checklist {
-      padding:80px 0;
-      background:rgba(255,255,255,.015);
-      border-top:1px solid rgba(255,255,255,.05);
-      border-bottom:1px solid rgba(255,255,255,.05);
-    }
-    .magnet-box {
-      border:1px solid var(--border);
-      background:radial-gradient(ellipse 70% 60% at 0% 50%,rgba(184,154,90,.08) 0%,transparent 60%);
-      padding:60px;
-      display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center;
-      position:relative; overflow:hidden;
-    }
+    #checklist { padding:80px 0; }
+    .magnet-box { border:1px solid var(--border); background:radial-gradient(ellipse 70% 60% at 0% 50%,rgba(184,154,90,.08) 0%,transparent 60%); padding:60px; display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center; position:relative; overflow:hidden; }
     .magnet-box::after { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--gold),transparent); }
     .magnet-tag { display:inline-flex; align-items:center; gap:7px; font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
     .magnet-tag svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
@@ -220,8 +164,38 @@
     .spec-title { font-family:var(--ff-head); font-size:1.25rem; font-weight:600; color:var(--white); margin-bottom:10px; }
     .spec-text { font-size:.86rem; line-height:1.75; color:var(--gray); }
 
+    /* EQUIPO */
+    #equipo { padding:120px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:52px; }
+    .team-card { border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.02); overflow:hidden; transition:border-color .3s,background .3s; display:flex; gap:0; }
+    .team-card:hover { border-color:var(--border); background:rgba(184,154,90,.03); }
+    .team-photo { width:160px; flex-shrink:0; position:relative; overflow:hidden; }
+    .team-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; filter:grayscale(15%); transition:filter .3s; }
+    .team-card:hover .team-photo img { filter:grayscale(0%); }
+    .team-photo-placeholder { width:100%; height:100%; min-height:200px; background:var(--navy2); display:flex; align-items:center; justify-content:center; }
+    .team-photo-placeholder svg { width:48px; height:48px; stroke:rgba(184,154,90,.3); fill:none; stroke-width:1; }
+    .team-info { padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between; flex:1; }
+    .team-name { font-family:var(--ff-head); font-size:1.35rem; font-weight:600; color:var(--white); margin-bottom:4px; }
+    .team-role { font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+    .team-bio { font-size:.84rem; line-height:1.7; color:var(--gray); flex:1; }
+    .team-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+    .team-tag { font-size:.65rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); border:1px solid rgba(255,255,255,.1); padding:3px 9px; border-radius:50px; }
+    .team-link { display:inline-flex; align-items:center; gap:6px; font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-top:16px; border-bottom:1px solid transparent; transition:border-color .2s; width:fit-content; }
+    .team-link:hover { border-color:var(--gold); }
+    .team-link svg { width:11px; height:11px; stroke:currentColor; fill:none; stroke-width:2; }
+    .wit-card { border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.02); padding:36px; transition:border-color .3s,background .3s; display:flex; align-items:center; gap:36px; }
+    .wit-card:hover { border-color:var(--border); background:rgba(184,154,90,.03); }
+    .wit-logo-wrap { flex-shrink:0; width:140px; display:flex; align-items:center; justify-content:center; }
+    .wit-logo-wrap img { width:100%; filter:brightness(0) invert(1); opacity:.7; transition:opacity .3s; }
+    .wit-card:hover .wit-logo-wrap img { opacity:1; }
+    .wit-divider { width:1px; height:80px; background:rgba(255,255,255,.08); flex-shrink:0; }
+    .wit-info { flex:1; }
+    .wit-role { font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+    .wit-name { font-family:var(--ff-head); font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:10px; }
+    .wit-bio { font-size:.84rem; line-height:1.7; color:var(--gray); }
+
     /* MEDIA */
-    #medios { padding:120px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+    #medios { padding:120px 0; }
     .media-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:52px; }
     .media-img-wrap { position:relative; }
     .media-img-wrap::before { content:''; position:absolute; top:-16px; left:-16px; right:16px; bottom:16px; border:1px solid var(--border); z-index:0; }
@@ -266,39 +240,41 @@
     @media (max-width:960px) {
       .hero-layout { grid-template-columns:1fr; }
       .hero-form-card { max-width:480px; }
-      .services-grid,.specialties-grid { grid-template-columns:1fr; }
+      .services-grid,.specialties-grid,.team-grid { grid-template-columns:1fr; }
       .process-layout,.media-layout { grid-template-columns:1fr; }
       .process-aside { position:static; }
-      .trust-grid { grid-template-columns:1fr; }
+      .trust-grid,.sectores-grid { grid-template-columns:repeat(2,1fr); }
       .magnet-box { grid-template-columns:1fr; }
       .magnet-cta { align-items:flex-start; }
       .cta-box { padding:48px 24px; }
       .nav-links { display:none; }
+      .wit-card { flex-direction:column; gap:20px; }
+      .wit-divider { width:80px; height:1px; }
+      .team-card { flex-direction:column; }
+      .team-photo { width:100%; height:200px; }
     }
     @media (max-width:600px) {
-      .container,.nav { padding-left:20px; padding-right:20px; }
+      .container, nav { padding-left:20px; padding-right:20px; }
       .magnet-box { padding:36px 24px; }
-      .form-row { grid-template-columns:1fr; }
+      .sectores-grid { grid-template-columns:repeat(2,1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="top-bar">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
   Descarga gratis: Checklist de riesgos regulatorios 2026 →
   <a href="#checklist">Obtener ahora</a>
 </div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" /></a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#proceso">Metodología</a></li>
     <li><a href="#especialidades">Especialidades</a></li>
-    <li><a href="#medios">Medios</a></li>
+    <li><a href="#equipo">Equipo</a></li>
   </ul>
   <a href="#diagnostico" class="nav-cta-btn">
     Solicitar diagnóstico
@@ -312,7 +288,6 @@
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-layout">
-
       <div>
         <span class="tag">Consultoría · Compliance · Chile</span>
         <h1 class="hero-title">Compliance corporativo<br/>con <em>enfoque legal</em><br/>y tecnológico</h1>
@@ -327,42 +302,28 @@
           <span class="hero-chip">ISO 37001</span>
           <span class="hero-chip">ISO 37301</span>
           <span class="hero-chip">Delitos Económicos</span>
-          <span class="hero-chip">Antisoborno</span>
+          <span class="hero-chip">AML / CTF</span>
+          <span class="hero-chip">Protección de Datos</span>
         </div>
       </div>
 
+      <!-- FORMULARIO — 3 campos -->
       <div id="diagnostico">
         <div class="hero-form-card">
           <h2 class="form-heading">Solicite su diagnóstico de cumplimiento</h2>
           <p class="form-sub">Sin costo ni compromiso. Evaluamos brechas críticas y le proponemos una hoja de ruta clara para avanzar.</p>
           <div id="mainForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Nombre *</label>
-                <input type="text" id="f-name" placeholder="Su nombre" />
-              </div>
-              <div class="form-group">
-                <label>Empresa *</label>
-                <input type="text" id="f-company" placeholder="Empresa" />
-              </div>
+            <div class="form-group">
+              <label>Nombre *</label>
+              <input type="text" id="f-name" placeholder="Su nombre completo" />
             </div>
             <div class="form-group">
-              <label>Cargo *</label>
-              <input type="text" id="f-role" placeholder="Ej: Gerente Legal, CFO…" />
+              <label>Empresa *</label>
+              <input type="text" id="f-company" placeholder="Nombre de su empresa" />
             </div>
             <div class="form-group">
               <label>Email corporativo *</label>
               <input type="email" id="f-email" placeholder="correo@empresa.cl" />
-            </div>
-            <div class="form-group">
-              <label>Tamaño de empresa <span style="opacity:.5;font-size:.68rem">(opcional)</span></label>
-              <select id="f-size">
-                <option value="" disabled selected>Seleccione...</option>
-                <option>1–50 personas</option>
-                <option>51–250 personas</option>
-                <option>251–1.000 personas</option>
-                <option>Más de 1.000 personas</option>
-              </select>
             </div>
             <button class="btn-form" onclick="submitForm()">
               Solicitar diagnóstico gratuito
@@ -377,7 +338,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -390,7 +350,7 @@
     <div class="strip-item"><span class="strip-dot"></span>ISO 37001 Antisoborno</div>
     <div class="strip-item"><span class="strip-dot"></span>ISO 37301 Compliance</div>
     <div class="strip-item"><span class="strip-dot"></span>Ley 20.393</div>
-    <div class="strip-item"><span class="strip-dot"></span>Auditoría y Verificación</div>
+    <div class="strip-item"><span class="strip-dot"></span>AML / CTF</div>
     <div class="strip-item"><span class="strip-dot"></span>Protección de Datos</div>
     <div class="strip-item"><span class="strip-dot"></span>Delitos Económicos</div>
     <div class="strip-item"><span class="strip-dot"></span>Compliance Corporativo</div>
@@ -398,7 +358,7 @@
     <div class="strip-item"><span class="strip-dot"></span>ISO 37001 Antisoborno</div>
     <div class="strip-item"><span class="strip-dot"></span>ISO 37301 Compliance</div>
     <div class="strip-item"><span class="strip-dot"></span>Ley 20.393</div>
-    <div class="strip-item"><span class="strip-dot"></span>Auditoría y Verificación</div>
+    <div class="strip-item"><span class="strip-dot"></span>AML / CTF</div>
     <div class="strip-item"><span class="strip-dot"></span>Protección de Datos</div>
     <div class="strip-item"><span class="strip-dot"></span>Delitos Económicos</div>
   </div>
@@ -427,6 +387,49 @@
         <div class="trust-num">5</div>
         <div class="trust-card-title">Etapas de implementación</div>
         <div class="trust-card-text">Trabajamos con una metodología clara, desde el diagnóstico hasta la auditoría interna y la preparación para certificación o revisión externa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section id="sectores">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+      <span class="tag">Sectores</span>
+      <h2 class="section-title">Industrias que atendemos</h2>
+      <p class="section-sub">Experiencia en sectores regulados, de alta exposición y con exigencias normativas crecientes.</p>
+    </div>
+    <div class="sectores-grid reveal" style="transition-delay:.1s">
+      <div class="sector-card">
+        <div class="sector-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5M15 4v5"/></svg>
+        </div>
+        <span class="sector-name">Banca y Servicios Financieros</span>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <span class="sector-name">Retail y Consumo</span>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01M8 6h8M8 10h8M8 14h5"/></svg>
+        </div>
+        <span class="sector-name">Fintech y Pagos Digitales</span>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <span class="sector-name">Educación Superior</span>
+      </div>
+      <div class="sector-card">
+        <div class="sector-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <span class="sector-name">Salud y Clínicas</span>
       </div>
     </div>
   </div>
@@ -568,6 +571,65 @@
   </div>
 </section>
 
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">Equipo</span>
+      <h2 class="section-title">Quiénes están detrás<br/>de RegulaTec</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Combinamos experiencia legal de primer nivel en compliance con capacidad tecnológica para construir sistemas de cumplimiento modernos y auditables.</p>
+    </div>
+    <div class="team-grid" style="margin-top:52px">
+
+      <!-- Sebastián -->
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns Daza" />
+        </div>
+        <div class="team-info">
+          <div>
+            <div class="team-name">Sebastián Manns Daza</div>
+            <div class="team-role">Co-Founder · Director de Compliance</div>
+            <p class="team-bio">Abogado con más de 10 años liderando áreas de compliance y derecho corporativo en empresas multinacionales y sectores regulados. Especialista en modelos de prevención de delitos (Ley 20.393), AML/CTF, protección de datos y relacionamiento con reguladores como la UAF y la CMF.</p>
+          </div>
+          <div>
+            <div class="team-tags">
+              <span class="team-tag">Ley 20.393</span>
+              <span class="team-tag">AML / CTF</span>
+              <span class="team-tag">ISO 37001</span>
+              <span class="team-tag">DPO</span>
+              <span class="team-tag">UAF · CMF</span>
+            </div>
+            <a href="https://linkedin.com/in/smannsd" target="_blank" rel="noopener" class="team-link">
+              Ver perfil en LinkedIn
+              <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- W-IT -->
+      <div class="wit-card reveal" style="transition-delay:.1s">
+        <div class="wit-logo-wrap">
+          <img src="https://w-it.cl/wp-content/uploads/2020/08/logo-wit.svg" alt="W-IT Chile" />
+        </div>
+        <div class="wit-divider"></div>
+        <div class="wit-info">
+          <div class="wit-role">Co-Founder · Partner Tecnológico</div>
+          <div class="wit-name">W-IT Chile</div>
+          <p class="wit-bio">Partner Microsoft con más de 10 años de experiencia en transformación digital, consultoría integral y soluciones tecnológicas para empresas en Chile. Certificados en ISO 9001 e ISO 27001, aportando la infraestructura tecnológica que hace que los sistemas de cumplimiento de RegulaTec sean trazables, auditables y escalables.</p>
+          <a href="https://w-it.cl" target="_blank" rel="noopener" class="team-link" style="margin-top:14px">
+            Visitar w-it.cl
+            <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- MEDIA -->
 <section id="medios">
   <div class="container">
@@ -577,7 +639,7 @@
     </div>
     <div class="media-layout">
       <div class="media-img-wrap reveal">
-        <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Socio de RegulaTec en Radio Infinita" />
+        <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns en Radio Infinita" />
         <div class="media-badge">Radio Infinita</div>
       </div>
       <div class="media-content reveal" style="transition-delay:.15s">
@@ -623,7 +685,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <a href="#"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" style="height:26px;filter:brightness(0) invert(1);opacity:.45;" /></a>
@@ -631,7 +692,7 @@
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#proceso">Metodología</a></li>
       <li><a href="#especialidades">Especialidades</a></li>
-      <li><a href="#medios">Medios</a></li>
+      <li><a href="#equipo">Equipo</a></li>
       <li><a href="#checklist">Checklist gratuito</a></li>
     </ul>
     <span class="footer-copy">© 2026 RegulaTec · Compliance corporativo en Chile</span>
@@ -645,19 +706,43 @@
   );
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  const nav = document.querySelector('nav');
+  const navEl = document.querySelector('nav');
   window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40 ? 'rgba(11,22,41,1)' : 'rgba(11,22,41,0.96)';
+    navEl.style.background = window.scrollY > 40 ? 'rgba(11,22,41,1)' : 'rgba(11,22,41,0.96)';
   });
 
-  function submitForm() {
+  async function submitForm() {
     const name  = document.getElementById('f-name').value.trim();
     const co    = document.getElementById('f-company').value.trim();
-    const role  = document.getElementById('f-role').value.trim();
     const email = document.getElementById('f-email').value.trim();
-    if (!name || !co || !role || !email) { alert('Por favor complete los campos obligatorios.'); return; }
-    document.getElementById('mainForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+    if (!name || !co || !email) { alert('Por favor complete los campos obligatorios.'); return; }
+
+    const btn = document.querySelector('.btn-form');
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    const body = Nueva solicitud de diagnóstico de cumplimiento\n\nNombre: ${name}\nEmpresa: ${co}\nEmail: ${email}\n\n---\nEnviado desde regulatec.cl;
+
+    try {
+      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: Usa Gmail para enviar un correo:\n- Para: ventas@regulatec.cl\n- Asunto: Nueva solicitud de diagnóstico – ${co} (${name})\n- Cuerpo: ${body}\n\nSolo envía el correo. }],
+          mcp_servers: [{ type: 'url', url: 'https://gmail.mcp.claude.com/mcp', name: 'gmail-mcp' }]
+        })
+      });
+      const data = await resp.json();
+      if (data.error) throw new Error(data.error.message);
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = 'Solicitar diagnóstico gratuito <svg viewBox="0 0 14 14" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>';
+      alert('Hubo un problema al enviar. Por favor escríbanos directamente a ventas@regulatec.cl');
+    }
   }
 
   function downloadMagnet() {
