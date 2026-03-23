@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RegulaTec | Compliance Corporativo · Modelo de Prevención de Delitos · ISO en Chile</title>
-  <meta name="description" content="Compliance corporativo, modelo de prevención de delitos e implementación de sistemas de cumplimiento con enfoque legal y tecnológico en Chile." />
+  <title>RegulaTec | Compliance legal + tecnología · Chile y LATAM</title>
+  <meta name="description" content="RegulaTec integra derecho y tecnología para transformar el cumplimiento. Compliance corporativo, modelo de prevención de delitos y sistemas de cumplimiento en Chile y LATAM." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
       --navy:#0b1629; --navy2:#112040; --gold:#b89a5a; --gold2:#d4b97a;
       --cream:#f5f1ea; --white:#ffffff; --gray:#8a9ab5; --border:rgba(184,154,90,0.25);
       --ff-head:'Cormorant Garamond',Georgia,serif; --ff-body:'DM Sans',sans-serif;
       --ease:cubic-bezier(0.16,1,0.3,1);
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--ff-body); background: var(--navy); color: var(--cream); overflow-x: hidden; }
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--ff-body); background:var(--navy); color:var(--cream); overflow-x:hidden; }
+    .container { max-width:1160px; margin:0 auto; padding:0 32px; }
     .tag { display:inline-block; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); border:1px solid var(--border); padding:5px 14px; border-radius:2px; margin-bottom:20px; }
     .section-title { font-family:var(--ff-head); font-size:clamp(2rem,4vw,3.2rem); font-weight:600; line-height:1.1; color:var(--white); margin-bottom:16px; }
     .section-sub { font-size:1rem; line-height:1.75; color:var(--gray); }
@@ -28,11 +28,13 @@
 
     /* NAV */
     nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:0 32px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,22,41,0.96); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,0.06); }
-    .nav-logo img { height:34px; filter:brightness(0) invert(1); opacity:.9; }
-    .nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
-    .nav-links a { font-size:.78rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); text-decoration:none; transition:color .2s; }
+    .nav-brand { display:flex; flex-direction:column; gap:2px; text-decoration:none; }
+    .nav-brand img { height:28px; filter:brightness(0) invert(1); opacity:.9; }
+    .nav-tagline { font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); opacity:.8; }
+    .nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+    .nav-links a { font-size:.76rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); text-decoration:none; transition:color .2s; }
     .nav-links a:hover { color:var(--white); }
-    .nav-cta-btn { display:inline-flex; align-items:center; gap:7px; background:var(--gold); color:var(--navy); font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:10px 20px; border-radius:2px; text-decoration:none; transition:background .2s, transform .2s; white-space:nowrap; }
+    .nav-cta-btn { display:inline-flex; align-items:center; gap:7px; background:var(--gold); color:var(--navy); font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:10px 20px; border-radius:2px; text-decoration:none; transition:background .2s,transform .2s; white-space:nowrap; }
     .nav-cta-btn:hover { background:var(--gold2); transform:translateY(-1px); }
     .nav-cta-btn svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
 
@@ -45,218 +47,293 @@
     .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(184,154,90,.08) 0%,transparent 60%), linear-gradient(135deg,#0b1629 0%,#0e1e38 50%,#0b1629 100%); }
     .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:80px 80px; mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%); }
     .hero-layout { position:relative; z-index:1; width:100%; display:grid; grid-template-columns:1fr 400px; gap:60px; align-items:center; }
-    .hero-title { font-family:var(--ff-head); font-size:clamp(2.8rem,5.5vw,4.8rem); font-weight:600; line-height:1.05; color:var(--white); animation:fadeUp .7s var(--ease) .1s both; }
+    .hero-title { font-family:var(--ff-head); font-size:clamp(2.6rem,5vw,4.4rem); font-weight:600; line-height:1.05; color:var(--white); animation:fadeUp .7s var(--ease) .1s both; }
     .hero-title em { font-style:italic; color:var(--gold2); }
-    .hero-sub { font-size:1.05rem; color:var(--gray); line-height:1.75; margin-top:18px; animation:fadeUp .7s var(--ease) .2s both; }
-    .hero-chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:28px; animation:fadeUp .7s var(--ease) .3s both; }
+    .hero-sub { font-size:1rem; color:var(--gray); line-height:1.8; margin-top:18px; animation:fadeUp .7s var(--ease) .2s both; max-width:520px; }
+    .hero-chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:24px; animation:fadeUp .7s var(--ease) .3s both; }
     .hero-chip { font-size:.72rem; color:var(--gray); border:1px solid rgba(255,255,255,.1); padding:5px 12px; border-radius:50px; letter-spacing:.04em; }
-    .hero-trust { display:flex; flex-direction:column; gap:8px; margin-top:32px; animation:fadeUp .7s var(--ease) .4s both; }
+    .hero-trust { display:flex; flex-direction:column; gap:8px; margin-top:28px; animation:fadeUp .7s var(--ease) .35s both; }
     .trust-line { display:flex; align-items:center; gap:10px; font-size:.84rem; color:var(--cream); }
     .trust-line svg { width:15px; height:15px; stroke:var(--gold); fill:none; stroke-width:2.5; flex-shrink:0; }
 
-    /* HERO FORM — 3 campos */
-    .hero-form-card { background:var(--navy2); border:1px solid var(--border); padding:36px 32px; position:relative; animation:fadeUp .7s var(--ease) .25s both; }
+    /* HERO FORM */
+    .hero-form-card { background:var(--navy2); border:1px solid var(--border); padding:32px 28px; position:relative; animation:fadeUp .7s var(--ease) .25s both; }
     .hero-form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold2)); }
-    .form-heading { font-family:var(--ff-head); font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:6px; }
-    .form-sub { font-size:.82rem; color:var(--gray); margin-bottom:24px; line-height:1.5; }
-    .form-group { margin-bottom:14px; }
-    .form-group label { display:block; font-size:.72rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); margin-bottom:6px; }
-    .form-group input { width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:var(--cream); font-family:var(--ff-body); font-size:.88rem; padding:11px 14px; border-radius:2px; outline:none; transition:border-color .2s, background .2s; }
+    .form-heading { font-family:var(--ff-head); font-size:1.35rem; font-weight:600; color:var(--white); margin-bottom:4px; }
+    .form-sub { font-size:.8rem; color:var(--gray); margin-bottom:20px; line-height:1.5; }
+    /* mini promesas */
+    .form-promises { display:flex; flex-direction:column; gap:6px; margin-bottom:20px; padding:14px 16px; background:rgba(184,154,90,.06); border:1px solid rgba(184,154,90,.15); }
+    .form-promise { display:flex; align-items:center; gap:8px; font-size:.78rem; color:var(--cream); }
+    .form-promise svg { width:12px; height:12px; stroke:var(--gold); fill:none; stroke-width:2.5; flex-shrink:0; }
+    .form-group { margin-bottom:12px; }
+    .form-group label { display:block; font-size:.7rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); margin-bottom:5px; }
+    .form-group input { width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:var(--cream); font-family:var(--ff-body); font-size:.88rem; padding:10px 14px; border-radius:2px; outline:none; transition:border-color .2s,background .2s; }
     .form-group input::placeholder { color:rgba(138,154,181,.5); }
     .form-group input:focus { border-color:var(--gold); background:rgba(184,154,90,.05); }
-    .btn-form { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:14px 20px; border-radius:2px; border:none; cursor:pointer; transition:background .2s, transform .2s; margin-top:6px; }
+    .btn-form { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:13px 20px; border-radius:2px; border:none; cursor:pointer; transition:background .2s,transform .2s; margin-top:4px; }
     .btn-form:hover { background:var(--gold2); transform:translateY(-1px); }
     .btn-form:disabled { opacity:.6; cursor:not-allowed; transform:none; }
     .btn-form svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
-    .form-privacy { font-size:.7rem; color:rgba(138,154,181,.6); text-align:center; margin-top:10px; }
+    .form-privacy { font-size:.68rem; color:rgba(138,154,181,.6); text-align:center; margin-top:8px; }
+    /* CTA secundario */
+    .form-secondary { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,.06); }
+    .form-secondary a { font-size:.74rem; color:var(--gold); text-decoration:none; display:flex; align-items:center; gap:5px; transition:opacity .2s; }
+    .form-secondary a:hover { opacity:.75; }
+    .form-secondary a svg { width:11px; height:11px; stroke:currentColor; fill:none; stroke-width:2; }
+    .form-secondary span { font-size:.68rem; color:rgba(138,154,181,.4); }
     .form-success { display:none; text-align:center; padding:20px 0; }
-    .form-success svg { width:48px; height:48px; stroke:var(--gold); fill:none; stroke-width:1.5; margin-bottom:16px; }
-    .form-success h4 { font-family:var(--ff-head); font-size:1.4rem; color:var(--white); margin-bottom:8px; }
-    .form-success p { font-size:.88rem; color:var(--gray); line-height:1.6; }
+    .form-success svg { width:44px; height:44px; stroke:var(--gold); fill:none; stroke-width:1.5; margin-bottom:14px; }
+    .form-success h4 { font-family:var(--ff-head); font-size:1.35rem; color:var(--white); margin-bottom:8px; }
+    .form-success p { font-size:.86rem; color:var(--gray); line-height:1.6; }
 
     /* STRIP */
     .strip { border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); padding:18px 0; overflow:hidden; background:rgba(255,255,255,.02); }
-    .strip-inner { display:flex; gap:48px; animation:scroll 30s linear infinite; width:max-content; }
+    .strip-inner { display:flex; gap:48px; animation:scroll 32s linear infinite; width:max-content; }
     .strip-item { display:flex; align-items:center; gap:10px; white-space:nowrap; font-size:.72rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--gray); }
     .strip-dot { width:4px; height:4px; background:var(--gold); border-radius:50%; flex-shrink:0; }
     @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
 
     /* TRUST */
-    #confianza { padding:80px 0; }
-    .trust-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:48px; }
-    .trust-card { background:var(--navy); padding:40px 36px; transition:background .3s; }
+    #confianza { padding:80px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+    .trust-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:48px; }
+    .trust-card { background:var(--navy); padding:36px 28px; transition:background .3s; }
     .trust-card:hover { background:rgba(17,32,64,.9); }
-    .trust-num { font-family:var(--ff-head); font-size:2.8rem; font-weight:600; color:var(--white); line-height:1; }
+    .trust-num { font-family:var(--ff-head); font-size:2.6rem; font-weight:600; color:var(--white); line-height:1; }
     .trust-num span { color:var(--gold); }
-    .trust-card-title { font-size:.9rem; font-weight:500; color:var(--cream); margin:10px 0 6px; }
-    .trust-card-text { font-size:.84rem; line-height:1.65; color:var(--gray); }
+    .trust-card-title { font-size:.88rem; font-weight:500; color:var(--cream); margin:10px 0 6px; }
+    .trust-card-text { font-size:.82rem; line-height:1.65; color:var(--gray); }
 
-    /* SECTORES */
-    #sectores { padding:80px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
-    .sectores-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:44px; }
-    .sector-card { background:var(--navy); padding:32px 24px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; transition:background .3s; }
-    .sector-card:hover { background:rgba(17,32,64,.9); }
-    .sector-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:2px; }
-    .sector-icon svg { width:22px; height:22px; stroke:var(--gold); fill:none; stroke-width:1.5; }
-    .sector-name { font-size:.8rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--cream); line-height:1.3; }
+    /* DOLORES */
+    #dolores { padding:80px 0; }
+    .dolores-intro { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; margin-top:52px; }
+    .dolores-label { font-size:.88rem; line-height:1.8; color:var(--gray); margin-bottom:24px; }
+    .dolor-list { display:flex; flex-direction:column; gap:10px; }
+    .dolor-item { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border:1px solid rgba(255,255,255,.06); background:rgba(255,255,255,.02); transition:border-color .3s,background .3s; }
+    .dolor-item:hover { border-color:rgba(224,112,112,.3); background:rgba(224,112,112,.03); }
+    .dolor-num { font-family:var(--ff-head); font-size:1.1rem; color:rgba(224,112,112,.5); min-width:20px; line-height:1.3; }
+    .dolor-text { font-size:.86rem; color:var(--cream); line-height:1.6; }
+    .dolor-sub { font-size:.78rem; color:var(--gray); margin-top:3px; }
+    .dolores-cta-box { border:1px solid var(--border); padding:36px; background:rgba(184,154,90,.04); }
+    .dolores-cta-box h3 { font-family:var(--ff-head); font-size:1.6rem; font-weight:600; color:var(--white); line-height:1.2; margin-bottom:12px; }
+    .dolores-cta-box p { font-size:.86rem; color:var(--gray); line-height:1.7; margin-bottom:24px; }
 
-    /* LEAD MAGNET */
-    #checklist { padding:80px 0; }
-    .magnet-box { border:1px solid var(--border); background:radial-gradient(ellipse 70% 60% at 0% 50%,rgba(184,154,90,.08) 0%,transparent 60%); padding:60px; display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center; position:relative; overflow:hidden; }
-    .magnet-box::after { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--gold),transparent); }
-    .magnet-tag { display:inline-flex; align-items:center; gap:7px; font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
-    .magnet-tag svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
-    .magnet-title { font-family:var(--ff-head); font-size:clamp(1.6rem,3vw,2.4rem); font-weight:600; color:var(--white); line-height:1.15; margin-bottom:14px; }
-    .magnet-sub { font-size:.92rem; line-height:1.75; color:var(--gray); max-width:520px; }
-    .magnet-items { display:flex; flex-direction:column; gap:8px; margin-top:20px; }
-    .magnet-item { display:flex; align-items:center; gap:10px; font-size:.85rem; color:var(--cream); }
-    .magnet-item svg { width:14px; height:14px; stroke:var(--gold); fill:none; stroke-width:2.5; flex-shrink:0; }
-    .magnet-cta { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:12px; }
-    .magnet-doc { width:180px; height:230px; background:var(--navy2); border:1px solid var(--border); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:24px; }
-    .magnet-doc::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); }
-    .magnet-doc-icon { width:40px; height:40px; stroke:var(--gold); fill:none; stroke-width:1.2; }
-    .magnet-doc-label { font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); text-align:center; line-height:1.5; }
-    .magnet-doc-title { font-family:var(--ff-head); font-size:1rem; font-weight:600; color:var(--white); text-align:center; line-height:1.3; }
-    .magnet-form { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
-    .magnet-form input { flex:1; min-width:220px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); color:var(--cream); font-family:var(--ff-body); font-size:.88rem; padding:11px 14px; border-radius:2px; outline:none; transition:border-color .2s; }
-    .magnet-form input::placeholder { color:rgba(138,154,181,.5); }
-    .magnet-form input:focus { border-color:var(--gold); }
-    .btn-magnet { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--gold); font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:11px 22px; border:1px solid var(--border); border-radius:2px; cursor:pointer; transition:background .2s,color .2s; white-space:nowrap; }
-    .btn-magnet:hover { background:var(--gold); color:var(--navy); }
-    .btn-magnet svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
-    .magnet-success { display:none; font-size:.9rem; color:var(--gold); margin-top:8px; }
+    /* PLATAFORMA */
+    #plataforma { padding:100px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+    .plataforma-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; margin-top:52px; }
+    .plataforma-features { display:flex; flex-direction:column; gap:0; }
+    .plat-feat { display:flex; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.06); transition:all .3s; cursor:default; }
+    .plat-feat:last-child { border-bottom:none; }
+    .plat-feat:hover .plat-feat-title { color:var(--gold); }
+    .plat-feat-icon { width:34px; height:34px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    .plat-feat-icon svg { width:15px; height:15px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+    .plat-feat-title { font-size:.86rem; font-weight:500; color:var(--white); margin-bottom:3px; transition:color .2s; }
+    .plat-feat-desc { font-size:.8rem; color:var(--gray); line-height:1.65; }
+    .plataforma-screens { display:flex; flex-direction:column; gap:14px; }
+    .screen-box { border:1px solid rgba(255,255,255,.08); background:var(--navy2); overflow:hidden; position:relative; }
+    .screen-box::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+    .screen-label { font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.06); background:rgba(0,0,0,.2); }
+    .screen-content { padding:14px; display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+    .screen-stat { background:rgba(255,255,255,.04); padding:10px 11px; border-radius:2px; }
+    .screen-stat-val { font-family:var(--ff-head); font-size:1.35rem; font-weight:600; color:var(--white); line-height:1; }
+    .screen-stat-val.green { color:#4ade80; }
+    .screen-stat-val.amber { color:#fbbf24; }
+    .screen-stat-val.red { color:#f87171; }
+    .screen-stat-label { font-size:.62rem; color:var(--gray); margin-top:3px; }
+    .screen-bar-row { display:flex; flex-direction:column; gap:6px; padding:10px 14px; }
+    .bar-item { display:flex; align-items:center; gap:10px; }
+    .bar-label { font-size:.7rem; color:var(--gray); min-width:130px; }
+    .bar-track { flex:1; height:4px; background:rgba(255,255,255,.08); border-radius:50px; overflow:hidden; }
+    .bar-fill { height:100%; border-radius:50px; }
+    .bar-pct { font-size:.66rem; color:var(--cream); min-width:30px; text-align:right; }
 
-    /* SERVICES */
-    #servicios { padding:120px 0; }
-    .services-header { display:flex; justify-content:space-between; align-items:flex-end; gap:32px; flex-wrap:wrap; margin-bottom:56px; }
-    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); }
-    .service-card { background:var(--navy); padding:44px 36px; position:relative; overflow:hidden; transition:background .3s; }
+    /* SERVICIOS — jerarquía visual */
+    #servicios { padding:100px 0; }
+    .services-label { font-size:.82rem; color:var(--gray); line-height:1.7; margin-bottom:48px; max-width:560px; }
+    .services-star { border:1px solid var(--border); background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(184,154,90,.07) 0%,transparent 60%); padding:44px; margin-bottom:1px; position:relative; overflow:hidden; transition:background .3s; }
+    .services-star::before { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--gold); }
+    .services-star:hover { background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(184,154,90,.12) 0%,transparent 60%); }
+    .star-badge { display:inline-flex; align-items:center; gap:6px; font-size:.65rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border:1px solid var(--border); padding:4px 10px; border-radius:2px; margin-bottom:16px; }
+    .star-title { font-family:var(--ff-head); font-size:1.8rem; font-weight:600; color:var(--white); margin-bottom:10px; line-height:1.15; }
+    .star-sub { font-size:.9rem; color:var(--gray); line-height:1.75; max-width:600px; }
+    .star-features { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+    .star-feat { display:flex; align-items:center; gap:7px; font-size:.8rem; color:var(--cream); }
+    .star-feat svg { width:12px; height:12px; stroke:var(--gold); fill:none; stroke-width:2.5; flex-shrink:0; }
+    .services-row2 { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-bottom:1px; }
+    .services-row3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); }
+    .service-card { background:var(--navy); padding:36px 30px; position:relative; overflow:hidden; transition:background .3s; }
     .service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
     .service-card:hover { background:rgba(17,32,64,.9); }
     .service-card:hover::before { transform:scaleX(1); }
-    .service-num { font-family:var(--ff-head); font-size:2.8rem; font-weight:600; color:rgba(184,154,90,.2); line-height:1; margin-bottom:18px; }
-    .service-title { font-family:var(--ff-head); font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:12px; line-height:1.2; }
-    .service-text { font-size:.88rem; line-height:1.75; color:var(--gray); }
+    .service-cat { font-size:.62rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); opacity:.7; margin-bottom:10px; }
+    .service-title { font-family:var(--ff-head); font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:8px; line-height:1.2; }
+    .service-text { font-size:.82rem; line-height:1.75; color:var(--gray); margin-bottom:12px; }
+    .service-tags { display:flex; flex-wrap:wrap; gap:5px; }
+    .service-tag { font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); border:1px solid rgba(255,255,255,.1); padding:3px 7px; border-radius:50px; }
 
-    /* PROCESS */
-    #proceso { padding:120px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+    /* PROCESO */
+    #proceso { padding:100px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
     .process-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
     .process-steps { margin-top:16px; }
-    .process-step { display:flex; gap:22px; padding:26px 0; border-bottom:1px solid rgba(255,255,255,.06); transition:all .3s; }
+    .process-step { display:flex; gap:22px; padding:22px 0; border-bottom:1px solid rgba(255,255,255,.06); transition:all .3s; }
     .process-step:last-child { border-bottom:none; }
-    .step-idx { font-family:var(--ff-head); font-size:1.5rem; font-weight:500; color:var(--gold); opacity:.5; min-width:36px; line-height:1.2; transition:opacity .3s; }
+    .step-idx { font-family:var(--ff-head); font-size:1.4rem; font-weight:500; color:var(--gold); opacity:.5; min-width:32px; line-height:1.2; transition:opacity .3s; }
     .process-step:hover .step-idx { opacity:1; }
-    .step-text { font-size:.9rem; line-height:1.7; color:var(--gray); padding-top:2px; transition:color .3s; }
+    .step-text { font-size:.88rem; line-height:1.7; color:var(--gray); padding-top:2px; transition:color .3s; }
     .process-step:hover .step-text { color:var(--cream); }
     .process-aside { position:sticky; top:90px; }
-    .aside-box { border:1px solid var(--border); padding:40px; background:rgba(184,154,90,.04); }
-    .aside-heading { font-family:var(--ff-head); font-size:1.5rem; font-weight:600; color:var(--white); line-height:1.2; margin-bottom:14px; }
-    .aside-text { font-size:.88rem; line-height:1.75; color:var(--gray); margin-bottom:28px; }
-
-    /* SPECIALTIES */
-    #especialidades { padding:120px 0; }
-    .specialties-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:52px; }
-    .spec-card { border:1px solid rgba(255,255,255,.07); padding:36px; background:rgba(255,255,255,.02); transition:border-color .3s,background .3s; }
-    .spec-card:hover { border-color:var(--border); background:rgba(184,154,90,.04); }
-    .spec-icon { width:36px; height:36px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
-    .spec-icon svg { width:26px; height:26px; stroke:var(--gold); fill:none; stroke-width:1.5; }
-    .spec-title { font-family:var(--ff-head); font-size:1.25rem; font-weight:600; color:var(--white); margin-bottom:10px; }
-    .spec-text { font-size:.86rem; line-height:1.75; color:var(--gray); }
+    .aside-box { border:1px solid var(--border); padding:36px; background:rgba(184,154,90,.04); }
+    .aside-heading { font-family:var(--ff-head); font-size:1.45rem; font-weight:600; color:var(--white); line-height:1.2; margin-bottom:12px; }
+    .aside-text { font-size:.86rem; line-height:1.75; color:var(--gray); margin-bottom:24px; }
 
     /* EQUIPO */
-    #equipo { padding:120px 0; background:rgba(255,255,255,.015); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
-    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:52px; }
-    .team-card { border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.02); overflow:hidden; transition:border-color .3s,background .3s; display:flex; gap:0; }
+    #equipo { padding:100px 0; }
+    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:48px; }
+    .team-card { border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.02); overflow:hidden; transition:border-color .3s,background .3s; display:flex; }
     .team-card:hover { border-color:var(--border); background:rgba(184,154,90,.03); }
-    .team-photo { width:160px; flex-shrink:0; position:relative; overflow:hidden; }
+    .team-photo { width:155px; flex-shrink:0; overflow:hidden; }
     .team-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; filter:grayscale(15%); transition:filter .3s; }
     .team-card:hover .team-photo img { filter:grayscale(0%); }
-    .team-photo-placeholder { width:100%; height:100%; min-height:200px; background:var(--navy2); display:flex; align-items:center; justify-content:center; }
-    .team-photo-placeholder svg { width:48px; height:48px; stroke:rgba(184,154,90,.3); fill:none; stroke-width:1; }
-    .team-info { padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between; flex:1; }
-    .team-name { font-family:var(--ff-head); font-size:1.35rem; font-weight:600; color:var(--white); margin-bottom:4px; }
-    .team-role { font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
-    .team-bio { font-size:.84rem; line-height:1.7; color:var(--gray); flex:1; }
-    .team-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
-    .team-tag { font-size:.65rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); border:1px solid rgba(255,255,255,.1); padding:3px 9px; border-radius:50px; }
-    .team-link { display:inline-flex; align-items:center; gap:6px; font-size:.72rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-top:16px; border-bottom:1px solid transparent; transition:border-color .2s; width:fit-content; }
+    .team-info { padding:26px 22px; display:flex; flex-direction:column; justify-content:space-between; flex:1; }
+    .team-name { font-family:var(--ff-head); font-size:1.28rem; font-weight:600; color:var(--white); margin-bottom:3px; }
+    .team-role { font-size:.68rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+    .team-bio { font-size:.8rem; line-height:1.7; color:var(--gray); flex:1; }
+    .team-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:12px; }
+    .team-tag { font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); border:1px solid rgba(255,255,255,.1); padding:3px 7px; border-radius:50px; }
+    .team-link { display:inline-flex; align-items:center; gap:5px; font-size:.68rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); text-decoration:none; margin-top:12px; border-bottom:1px solid transparent; transition:border-color .2s; width:fit-content; }
     .team-link:hover { border-color:var(--gold); }
-    .team-link svg { width:11px; height:11px; stroke:currentColor; fill:none; stroke-width:2; }
-    .wit-card { border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.02); padding:36px; transition:border-color .3s,background .3s; display:flex; align-items:center; gap:36px; }
+    .team-link svg { width:10px; height:10px; stroke:currentColor; fill:none; stroke-width:2; }
+    .wit-card { border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.02); padding:28px; transition:border-color .3s,background .3s; display:flex; align-items:center; gap:28px; }
     .wit-card:hover { border-color:var(--border); background:rgba(184,154,90,.03); }
-    .wit-logo-wrap { flex-shrink:0; width:140px; display:flex; align-items:center; justify-content:center; }
+    .wit-logo-wrap { flex-shrink:0; width:110px; display:flex; align-items:center; justify-content:center; }
     .wit-logo-wrap img { width:100%; filter:brightness(0) invert(1); opacity:.7; transition:opacity .3s; }
     .wit-card:hover .wit-logo-wrap img { opacity:1; }
-    .wit-divider { width:1px; height:80px; background:rgba(255,255,255,.08); flex-shrink:0; }
+    .wit-divider { width:1px; height:70px; background:rgba(255,255,255,.08); flex-shrink:0; }
     .wit-info { flex:1; }
-    .wit-role { font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
-    .wit-name { font-family:var(--ff-head); font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:10px; }
-    .wit-bio { font-size:.84rem; line-height:1.7; color:var(--gray); }
+    .wit-role { font-size:.68rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+    .wit-name { font-family:var(--ff-head); font-size:1.15rem; font-weight:600; color:var(--white); margin-bottom:8px; }
+    .wit-bio { font-size:.8rem; line-height:1.7; color:var(--gray); }
+    .partners-strip { display:flex; align-items:center; justify-content:center; gap:40px; margin-top:44px; padding:24px 0; border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); flex-wrap:wrap; }
+    .partner-label { font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); }
+    .partner-logo { height:20px; filter:brightness(0) invert(1); opacity:.4; }
+    .cert-badge { font-size:.68rem; color:var(--gray); border:1px solid rgba(255,255,255,.1); padding:4px 10px; border-radius:2px; }
 
-    /* MEDIA */
-    #medios { padding:120px 0; }
-    .media-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:52px; }
+    /* SECCIÓN SECUNDARIA: Experiencia, sectores, impacto, medios, checklist */
+    .secondary-sections { background:rgba(255,255,255,.01); border-top:1px solid rgba(255,255,255,.05); }
+
+    /* EXPERIENCIA */
+    #experiencia { padding:72px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+    .trust-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:44px; }
+
+    /* SECTORES */
+    #sectores { padding:72px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+    .sectores-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:40px; }
+    .sector-card { background:var(--navy); padding:28px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; transition:background .3s; }
+    .sector-card:hover { background:rgba(17,32,64,.9); }
+    .sector-icon { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:2px; }
+    .sector-icon svg { width:20px; height:20px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+    .sector-name { font-size:.76rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--cream); line-height:1.3; }
+
+    /* IMPACTO */
+    #impacto { padding:72px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+    .impacto-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.07); margin-top:44px; }
+    .impacto-card { background:var(--navy); padding:36px 28px; transition:background .3s; }
+    .impacto-card:hover { background:rgba(17,32,64,.9); }
+    .impacto-sector { font-size:.66rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+    .impacto-metric { font-family:var(--ff-head); font-size:2.8rem; font-weight:600; color:var(--white); line-height:1; margin-bottom:6px; }
+    .impacto-metric span { color:var(--gold); font-size:1.8rem; }
+    .impacto-desc { font-size:.83rem; line-height:1.7; color:var(--gray); }
+
+    /* MEDIOS */
+    #medios { padding:72px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+    .media-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; margin-top:44px; }
     .media-img-wrap { position:relative; }
-    .media-img-wrap::before { content:''; position:absolute; top:-16px; left:-16px; right:16px; bottom:16px; border:1px solid var(--border); z-index:0; }
-    .media-img-wrap img { position:relative; z-index:1; width:100%; height:320px; object-fit:cover; display:block; filter:grayscale(20%); }
-    .media-badge { position:absolute; bottom:-16px; right:-16px; z-index:2; background:var(--gold); color:var(--navy); font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:10px 18px; }
-    .link-arrow { display:inline-flex; align-items:center; gap:8px; color:var(--gold); font-size:.8rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
+    .media-img-wrap::before { content:''; position:absolute; top:-14px; left:-14px; right:14px; bottom:14px; border:1px solid var(--border); z-index:0; }
+    .media-img-wrap img { position:relative; z-index:1; width:100%; height:280px; object-fit:cover; object-position:top center; display:block; filter:grayscale(20%); }
+    .media-badge { position:absolute; bottom:-14px; right:-14px; z-index:2; background:var(--gold); color:var(--navy); font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:9px 16px; }
+    .link-arrow { display:inline-flex; align-items:center; gap:8px; color:var(--gold); font-size:.78rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
     .link-arrow:hover { border-color:var(--gold); }
-    .link-arrow svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
-    .media-stat { display:flex; align-items:baseline; gap:8px; margin:24px 0; }
-    .media-stat-num { font-family:var(--ff-head); font-size:2.4rem; font-weight:600; color:var(--white); }
+    .link-arrow svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2; }
+    .media-stat { display:flex; align-items:baseline; gap:8px; margin:20px 0; }
+    .media-stat-num { font-family:var(--ff-head); font-size:2.2rem; font-weight:600; color:var(--white); }
     .media-stat-num span { color:var(--gold); }
-    .media-stat-desc { font-size:.82rem; color:var(--gray); line-height:1.5; }
+    .media-stat-desc { font-size:.8rem; color:var(--gray); line-height:1.5; }
+
+    /* CHECKLIST */
+    #checklist { padding:72px 0; }
+    .magnet-box { border:1px solid var(--border); background:radial-gradient(ellipse 70% 60% at 0% 50%,rgba(184,154,90,.08) 0%,transparent 60%); padding:52px; display:grid; grid-template-columns:1fr auto; gap:52px; align-items:center; position:relative; overflow:hidden; }
+    .magnet-box::after { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--gold),transparent); }
+    .magnet-tag { display:inline-flex; align-items:center; gap:7px; font-size:.68rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+    .magnet-tag svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2; }
+    .magnet-title { font-family:var(--ff-head); font-size:clamp(1.5rem,3vw,2.2rem); font-weight:600; color:var(--white); line-height:1.15; margin-bottom:12px; }
+    .magnet-sub { font-size:.88rem; line-height:1.75; color:var(--gray); max-width:500px; }
+    .magnet-items { display:flex; flex-direction:column; gap:7px; margin-top:18px; }
+    .magnet-item { display:flex; align-items:center; gap:10px; font-size:.83rem; color:var(--cream); }
+    .magnet-item svg { width:13px; height:13px; stroke:var(--gold); fill:none; stroke-width:2.5; flex-shrink:0; }
+    .magnet-cta { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:12px; }
+    .magnet-doc { width:170px; height:215px; background:var(--navy2); border:1px solid var(--border); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px; }
+    .magnet-doc::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gold); }
+    .magnet-doc-icon { width:36px; height:36px; stroke:var(--gold); fill:none; stroke-width:1.2; }
+    .magnet-doc-label { font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); text-align:center; }
+    .magnet-doc-title { font-family:var(--ff-head); font-size:.95rem; font-weight:600; color:var(--white); text-align:center; line-height:1.3; }
+    .magnet-form { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+    .magnet-form input { flex:1; min-width:210px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); color:var(--cream); font-family:var(--ff-body); font-size:.86rem; padding:10px 13px; border-radius:2px; outline:none; transition:border-color .2s; }
+    .magnet-form input::placeholder { color:rgba(138,154,181,.5); }
+    .magnet-form input:focus { border-color:var(--gold); }
+    .btn-magnet { display:inline-flex; align-items:center; gap:7px; background:transparent; color:var(--gold); font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:10px 20px; border:1px solid var(--border); border-radius:2px; cursor:pointer; transition:background .2s,color .2s; white-space:nowrap; }
+    .btn-magnet:hover { background:var(--gold); color:var(--navy); }
+    .btn-magnet svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2; }
+    .magnet-success { display:none; font-size:.88rem; color:var(--gold); margin-top:8px; }
 
     /* BUTTONS */
-    .btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:14px 28px; border-radius:2px; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .2s; }
+    .btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:13px 26px; border-radius:2px; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .2s; }
     .btn-primary:hover { background:var(--gold2); transform:translateY(-1px); }
-    .btn-primary svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
-    .btn-secondary { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--cream); font-family:var(--ff-body); font-size:.82rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; padding:14px 28px; border-radius:2px; border:1px solid rgba(255,255,255,.15); text-decoration:none; cursor:pointer; transition:border-color .2s,color .2s,transform .2s; }
+    .btn-primary svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2; }
+    .btn-secondary { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--cream); font-family:var(--ff-body); font-size:.82rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; padding:13px 26px; border-radius:2px; border:1px solid rgba(255,255,255,.15); text-decoration:none; cursor:pointer; transition:border-color .2s,color .2s,transform .2s; }
     .btn-secondary:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-1px); }
 
     /* CTA */
-    #contacto { padding:120px 0; }
-    .cta-box { border:1px solid var(--border); padding:80px; text-align:center; background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(184,154,90,.07) 0%,transparent 60%); position:relative; overflow:hidden; }
+    #contacto { padding:100px 0; }
+    .cta-box { border:1px solid var(--border); padding:72px 80px; text-align:center; background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(184,154,90,.07) 0%,transparent 60%); position:relative; overflow:hidden; }
     .cta-box::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:160px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
-    .cta-title { font-family:var(--ff-head); font-size:clamp(2rem,4vw,3.2rem); font-weight:600; color:var(--white); line-height:1.1; margin-bottom:14px; }
-    .cta-sub { font-size:1rem; color:var(--gray); margin-bottom:44px; max-width:460px; margin-left:auto; margin-right:auto; }
-    .cta-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-    .contact-chips { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
-    .contact-chip { display:flex; align-items:center; gap:8px; font-size:.82rem; color:var(--gray); text-decoration:none; transition:color .2s; }
+    .cta-eyebrow { font-family:var(--ff-head); font-size:clamp(1.1rem,2vw,1.6rem); font-style:italic; color:var(--gold2); margin-bottom:10px; }
+    .cta-title { font-family:var(--ff-head); font-size:clamp(1.8rem,4vw,3rem); font-weight:600; color:var(--white); line-height:1.1; margin-bottom:12px; }
+    .cta-sub { font-size:.96rem; color:var(--gray); margin-bottom:40px; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.75; }
+    .cta-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .contact-chips { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:32px; }
+    .contact-chip { display:flex; align-items:center; gap:7px; font-size:.8rem; color:var(--gray); text-decoration:none; transition:color .2s; }
     .contact-chip:hover { color:var(--gold); }
-    .contact-chip svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:1.5; }
+    .contact-chip svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:1.5; }
 
     /* FOOTER */
-    footer { border-top:1px solid rgba(255,255,255,.06); padding:36px 32px; }
+    footer { border-top:1px solid rgba(255,255,255,.06); padding:32px; }
     .footer-inner { max-width:1160px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
-    .footer-links { display:flex; gap:24px; list-style:none; flex-wrap:wrap; }
-    .footer-links a { font-size:.73rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(138,154,181,.65); text-decoration:none; transition:color .2s; }
+    .footer-links { display:flex; gap:22px; list-style:none; flex-wrap:wrap; }
+    .footer-links a { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(138,154,181,.65); text-decoration:none; transition:color .2s; }
     .footer-links a:hover { color:var(--gold); }
-    .footer-copy { font-size:.73rem; color:rgba(138,154,181,.45); }
+    .footer-copy { font-size:.7rem; color:rgba(138,154,181,.45); }
 
     /* RESPONSIVE */
     @media (max-width:960px) {
       .hero-layout { grid-template-columns:1fr; }
       .hero-form-card { max-width:480px; }
-      .services-grid,.specialties-grid,.team-grid { grid-template-columns:1fr; }
-      .process-layout,.media-layout { grid-template-columns:1fr; }
+      .services-row2,.services-row3,.team-grid,.impacto-grid { grid-template-columns:1fr; }
+      .process-layout,.media-layout,.plataforma-layout,.dolores-intro { grid-template-columns:1fr; }
       .process-aside { position:static; }
-      .trust-grid,.sectores-grid { grid-template-columns:repeat(2,1fr); }
+      .trust-grid-4,.trust-grid-3,.sectores-grid { grid-template-columns:repeat(2,1fr); }
       .magnet-box { grid-template-columns:1fr; }
       .magnet-cta { align-items:flex-start; }
       .cta-box { padding:48px 24px; }
       .nav-links { display:none; }
       .wit-card { flex-direction:column; gap:20px; }
-      .wit-divider { width:80px; height:1px; }
+      .wit-divider { width:70px; height:1px; }
       .team-card { flex-direction:column; }
-      .team-photo { width:100%; height:200px; }
+      .team-photo { width:100%; height:190px; }
     }
     @media (max-width:600px) {
       .container, nav { padding-left:20px; padding-right:20px; }
-      .magnet-box { padding:36px 24px; }
-      .sectores-grid { grid-template-columns:repeat(2,1fr); }
+      .magnet-box { padding:32px 20px; }
+      .trust-grid-4 { grid-template-columns:repeat(2,1fr); }
     }
   </style>
 </head>
@@ -269,12 +346,15 @@
 </div>
 
 <nav>
-  <a href="#" class="nav-logo"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" /></a>
+  <a href="#" class="nav-brand">
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" />
+    <span class="nav-tagline">Cumplimiento que crea valor</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#proceso">Metodología</a></li>
-    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#plataforma">Plataforma</a></li>
     <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#impacto">Resultados</a></li>
   </ul>
   <a href="#diagnostico" class="nav-cta-btn">
     Solicitar diagnóstico
@@ -289,53 +369,74 @@
   <div class="container">
     <div class="hero-layout">
       <div>
-        <span class="tag">Consultoría · Compliance · Chile</span>
-        <h1 class="hero-title">Compliance corporativo<br/>con <em>enfoque legal</em><br/>y tecnológico</h1>
-        <p class="hero-sub">Diseñamos e implementamos sistemas de cumplimiento, prevención de delitos y programas anticorrupción con foco en trazabilidad, evidencia y preparación para auditoría.</p>
+        <span class="tag">Compliance legal + tecnología · Chile y LATAM</span>
+        <h1 class="hero-title">Convirtamos su riesgo<br/>regulatorio en<br/><em>ventaja competitiva</em></h1>
+        <p class="hero-sub">Diseñamos e implementamos sistemas de cumplimiento con enfoque legal y tecnológico para que su empresa pueda prevenir, monitorear y defender su gestión frente a auditorías, reguladores y directorios.</p>
         <div class="hero-trust">
-          <div class="trust-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Especialistas en cumplimiento normativo y gestión de riesgos en Chile</div>
-          <div class="trust-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Enfoque práctico, documentado y listo para auditoría</div>
-          <div class="trust-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Experiencia en Ley 20.393, delitos económicos, ISO 37001 e ISO 37301</div>
+          <div class="trust-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Especialistas en cumplimiento normativo y gestión de riesgos</div>
+          <div class="trust-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Plataforma propia + respaldo Microsoft en seguridad</div>
+          <div class="trust-line"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Desde diagnóstico hasta certificación ISO</div>
         </div>
-        <div class="hero-chips" style="margin-top:24px">
+        <div class="hero-chips" style="margin-top:22px">
           <span class="hero-chip">Ley 20.393</span>
           <span class="hero-chip">ISO 37001</span>
           <span class="hero-chip">ISO 37301</span>
           <span class="hero-chip">Delitos Económicos</span>
-          <span class="hero-chip">AML / CTF</span>
+          <span class="hero-chip">Prevención LA/FT</span>
           <span class="hero-chip">Protección de Datos</span>
+          <span class="hero-chip">ESG</span>
         </div>
       </div>
 
-      <!-- FORMULARIO — 3 campos -->
       <div id="diagnostico">
         <div class="hero-form-card">
-          <h2 class="form-heading">Solicite su diagnóstico de cumplimiento</h2>
-          <p class="form-sub">Sin costo ni compromiso. Evaluamos brechas críticas y le proponemos una hoja de ruta clara para avanzar.</p>
-          <div id="mainForm">
-            <div class="form-group">
-              <label>Nombre *</label>
-              <input type="text" id="f-name" placeholder="Su nombre completo" />
-            </div>
-            <div class="form-group">
-              <label>Empresa *</label>
-              <input type="text" id="f-company" placeholder="Nombre de su empresa" />
-            </div>
-            <div class="form-group">
-              <label>Email corporativo *</label>
-              <input type="email" id="f-email" placeholder="correo@empresa.cl" />
-            </div>
-            <button class="btn-form" onclick="submitForm()">
-              Solicitar diagnóstico gratuito
-              <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-            </button>
-            <p class="form-privacy">Sus datos no serán compartidos con terceros.</p>
+          <h2 class="form-heading">Solicite su diagnóstico</h2>
+          <p class="form-sub">Sin costo ni compromiso. Evaluamos brechas críticas y le proponemos una hoja de ruta clara.</p>
+          <div class="form-promises">
+            <div class="form-promise"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Diagnóstico inicial sin costo</div>
+            <div class="form-promise"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Respuesta en 24–48 horas hábiles</div>
+            <div class="form-promise"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Reunión ejecutiva de 30 minutos</div>
           </div>
-          <div class="form-success" id="formSuccess">
-            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <h4>¡Gracias por contactarnos!</h4>
-            <p>Hemos recibido su solicitud. Un especialista de RegulaTec se comunicará con usted pronto.</p>
-          </div>
+          <form id="leadForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div id="mainForm">
+              <input type="hidden" name="_subject" value="Nueva solicitud de diagnóstico - RegulaTec" />
+              <input type="hidden" name="_language" value="es" />
+              <input type="hidden" name="_captcha" value="false" />
+              <div class="form-group">
+                <label for="f-name">Nombre *</label>
+                <input type="text" id="f-name" name="nombre" placeholder="Su nombre completo" required />
+              </div>
+              <div class="form-group">
+                <label for="f-company">Empresa *</label>
+                <input type="text" id="f-company" name="empresa" placeholder="Nombre de su empresa" required />
+              </div>
+              <div class="form-group">
+                <label for="f-email">Email corporativo *</label>
+                <input type="email" id="f-email" name="email" placeholder="correo@empresa.cl" required />
+              </div>
+              <button type="submit" class="btn-form" id="submitBtn">
+                Solicitar diagnóstico gratuito
+                <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+              </button>
+              <p class="form-privacy">Sus datos no serán compartidos con terceros.</p>
+              <div class="form-secondary">
+                <a href="#plataforma">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  Ver demo de la plataforma
+                </a>
+                <span>·</span>
+                <a href="#checklist">
+                  <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Descargar checklist
+                </a>
+              </div>
+            </div>
+            <div class="form-success" id="formSuccess">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <h4>¡Gracias por contactarnos!</h4>
+              <p>Hemos recibido su solicitud. Un especialista de RegulaTec se comunicará con usted en las próximas 24–48 horas hábiles.</p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -350,160 +451,237 @@
     <div class="strip-item"><span class="strip-dot"></span>ISO 37001 Antisoborno</div>
     <div class="strip-item"><span class="strip-dot"></span>ISO 37301 Compliance</div>
     <div class="strip-item"><span class="strip-dot"></span>Ley 20.393</div>
-    <div class="strip-item"><span class="strip-dot"></span>AML / CTF</div>
+    <div class="strip-item"><span class="strip-dot"></span>Prevención LA/FT</div>
     <div class="strip-item"><span class="strip-dot"></span>Protección de Datos</div>
-    <div class="strip-item"><span class="strip-dot"></span>Delitos Económicos</div>
+    <div class="strip-item"><span class="strip-dot"></span>Assessment TecnoLegal</div>
+    <div class="strip-item"><span class="strip-dot"></span>ESG Compliance</div>
+    <div class="strip-item"><span class="strip-dot"></span>DPO as a Service</div>
     <div class="strip-item"><span class="strip-dot"></span>Compliance Corporativo</div>
     <div class="strip-item"><span class="strip-dot"></span>Modelo de Prevención de Delitos</div>
     <div class="strip-item"><span class="strip-dot"></span>ISO 37001 Antisoborno</div>
     <div class="strip-item"><span class="strip-dot"></span>ISO 37301 Compliance</div>
     <div class="strip-item"><span class="strip-dot"></span>Ley 20.393</div>
-    <div class="strip-item"><span class="strip-dot"></span>AML / CTF</div>
+    <div class="strip-item"><span class="strip-dot"></span>Prevención LA/FT</div>
     <div class="strip-item"><span class="strip-dot"></span>Protección de Datos</div>
-    <div class="strip-item"><span class="strip-dot"></span>Delitos Económicos</div>
+    <div class="strip-item"><span class="strip-dot"></span>Assessment TecnoLegal</div>
+    <div class="strip-item"><span class="strip-dot"></span>ESG Compliance</div>
+    <div class="strip-item"><span class="strip-dot"></span>DPO as a Service</div>
   </div>
 </div>
 
-<!-- TRUST -->
+<!-- CONFIANZA -->
 <section id="confianza">
   <div class="container">
-    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
       <span class="tag">Por qué RegulaTec</span>
       <h2 class="section-title">Compliance que se implementa,<br/>se evidencia y se sostiene</h2>
       <p class="section-sub">No solo entregamos documentos: estructuramos sistemas de cumplimiento con controles, trazabilidad y evidencia para que funcionen en la práctica.</p>
     </div>
-    <div class="trust-grid reveal" style="transition-delay:.1s">
+    <div class="trust-grid-4 reveal" style="transition-delay:.1s">
       <div class="trust-card">
-        <div class="trust-num">20<span>K</span></div>
-        <div class="trust-card-title">UTM en sanciones potenciales</div>
-        <div class="trust-card-text">La exposición regulatoria de las empresas aumentó. Un sistema de cumplimiento débil puede traducirse en sanciones, observaciones, contingencias reputacionales y mayores exigencias de supervisión.</div>
+        <div class="trust-num">10<span>+</span></div>
+        <div class="trust-card-title">Años en compliance y derecho corporativo</div>
+        <div class="trust-card-text">Experiencia liderando áreas legales y de cumplimiento en compañías multinacionales y sectores de alta regulación en Chile y LATAM.</div>
       </div>
       <div class="trust-card">
-        <div class="trust-num">4<span>+</span></div>
-        <div class="trust-card-title">Marcos normativos y normas de certificación ISO</div>
-        <div class="trust-card-text">Trabajamos con múltiples marcos regulatorios —Ley 20.393, delitos económicos, protección de datos y otros— integrándolos con normas de certificación ISO. Un solo equipo que une cumplimiento legal y preparación para auditoría externa.</div>
+        <div class="trust-num">5<span>+</span></div>
+        <div class="trust-card-title">Países con experiencia regulatoria</div>
+        <div class="trust-card-text">Implementación de modelos de prevención, programas LA/FT y auditorías en Chile, Argentina, Uruguay, Perú y Colombia.</div>
       </div>
       <div class="trust-card">
-        <div class="trust-num">5</div>
-        <div class="trust-card-title">Etapas de implementación</div>
-        <div class="trust-card-text">Trabajamos con una metodología clara, desde el diagnóstico hasta la auditoría interna y la preparación para certificación o revisión externa.</div>
+        <div class="trust-num" style="font-size:2.2rem">3.500<span>+</span></div>
+        <div class="trust-card-title">Colaboradores capacitados en MPD</div>
+        <div class="trust-card-text">Programas de capacitación en ética corporativa y prevención de delitos para equipos de distintos niveles, desde operaciones hasta directorios.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">−80<span>%</span></div>
+        <div class="trust-card-title">Reducción en tiempos de procesos legales</div>
+        <div class="trust-card-text">La automatización de contratos, matrices de riesgo, reportes y gestión documental reduce drásticamente los tiempos operativos.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTORES -->
-<section id="sectores">
+<!-- DOLORES -->
+<section id="dolores">
   <div class="container">
-    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
-      <span class="tag">Sectores</span>
-      <h2 class="section-title">Industrias que atendemos</h2>
-      <p class="section-sub">Experiencia en sectores regulados, de alta exposición y con exigencias normativas crecientes.</p>
+    <div class="reveal">
+      <span class="tag">El problema</span>
+      <h2 class="section-title">¿Se encuentra en alguno<br/>de estos escenarios?</h2>
     </div>
-    <div class="sectores-grid reveal" style="transition-delay:.1s">
-      <div class="sector-card">
-        <div class="sector-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5M15 4v5"/></svg>
+    <div class="dolores-intro">
+      <div class="reveal" style="transition-delay:.05s">
+        <p class="dolores-label">Estas son las señales más comunes de que el sistema de cumplimiento de una empresa necesita atención — antes de que lo detecte un regulador, un auditor o el directorio.</p>
+        <div class="dolor-list">
+          <div class="dolor-item">
+            <span class="dolor-num">01</span>
+            <div><div class="dolor-text">No sabe si su modelo de prevención resiste una auditoría real</div><div class="dolor-sub">Las políticas existen, pero no hay evidencia estructurada de que se aplican.</div></div>
+          </div>
+          <div class="dolor-item">
+            <span class="dolor-num">02</span>
+            <div><div class="dolor-text">Tiene políticas dispersas que nadie consulta ni actualiza</div><div class="dolor-sub">Documentos archivados que no traducen en controles operacionales reales.</div></div>
+          </div>
+          <div class="dolor-item">
+            <span class="dolor-num">03</span>
+            <div><div class="dolor-text">No puede demostrar controles activos frente a reguladores</div><div class="dolor-sub">Cuando llega la fiscalización, no hay trazabilidad que respalde las decisiones.</div></div>
+          </div>
+          <div class="dolor-item">
+            <span class="dolor-num">04</span>
+            <div><div class="dolor-text">El directorio pide trazabilidad y compliance no la tiene</div><div class="dolor-sub">Reportes ad-hoc, sin indicadores consistentes ni visibilidad ejecutiva del riesgo.</div></div>
+          </div>
+          <div class="dolor-item">
+            <span class="dolor-num">05</span>
+            <div><div class="dolor-text">Legal y operaciones trabajan por separado, sin sistema común</div><div class="dolor-sub">El cumplimiento se gestiona en silos, sin coordinación ni evidencia centralizada.</div></div>
+          </div>
         </div>
-        <span class="sector-name">Banca y Servicios Financieros</span>
       </div>
-      <div class="sector-card">
-        <div class="sector-icon">
-          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="dolores-cta-box">
+          <h3>Instalamos el sistema de cumplimiento que su empresa necesita</h3>
+          <p>No solo entregamos un diagnóstico: diseñamos controles, generamos evidencia y dejamos un sistema que funciona en la operación diaria — defendible frente a auditorías, directorios y reguladores.</p>
+          <a href="#diagnostico" class="btn-primary">
+            Evaluar mi situación actual
+            <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </a>
         </div>
-        <span class="sector-name">Retail y Consumo</span>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icon">
-          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01M8 6h8M8 10h8M8 14h5"/></svg>
-        </div>
-        <span class="sector-name">Fintech y Pagos Digitales</span>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <span class="sector-name">Educación Superior</span>
-      </div>
-      <div class="sector-card">
-        <div class="sector-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <span class="sector-name">Salud y Clínicas</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LEAD MAGNET -->
-<section id="checklist">
+<!-- PLATAFORMA -->
+<section id="plataforma">
   <div class="container">
-    <div class="magnet-box reveal">
-      <div>
-        <div class="magnet-tag">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          Recurso gratuito
+    <div class="reveal">
+      <span class="tag">Tecnología</span>
+      <h2 class="section-title">Plataforma RegulaTec<br/>Compliance 360°</h2>
+      <div class="divider"></div>
+      <p class="section-sub" style="max-width:540px">El principal diferenciador: una plataforma propia que centraliza diagnóstico, riesgos, evidencia y seguimiento — construida sobre infraestructura Microsoft.</p>
+    </div>
+    <div class="plataforma-layout">
+      <div class="plataforma-features reveal" style="transition-delay:.1s">
+        <div class="plat-feat">
+          <div class="plat-feat-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div><div class="plat-feat-title">Assessment TecnoLegal</div><div class="plat-feat-desc">Diagnóstico de madurez legal y tecnológica. Identifica brechas, prioriza riesgos y genera un plan de acción con evidencia descargable.</div></div>
         </div>
-        <h2 class="magnet-title">10 riesgos regulatorios que su empresa<br/>debería revisar en 2026</h2>
-        <p class="magnet-sub">Guía práctica para gerencias, áreas legales y equipos de cumplimiento. Detecte brechas, priorice acciones y fortalezca su sistema antes de una fiscalización, auditoría o incidente.</p>
-        <div class="magnet-items">
-          <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Responsabilidad penal de la empresa</div>
-          <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Exposición bajo la nueva Ley de Datos Personales</div>
-          <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Delitos económicos y anticorrupción</div>
-          <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>+7 riesgos más con acciones concretas</div>
+        <div class="plat-feat">
+          <div class="plat-feat-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+          <div><div class="plat-feat-title">Panel de riesgos y controles</div><div class="plat-feat-desc">Visualización en tiempo real de hallazgos, riesgos priorizados, controles activos e indicadores KPI/KRI para directorio y compliance.</div></div>
         </div>
-        <div class="magnet-form" style="margin-top:28px">
-          <input type="email" id="magnet-email" placeholder="Su email corporativo" />
-          <button class="btn-magnet" onclick="downloadMagnet()">
-            Descargar checklist
-            <svg viewBox="0 0 14 14"><path d="M7 2v8M4 7l3 3 3-3"/><path d="M2 11h10"/></svg>
-          </button>
+        <div class="plat-feat">
+          <div class="plat-feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><div class="plat-feat-title">Sistema de denuncias</div><div class="plat-feat-desc">Canal anónimo con gestión trazable, clasificación por urgencia y seguimiento de resolución — integrado con Microsoft Power Apps.</div></div>
         </div>
-        <p class="magnet-success" id="magnetSuccess">✓ ¡Listo! Revise su bandeja de entrada en los próximos minutos.</p>
-        <p style="font-size:.7rem;color:rgba(138,154,181,.55);margin-top:8px">Sin spam. Solo contenido de cumplimiento normativo.</p>
+        <div class="plat-feat">
+          <div class="plat-feat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div><div class="plat-feat-title">Reportes y evidencia</div><div class="plat-feat-desc">Reportes regulatorios automáticos, matrices actualizadas y paquetes de evidencia listos para auditorías externas.</div></div>
+        </div>
+        <div class="plat-feat">
+          <div class="plat-feat-icon"><svg viewBox="0 0 24 24"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg></div>
+          <div><div class="plat-feat-title">Alertas regulatorias</div><div class="plat-feat-desc">Monitoreo de cambios normativos con alertas personalizadas por industria y jurisdicción en Chile y LATAM.</div></div>
+        </div>
       </div>
-      <div class="magnet-cta">
-        <div class="magnet-doc">
-          <svg class="magnet-doc-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <div class="magnet-doc-label">Checklist 2026</div>
-          <div class="magnet-doc-title">10 riesgos regulatorios clave</div>
+      <div class="plataforma-screens reveal" style="transition-delay:.2s">
+        <div class="screen-box">
+          <div class="screen-label">Panel de cumplimiento — Vista ejecutiva</div>
+          <div class="screen-content">
+            <div class="screen-stat"><div class="screen-stat-val green">82%</div><div class="screen-stat-label">Cumplimiento global</div></div>
+            <div class="screen-stat"><div class="screen-stat-val amber">3</div><div class="screen-stat-label">Hallazgos críticos</div></div>
+            <div class="screen-stat"><div class="screen-stat-val">12</div><div class="screen-stat-label">Tareas abiertas</div></div>
+          </div>
+          <div class="screen-bar-row">
+            <div class="bar-item"><span class="bar-label">Protección de datos</span><div class="bar-track"><div class="bar-fill" style="width:62%;background:#fbbf24"></div></div><span class="bar-pct">62%</span></div>
+            <div class="bar-item"><span class="bar-label">Ciberseguridad</span><div class="bar-track"><div class="bar-fill" style="width:94%;background:#4ade80"></div></div><span class="bar-pct">94%</span></div>
+            <div class="bar-item"><span class="bar-label">MPD Ley 20.393</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:#4ade80"></div></div><span class="bar-pct">88%</span></div>
+            <div class="bar-item"><span class="bar-label">Continuidad negocio</span><div class="bar-track"><div class="bar-fill" style="width:32%;background:#f87171"></div></div><span class="bar-pct">32%</span></div>
+          </div>
+        </div>
+        <div class="screen-box">
+          <div class="screen-label">Monitorización de riesgos</div>
+          <div class="screen-content">
+            <div class="screen-stat"><div class="screen-stat-val">106</div><div class="screen-stat-label">Elementos</div></div>
+            <div class="screen-stat"><div class="screen-stat-val amber">470</div><div class="screen-stat-label">Riesgos</div></div>
+            <div class="screen-stat"><div class="screen-stat-val green">90</div><div class="screen-stat-label">Controles</div></div>
+          </div>
+          <div class="screen-bar-row">
+            <div class="bar-item"><span class="bar-label">Riesgos altos</span><div class="bar-track"><div class="bar-fill" style="width:75%;background:#f87171"></div></div><span class="bar-pct">Alta</span></div>
+            <div class="bar-item"><span class="bar-label">Riesgos medios</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:#fbbf24"></div></div><span class="bar-pct">Media</span></div>
+            <div class="bar-item"><span class="bar-label">Controles activos</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#4ade80"></div></div><span class="bar-pct">85%</span></div>
+            <div class="bar-item"><span class="bar-label">Acciones completadas</span><div class="bar-track"><div class="bar-fill" style="width:73%;background:#b89a5a"></div></div><span class="bar-pct">68/92</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICIOS — jerarquía visual -->
 <section id="servicios">
   <div class="container">
-    <div class="services-header">
-      <div class="reveal">
-        <span class="tag">Servicios</span>
-        <h2 class="section-title">Diseño e implementación<br/>de sistemas de cumplimiento</h2>
-      </div>
-      <p class="section-sub reveal" style="transition-delay:.1s">Cada proyecto se adapta al tamaño, industria y nivel de avance de su organización.</p>
+    <div class="reveal">
+      <span class="tag">Servicios</span>
+      <h2 class="section-title">Soluciones a medida para<br/>un cumplimiento eficiente</h2>
     </div>
-    <div class="services-grid reveal" style="transition-delay:.15s">
+    <p class="section-sub services-label reveal" style="transition-delay:.08s">Cada proyecto se adapta al tamaño, industria y nivel de avance de su organización. Desde el diagnóstico inicial hasta el monitoreo continuo.</p>
+
+    <!-- Servicio estrella -->
+    <div class="services-star reveal" style="transition-delay:.1s">
+      <div class="star-badge">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Servicio estrella
+      </div>
+      <h3 class="star-title">Assessment TecnoLegal</h3>
+      <p class="star-sub">Diagnóstico de madurez en cumplimiento legal y tecnológico. Identifica brechas prioritarias, genera evidencia útil para auditorías y entrega un plan de acción claro con plazos y responsables.</p>
+      <div class="star-features">
+        <div class="star-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Informe ejecutivo descargable</div>
+        <div class="star-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Mapa de riesgos priorizados</div>
+        <div class="star-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Plan de acción con hitos</div>
+        <div class="star-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Evidencia lista para directorio</div>
+        <div class="star-feat"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Reunión de presentación ejecutiva</div>
+      </div>
+    </div>
+
+    <!-- Implementación -->
+    <div class="services-row2 reveal" style="transition-delay:.15s">
       <div class="service-card">
-        <div class="service-num">01</div>
-        <h3 class="service-title">Diagnóstico inicial</h3>
-        <p class="service-text">Evaluamos el nivel de madurez de su organización, detectamos brechas prioritarias y definimos una hoja de ruta para fortalecer su sistema de cumplimiento conforme a la normativa aplicable.</p>
+        <div class="service-cat">Implementación</div>
+        <h3 class="service-title">Programas de cumplimiento</h3>
+        <p class="service-text">MPD (Ley 20.393), protección de datos (Ley 21.719 y GDPR), ESG, gobierno corporativo y ética empresarial, con integraciones Microsoft para mayor trazabilidad.</p>
+        <div class="service-tags"><span class="service-tag">Ley 20.393</span><span class="service-tag">GDPR</span><span class="service-tag">ESG</span><span class="service-tag">Gobierno corporativo</span></div>
       </div>
       <div class="service-card">
-        <div class="service-num">02</div>
-        <h3 class="service-title">Diseño e implementación del sistema</h3>
-        <p class="service-text">Desarrollamos políticas, matrices de riesgo, controles, procedimientos, evidencias e indicadores para que el compliance opere de forma clara, trazable y sostenible.</p>
+        <div class="service-cat">Implementación</div>
+        <h3 class="service-title">Plataforma y automatización</h3>
+        <p class="service-text">Sistema de denuncias, matrices de riesgo automatizadas, gestión documental y reportes regulatorios sobre infraestructura Microsoft Power Apps y Power BI.</p>
+        <div class="service-tags"><span class="service-tag">Compliance 360°</span><span class="service-tag">Power Apps</span><span class="service-tag">Power BI</span><span class="service-tag">Denuncias</span></div>
+      </div>
+    </div>
+
+    <!-- Continuidad -->
+    <div class="services-row3 reveal" style="transition-delay:.2s">
+      <div class="service-card">
+        <div class="service-cat">Continuidad</div>
+        <h3 class="service-title">DPO as a Service</h3>
+        <p class="service-text">Delegado de Protección de Datos externo. Gestión continua de obligaciones bajo Ley 21.719 y GDPR sin necesidad de contratar un cargo interno.</p>
+        <div class="service-tags"><span class="service-tag">Ley 21.719</span><span class="service-tag">GDPR</span><span class="service-tag">Outsourcing</span></div>
       </div>
       <div class="service-card">
-        <div class="service-num">03</div>
-        <h3 class="service-title">Auditoría y preparación para certificación</h3>
-        <p class="service-text">Acompañamos procesos de auditoría interna, verificación de evidencias y preparación para certificaciones o revisiones externas con foco en consistencia y capacidad de respuesta.</p>
+        <div class="service-cat">Continuidad</div>
+        <h3 class="service-title">Compliance Officer as a Service</h3>
+        <p class="service-text">Oficial de cumplimiento externo con dedicación parcial o completa. Ideal para empresas medianas que necesitan función de compliance sin estructura interna.</p>
+        <div class="service-tags"><span class="service-tag">CCO externo</span><span class="service-tag">MPD</span><span class="service-tag">Auditoría interna</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-cat">Continuidad</div>
+        <h3 class="service-title">Monitoreo y seguimiento</h3>
+        <p class="service-text">Indicadores KPI/KRI, auditorías tecnolegales internas, alertas de cambios regulatorios y acompañamiento continuo post-diagnóstico.</p>
+        <div class="service-tags"><span class="service-tag">KPI / KRI</span><span class="service-tag">Alertas</span><span class="service-tag">Auditoría continua</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- PROCESO -->
 <section id="proceso">
   <div class="container">
     <div class="process-layout">
@@ -512,10 +690,10 @@
           <span class="tag">Metodología</span>
           <h2 class="section-title">Cómo implementamos compliance<br/>en su organización</h2>
           <div class="divider"></div>
-          <p class="section-sub">Adaptamos el proyecto al tamaño, industria y nivel de avance de cada empresa. Buscamos instalar un sistema claro, aplicable y defendible frente a auditorías, directorio y terceros.</p>
+          <p class="section-sub">Adaptamos el proyecto al tamaño, industria y nivel de avance de cada empresa. El resultado es un sistema claro, aplicable y defendible frente a auditorías, directorio y terceros.</p>
         </div>
         <div class="process-steps reveal" style="transition-delay:.15s">
-          <div class="process-step"><span class="step-idx">01</span><span class="step-text">Levantamiento y diagnóstico de brechas regulatorias en el sistema de cumplimiento</span></div>
+          <div class="process-step"><span class="step-idx">01</span><span class="step-text">Levantamiento y diagnóstico de brechas regulatorias y de madurez tecnológica</span></div>
           <div class="process-step"><span class="step-idx">02</span><span class="step-text">Plan de trabajo, priorización de riesgos y diseño del sistema de cumplimiento</span></div>
           <div class="process-step"><span class="step-idx">03</span><span class="step-text">Implementación de controles, capacitación y formalización con trazabilidad</span></div>
           <div class="process-step"><span class="step-idx">04</span><span class="step-text">Auditoría interna, verificación de evidencias y mejora continua del sistema</span></div>
@@ -537,40 +715,6 @@
   </div>
 </section>
 
-<!-- SPECIALTIES -->
-<section id="especialidades">
-  <div class="container">
-    <div class="reveal">
-      <span class="tag">Especialidades</span>
-      <h2 class="section-title">Áreas clave de cumplimiento<br/>que abordamos en Chile</h2>
-      <div class="divider"></div>
-      <p class="section-sub">Prevención de delitos, compliance corporativo, anticorrupción, certificaciones y obligaciones emergentes en protección de datos.</p>
-    </div>
-    <div class="specialties-grid">
-      <div class="spec-card reveal">
-        <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3 class="spec-title">Modelo de prevención de delitos</h3>
-        <p class="spec-text">Diseñamos, implementamos y fortalecemos modelos de prevención alineados con Ley 20.393 y el nuevo entorno de delitos económicos, con foco en gobernanza, control y evidencia.</p>
-      </div>
-      <div class="spec-card reveal" style="transition-delay:.08s">
-        <div class="spec-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <h3 class="spec-title">Compliance corporativo</h3>
-        <p class="spec-text">Estructuramos sistemas de cumplimiento con matrices de riesgo, canales de denuncia, políticas, controles e indicadores para una gestión más ordenada y auditable.</p>
-      </div>
-      <div class="spec-card reveal" style="transition-delay:.12s">
-        <div class="spec-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-        <h3 class="spec-title">ISO 37001 e ISO 37301</h3>
-        <p class="spec-text">Implementación de sistemas antisoborno y compliance desde diagnóstico hasta auditoría interna y preparación para certificación, con trazabilidad en cada etapa.</p>
-      </div>
-      <div class="spec-card reveal" style="transition-delay:.16s">
-        <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <h3 class="spec-title">Protección de datos y cumplimiento</h3>
-        <p class="spec-text">Apoyamos la adecuación de procesos y controles frente a nuevas exigencias en privacidad y tratamiento de datos personales, integrando cumplimiento legal y gestión interna.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- EQUIPO -->
 <section id="equipo">
   <div class="container">
@@ -578,131 +722,227 @@
       <span class="tag">Equipo</span>
       <h2 class="section-title">Quiénes están detrás<br/>de RegulaTec</h2>
       <div class="divider"></div>
-      <p class="section-sub">Combinamos experiencia legal de primer nivel en compliance con capacidad tecnológica para construir sistemas de cumplimiento modernos y auditables.</p>
+      <p class="section-sub">Compliance legal de primer nivel más capacidad tecnológica para construir sistemas de cumplimiento modernos y auditables.</p>
     </div>
-    <div class="team-grid" style="margin-top:52px">
-
-      <!-- Sebastián -->
+    <div class="team-grid" style="margin-top:48px">
       <div class="team-card reveal">
-        <div class="team-photo">
-          <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns Daza" />
-        </div>
+        <div class="team-photo"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns Daza" /></div>
         <div class="team-info">
           <div>
             <div class="team-name">Sebastián Manns Daza</div>
             <div class="team-role">Co-Founder · Director de Compliance</div>
-            <p class="team-bio">Abogado con más de 10 años liderando áreas de compliance y derecho corporativo en empresas multinacionales y sectores regulados. Especialista en modelos de prevención de delitos (Ley 20.393), AML/CTF, protección de datos y relacionamiento con reguladores como la UAF y la CMF.</p>
+            <p class="team-bio">Abogado con más de 10 años liderando áreas de compliance y derecho corporativo en empresas multinacionales. Especialista en MPD (Ley 20.393), Prevención LA/FT y protección de datos. Profesor y conferencista en compliance y regulación. Enfocado en la integración de transformación digital y gestión de riesgos legales-tecnológicos.</p>
           </div>
           <div>
-            <div class="team-tags">
-              <span class="team-tag">Ley 20.393</span>
-              <span class="team-tag">AML / CTF</span>
-              <span class="team-tag">ISO 37001</span>
-              <span class="team-tag">DPO</span>
-              <span class="team-tag">UAF · CMF</span>
-            </div>
-            <a href="https://linkedin.com/in/smannsd" target="_blank" rel="noopener" class="team-link">
-              Ver perfil en LinkedIn
-              <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-            </a>
+            <div class="team-tags"><span class="team-tag">Ley 20.393</span><span class="team-tag">Prevención LA/FT</span><span class="team-tag">ISO 37001</span><span class="team-tag">DPO</span><span class="team-tag">UAF · CMF</span></div>
+            <a href="https://linkedin.com/in/smannsd" target="_blank" rel="noopener" class="team-link">Ver perfil en LinkedIn<svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
           </div>
         </div>
       </div>
-
-      <!-- W-IT -->
       <div class="wit-card reveal" style="transition-delay:.1s">
-        <div class="wit-logo-wrap">
-          <img src="https://w-it.cl/wp-content/uploads/2020/08/logo-wit.svg" alt="W-IT Chile" />
-        </div>
+        <div class="wit-logo-wrap"><img src="https://w-it.cl/wp-content/uploads/2020/08/logo-wit.svg" alt="W-IT Chile" /></div>
         <div class="wit-divider"></div>
         <div class="wit-info">
           <div class="wit-role">Co-Founder · Partner Tecnológico</div>
           <div class="wit-name">W-IT Chile</div>
-          <p class="wit-bio">Partner Microsoft con más de 10 años de experiencia en transformación digital, consultoría integral y soluciones tecnológicas para empresas en Chile. Certificados en ISO 9001 e ISO 27001, aportando la infraestructura tecnológica que hace que los sistemas de cumplimiento de RegulaTec sean trazables, auditables y escalables.</p>
-          <a href="https://w-it.cl" target="_blank" rel="noopener" class="team-link" style="margin-top:14px">
-            Visitar w-it.cl
-            <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-          </a>
+          <p class="wit-bio">Partner Microsoft con más de 15 años en transformación digital. Especialistas en ciberseguridad, automatización y data analytics. Certificados ISO 9001 e ISO 27001. Aportan la infraestructura tecnológica que hace que los sistemas de cumplimiento sean trazables, auditables y escalables.</p>
+          <a href="https://w-it.cl" target="_blank" rel="noopener" class="team-link" style="margin-top:10px">Visitar w-it.cl<svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
         </div>
       </div>
-
+    </div>
+    <div class="partners-strip reveal" style="transition-delay:.2s">
+      <span class="partner-label">Partner estratégico</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="partner-logo" style="height:20px" />
+      <span class="partner-label" style="opacity:.4">·</span>
+      <span class="partner-label">Certificaciones</span>
+      <span class="cert-badge">ISO 9001</span>
+      <span class="cert-badge">ISO 27001</span>
+      <span class="cert-badge">ISO 37001</span>
     </div>
   </div>
 </section>
 
-<!-- MEDIA -->
-<section id="medios">
-  <div class="container">
-    <div class="reveal">
-      <span class="tag">Voz experta en cumplimiento</span>
-      <h2 class="section-title">Voz experta en cumplimiento<br/>y regulación</h2>
-    </div>
-    <div class="media-layout">
-      <div class="media-img-wrap reveal">
-        <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns en Radio Infinita" />
-        <div class="media-badge">Radio Infinita</div>
-      </div>
-      <div class="media-content reveal" style="transition-delay:.15s">
-        <p class="section-sub" style="margin-bottom:20px">Nuestro equipo participa activamente en medios y espacios de análisis sobre cumplimiento corporativo, delitos económicos y protección de datos, aportando una mirada práctica para empresas y directorios.</p>
-        <div class="media-stat">
-          <div class="media-stat-num">20<span>K</span></div>
-          <div class="media-stat-desc">UTM en sanciones posibles.<br/>Más un interventor u observador.</div>
-        </div>
-        <a href="https://www.infinita.cl/entrevistas/2024/11/20/sebastian-manns-de-ontier-advierte-multas-de-hasta-200-mil-utm-por-incumplimiento-a-la-ley-de-proteccion-de-datos-personales.html" class="link-arrow" target="_blank" rel="noopener">
-          Ver entrevista completa
-          <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
+<!-- CTA PRINCIPAL -->
 <section id="contacto">
   <div class="container">
     <div class="cta-box reveal">
-      <span class="tag">¿Listo para comenzar?</span>
-      <h2 class="cta-title">Conozca las brechas críticas<br/>de su sistema de cumplimiento</h2>
+      <p class="cta-eyebrow">Con RegulaTec,</p>
+      <h2 class="cta-title">el compliance deja de ser un costo<br/>y se convierte en un activo estratégico</h2>
       <p class="cta-sub">Revisamos su situación actual y le entregamos una hoja de ruta concreta para avanzar con prioridad, evidencia y foco regulatorio.</p>
       <div class="cta-actions">
         <a href="#diagnostico" class="btn-primary">
-          Solicitar diagnóstico
+          Solicitar diagnóstico gratuito
           <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
         </a>
         <a href="https://wa.me/56997290659?text=Hola%2C%20quiero%20información%20sobre%20compliance%20y%20certificaciones" class="btn-secondary" target="_blank" rel="noopener">WhatsApp</a>
       </div>
       <div class="contact-chips">
-        <a href="mailto:ventas@regulatec.cl" class="contact-chip">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          ventas@regulatec.cl
-        </a>
-        <a href="tel:+56997290659" class="contact-chip">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.01z"/></svg>
-          +56 9 9729 0659
-        </a>
+        <a href="mailto:ventas@regulatec.cl" class="contact-chip"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>ventas@regulatec.cl</a>
+        <a href="tel:+56997290659" class="contact-chip"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.01z"/></svg>+56 9 9729 0659</a>
+        <span class="contact-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Chile · Argentina · Perú · Colombia · Uruguay</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SECCIONES SECUNDARIAS -->
+<div class="secondary-sections">
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia">
+    <div class="container">
+      <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+        <span class="tag">Trayectoria</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem)">Una década implementando compliance en industrias reguladas</h2>
+      </div>
+      <div class="trust-grid-3 reveal" style="transition-delay:.1s">
+        <div class="trust-card">
+          <div class="trust-num">10<span>+</span></div>
+          <div class="trust-card-title">Años en compliance</div>
+          <div class="trust-card-text">Liderando áreas legales y de cumplimiento en compañías multinacionales y sectores de alta regulación en Chile y Latinoamérica.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-num">5<span>+</span></div>
+          <div class="trust-card-title">Países con experiencia regulatoria</div>
+          <div class="trust-card-text">Chile, Argentina, Uruguay, Perú y Colombia, con relacionamiento directo ante reguladores locales y organismos fiscalizadores.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-num" style="font-size:2.2rem">3.500<span>+</span></div>
+          <div class="trust-card-title">Colaboradores capacitados</div>
+          <div class="trust-card-text">Programas de capacitación en ética corporativa y prevención de delitos para equipos de todos los niveles, desde operaciones hasta directorios.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORES -->
+  <section id="sectores">
+    <div class="container">
+      <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto;">
+        <span class="tag">Sectores</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem)">Industrias que atendemos</h2>
+      </div>
+      <div class="sectores-grid reveal" style="transition-delay:.1s">
+        <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v5M15 4v5"/></svg></div><span class="sector-name">Banca y Finanzas</span></div>
+        <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><span class="sector-name">Retail y Consumo</span></div>
+        <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01M8 6h8M8 10h8M8 14h5"/></svg></div><span class="sector-name">Fintech y Pagos</span></div>
+        <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><span class="sector-name">Educación Superior</span></div>
+        <div class="sector-card"><div class="sector-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="sector-name">Salud y Clínicas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACTO -->
+  <section id="impacto">
+    <div class="container">
+      <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto;">
+        <span class="tag">Resultados</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem)">Impacto real en organizaciones</h2>
+        <p class="section-sub" style="margin-top:10px">Casos reales, métricas concretas, sectores sin nombre.</p>
+      </div>
+      <div class="impacto-grid reveal" style="transition-delay:.1s">
+        <div class="impacto-card">
+          <div class="impacto-sector">Empresa financiera</div>
+          <div class="impacto-metric">−40<span>%</span></div>
+          <div class="impacto-desc">Reducción en tiempo de elaboración de reportes regulatorios gracias a la automatización de matrices de riesgo y evidencias.</div>
+        </div>
+        <div class="impacto-card">
+          <div class="impacto-sector">Compañía de retail</div>
+          <div class="impacto-metric">+60<span>%</span></div>
+          <div class="impacto-desc">Incremento en participación de colaboradores tras implementar el sistema de denuncias anónimas en Microsoft Power Apps.</div>
+        </div>
+        <div class="impacto-card">
+          <div class="impacto-sector">Startup fintech</div>
+          <div class="impacto-metric">3<span>m</span></div>
+          <div class="impacto-desc">Plazo para cumplir con la Ley 21.719 de protección de datos, evitando multas y fortaleciendo la confianza de inversionistas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIOS -->
+  <section id="medios">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag">Medios</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.4rem)">Voz experta en cumplimiento y regulación</h2>
+      </div>
+      <div class="media-layout">
+        <div class="media-img-wrap reveal">
+          <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns en Radio Infinita" />
+          <div class="media-badge">Radio Infinita</div>
+        </div>
+        <div class="reveal" style="transition-delay:.15s">
+          <p class="section-sub" style="margin-bottom:18px">Nuestro equipo participa activamente en medios y espacios de análisis sobre cumplimiento corporativo, delitos económicos y protección de datos, aportando una mirada práctica para empresas y directorios.</p>
+          <div class="media-stat">
+            <div class="media-stat-num">20<span>K</span></div>
+            <div class="media-stat-desc">UTM en sanciones posibles.<br/>Más un interventor u observador.</div>
+          </div>
+          <a href="https://www.infinita.cl/entrevistas/2024/11/20/sebastian-manns-de-ontier-advierte-multas-de-hasta-200-mil-utm-por-incumplimiento-a-la-ley-de-proteccion-de-datos-personales.html" class="link-arrow" target="_blank" rel="noopener">
+            Ver entrevista completa
+            <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <div class="container">
+      <div class="magnet-box reveal">
+        <div>
+          <div class="magnet-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Recurso gratuito</div>
+          <h2 class="magnet-title">10 riesgos regulatorios que su empresa debería revisar en 2026</h2>
+          <p class="magnet-sub">Guía práctica para gerencias, áreas legales y equipos de cumplimiento. Detecte brechas, priorice acciones y fortalezca su sistema antes de una fiscalización.</p>
+          <div class="magnet-items">
+            <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Responsabilidad penal de la empresa</div>
+            <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Exposición bajo la nueva Ley de Datos Personales</div>
+            <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Delitos económicos y anticorrupción</div>
+            <div class="magnet-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>+7 riesgos más con acciones concretas</div>
+          </div>
+          <div class="magnet-form" style="margin-top:24px">
+            <input type="email" id="magnet-email" placeholder="Su email corporativo" />
+            <button class="btn-magnet" onclick="downloadMagnet()">Descargar checklist<svg viewBox="0 0 14 14"><path d="M7 2v8M4 7l3 3 3-3"/><path d="M2 11h10"/></svg></button>
+          </div>
+          <p class="magnet-success" id="magnetSuccess">✓ ¡Listo! Revise su bandeja de entrada en los próximos minutos.</p>
+          <p style="font-size:.68rem;color:rgba(138,154,181,.5);margin-top:7px">Sin spam. Solo contenido de cumplimiento normativo.</p>
+        </div>
+        <div class="magnet-cta">
+          <div class="magnet-doc">
+            <svg class="magnet-doc-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <div class="magnet-doc-label">Checklist 2026</div>
+            <div class="magnet-doc-title">10 riesgos regulatorios clave</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end secondary-sections -->
+
 <footer>
   <div class="footer-inner">
-    <a href="#"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" style="height:26px;filter:brightness(0) invert(1);opacity:.45;" /></a>
+    <div style="display:flex;flex-direction:column;gap:3px">
+      <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" style="height:22px;filter:brightness(0) invert(1);opacity:.45;" />
+      <span style="font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,154,90,.4)">Cumplimiento que crea valor</span>
+    </div>
     <ul class="footer-links">
       <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#plataforma">Plataforma</a></li>
       <li><a href="#proceso">Metodología</a></li>
-      <li><a href="#especialidades">Especialidades</a></li>
       <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#impacto">Resultados</a></li>
       <li><a href="#checklist">Checklist gratuito</a></li>
     </ul>
-    <span class="footer-copy">© 2026 RegulaTec · Compliance corporativo en Chile</span>
+    <span class="footer-copy">© 2026 RegulaTec · Chile y LATAM</span>
   </div>
 </footer>
 
 <script>
   const obs = new IntersectionObserver(
     es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
+    { threshold:0.08 }
   );
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
@@ -711,38 +951,25 @@
     navEl.style.background = window.scrollY > 40 ? 'rgba(11,22,41,1)' : 'rgba(11,22,41,0.96)';
   });
 
-  async function submitForm() {
-    const name  = document.getElementById('f-name').value.trim();
-    const co    = document.getElementById('f-company').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    if (!name || !co || !email) { alert('Por favor complete los campos obligatorios.'); return; }
-
-    const btn = document.querySelector('.btn-form');
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
-
-    const body = Nueva solicitud de diagnóstico de cumplimiento\n\nNombre: ${name}\nEmpresa: ${co}\nEmail: ${email}\n\n---\nEnviado desde regulatec.cl;
-
-    try {
-      const resp = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: Usa Gmail para enviar un correo:\n- Para: ventas@regulatec.cl\n- Asunto: Nueva solicitud de diagnóstico – ${co} (${name})\n- Cuerpo: ${body}\n\nSolo envía el correo. }],
-          mcp_servers: [{ type: 'url', url: 'https://gmail.mcp.claude.com/mcp', name: 'gmail-mcp' }]
-        })
-      });
-      const data = await resp.json();
-      if (data.error) throw new Error(data.error.message);
-      document.getElementById('mainForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } catch {
-      btn.disabled = false;
-      btn.innerHTML = 'Solicitar diagnóstico gratuito <svg viewBox="0 0 14 14" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>';
-      alert('Hubo un problema al enviar. Por favor escríbanos directamente a ventas@regulatec.cl');
-    }
+  const leadForm = document.getElementById('leadForm');
+  if (leadForm) {
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      try {
+        const resp = await fetch(leadForm.action, { method:'POST', body:new FormData(leadForm), headers:{'Accept':'application/json'} });
+        if (resp.ok) {
+          document.getElementById('mainForm').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else { throw new Error(); }
+      } catch {
+        btn.disabled = false;
+        btn.innerHTML = 'Solicitar diagnóstico gratuito <svg viewBox="0 0 14 14" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>';
+        alert('Hubo un problema al enviar. Por favor escríbanos a ventas@regulatec.cl');
+      }
+    });
   }
 
   function downloadMagnet() {
@@ -750,6 +977,500 @@
     if (!em || !em.includes('@')) { document.getElementById('magnet-email').focus(); return; }
     document.querySelector('.magnet-form').style.display = 'none';
     document.getElementById('magnetSuccess').style.display = 'block';
+    openChecklist();
+  }
+
+  function openChecklist() {
+    const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>10 Riesgos Regulatorios 2026 — RegulaTec</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0b1629;--gold:#b89a5a;--gold2:#d4b97a;--ff-head:'Cormorant Garamond',Georgia,serif;--ff-body:'DM Sans',sans-serif}
+body{font-family:var(--ff-body);background:#fff;color:#1a2332;max-width:860px;margin:0 auto;padding:0;font-size:13px;line-height:1.6}
+.cover{background:var(--navy);padding:64px 56px 56px;position:relative;overflow:hidden;page-break-after:always;min-height:320px}
+.cover::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2),transparent)}
+.cover-bg{position:absolute;top:0;right:0;width:340px;height:340px;background:radial-gradient(ellipse at 80% 20%,rgba(184,154,90,.12) 0%,transparent 65%);pointer-events:none}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px}
+.cover-logo{display:flex;flex-direction:column;gap:4px}
+.cover-logo img{height:32px;filter:brightness(0) invert(1);opacity:.9}
+.cover-logo span{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.8}
+.cover-badge{font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:5px 12px;border-radius:2px}
+.cover-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.cover-title{font-family:var(--ff-head);font-size:42px;font-weight:600;color:#fff;line-height:1.05;margin-bottom:16px}
+.cover-title em{font-style:italic;color:var(--gold2)}
+.cover-sub{font-size:13px;color:rgba(240,239,240,.65);line-height:1.7;max-width:520px;margin-bottom:32px}
+.cover-meta{display:flex;gap:32px;flex-wrap:wrap}
+.cover-meta-item{display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(240,239,240,.55)}
+.cover-meta-item::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.intro{padding:44px 56px 36px;border-bottom:1px solid #e8e4dd;background:#faf9f7}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.intro h2{font-family:var(--ff-head);font-size:22px;font-weight:600;color:var(--navy);line-height:1.2;margin-bottom:12px}
+.intro p{font-size:12.5px;color:#4a5568;line-height:1.75}
+.intro-how h3{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.how-item{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.how-num{font-family:var(--ff-head);font-size:13px;font-weight:600;color:var(--gold);min-width:18px;line-height:1.4}
+.how-text{font-size:12px;color:#4a5568;line-height:1.6}
+.content{padding:36px 56px 48px}
+.risk{border:1px solid #e8e4dd;margin-bottom:14px;page-break-inside:avoid;position:relative}
+.risk::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+.risk.critico::before{background:#dc2626}
+.risk.alto::before{background:#ea580c}
+.risk.medio::before{background:#d97706}
+.risk-header{display:grid;grid-template-columns:40px 1fr auto auto;gap:14px;align-items:center;padding:16px 18px 16px 20px;background:#fff}
+.risk-num{font-family:var(--ff-head);font-size:22px;font-weight:600;color:#ddd;line-height:1}
+.risk-cat{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#5a6a82;margin-bottom:3px}
+.risk-title{font-size:14px;font-weight:600;color:var(--navy);line-height:1.25}
+.risk-badge{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.riesgo-critico{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.riesgo-alto{background:#fff7ed;color:#ea580c;border:1px solid #fed7aa}
+.riesgo-medio{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.check-box{width:18px;height:18px;border:1.5px solid #d1d5db;border-radius:3px;flex-shrink:0}
+.check-label{font-size:8px;color:#9ca3af;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.risk-check{display:flex;flex-direction:column;align-items:center;gap:5px}
+.risk-body{padding:0 18px 18px 74px;background:#fefefe;border-top:1px solid #f3f0eb}
+.risk-desc{font-size:12.5px;color:#374151;line-height:1.75;margin-bottom:14px;padding-top:14px}
+.risk-signals-label{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.risk-signals{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.risk-signal{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#4b5563;line-height:1.55}
+.risk-signal::before{content:'→';color:var(--gold);font-size:11px;flex-shrink:0;margin-top:1px}
+.risk-accion{background:#f8f6f2;border:1px solid #e8e4dd;padding:10px 13px;display:flex;gap:10px;align-items:flex-start}
+.risk-accion-label{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);white-space:nowrap;margin-top:1px}
+.risk-accion-text{font-size:12px;color:#374151;line-height:1.6}
+.risk-norm{font-size:10px;color:#9ca3af;margin-top:8px;font-style:italic}
+.summary{padding:32px 56px 40px;background:#faf9f7;border-top:2px solid #e8e4dd}
+.summary h2{font-family:var(--ff-head);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:20px}
+.summary-table{width:100%;border-collapse:collapse;font-size:12px}
+.summary-table th{background:var(--navy);color:#fff;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;text-align:left}
+.summary-table td{padding:9px 12px;border-bottom:1px solid #e8e4dd;vertical-align:top;line-height:1.5}
+.summary-table tr:nth-child(even) td{background:#f5f3ef}
+.summary-table td:first-child{font-weight:600;color:var(--navy);width:30px;text-align:center}
+.summary-table td:nth-child(2){font-weight:500;color:var(--navy)}
+.td-check{text-align:center}
+.mini-check{width:14px;height:14px;border:1.5px solid #d1d5db;border-radius:2px;display:inline-block}
+.cta-section{background:var(--navy);padding:48px 56px;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2),transparent)}
+.cta-bg{position:absolute;bottom:0;right:0;width:280px;height:280px;background:radial-gradient(ellipse at 80% 80%,rgba(184,154,90,.1) 0%,transparent 65%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;z-index:1}
+.cta-eyebrow{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.cta-title{font-family:var(--ff-head);font-size:26px;font-weight:600;color:#fff;line-height:1.1;margin-bottom:10px}
+.cta-title em{font-style:italic;color:var(--gold2)}
+.cta-sub{font-size:12px;color:rgba(240,239,240,.6);line-height:1.7;margin-bottom:20px}
+.cta-promises{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.cta-promise{display:flex;align-items:center;gap:8px;font-size:11.5px;color:rgba(240,239,240,.8)}
+.cta-promise::before{content:'✓';color:var(--gold);font-size:10px;font-weight:700}
+.cta-contact{display:flex;flex-direction:column;gap:6px}
+.cta-contact a{font-size:11px;color:rgba(240,239,240,.55);text-decoration:none}
+.cta-qr-box{background:rgba(255,255,255,.06);border:1px solid rgba(184,154,90,.25);padding:20px;text-align:center;min-width:140px}
+.cta-qr-placeholder{width:90px;height:90px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.cta-qr-placeholder span{font-size:9px;color:rgba(240,239,240,.35);text-align:center;line-height:1.5;letter-spacing:.06em}
+.cta-qr-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.cta-url{font-size:10px;color:rgba(240,239,240,.4);margin-top:4px}
+.doc-footer{padding:16px 56px;border-top:1px solid #e8e4dd;display:flex;justify-content:space-between;align-items:center;background:#faf9f7}
+.doc-footer img{height:18px;opacity:.4}
+.doc-footer-text{font-size:10px;color:#9ca3af}
+.print-btn{position:fixed;top:16px;right:16px;background:var(--gold);color:var(--navy);font-family:var(--ff-body);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border:none;border-radius:2px;cursor:pointer;z-index:999;display:flex;align-items:center;gap:7px;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.print-btn:hover{background:var(--gold2)}
+@media print{.print-btn{display:none!important}.risk{page-break-inside:avoid}.cover{page-break-after:always}@page{margin:0;size:A4}}
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Descargar PDF
+</button>
+
+<div class="cover">
+<div class="cover-bg"></div>
+<div class="cover-top">
+  <div class="cover-logo">
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec"/>
+    <span>Compliance legal + tecnología</span>
+  </div>
+  <span class="cover-badge">Guía 2026</span>
+</div>
+<div class="cover-label">Checklist de riesgos regulatorios</div>
+<h1 class="cover-title">10 riesgos regulatorios<br/>que su empresa debería<br/><em>revisar en 2026</em></h1>
+<p class="cover-sub">Guía práctica para gerencias generales, áreas legales y equipos de cumplimiento. Detecte brechas, priorice acciones y fortalezca su sistema antes de una fiscalización, auditoría o incidente.</p>
+<div class="cover-meta">
+  <span class="cover-meta-item">Chile y LATAM</span>
+  <span class="cover-meta-item">Ley 20.393 · Ley 21.719 · ISO 37001</span>
+  <span class="cover-meta-item">regulatec.cl</span>
+</div>
+</div>
+
+<div class="intro">
+<div class="intro-grid">
+  <div>
+    <h2>Cómo usar este checklist</h2>
+    <p>Este documento fue diseñado para que gerentes legales, directores de compliance y equipos ejecutivos puedan evaluar rápidamente el nivel de exposición de su organización frente a los principales riesgos regulatorios vigentes en Chile y LATAM durante 2026.</p><br/>
+    <p>Cada riesgo incluye señales de alerta, impacto empresarial, una acción concreta recomendada y la norma de referencia. No es necesario ser especialista legal para completarlo.</p>
+  </div>
+  <div class="intro-how">
+    <h3>Instrucciones</h3>
+    <div class="how-item"><span class="how-num">1.</span><span class="how-text">Lea cada riesgo y evalúe si su empresa tiene ese punto cubierto.</span></div>
+    <div class="how-item"><span class="how-num">2.</span><span class="how-text">Marque el checkbox si el punto está gestionado. Déjelo vacío si hay una brecha.</span></div>
+    <div class="how-item"><span class="how-num">3.</span><span class="how-text">Al finalizar, revise la tabla resumen y priorice según nivel de criticidad.</span></div>
+    <div class="how-item"><span class="how-num">4.</span><span class="how-text">Si tiene 3 o más brechas críticas sin resolver, solicite un diagnóstico formal.</span></div>
+  </div>
+</div>
+</div>
+
+<div style="padding:32px 56px 30px;border-bottom:1px solid #e8e4dd;background:#fffdf9;">
+<div style="display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;">
+  <div>
+    <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#b89a5a;margin-bottom:10px;">Panorama regulatorio 2026</div>
+    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:23px;font-weight:600;color:#0b1629;line-height:1.15;margin-bottom:12px;">El cumplimiento dejó de ser documental y pasó a ser operativo</h2>
+    <p style="font-size:12.5px;color:#4a5568;line-height:1.75;margin-bottom:10px;">En 2026, el riesgo regulatorio ya no se explica por una sola ley. La combinación entre responsabilidad penal de la persona jurídica, delitos económicos, prevención de LA/FT, protección de datos, ciberseguridad y estándares ISO exige sistemas de cumplimiento capaces de <strong>prevenir, evidenciar y responder</strong>.</p>
+    <p style="font-size:12.5px;color:#4a5568;line-height:1.75;">Tener políticas no basta. Lo que hoy esperan reguladores, auditorías externas, directorios e inversionistas es una estructura de cumplimiento con trazabilidad, responsables, controles activos, monitoreo y evidencia verificable.</p>
+  </div>
+  <div style="border:1px solid #e8e4dd;background:#faf9f7;padding:18px 18px 16px;">
+    <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b89a5a;margin-bottom:10px;">Qué cambia en la práctica</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-size:12px;color:#4a5568;line-height:1.6;display:flex;gap:8px;"><span style="color:#b89a5a;">→</span><span>Mayor estándar de evidencia frente a auditorías, fiscalizaciones y directorios.</span></div>
+      <div style="font-size:12px;color:#4a5568;line-height:1.6;display:flex;gap:8px;"><span style="color:#b89a5a;">→</span><span>Más presión sobre modelos de prevención, terceros críticos y reportabilidad.</span></div>
+      <div style="font-size:12px;color:#4a5568;line-height:1.6;display:flex;gap:8px;"><span style="color:#b89a5a;">→</span><span>Necesidad de integrar legal, operaciones, tecnología y seguridad de la información.</span></div>
+      <div style="font-size:12px;color:#4a5568;line-height:1.6;display:flex;gap:8px;"><span style="color:#b89a5a;">→</span><span>Menor tolerancia a procesos manuales, controles informales y documentación dispersa.</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="content">
+
+<div class="risk critico">
+<div class="risk-header">
+  <div class="risk-num">01</div>
+  <div><div class="risk-cat">Responsabilidad penal corporativa</div><div class="risk-title">Modelo de prevención desactualizado y sin informe de funcionamiento</div></div>
+  <span class="risk-badge riesgo-critico">Crítico</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">La Ley 20.393, modificada por la Ley 21.595, amplió el catálogo de delitos imputables a personas jurídicas. El artículo 4 exige que el encargado de prevención emita un <strong>informe anual de funcionamiento al directorio</strong>. Sin ese informe, el modelo no puede ser invocado como eximente o atenuante de responsabilidad penal. El valor del modelo no está solo en existir, sino en su implementación efectiva y la evidencia que la respalda.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">El modelo no ha sido revisado desde antes de la Ley 21.595.</div>
+    <div class="risk-signal">No existe encargado de prevención formalmente designado con atribuciones documentadas.</div>
+    <div class="risk-signal">No se ha emitido el informe anual de funcionamiento exigido por el art. 4.</div>
+    <div class="risk-signal">Las matrices de riesgo no cubren los nuevos delitos económicos.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Debilita la capacidad de acreditar que el modelo estaba implementado y operativo.</div>
+    <div class="risk-signal">Aumenta la exposición penal, reputacional y de gobierno ante un incidente o investigación.</div>
+    <div class="risk-signal">Complica procesos de certificación, due diligence y revisiones del directorio.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Actualizar el modelo contra el catálogo de la Ley 21.595 y verificar que el encargado de prevención haya emitido el informe de funcionamiento al directorio conforme al art. 4. Si no existe, debe elaborarse antes de cualquier fiscalización o certificación.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 20.393 art. 4 · Ley 21.595 (Delitos Económicos)</div>
+</div>
+</div>
+
+<div class="risk critico">
+<div class="risk-header">
+  <div class="risk-num">02</div>
+  <div><div class="risk-cat">Protección de datos personales</div><div class="risk-title">Incumplimiento de la Ley 21.719 — vigencia plena diciembre 2026</div></div>
+  <span class="risk-badge riesgo-critico">Crítico</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">La Ley 21.719 crea la Agencia de Protección de Datos y establece un nuevo estándar de responsabilidad para entidades públicas y privadas. Su entrada en vigencia plena se sitúa en <strong>diciembre de 2026</strong>. El trabajo de adecuación es considerable: registro de tratamientos, bases de licitud, contratos con encargados, gestión de incidentes y gobernanza interna. Las empresas que no inicien hoy difícilmente estarán en cumplimiento antes del plazo.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existe registro de actividades de tratamiento de datos personales.</div>
+    <div class="risk-signal">Los contratos con proveedores no incluyen cláusulas de encargo de tratamiento.</div>
+    <div class="risk-signal">No hay protocolo de respuesta ante brechas de seguridad con plazos de notificación.</div>
+    <div class="risk-signal">Datos sensibles recopilados sin bases de licitud definidas y documentadas.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Sanciones administrativas hasta 20.000 UTM, medidas correctivas y conflictos con clientes.</div>
+    <div class="risk-signal">Afecta la confianza comercial, especialmente en negocios digitales o intensivos en datos.</div>
+    <div class="risk-signal">Expone a incidentes de privacidad sin capacidad de respuesta ordenada ni trazable.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Elaborar el registro de tratamientos, revisar bases de licitud, actualizar avisos de privacidad y contratos. Evaluar si corresponde designar un DPO. Dado el plazo de diciembre de 2026, iniciar el proceso de adecuación de inmediato.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 21.719 · GDPR (referencia internacional)</div>
+</div>
+</div>
+
+<div class="risk critico">
+<div class="risk-header">
+  <div class="risk-num">03</div>
+  <div><div class="risk-cat">Prevención de delitos financieros</div><div class="risk-title">Sistema de prevención LA/FT insuficiente o desactualizado</div></div>
+  <span class="risk-badge riesgo-critico">Crítico</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">La Circular N°62 de la UAF sistematiza instrucciones aplicables a sujetos obligados, y en febrero de 2026 la CMF publicó ajustes para mantener concordancia en bancos, emisores no bancarios y cooperativas fiscalizadas. Para las empresas obligadas, esto exige un sistema basado en riesgo, con debida diligencia, monitoreo, capacitación, reportabilidad y gobernanza efectiva.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existe oficial de cumplimiento LA/FT formalmente designado.</div>
+    <div class="risk-signal">El manual de prevención no incorpora los ajustes de la Circular N°62 UAF ni los ajustes CMF 2026.</div>
+    <div class="risk-signal">No hay procesos documentados de KYC ni monitoreo transaccional basado en riesgo.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Aumenta la posibilidad de observaciones, sanciones o reportes deficientes ante autoridades sectoriales.</div>
+    <div class="risk-signal">Debilita la relación con bancos y procesos de onboarding de clientes complejos.</div>
+    <div class="risk-signal">Deja a la organización sin defensa frente a operaciones inusuales o clientes de alto riesgo.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Actualizar el manual de prevención conforme a la Circular N°62 UAF y ajustes CMF de febrero 2026. Revisar debida diligencia de clientes y verificar obligaciones de reporte según el sector.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 19.913 · Circular N°62 UAF · Ajustes CMF feb. 2026 · FATF/GAFI</div>
+</div>
+</div>
+
+<div class="risk critico">
+<div class="risk-header">
+  <div class="risk-num">04</div>
+  <div><div class="risk-cat">Certificación y estándares internacionales</div><div class="risk-title">Ausencia de programa de cumplimiento certificado con normativas ISO</div></div>
+  <span class="risk-badge riesgo-critico">Crítico</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">Las normas ISO 37001 (antisoborno) e ISO 37301 (compliance) son los estándares de referencia para sistemas de cumplimiento. Su ausencia se está convirtiendo en un requisito de facto en licitaciones, due diligence con inversionistas y contratos con grandes corporaciones. Un programa no certificado puede ser percibido como insuficiente incluso si técnicamente cumple con la normativa local.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">La empresa no tiene certificación ISO en compliance, ética o anticorrupción.</div>
+    <div class="risk-signal">En licitaciones o due diligence le han solicitado acreditar sistemas de cumplimiento que no puede demostrar.</div>
+    <div class="risk-signal">El sistema no tiene estructura de mejora continua ni auditorías internas periódicas.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Puede dejar a la empresa fuera de licitaciones, vendor approval o evaluaciones de compliance de terceros.</div>
+    <div class="risk-signal">Reduce la capacidad de demostrar madurez y mejora continua frente a stakeholders exigentes.</div>
+    <div class="risk-signal">Limita la ventaja competitiva frente a competidores con programas auditables y certificados.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Evaluar ISO 37001 y/o ISO 37301 según el perfil de riesgo. Iniciar con un gap analysis contra los requisitos de la norma aplicable y definir un plan de implementación con plazos concretos hacia certificación.</span></div>
+  <div class="risk-norm">Marco normativo: ISO 37001 · ISO 37301 · Ley 20.393</div>
+</div>
+</div>
+
+<div class="risk alto">
+<div class="risk-header">
+  <div class="risk-num">05</div>
+  <div><div class="risk-cat">Ciberseguridad y continuidad</div><div class="risk-title">Riesgo cibernético sin gestión formal ni continuidad del negocio</div></div>
+  <span class="risk-badge riesgo-alto">Alto</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">La Ley 21.663 establece nuevas obligaciones para operadores de infraestructura crítica. Un incidente cibernético sin plan de respuesta puede paralizar la operación, generar obligaciones de notificación y exponer a la empresa a responsabilidades civiles y regulatorias.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existe plan de continuidad del negocio ni de recuperación ante desastres (BCP/DRP).</div>
+    <div class="risk-signal">Los accesos a sistemas críticos no cuentan con doble factor de autenticación (MFA).</div>
+    <div class="risk-signal">No hay protocolo documentado de respuesta ante incidentes cibernéticos.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Un incidente puede paralizar operaciones críticas y generar pérdidas económicas inmediatas.</div>
+    <div class="risk-signal">Puede activar obligaciones de notificación y deteriorar la confianza del mercado.</div>
+    <div class="risk-signal">La ausencia de continuidad vuelve más costosa la recuperación y más débil la defensa.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Evaluación de madurez en ciberseguridad, implementar controles básicos (MFA, segmentación de redes, gestión de accesos) y desarrollar plan de respuesta a incidentes conforme a ISO 27001.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 21.663 · ISO 27001 · Marco NIST</div>
+</div>
+</div>
+
+<div class="risk alto">
+<div class="risk-header">
+  <div class="risk-num">06</div>
+  <div><div class="risk-cat">Gobierno corporativo</div><div class="risk-title">Estructura de gobierno sin canal de denuncias ni comité de ética</div></div>
+  <span class="risk-badge riesgo-alto">Alto</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">Un canal de denuncias operativo y trazable es uno de los elementos más valorados en auditorías externas y due diligence. Su ausencia impide detectar internamente irregularidades antes de que escalen a una denuncia externa o investigación regulatoria.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existe canal de denuncias accesible para todos los colaboradores.</div>
+    <div class="risk-signal">Las denuncias no tienen proceso documentado de gestión y seguimiento.</div>
+    <div class="risk-signal">No hay comité de ética o equivalente que revise los casos recibidos.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">La empresa pierde capacidad de detectar irregularidades antes de que escalen externamente.</div>
+    <div class="risk-signal">Aumenta la probabilidad de conflictos internos, denuncias laborales o exposición pública.</div>
+    <div class="risk-signal">Debilita la percepción de gobernanza por parte del directorio y terceros.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Implementar canal de denuncias anónimo con trazabilidad. Definir protocolo de investigación interna y designar responsables, garantizando confidencialidad y no represalia.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 20.393 · ISO 37301 · Directrices OCDE</div>
+</div>
+</div>
+
+<div class="risk alto">
+<div class="risk-header">
+  <div class="risk-num">07</div>
+  <div><div class="risk-cat">Compliance laboral y ESG</div><div class="risk-title">Riesgos laborales y de sostenibilidad sin gestión integrada</div></div>
+  <span class="risk-badge riesgo-alto">Alto</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">La agenda ESG está dejando de ser voluntaria para convertirse en requisito de inversionistas, bancos y grandes clientes. Las empresas sin indicadores ni reportes de sostenibilidad enfrentan riesgos crecientes en acceso a financiamiento, contratos y reputación.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existen políticas documentadas de diversidad, inclusión o bienestar laboral.</div>
+    <div class="risk-signal">La empresa no tiene indicadores de sostenibilidad ni reporta bajo ningún estándar ESG.</div>
+    <div class="risk-signal">Los proveedores no son evaluados bajo criterios de debida diligencia en derechos humanos.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Puede afectar acceso a financiamiento, licitaciones y evaluación de clientes corporativos.</div>
+    <div class="risk-signal">Dificulta responder requerimientos de inversionistas sobre sostenibilidad y debida diligencia.</div>
+    <div class="risk-signal">Expone a quedar rezagada frente a estándares de mercado cada vez más exigentes.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Identificar indicadores ESG relevantes para el sector, establecer línea base de métricas y desarrollar política de sostenibilidad alineada a los estándares de sus stakeholders clave.</span></div>
+  <div class="risk-norm">Marco normativo: GRI · PRI · Ley de debida diligencia (tendencia LATAM)</div>
+</div>
+</div>
+
+<div class="risk medio">
+<div class="risk-header">
+  <div class="risk-num">08</div>
+  <div><div class="risk-cat">Gestión contractual</div><div class="risk-title">Contratos sin cláusulas de compliance ni gestión de terceros</div></div>
+  <span class="risk-badge riesgo-medio">Medio</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">Los contratos sin cláusulas de compliance, anticorrupción o protección de datos trasladan riesgos regulatorios a la empresa principal. En caso de incidente, su ausencia puede implicar responsabilidad compartida o dificultades para ejercer acciones de repetición.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Los contratos estándar no incluyen cláusulas anticorrupción ni de cumplimiento normativo.</div>
+    <div class="risk-signal">No existe proceso de due diligence para la incorporación de proveedores críticos.</div>
+    <div class="risk-signal">Los contratos con proveedores que tratan datos no incluyen acuerdos de encargo de tratamiento.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Traslada a la empresa riesgos regulatorios y reputacionales originados en terceros mal gestionados.</div>
+    <div class="risk-signal">Reduce la capacidad de exigir cumplimiento contractual o ejercer acciones correctivas.</div>
+    <div class="risk-signal">Debilita procesos de compras, contratación y gestión de proveedores críticos.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Revisar y actualizar contratos estándar incorporando cláusulas de compliance, anticorrupción y protección de datos. Implementar proceso básico de evaluación de proveedores críticos.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 21.719 · Ley 20.393 · ISO 37001</div>
+</div>
+</div>
+
+<div class="risk medio">
+<div class="risk-header">
+  <div class="risk-num">09</div>
+  <div><div class="risk-cat">Capacitación y cultura</div><div class="risk-title">Colaboradores sin capacitación documentada en compliance y ética</div></div>
+  <span class="risk-badge riesgo-medio">Medio</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">La capacitación periódica y documentada es uno de los elementos más revisados en auditorías y certificaciones. Su ausencia debilita la defensa de la empresa ante imputaciones penales y dificulta demostrar que existía una cultura de cumplimiento activa, no solo formal.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existe plan anual de capacitación en compliance, ética o prevención de delitos.</div>
+    <div class="risk-signal">Las capacitaciones no tienen registro de asistencia ni evaluación de comprensión.</div>
+    <div class="risk-signal">Los nuevos colaboradores no reciben inducción en el modelo de prevención ni el código de conducta.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Hace más difícil demostrar que la empresa promovió activamente una cultura de cumplimiento.</div>
+    <div class="risk-signal">Aumenta la probabilidad de errores operativos e incumplimientos evitables.</div>
+    <div class="risk-signal">Debilita la consistencia del sistema cuando cambian personas, equipos o responsables.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Implementar plan anual de capacitación con registro documentado. Incluir módulos de inducción para nuevos colaboradores y capacitaciones diferenciadas por nivel jerárquico.</span></div>
+  <div class="risk-norm">Marco normativo: Ley 20.393 · ISO 37001 · ISO 37301</div>
+</div>
+</div>
+
+<div class="risk medio">
+<div class="risk-header">
+  <div class="risk-num">10</div>
+  <div><div class="risk-cat">Monitoreo y mejora continua</div><div class="risk-title">Sistema de compliance sin indicadores ni revisión periódica</div></div>
+  <span class="risk-badge riesgo-medio">Medio</span>
+  <div class="risk-check"><div class="check-box"></div><div class="check-label">Gestionado</div></div>
+</div>
+<div class="risk-body">
+  <p class="risk-desc">Un sistema de compliance que no se mide ni se revisa deja de ser un sistema y pasa a ser solo documentación. La ausencia de KPI/KRI, revisiones periódicas y reportes al directorio impide detectar brechas antes de que se conviertan en contingencias.</p>
+  <div class="risk-signals-label">Señales de alerta</div>
+  <div class="risk-signals">
+    <div class="risk-signal">No existen indicadores de cumplimiento (KPI/KRI) definidos ni reportados regularmente.</div>
+    <div class="risk-signal">El directorio no recibe informes periódicos sobre el estado del sistema de cumplimiento.</div>
+    <div class="risk-signal">No hay auditoría interna del sistema de compliance al menos una vez al año.</div>
+  </div>
+  <div class="risk-signals-label">Impacto empresarial</div>
+  <div class="risk-signals">
+    <div class="risk-signal">Impide al directorio visualizar el estado real del sistema de cumplimiento.</div>
+    <div class="risk-signal">Las brechas se detectan tarde, cuando ya son incidentes, observaciones o contingencias.</div>
+    <div class="risk-signal">Sin métricas ni auditoría interna, el compliance pierde capacidad de mejora continua y defensa externa.</div>
+  </div>
+  <div class="risk-accion"><span class="risk-accion-label">Acción recomendada</span><span class="risk-accion-text">Definir KPIs de compliance, establecer periodicidad de reporte al directorio y programar auditoría interna anual del sistema con plan de mejora documentado.</span></div>
+  <div class="risk-norm">Marco normativo: ISO 37301 · ISO 37001 · Ley 20.393</div>
+</div>
+</div>
+
+</div>
+
+<div style="padding:8px 56px 26px;">
+<div style="border:1px solid #e8e4dd;background:#faf9f7;padding:18px 20px;">
+  <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b89a5a;margin-bottom:10px;">Cómo interpretar su resultado</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
+    <div><div style="font-size:12px;font-weight:600;color:#0b1629;margin-bottom:6px;">0 a 2 brechas</div><p style="font-size:11.5px;color:#4a5568;line-height:1.65;">La base del sistema parece razonable, pero conviene revisar evidencia, actualización normativa y monitoreo periódico.</p></div>
+    <div><div style="font-size:12px;font-weight:600;color:#0b1629;margin-bottom:6px;">3 a 5 brechas</div><p style="font-size:11.5px;color:#4a5568;line-height:1.65;">Existen debilidades relevantes. Priorice un plan de cierre de brechas con responsables y plazos.</p></div>
+    <div><div style="font-size:12px;font-weight:600;color:#0b1629;margin-bottom:6px;">6 o más brechas</div><p style="font-size:11.5px;color:#4a5568;line-height:1.65;">El sistema requiere una revisión estructural. Lo recomendable es un diagnóstico formal con foco legal, operativo y tecnológico.</p></div>
+  </div>
+</div>
+</div>
+
+<div class="summary">
+<h2>Tabla resumen — Estado de su sistema</h2>
+<table class="summary-table">
+<thead><tr><th>#</th><th>Riesgo</th><th>Nivel</th><th>Marco normativo</th><th style="text-align:center">Gestionado</th></tr></thead>
+<tbody>
+  <tr><td>01</td><td>MPD desactualizado y sin informe de funcionamiento (art. 4)</td><td><span style="color:#dc2626;font-weight:600">Crítico</span></td><td>Ley 20.393 art. 4 · Ley 21.595</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>02</td><td>Protección de datos — vigencia plena diciembre 2026</td><td><span style="color:#dc2626;font-weight:600">Crítico</span></td><td>Ley 21.719 · GDPR</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>03</td><td>Prevención LA/FT — Circular N°62 UAF · CMF feb. 2026</td><td><span style="color:#dc2626;font-weight:600">Crítico</span></td><td>Ley 19.913 · UAF · CMF</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>04</td><td>Ausencia de programa certificado ISO 37001 / ISO 37301</td><td><span style="color:#dc2626;font-weight:600">Crítico</span></td><td>ISO 37001 · ISO 37301</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>05</td><td>Ciberseguridad y continuidad del negocio</td><td><span style="color:#ea580c;font-weight:600">Alto</span></td><td>Ley 21.663 · ISO 27001</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>06</td><td>Canal de denuncias y gobierno corporativo</td><td><span style="color:#ea580c;font-weight:600">Alto</span></td><td>Ley 20.393 · ISO 37301</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>07</td><td>ESG y compliance laboral</td><td><span style="color:#ea580c;font-weight:600">Alto</span></td><td>GRI · PRI · Tendencia LATAM</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>08</td><td>Contratos y gestión de terceros</td><td><span style="color:#d97706;font-weight:600">Medio</span></td><td>Ley 21.719 · ISO 37001</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>09</td><td>Capacitación y cultura de compliance</td><td><span style="color:#d97706;font-weight:600">Medio</span></td><td>Ley 20.393 · ISO 37001</td><td class="td-check"><span class="mini-check"></span></td></tr>
+  <tr><td>10</td><td>Monitoreo e indicadores KPI/KRI</td><td><span style="color:#d97706;font-weight:600">Medio</span></td><td>ISO 37301 · Ley 20.393</td><td class="td-check"><span class="mini-check"></span></td></tr>
+</tbody>
+</table>
+<p style="font-size:11px;color:#6b7280;margin-top:14px;line-height:1.65;">Si su organización presenta <strong>3 o más brechas en nivel Crítico o Alto</strong>, o si no puede acreditar evidencia de funcionamiento en sus controles, el siguiente paso razonable es realizar un diagnóstico formal. En este punto, el problema ya no es solo documental: es de trazabilidad, gobierno y capacidad de defensa frente a auditorías, reguladores y directorio.</p>
+</div>
+
+<div class="cta-section">
+<div class="cta-bg"></div>
+<div class="cta-grid">
+  <div>
+    <div class="cta-eyebrow">¿Identificó brechas?</div>
+    <h2 class="cta-title">Convirtamos su riesgo<br/>regulatorio en <em>ventaja competitiva</em></h2>
+    <p class="cta-sub">Nuestro equipo evalúa su situación actual, identifica brechas regulatorias y tecnológicas, y le entrega una hoja de ruta concreta para cerrar riesgos, generar evidencia y fortalecer su sistema antes de una auditoría, fiscalización o certificación.</p>
+    <div class="cta-promises">
+      <div class="cta-promise">Diagnóstico inicial sin costo</div>
+      <div class="cta-promise">Respuesta en 24–48 horas hábiles</div>
+      <div class="cta-promise">Reunión ejecutiva de 30 minutos</div>
+    </div>
+    <div class="cta-contact">
+      <a href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a>
+      <a href="tel:+56997290659">+56 9 9729 0659</a>
+      <a href="https://regulatec.cl">www.regulatec.cl</a>
+    </div>
+  </div>
+  <div class="cta-qr-box">
+    <div class="cta-qr-placeholder"><span>QR CODE<br/>regulatec.cl</span></div>
+    <div class="cta-qr-label">Solicitar diagnóstico</div>
+    <div class="cta-url">regulatec.cl</div>
+  </div>
+</div>
+</div>
+
+<div class="doc-footer">
+  <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec"/>
+  <span class="doc-footer-text">© 2026 RegulaTec · Compliance legal + tecnología · Chile y LATAM · regulatec.cl</span>
+</div>
+</body></html>`;
+    const w = window.open('', '_blank');
+    w.document.write(html);
+    w.document.close();
   }
 </script>
 </body>
