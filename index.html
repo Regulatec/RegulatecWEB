@@ -119,9 +119,12 @@
 
     /* NAV */
     nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:0 32px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,22,41,0.96); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,0.06); }
-    .nav-brand { display:flex; flex-direction:column; gap:2px; text-decoration:none; }
-    .nav-brand img { height:28px; width:auto; align-self:flex-start; filter:brightness(0) invert(1); opacity:.9; }
-    .nav-tagline { font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); opacity:.8; }
+
+    .nav-brand { display:flex; flex-direction:row; align-items:center; gap:16px; text-decoration:none; }
+    .nav-brand img { height:50px; filter:brightness(0) invert(1); opacity:.9; }
+    .nav-tagline { font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); opacity:.8; border-left:1px solid rgba(184,154,90,.3); padding-left:16px; }
+  
+
     .nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
     .nav-links a { font-size:.76rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); text-decoration:none; transition:color .2s; }
     .nav-links a:hover { color:var(--white); }
@@ -165,6 +168,9 @@
     .btn-form:hover { background:var(--gold2); transform:translateY(-1px); }
     .btn-form:disabled { opacity:.6; cursor:not-allowed; transform:none; }
     .btn-form svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
+    .btn-form-whatsapp { background:#25d366; color:#fff; }
+    .btn-form-whatsapp:hover { background:#20c05c; }
+    .btn-form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px; }
     .form-privacy { font-size:.68rem; color:rgba(138,154,181,.6); text-align:center; margin-top:8px; }
     /* CTA secundario */
     .form-secondary { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,.06); }
@@ -505,10 +511,16 @@
                 <label for="f-email">Email corporativo *</label>
                 <input type="email" id="f-email" name="email" placeholder="correo@empresa.cl" required />
               </div>
-              <button type="submit" class="btn-form" id="submitBtn">
-                Solicitar diagnóstico gratuito
-                <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-              </button>
+              <div class="btn-form-row">
+                <button type="button" class="btn-form" id="btnCorreo" onclick="enviarCorreo()">
+                  <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+                  Por Correo
+                </button>
+                <button type="button" class="btn-form btn-form-whatsapp" id="btnWhatsApp" onclick="enviarWhatsApp()">
+                  <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.522a.75.75 0 0 0 .92.92l5.668-1.475A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.691-.528-5.209-1.443l-.374-.223-3.365.876.893-3.259-.243-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                  Por WhatsApp
+                </button>
+              </div>
               <p class="form-privacy">Sus datos no serán compartidos con terceros.</p>
               <div class="form-secondary">
                 <a href="#plataforma">
@@ -1042,25 +1054,36 @@
     navEl.style.background = window.scrollY > 40 ? 'rgba(11,22,41,1)' : 'rgba(11,22,41,0.96)';
   });
 
-  const leadForm = document.getElementById('leadForm');
-  if (leadForm) {
-    leadForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Enviando…';
-      try {
-        const resp = await fetch(leadForm.action, { method:'POST', body:new FormData(leadForm), headers:{'Accept':'application/json'} });
-        if (resp.ok) {
-          document.getElementById('mainForm').style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
-        } else { throw new Error(); }
-      } catch {
-        btn.disabled = false;
-        btn.innerHTML = 'Solicitar diagnóstico gratuito <svg viewBox="0 0 14 14" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>';
-        alert('Hubo un problema al enviar. Por favor escríbanos a ventas@regulatec.cl');
-      }
-    });
+  function obtenerDatosDiagnostico() {
+    const nombre  = document.getElementById('f-name').value.trim();
+    const empresa = document.getElementById('f-company').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    return { nombre, empresa, email };
+  }
+
+  function validarDiagnostico() {
+    const form = document.getElementById('leadForm');
+    if (!form.checkValidity()) { form.reportValidity(); return false; }
+    return true;
+  }
+
+  function enviarCorreo() {
+    if (!validarDiagnostico()) return;
+    const d = obtenerDatosDiagnostico();
+    const asunto = encodeURIComponent('Solicitud de diagnóstico gratuito - RegulaTec');
+    const cuerpo = encodeURIComponent(
+      `Nombre: ${d.nombre}\nEmpresa: ${d.empresa}\nEmail: ${d.email}`
+    );
+    window.location.href = `mailto:ventas@regulatec.cl?subject=${asunto}&body=${cuerpo}`;
+  }
+
+  function enviarWhatsApp() {
+    if (!validarDiagnostico()) return;
+    const d = obtenerDatosDiagnostico();
+    const mensaje = encodeURIComponent(
+      `Hola, me interesa solicitar un diagnóstico gratuito.\n\nNombre: ${d.nombre}\nEmpresa: ${d.empresa}\nEmail: ${d.email}`
+    );
+    window.open(`https://wa.me/56997290659?text=${mensaje}`, '_blank');
   }
 
   function downloadMagnet() {
