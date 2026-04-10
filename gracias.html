@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>¡Hemos recibido tu solicitud! | RegulaTec</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --navy:#0b1629; --gold:#b89a5a; --gold2:#d4b97a;
+      --cream:#f5f1ea; --white:#ffffff; --gray:#8a9ab5;
+      --ff-head:'Cormorant Garamond',Georgia,serif; --ff-body:'DM Sans',sans-serif;
+    }
+    body { font-family:var(--ff-body); background:var(--navy); color:var(--cream); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; }
+    .wrap { max-width:560px; width:100%; text-align:center; }
+    .logo { height:36px; filter:brightness(0) invert(1); opacity:.7; margin-bottom:40px; }
+    .icon-wrap { width:72px; height:72px; border:1px solid rgba(184,154,90,.3); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 28px; background:rgba(184,154,90,.06); }
+    .icon-wrap svg { width:32px; height:32px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+    h1 { font-family:var(--ff-head); font-size:clamp(1.8rem,4vw,2.8rem); font-weight:600; color:var(--white); line-height:1.1; margin-bottom:16px; }
+    p { font-size:.96rem; color:var(--gray); line-height:1.75; margin-bottom:36px; }
+    .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:13px 26px; border-radius:2px; text-decoration:none; transition:background .2s; }
+    .btn-primary:hover { background:var(--gold2); }
+    .btn-secondary { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--cream); font-family:var(--ff-body); font-size:.82rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase; padding:13px 26px; border-radius:2px; border:1px solid rgba(255,255,255,.15); text-decoration:none; transition:border-color .2s,color .2s; }
+    .btn-secondary:hover { border-color:var(--gold); color:var(--gold); }
+    .divider { width:48px; height:1px; background:var(--gold); margin:32px auto; opacity:.5; }
+    .detail { font-size:.8rem; color:rgba(138,154,181,.6); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" class="logo" />
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <h1>¡Hemos recibido tu solicitud!</h1>
+    <p>Un especialista de Regulatec se comunicará contigo en las próximas <strong style="color:var(--cream)">24–48 horas hábiles</strong> para coordinar tu diagnóstico gratuito.</p>
+    <div class="btns">
+      <a href="/" class="btn-primary">
+        <svg viewBox="0 0 14 14" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2"><path d="M10 7H2M6 3l-4 4 4 4"/></svg>
+        Volver al inicio
+      </a>
+      <a href="/#checklist" class="btn-secondary">
+        <svg viewBox="0 0 14 14" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2"><path d="M7 2v8M4 7l3 3 3-3"/><path d="M2 11h10"/></svg>
+        Descargar checklist gratuito
+      </a>
+    </div>
+    <div class="divider"></div>
+    <p class="detail">¿Tienes alguna urgencia? Escríbenos directamente a <a href="mailto:ventas@regulatec.cl" style="color:var(--gold)">ventas@regulatec.cl</a></p>
+  </div>
+</body>
+</html>
