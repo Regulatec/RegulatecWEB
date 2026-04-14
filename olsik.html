@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OLSIK Chile | Suministro y Asesoría para Equipos de Bombeo</title>
+  <meta name="description" content="OLSIK Chile – Expertos en suministro, asesoría y mantenimiento de equipos de bombeo para industria, minería, sector sanitario y aplicaciones domiciliarias." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0b1f4e;
+      --blue:    #1251a3;
+      --sky:     #2b7de9;
+      --light:   #e8f1fc;
+      --white:   #ffffff;
+      --gray:    #f4f6f9;
+      --dark:    #1a1a2e;
+      --text:    #2d3748;
+      --muted:   #64748b;
+      --border:  #dbe4f0;
+      --success: #16a34a;
+      --whatsapp:#25d366;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* header NO ocupa espacio en el flujo del documento */
+    header { display: contents; }
+
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: transparent;
+      transition: background 0.35s, box-shadow 0.35s;
+      padding: 0 2rem;
+    }
+    #navbar.scrolled {
+      background: var(--navy);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo svg { width: 48px; height: 48px; }
+    .nav-logo-text {
+      display: flex; flex-direction: column;
+    }
+    .nav-logo-text span:first-child {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.6rem;
+      color: var(--white); letter-spacing: 2px; line-height: 1;
+    }
+    .nav-logo-text span:last-child {
+      font-size: 0.55rem; color: #a8c4e8; letter-spacing: 1.5px;
+      text-transform: uppercase; font-weight: 500; margin-top: 2px;
+    }
+    nav ul {
+      list-style: none; display: flex; gap: 2rem; align-items: center;
+    }
+    nav ul a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--sky); color: var(--white) !important;
+      padding: 0.5rem 1.3rem; border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #1a6dd4 !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    #mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 72px; left: 0; right: 0; z-index: 999;
+      background: var(--navy); padding: 1rem 2rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      color: rgba(255,255,255,0.9); text-decoration: none;
+      font-family: 'Montserrat', sans-serif; font-weight: 600;
+      font-size: 0.85rem; letter-spacing: 0.6px; text-transform: uppercase;
+      padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(6,14,41,0.93) 0%, rgba(11,31,78,0.88) 45%, rgba(18,81,163,0.82) 100%),
+                  url('https://www.ingebombasspa.cl/wp-content/uploads/2020/02/inicio_02a.jpg') center/cover no-repeat;
+      display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    .hero-bg-circles {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-bg-circles circle {
+      fill: none; stroke: rgba(255,255,255,0.04); stroke-width: 1;
+    }
+    .hero-content {
+      max-width: 1200px; margin: 0 auto; padding: 8rem 2rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(43,125,233,0.2); border: 1px solid rgba(43,125,233,0.4);
+      color: #90c4f8; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 20px; margin-bottom: 1.5rem;
+    }
+    .hero-tag::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sky); display: block;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: #5bb3ff; }
+    .hero-desc {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem; line-height: 1.8;
+      margin-bottom: 2.5rem; max-width: 520px;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--sky); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 5px;
+      text-decoration: none; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: #1a6dd4; transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 5px;
+      text-decoration: none; font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 0.85rem; letter-spacing: 0.5px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: var(--white); background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-pump-anim {
+      width: 320px; height: 320px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pump-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(43,125,233,0.25);
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+    .pump-ring:nth-child(1){ width:100%; height:100%; animation-delay:0s; }
+    .pump-ring:nth-child(2){ width:75%; height:75%; animation-delay:0.5s; }
+    .pump-ring:nth-child(3){ width:50%; height:50%; animation-delay:1s; border-color:rgba(43,125,233,0.4); }
+    @keyframes ringPulse {
+      0%,100%{ opacity:0.4; } 50%{ opacity:1; }
+    }
+    .pump-logo-big {
+      width: 160px; height: 160px; position: relative; z-index: 2;
+    }
+    .pump-logo-big .spin-slow { animation: spinSlow 12s linear infinite; }
+    @keyframes spinSlow { from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 2rem; color: #5bb3ff; line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem; color: rgba(255,255,255,0.6);
+      text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800;
+      color: var(--navy); line-height: 1.25; margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 1rem; line-height: 1.8;
+      max-width: 640px;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ─── SOBRE NOSOTROS ─── */
+    #nosotros { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-bg {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      border-radius: 12px; padding: 3rem; min-height: 380px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--sky); color: var(--white);
+      border-radius: 10px; padding: 1.2rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(43,125,233,0.35);
+      text-align: center;
+    }
+    .about-badge-num {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 2.2rem; line-height: 1;
+    }
+    .about-badge-label {
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 1px; margin-top: 4px;
+    }
+    .about-features { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .feat-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.2rem; background: var(--gray);
+      border-radius: 8px; border-left: 3px solid var(--sky);
+      transition: background 0.2s;
+    }
+    .feat-item:hover { background: var(--light); }
+    .feat-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--light); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .feat-icon svg { width: 18px; height: 18px; }
+    .feat-text strong {
+      font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+      font-weight: 700; color: var(--navy); display: block; margin-bottom: 2px;
+    }
+    .feat-text p {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+    }
+
+    /* ─── SERVICIOS ─── */
+    #servicios { background: var(--gray); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white); border-radius: 10px;
+      padding: 2rem; border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(18,81,163,0.12);
+      border-color: var(--sky);
+    }
+    .service-icon {
+      width: 56px; height: 56px; background: var(--light);
+      border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1.25rem; color: var(--blue);
+    }
+    .service-icon svg { width: 28px; height: 28px; }
+    .service-card h3 {
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.75rem; line-height: 1.3;
+    }
+    .service-card p {
+      font-size: 0.875rem; color: var(--muted);
+      line-height: 1.75; flex: 1;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--sky); font-size: 0.8rem; font-weight: 700;
+      font-family: 'Montserrat', sans-serif; text-decoration: none;
+      margin-top: 1.2rem; letter-spacing: 0.3px;
+      transition: gap 0.2s;
+    }
+    .service-link:hover { gap: 10px; }
+
+    /* ─── CASOS DE ÉXITO ─── */
+    #casos { background: var(--white); }
+    .cases-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .case-card {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.25s;
+    }
+    .case-card:hover { box-shadow: 0 12px 32px rgba(18,81,163,0.1); }
+    .case-header {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      padding: 2rem 1.5rem 1.5rem; position: relative; overflow: hidden;
+    }
+    .case-header::after {
+      content: ''; position: absolute; bottom: -30px; right: -30px;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .case-industry {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #90c4f8; margin-bottom: 0.5rem;
+    }
+    .case-header h3 {
+      color: var(--white); font-size: 1.05rem; font-weight: 700;
+      line-height: 1.4; position: relative; z-index: 1;
+    }
+    .case-body { padding: 1.5rem; flex: 1; }
+    .case-body p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+    .case-results {
+      display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;
+    }
+    .result-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; color: var(--text); font-weight: 500;
+    }
+    .result-item::before {
+      content: '✓'; color: var(--success); font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .case-metric {
+      padding: 1rem 1.5rem;
+      background: var(--gray); border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .metric-val {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 1.4rem; color: var(--blue);
+    }
+    .metric-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* ─── PARTNERS ─── */
+    #partners { background: var(--navy); padding: 4rem 2rem; }
+    .partners-inner { max-width: 1200px; margin: 0 auto; }
+    .partners-title {
+      text-align: center; color: rgba(255,255,255,0.5);
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .partners-row {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .partner-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 1.2rem 2rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    .partner-card:hover { background: rgba(255,255,255,0.1); }
+    .partner-name {
+      color: rgba(255,255,255,0.85); font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.9rem; letter-spacing: 0.5px;
+    }
+    .partner-desc {
+      color: rgba(255,255,255,0.45); font-size: 0.72rem; text-align: center;
+      max-width: 140px; line-height: 1.5;
+    }
+
+    /* ─── CTA BAND ─── */
+    #cta-band {
+      background: linear-gradient(135deg, var(--sky) 0%, var(--blue) 100%);
+      padding: 4rem 2rem; text-align: center;
+    }
+    #cta-band h2 {
+      color: var(--white); font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800; margin-bottom: 0.75rem;
+    }
+    #cta-band p {
+      color: rgba(255,255,255,0.82); font-size: 1rem; margin-bottom: 2rem;
+    }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: var(--white); color: var(--blue);
+      padding: 0.9rem 2rem; border-radius: 5px;
+      text-decoration: none; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.4px;
+      transition: transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-wsp {
+      background: var(--whatsapp); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 5px;
+      text-decoration: none; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.4px;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-wsp:hover { background: #1fb855; transform: translateY(-2px); }
+
+    /* ─── CONTACTO ─── */
+    #contacto { background: var(--gray); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .contact-ico {
+      width: 44px; height: 44px; min-width: 44px;
+      background: var(--light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; color: var(--blue);
+    }
+    .contact-ico svg { width: 20px; height: 20px; }
+    .contact-detail strong {
+      font-family: 'Montserrat', sans-serif; font-size: 0.82rem;
+      font-weight: 700; color: var(--navy); display: block; margin-bottom: 2px;
+    }
+    .contact-detail a, .contact-detail span {
+      font-size: 0.88rem; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-detail a:hover { color: var(--blue); }
+    .contact-wsp-card {
+      background: linear-gradient(135deg, #1a7a44, #128c35);
+      border-radius: 10px; padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .contact-wsp-card:hover { opacity: 0.9; }
+    .contact-wsp-card svg { width: 32px; height: 32px; color: var(--white); min-width: 32px; }
+    .wsp-text strong {
+      color: var(--white); font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.9rem; display: block;
+    }
+    .wsp-text span { color: rgba(255,255,255,0.75); font-size: 0.8rem; }
+
+    /* form */
+    .contact-form {
+      background: var(--white); border-radius: 12px; padding: 2rem;
+      border: 1px solid var(--border);
+    }
+    .contact-form h3 {
+      font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 1.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: 0.78rem; font-weight: 600; color: var(--navy);
+      letter-spacing: 0.3px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border); border-radius: 6px;
+      font-family: 'Open Sans', sans-serif; font-size: 0.875rem;
+      color: var(--text); background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--sky);
+      box-shadow: 0 0 0 3px rgba(43,125,233,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { cursor: pointer; }
+    .form-submit {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem;
+    }
+    .btn-submit {
+      flex: 1; background: var(--blue); color: var(--white);
+      padding: 0.85rem 1.5rem; border-radius: 6px; border: none;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.85rem; cursor: pointer; letter-spacing: 0.4px;
+      transition: background 0.2s; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover { background: var(--navy); }
+    .btn-submit-wsp {
+      background: var(--whatsapp); color: var(--white);
+      padding: 0.85rem 1.5rem; border-radius: 6px; border: none;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.85rem; cursor: pointer; letter-spacing: 0.4px;
+      transition: background 0.2s; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-submit-wsp:hover { background: #1fb855; }
+    #form-msg {
+      display: none; padding: 0.75rem 1rem; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 600; margin-top: 0.75rem;
+    }
+    #form-msg.ok { background: #dcfce7; color: #166534; display: block; }
+    #form-msg.err { background: #fee2e2; color: #991b1b; display: block; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #060e29; color: rgba(255,255,255,0.55);
+      padding: 3rem 2rem 1.5rem;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1.5rem;
+    }
+    .footer-logo-wrap {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
+    }
+    .footer-logo-wrap svg { width: 40px; height: 40px; }
+    .footer-logo-name {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 1.4rem; color: var(--white); letter-spacing: 2px;
+    }
+    .footer-about { font-size: 0.82rem; line-height: 1.8; max-width: 300px; }
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.8rem; color: var(--white); letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col a {
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 0.82rem; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .wsp-float {
+      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 999;
+      background: var(--whatsapp); color: var(--white);
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wsp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 28px rgba(37,211,102,0.55);
+    }
+    .wsp-float svg { width: 30px; height: 30px; }
+    .wsp-tooltip {
+      position: absolute; right: calc(100% + 12px); top: 50%;
+      transform: translateY(-50%); white-space: nowrap;
+      background: var(--dark); color: var(--white);
+      padding: 0.4rem 0.8rem; border-radius: 6px;
+      font-size: 0.78rem; font-weight: 600;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .wsp-float:hover .wsp-tooltip { opacity: 1; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-wrap { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .cases-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░░ NAVBAR ░░░ -->
+<header>
+  <div id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="OLSIK Chile">
+        <!-- Logo OLSIK (impeller SVG) -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="#0b1f4e" stroke="#2b7de9" stroke-width="2"/>
+          <!-- Impeller blades -->
+          <g transform="translate(50,50)">
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(0)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(45)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(90)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(135)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(180)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(225)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(270)"/>
+            <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(315)"/>
+            <circle cx="0" cy="0" r="9" fill="#0b1f4e"/>
+            <circle cx="0" cy="0" r="5" fill="#2b7de9"/>
+          </g>
+        </svg>
+        <div class="nav-logo-text">
+          <span>OLSIK</span>
+          <span>Suministro &amp; Asesoría en Bombeo</span>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#casos">Casos de Éxito</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu">
+    <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
+    <a href="#servicios" onclick="closeMenu()">Servicios</a>
+    <a href="#casos" onclick="closeMenu()">Casos de Éxito</a>
+    <a href="#partners" onclick="closeMenu()">Partners</a>
+    <a href="#contacto" onclick="closeMenu()">Contacto</a>
+  </div>
+</header>
+
+<!-- ░░░ HERO ░░░ -->
+<section id="hero">
+  <svg class="hero-bg-circles" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice">
+    <circle cx="1100" cy="400" r="350"/>
+    <circle cx="1100" cy="400" r="250"/>
+    <circle cx="1100" cy="400" r="150"/>
+    <circle cx="200" cy="150" r="200"/>
+    <circle cx="200" cy="150" r="120"/>
+  </svg>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Ingeniería en Sistemas de Bombeo</div>
+      <h1 class="hero-title">
+        Soluciones expertas para el<br/>
+        <span>transporte de fluidos</span>
+      </h1>
+      <p class="hero-desc">
+        Más de 15 años de experiencia en suministro, asesoría y mantenimiento de
+        equipos de bombeo para minería, industria, sector sanitario y aplicaciones domiciliarias.
+        Ingenieros certificados al servicio de su operación.
+      </p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          Solicitar Asesoría
+        </a>
+        <a href="https://wa.me/56944116488" target="_blank" rel="noopener" class="btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">+15</span>
+          <span class="stat-label">Años de experiencia</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+80</span>
+          <span class="stat-label">Proyectos ejecutados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+30</span>
+          <span class="stat-label">Marcas representadas</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-pump-anim">
+        <div class="pump-ring"></div>
+        <div class="pump-ring"></div>
+        <div class="pump-ring"></div>
+        <svg class="pump-logo-big" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="80" cy="80" r="78" fill="rgba(11,31,78,0.6)" stroke="rgba(43,125,233,0.4)" stroke-width="2"/>
+          <g transform="translate(80,80)" class="spin-slow">
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(0)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(45)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(90)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(135)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(180)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(225)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(270)"/>
+            <path d="M0,0 C-8,-28 15,-50 32,-36 C16,-16 12,4 0,0Z" fill="#5bb3ff" opacity="0.85" transform="rotate(315)"/>
+            <circle cx="0" cy="0" r="14" fill="#0b1f4e"/>
+            <circle cx="0" cy="0" r="8" fill="#2b7de9"/>
+          </g>
+          <text x="80" y="136" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="18" fill="white" letter-spacing="4">OLSIK</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ NOSOTROS ░░░ -->
+<section id="nosotros">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <div class="about-img-bg">
+          <img
+            src="https://banffperu.com/wp-content/uploads/2022/12/bomba-agua-edificio-destacada-min.jpg"
+            alt="Sistemas de bombeo industrial OLSIK"
+            style="width:100%; height:100%; object-fit:cover; border-radius:8px; display:block;"
+          />
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-num">+15</div>
+          <div class="about-badge-label">Años de<br/>experiencia</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-tag">Quiénes Somos</div>
+        <h2 class="section-title">Expertos en soluciones integrales de bombeo</h2>
+        <p class="section-sub">
+          OLSIK Chile está compuesto por ingenieros con más de 15 años de experiencia en mantenimiento
+          y suministro de componentes centrífugos, maquinaria menor y herramientas industriales,
+          tanto en Chile como en el extranjero. Nuestro enfoque se basa en la eficiencia y la rapidez,
+          respaldados por conocimiento técnico consolidado en el sector.
+        </p>
+        <div class="about-features">
+          <div class="feat-item">
+            <div class="feat-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+            </div>
+            <div class="feat-text">
+              <strong>Ingenieros Certificados</strong>
+              <p>Equipo profesional con acreditación técnica en selección, instalación y mantenimiento de equipos de bombeo.</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <div class="feat-text">
+              <strong>Respuesta Rápida</strong>
+              <p>Nos comprometemos con tiempos de respuesta ágiles para minimizar paradas operacionales y pérdidas de producción.</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+            </div>
+            <div class="feat-text">
+              <strong>Comunicación Directa</strong>
+              <p>Mantenemos una relación cercana con cada cliente, con atención personalizada durante todo el ciclo del proyecto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ SERVICIOS ░░░ -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Lo Que Ofrecemos</div>
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <p class="section-sub">
+        Soluciones integrales adaptadas a las necesidades reales de cada cliente,
+        desde la selección del equipo hasta la capacitación de operadores.
+      </p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Comercialización de Bombas -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3>Suministro de Equipos de Bombeo Multimarca</h3>
+        <p>
+          Comercializamos equipos de bombeo de las principales marcas del mercado, orientados a
+          aplicaciones industriales, mineras, sanitarias y domiciliarias. Selección técnica asistida
+          por ingenieros para garantizar el equipo óptimo en cada aplicación.
+        </p>
+        <a href="#contacto" class="service-link">
+          Consultar disponibilidad
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Asesoría e Ingeniería -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/></svg>
+        </div>
+        <h3>Asesoría Técnica e Ingeniería de Proyectos</h3>
+        <p>
+          Brindamos asesoría personalizada para la correcta selección, instalación y operación de
+          sistemas de bombeo. Nuestros ingenieros certificados acompañan el proyecto desde el diseño
+          hasta la puesta en marcha, garantizando el máximo rendimiento del sistema.
+        </p>
+        <a href="#contacto" class="service-link">
+          Agendar visita técnica
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Mantenimiento -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
+        </div>
+        <h3>Mantenimiento y Reparación de Componentes</h3>
+        <p>
+          Servicio de mantenimiento preventivo y correctivo para sistemas de bombeo centrífugo.
+          Suministro de repuestos y componentes originales. Diagnóstico, reparación y puesta en
+          marcha con enfoque en prolongar la vida útil del equipo.
+        </p>
+        <a href="#contacto" class="service-link">
+          Solicitar diagnóstico
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Herramientas de Taller -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-9 5.25-9-5.25v-2.25l9-5.25 9 5.25z"/></svg>
+        </div>
+        <h3>Línea de Herramientas Mecánicas para Talleres</h3>
+        <p>
+          Equipamiento especializado para talleres de servicio técnico: equipos de precisión,
+          maquinaria menor e instrumental de alta calidad. Catálogo orientado a optimizar la
+          productividad y garantizar precisión en diversas industrias.
+        </p>
+        <a href="#contacto" class="service-link">
+          Ver catálogo
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Pozos y Bombeo Submersible -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+        </div>
+        <h3>Sistemas de Bombeo para Pozos Profundos</h3>
+        <p>
+          Montaje, instalación y puesta en marcha de bombas de pozo profundo. Pruebas de
+          bombeo y evaluación de acuíferos. Soluciones completas para extracción de agua
+          en sectores agrícolas, mineros y sanitarios.
+        </p>
+        <a href="#contacto" class="service-link">
+          Consultar proyecto
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Capacitación -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+        </div>
+        <h3>Capacitación y Transferencia Técnica</h3>
+        <p>
+          Programas de capacitación in situ para operadores y técnicos de mantenimiento.
+          Transferimos conocimiento en operación segura, mantenimiento preventivo y diagnóstico
+          de fallas en sistemas de bombeo centrífugo y de desplazamiento positivo.
+        </p>
+        <a href="#contacto" class="service-link">
+          Solicitar capacitación
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ FRANJA FOTO ░░░ -->
+<div style="
+  position:relative; height:320px; overflow:hidden;
+  background: url('https://bombasydragadosenventa.cl/wp-content/uploads/sites/2/2024/10/importancia-de-las-bombas-insutriales.webp') center/cover no-repeat;
+">
+  <div style="
+    position:absolute; inset:0;
+    background: linear-gradient(to right, rgba(11,31,78,0.88) 0%, rgba(18,81,163,0.55) 60%, rgba(11,31,78,0.2) 100%);
+    display:flex; align-items:center; padding: 0 2rem;
+  ">
+    <div style="max-width:600px; margin-left:calc((100% - 1200px)/2 + 2rem);">
+      <p style="font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#90c4f8; margin-bottom:0.75rem;">Experiencia en terreno</p>
+      <h2 style="font-family:'Montserrat',sans-serif; font-size:clamp(1.5rem,2.5vw,2.1rem); font-weight:800; color:#fff; line-height:1.25; margin-bottom:1rem;">
+        Soluciones de bombeo para los sectores más exigentes de Chile
+      </h2>
+      <p style="color:rgba(255,255,255,0.78); font-size:0.95rem; line-height:1.75;">
+        Minería, industria, sector sanitario y agroindustria. Cada proyecto con el respaldo técnico de ingenieros certificados y más de 15 años de trayectoria.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ░░░ CASOS DE ÉXITO ░░░ -->
+<section id="casos">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Resultados Comprobados</div>
+      <h2 class="section-title">Casos de Éxito</h2>
+      <p class="section-sub">
+        Proyectos que demuestran nuestra capacidad técnica y compromiso con resultados
+        concretos en distintas industrias de Chile.
+      </p>
+    </div>
+    <div class="cases-grid">
+
+      <!-- Caso 1: Minería -->
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-industry">Industria Minera — Región de Atacama</div>
+          <h3>Optimización de Sistema de Transporte de Pulpa en Faena Cuprífera</h3>
+        </div>
+        <div class="case-body">
+          <p>
+            Empresa minera con reiteradas fallas en bombas de transporte de pulpa presentaba
+            paradas no programadas de hasta 48 horas. OLSIK realizó un diagnóstico técnico
+            completo, reemplazó equipos sobredimensionados por bombas seleccionadas en el
+            punto de mayor eficiencia (BEP) y estableció un plan de mantenimiento predictivo.
+          </p>
+          <div class="case-results">
+            <div class="result-item">Reducción de paradas no programadas en un 74%</div>
+            <div class="result-item">Selección de 3 bombas centrífugas de aleación especial</div>
+            <div class="result-item">Implementación de monitoreo de condiciones en línea</div>
+          </div>
+        </div>
+        <div class="case-metric">
+          <div>
+            <div class="metric-val">74%</div>
+            <div class="metric-label">Reducción de paradas</div>
+          </div>
+          <div style="text-align:right">
+            <div class="metric-val" style="font-size:1rem;color:var(--muted)">6 meses</div>
+            <div class="metric-label">Tiempo de ejecución</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 2: Sanitario -->
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-industry">Sector Sanitario — Región Metropolitana</div>
+          <h3>Modernización de Estación Elevadora de Aguas Servidas</h3>
+        </div>
+        <div class="case-body">
+          <p>
+            Una empresa sanitaria regional requería la renovación completa de su estación
+            elevadora con más de 20 años de operación. OLSIK entregó ingeniería de detalle,
+            suministró equipos multietapa de última generación y ejecutó la instalación sin
+            interrumpir el servicio a la comunidad.
+          </p>
+          <div class="case-results">
+            <div class="result-item">Instalación sin corte de servicio a 12.000 usuarios</div>
+            <div class="result-item">Reducción del consumo energético en 32%</div>
+            <div class="result-item">Vida útil proyectada superior a 20 años</div>
+          </div>
+        </div>
+        <div class="case-metric">
+          <div>
+            <div class="metric-val">32%</div>
+            <div class="metric-label">Ahorro energético</div>
+          </div>
+          <div style="text-align:right">
+            <div class="metric-val" style="font-size:1rem;color:var(--muted)">12.000</div>
+            <div class="metric-label">Usuarios beneficiados</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 3: Agroindustria -->
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-industry">Agroindustria — Región de O'Higgins</div>
+          <h3>Sistema de Bombeo para Riego Tecnificado en Viña Exportadora</h3>
+        </div>
+        <div class="case-body">
+          <p>
+            Viña de exportación necesitaba un sistema de riego por goteo con presión y caudal
+            controlados para 280 hectáreas. OLSIK diseñó la red de impulsión, seleccionó
+            bombas con variadores de frecuencia y gestionó la puesta en marcha completa
+            durante la temporada de riego crítica.
+          </p>
+          <div class="case-results">
+            <div class="result-item">Sistema operativo en tiempo récord de 45 días</div>
+            <div class="result-item">Ahorro de agua del 28% frente al sistema anterior</div>
+            <div class="result-item">Automatización con control de presión diferencial</div>
+          </div>
+        </div>
+        <div class="case-metric">
+          <div>
+            <div class="metric-val">280 há</div>
+            <div class="metric-label">Área irrigada</div>
+          </div>
+          <div style="text-align:right">
+            <div class="metric-val" style="font-size:1rem;color:var(--muted)">28%</div>
+            <div class="metric-label">Ahorro en agua</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ PARTNERS ░░░ -->
+<section id="partners">
+  <div class="partners-inner">
+    <div class="partners-title">Alianzas estratégicas para proyectos de mayor envergadura</div>
+    <div class="partners-row">
+      <div class="partner-card">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(91,179,255,0.7)" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"/></svg>
+        <div class="partner-name">Monitoreo de Condiciones</div>
+        <div class="partner-desc">Mantenimiento predictivo e instrumentación industrial</div>
+      </div>
+      <div class="partner-card">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(91,179,255,0.7)" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 8.485-7.5 11.9-7.5 11.9s-7.5-3.415-7.5-11.9a7.5 7.5 0 0115 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5z"/></svg>
+        <div class="partner-name">Pozos Profundos</div>
+        <div class="partner-desc">Construcción y pruebas de bombeo en pozos</div>
+      </div>
+      <div class="partner-card">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(91,179,255,0.7)" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg>
+        <div class="partner-name">Automatización</div>
+        <div class="partner-desc">Variadores de frecuencia y control de procesos</div>
+      </div>
+      <div class="partner-card">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgba(91,179,255,0.7)" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+        <div class="partner-name">Logística Especializada</div>
+        <div class="partner-desc">Transporte y manejo de equipos industriales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CTA BAND ░░░ -->
+<section id="cta-band">
+  <div style="max-width:700px;margin:0 auto;">
+    <h2>¿Tiene un proyecto de bombeo?<br/>Hablemos.</h2>
+    <p>Nuestros ingenieros están disponibles para evaluar su caso y proponer la solución más eficiente.</p>
+    <div class="cta-btns">
+      <a href="#contacto" class="btn-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        Enviar Consulta
+      </a>
+      <a href="https://wa.me/56944116488?text=Hola%20OLSIK%2C%20me%20gustar%C3%ADa%20consultar%20sobre%20sus%20servicios%20de%20bombeo." target="_blank" rel="noopener" class="btn-wsp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CONTACTO ░░░ -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Contáctenos</div>
+      <h2 class="section-title">Estamos para Ayudarle</h2>
+      <p class="section-sub">
+        Complete el formulario o escríbanos directamente por WhatsApp. Respondemos a la brevedad.
+      </p>
+    </div>
+    <div class="contact-grid">
+      <!-- Info lateral -->
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-ico">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <strong>Dirección</strong>
+            <span>Carretera General San Martín 20251, Colina, Región Metropolitana</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <strong>Teléfono</strong>
+            <a href="tel:+56944116488">+56 9 4411 6488 — Ignacio</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </div>
+          <div class="contact-detail">
+            <strong>Correo Electrónico</strong>
+            <a href="mailto:ignacio.ramirez@olsik.cl">ignacio.ramirez@olsik.cl</a>
+          </div>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <a href="https://wa.me/56944116488?text=Hola%20OLSIK%2C%20me%20gustar%C3%ADa%20consultar%20sobre%20sus%20servicios%20de%20bombeo." target="_blank" rel="noopener" class="contact-wsp-card">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <div class="wsp-text">
+            <strong>Escribir por WhatsApp</strong>
+            <span>+56 9 4411 6488 — Respuesta inmediata</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Formulario -->
+      <div class="contact-form">
+        <h3>Formulario de Contacto</h3>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Su nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label for="empresa">Empresa</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="correo@empresa.cl" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Área de interés</label>
+            <select id="servicio" name="servicio">
+              <option value="">Seleccione un servicio…</option>
+              <option>Suministro de equipos de bombeo</option>
+              <option>Asesoría técnica e ingeniería</option>
+              <option>Mantenimiento y reparación</option>
+              <option>Herramientas y maquinaria para talleres</option>
+              <option>Sistema de pozos profundos</option>
+              <option>Capacitación técnica</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Describa su necesidad o proyecto…" required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-submit">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+              Enviar por Email
+            </button>
+            <a id="wspFormBtn" href="#" target="_blank" rel="noopener" class="btn-submit-wsp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+          <div id="form-msg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-wrap">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+            <circle cx="50" cy="50" r="48" fill="#0b1f4e" stroke="#2b7de9" stroke-width="2"/>
+            <g transform="translate(50,50)">
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(0)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(45)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(90)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(135)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(180)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(225)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(270)"/>
+              <path d="M0,0 C-5,-18 10,-30 20,-22 C10,-10 8,2 0,0Z" fill="#5bb3ff" opacity="0.9" transform="rotate(315)"/>
+              <circle cx="0" cy="0" r="9" fill="#0b1f4e"/>
+              <circle cx="0" cy="0" r="5" fill="#2b7de9"/>
+            </g>
+          </svg>
+          <span class="footer-logo-name">OLSIK</span>
+        </div>
+        <p class="footer-about">
+          Suministro y asesoría para equipos de bombeo. Ingeniería experta al servicio
+          de la minería, industria, sector sanitario y aplicaciones domiciliarias en Chile.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Equipos de Bombeo</a></li>
+          <li><a href="#servicios">Asesoría Técnica</a></li>
+          <li><a href="#servicios">Mantenimiento</a></li>
+          <li><a href="#servicios">Herramientas de Taller</a></li>
+          <li><a href="#servicios">Pozos Profundos</a></li>
+          <li><a href="#servicios">Capacitación</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+56944116488">+56 9 4411 6488</a></li>
+          <li><a href="mailto:ignacio.ramirez@olsik.cl">ignacio.ramirez@olsik.cl</a></li>
+          <li><a href="https://wa.me/56944116488" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="#">Colina, Región Metropolitana</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 OLSIK Chile. Todos los derechos reservados.</span>
+      <a href="mailto:ignacio.ramirez@olsik.cl">ignacio.ramirez@olsik.cl</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░░ WHATSAPP FLOAT ░░░ -->
+<a href="https://wa.me/56944116488?text=Hola%20OLSIK%2C%20me%20gustar%C3%ADa%20consultar%20sobre%20sus%20servicios%20de%20bombeo." target="_blank" rel="noopener" class="wsp-float" aria-label="Contactar por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <span class="wsp-tooltip">WhatsApp</span>
+</a>
+
+<script>
+  // ─── Navbar scroll effect ───
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ─── Smooth scroll para todos los links internos ───
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const offset = 80; // altura del navbar
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ─── Mobile menu ───
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // ─── WhatsApp form button ───
+  function buildWspLink() {
+    const nombre  = document.getElementById('nombre').value.trim();
+    const empresa = document.getElementById('empresa').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const servicio= document.getElementById('servicio').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    let text = 'Hola OLSIK, me contacto desde su sitio web.\n';
+    if (nombre)   text += `Nombre: ${nombre}\n`;
+    if (empresa)  text += `Empresa: ${empresa}\n`;
+    if (email)    text += `Email: ${email}\n`;
+    if (servicio) text += `Servicio de interés: ${servicio}\n`;
+    if (mensaje)  text += `\nMensaje: ${mensaje}`;
+
+    return 'https://wa.me/56944116488?text=' + encodeURIComponent(text);
+  }
+
+  document.getElementById('wspFormBtn').addEventListener('click', function(e) {
+    this.href = buildWspLink();
+  });
+
+  // ─── Contact form (mailto) ───
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre  = document.getElementById('nombre').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const empresa = document.getElementById('empresa').value.trim();
+    const telefono= document.getElementById('telefono').value.trim();
+    const servicio= document.getElementById('servicio').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+    const msgEl   = document.getElementById('form-msg');
+
+    if (!nombre || !email || !mensaje) {
+      msgEl.className = 'err';
+      msgEl.textContent = 'Por favor complete los campos obligatorios (Nombre, Email y Mensaje).';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msgEl.className = 'err';
+      msgEl.textContent = 'Por favor ingrese un correo electrónico válido.';
+      return;
+    }
+
+    const subject = `Consulta web OLSIK${servicio ? ' — ' + servicio : ''}`;
+    const body = [
+      `Nombre: ${nombre}`,
+      empresa  ? `Empresa: ${empresa}`   : '',
+      `Email: ${email}`,
+      telefono ? `Teléfono: ${telefono}` : '',
+      servicio ? `Servicio: ${servicio}` : '',
+      '',
+      `Mensaje:`,
+      mensaje
+    ].filter(Boolean).join('\n');
+
+    window.open(
+      `mailto:ignacio.ramirez@olsik.cl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      '_blank'
+    );
+
+    msgEl.className = 'ok';
+    msgEl.textContent = '¡Gracias! Se abrirá su cliente de correo. También puede contactarnos directamente por WhatsApp.';
+  });
+
+  // ─── Intersection Observer for subtle fade-in ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .case-card, .feat-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
