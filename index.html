@@ -19,7 +19,9 @@
   <meta property="og:title" content="RegulaTec | Compliance que se puede auditar" />
   <meta property="og:description" content="No implementamos políticas. Implementamos sistemas que se pueden auditar. Ley 21.719 Chile — vigente 1 dic 2026." />
   <meta property="og:image" content="https://www.regulatec.cl/og-image.jpg" />
-  <meta property="og:image:alt" content="RegulaTec - Compliance legal y tecnología" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="RegulaTec — Toda la evidencia de tu empresa, en un solo sistema listo para una auditoría." />
   <meta property="og:locale" content="es_CL" />
 
   <!-- Twitter Card -->
@@ -35,17 +37,18 @@
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "@id": "https://www.regulatec.cl/#organization",
+        "@id": "https://www.regulatec.cl/#org",
         "name": "RegulaTec",
-        "description": "Sistema tecnológico de gestión de cumplimiento normativo.",
+        "description": "Sistema de compliance en Chile que permite a compañías cumplir la Ley 21.719 mediante trazabilidad, control y evidencia.",
         "url": "https://www.regulatec.cl/",
+        "logo": "https://www.regulatec.cl/logo.svg",
         "telephone": "+56934530393",
         "email": "ventas@regulatec.cl",
         "address": {"@type": "PostalAddress", "addressCountry": "CL", "addressLocality": "Santiago"},
         "areaServed": ["CL", "AR", "PE", "CO", "UY"],
-        "knowsAbout": ["Ley 21.719", "Ley 20.393", "ISO 37001", "DPO", "Compliance"],
+        "knowsAbout": ["Ley 21.719", "Ley 20.393", "ISO 37001", "DPO", "Compliance", "GRC"],
         "founder": {"@type": "Person", "name": "Sebastián Manns Daza", "jobTitle": "Co-Founder · Director de Compliance"},
-        "sameAs": ["https://linkedin.com/company/regulatec"]
+        "sameAs": ["https://linkedin.com/company/regulatec", "https://linkedin.com/in/smannsd"]
       },
       {
         "@type": "FAQPage",
@@ -53,23 +56,31 @@
           {
             "@type": "Question",
             "name": "¿Qué es RegulaTec?",
-            "acceptedAnswer": {"@type": "Answer", "text": "RegulaTec es un sistema tecnológico de gestión de cumplimiento normativo para empresas en Chile."}
+            "acceptedAnswer": {"@type": "Answer", "text": "RegulaTec es un sistema de compliance en Chile que permite a compañías cumplir la Ley 21.719 mediante trazabilidad, control y evidencia sobre sistemas existentes."}
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuándo entra en vigencia la Ley 21.719?",
+            "acceptedAnswer": {"@type": "Answer", "text": "El 1 de diciembre de 2026. No hay período de gracia."}
           },
           {
             "@type": "Question",
             "name": "¿Cuáles son las multas de la Ley 21.719?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Hasta 20.000 UTM (~$700M CLP) por infracciones graves. En reincidencia: 40.000 UTM o el 4% de los ingresos anuales."}
+            "acceptedAnswer": {"@type": "Answer", "text": "Hasta 20.000 UTM (aprox. $700 millones CLP) por infracciones graves. En reincidencia: 40.000 UTM o el 4% de los ingresos anuales. Los directivos pueden enfrentar responsabilidad administrativa y penal."}
           },
           {
             "@type": "Question",
             "name": "¿Qué diferencia a RegulaTec de una consultora?",
-            "acceptedAnswer": {"@type": "Answer", "text": "RegulaTec no entrega documentos: implementa sistemas con trazabilidad, controles y evidencia sobre Microsoft. Es un sistema auditable, no una carpeta."}
+            "acceptedAnswer": {"@type": "Answer", "text": "RegulaTec no entrega documentos: implementa sistemas auditables con trazabilidad sobre Microsoft."}
           }
         ]
       }
     ]
   }
   </script>
+
+  <!-- Google Tag Manager — REEMPLAZAR GTM-XXXXXXX con ID real -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
 
   <!-- Google Ads Tag — Conversiones + Remarketing -->
   <!-- REEMPLAZAR AW-XXXXXXXXXX por el ID real de la cuenta Google Ads -->
@@ -506,13 +517,34 @@
     .cookie-btn-config:hover { border-color:var(--gold); color:var(--gold); }
     .cookie-btn-reject { background:none; border:none; color:rgba(138,154,181,.7); font-size:.74rem; cursor:pointer; padding:9px 10px; text-decoration:underline; }
     .cookie-micro { font-size:.68rem; color:rgba(37,197,107,.8); margin-top:6px; }
-    @media (max-width:768px) { .cookie-inner { grid-template-columns:1fr; } #practica .practica-grid { grid-template-columns:1fr; } .insight-cols { grid-template-columns:1fr; } }
+    .mobile-cta-fixed { display: none; }
+    @media (max-width:768px) { .cookie-inner { grid-template-columns:1fr; } #practica .practica-grid { grid-template-columns:1fr; } .insight-cols { grid-template-columns:1fr; }
+      .mobile-cta-fixed {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 9998;
+        background: #C9A84C;
+        color: #0A1F44;
+        font-family: var(--ff-head);
+        font-weight: 700;
+        font-size: 1rem;
+        text-align: center;
+        padding: 16px 24px;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        box-shadow: 0 -4px 16px rgba(10,31,68,.15);
+      }
+    }
   </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) — REEMPLAZAR GTM-XXXXXXX -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="top-bar">
-  <span>⏳ 1 de diciembre de 2026: entra en vigencia la Ley 21.719. Si no puedes demostrar cumplimiento, tu compañía y sus directivos quedan expuestos a multas de hasta 20.000 UTM.</span>
+  <span>⏳ 1 de diciembre de 2026: entra en vigencia la Ley 21.719. Si no puedes demostrar cumplimiento, tu compañía y sus directivos quedan expuestos a multas de hasta 20.000 UTM (aprox. $700 millones CLP) y responsabilidad administrativa y penal. <strong>No hay período de gracia.</strong></span>
   <a href="#practica" style="color:#FFD700;font-weight:700;white-space:nowrap;margin-left:10px;">→ Ver cómo cumplir</a>
 </div>
 
@@ -560,7 +592,7 @@
 
         <!-- Bloque urgencia -->
         <div style="margin-top:16px;padding:16px 20px;border-left:3px solid #e74c3c;background:rgba(192,57,43,.08);">
-          <p style="font-size:.86rem;color:var(--cream);line-height:1.65;">⏳ <strong>1 de diciembre de 2026:</strong> entra en vigencia la Ley 21.719. Si no puedes demostrar cumplimiento, tu compañía y sus directivos quedan expuestos a <strong>multas de hasta 20.000 UTM</strong> y responsabilidad administrativa y penal. <strong>No hay período de gracia.</strong></p>
+          <p style="font-size:.86rem;color:var(--cream);line-height:1.65;">⏳ <strong>1 de diciembre de 2026:</strong> entra en vigencia la Ley 21.719. Si no puedes demostrar cumplimiento, tu compañía y sus directivos quedan expuestos a <strong>multas de hasta 20.000 UTM (aprox. $700 millones CLP)</strong> y responsabilidad administrativa y penal. <strong>No hay período de gracia.</strong></p>
         </div>
 
         <!-- Badges de confianza -->
@@ -591,12 +623,8 @@
             <div class="form-promise"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Respuesta en 24–48 horas hábiles</div>
             <div class="form-promise"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Reunión ejecutiva de 30 minutos</div>
           </div>
-          <form id="leadForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <form id="leadForm" novalidate>
             <div id="mainForm">
-              <input type="hidden" name="_subject" value="Nueva solicitud de diagnóstico - RegulaTec" />
-              <input type="hidden" name="_language" value="es" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://regulatec.cl/gracias" />
               <div class="form-group">
                 <label for="f-name">Nombre *</label>
                 <input type="text" id="f-name" name="nombre" placeholder="Su nombre completo" required />
@@ -647,6 +675,7 @@
               <h4>¡Gracias por contactarnos!</h4>
               <p>Hemos recibido su solicitud. Un especialista de RegulaTec se comunicará con usted en las próximas 24–48 horas hábiles.</p>
             </div>
+            <div id="form-error-msg" style="display:none;color:#e74c3c;font-size:.82rem;margin-top:12px;text-align:center;">Error al enviar. Escríbanos directamente a <a href="mailto:ventas@regulatec.cl" style="color:var(--gold);">ventas@regulatec.cl</a></div>
           </form>
         </div>
       </div>
@@ -818,23 +847,23 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);">
         <div style="background:var(--navy);padding:28px 24px;">
           <div style="font-size:1.4rem;margin-bottom:10px;">💰</div>
-          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Sanciones económicas</div>
-          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">Multas de hasta 20.000 UTM (~$700M CLP) por infracciones graves. En reincidencia: 40.000 UTM. O hasta el 4% de los ingresos anuales.</div>
+          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Multas de hasta 20.000 UTM</div>
+          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">Hasta 20.000 UTM (aprox. $700 millones CLP) por infracciones graves. En reincidencia: 40.000 UTM. O hasta el 4% de los ingresos anuales — lo que resulte mayor.</div>
+        </div>
+        <div style="background:var(--navy);padding:28px 24px;">
+          <div style="font-size:1.4rem;margin-bottom:10px;">⚖️</div>
+          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Responsabilidad personal de directivos</div>
+          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">Los directores y gerentes pueden enfrentar responsabilidad administrativa y penal si la empresa no puede demostrar que existían controles efectivos. El desconocimiento no exime.</div>
         </div>
         <div style="background:var(--navy);padding:28px 24px;">
           <div style="font-size:1.4rem;margin-bottom:10px;">📰</div>
-          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Daño reputacional</div>
-          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">Las filtraciones de datos generan pérdida de confianza, cobertura negativa y pérdida de clientes y contratos.</div>
+          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Daño reputacional público</div>
+          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">La Agencia puede publicar las resoluciones sancionatorias. Una filtración de datos o una sanción pública destruye contratos, inversiones y la confianza de clientes.</div>
         </div>
         <div style="background:var(--navy);padding:28px 24px;">
           <div style="font-size:1.4rem;margin-bottom:10px;">⚙️</div>
-          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Impacto operacional</div>
-          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">La Agencia puede ordenar la suspensión inmediata del tratamiento de datos. Costos de auditorías correctivas.</div>
-        </div>
-        <div style="background:var(--navy);padding:28px 24px;">
-          <div style="font-size:1.4rem;margin-bottom:10px;">🔐</div>
-          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Riesgo de seguridad</div>
-          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">Sin controles adecuados, aumenta la vulnerabilidad a ciberataques y accesos no autorizados.</div>
+          <div style="font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Suspensión inmediata del negocio</div>
+          <div style="font-size:.82rem;line-height:1.7;color:var(--gray);">La Agencia puede ordenar la suspensión inmediata del tratamiento de datos. En empresas que operan con datos (retail, fintech, salud), eso paraliza la operación.</div>
         </div>
       </div>
     </div>
@@ -964,7 +993,7 @@
         <div class="dolor-list">
           <div class="dolor-item">
             <span class="dolor-num">01</span>
-            <div><div class="dolor-text">"Tenemos las políticas, pero no sé si resisten una auditoría real."</div><div class="dolor-sub">👉 Riesgo real: las políticas sin evidencia de aplicación no protegen a la empresa. Ni al Gerente Legal que las firmó.</div></div>
+            <div><div class="dolor-text">"Tenemos las políticas, pero no sé si resisten una auditoría real."</div><div class="dolor-sub">👉 Riesgo real: las políticas sin evidencia de aplicación no protegen a la empresa. La Ley 21.719 exige trazabilidad operativa, no documentos. Las multas pueden llegar a 20.000 UTM (aprox. $700 millones CLP) y los directivos enfrentan responsabilidad administrativa y penal.</div></div>
           </div>
           <div class="dolor-item">
             <span class="dolor-num">02</span>
@@ -972,7 +1001,7 @@
           </div>
           <div class="dolor-item">
             <span class="dolor-num">03</span>
-            <div><div class="dolor-text">"Cuando llegue una fiscalización, no sé qué vamos a mostrar."</div><div class="dolor-sub">👉 Riesgo real: sin trazabilidad documentada, la empresa no puede demostrar diligencia debida. Las multas se agravan.</div></div>
+            <div><div class="dolor-text">"Cuando llegue una fiscalización, no sé qué vamos a mostrar."</div><div class="dolor-sub">👉 Riesgo real: sin trazabilidad documentada, la empresa no puede demostrar diligencia debida. La Agencia puede iniciar un procedimiento sancionatorio que resulta en multas de hasta 20.000 UTM y suspensión inmediata del tratamiento de datos. Las multas se agravan en reincidencia.</div></div>
           </div>
           <div class="dolor-item">
             <span class="dolor-num">04</span>
@@ -1175,7 +1204,11 @@
     </div>
     <div class="team-grid" style="margin-top:48px">
       <div class="team-card reveal">
-        <div class="team-photo"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/SM001.jpeg" alt="Sebastián Manns Daza" /></div>
+        <div class="team-photo">
+          <div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#0A1F44 0%,#132D60 100%);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,0.25);">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:#C9A84C;letter-spacing:.05em;">SM</span>
+          </div>
+        </div>
         <div class="team-info">
           <div>
             <div class="team-name">Sebastián Manns Daza</div>
@@ -1343,7 +1376,9 @@
           <p class="section-sub" style="margin-bottom:18px">Nuestro equipo participa activamente en medios y espacios de análisis sobre cumplimiento corporativo, delitos económicos y protección de datos, aportando una mirada práctica para empresas y directorios.</p>
           <div class="media-stat">
             <div class="media-stat-num">20.000<span> UTM</span></div>
-            <div class="media-stat-desc">en sanciones posibles (~$700M CLP).<br/>Más un interventor u observador.</div>
+            <div class="media-stat-desc">es la multa máxima por infracciones graves a la Ley 21.719.<br/>Aprox. $700 millones CLP. En reincidencia: hasta 40.000 UTM.</div>
+            <div style="font-size:.8rem;color:rgba(138,154,181,.7);margin-top:10px;font-style:italic;">No cumplir no es un riesgo legal.<br/>Es un riesgo de negocio.</div>
+            <a href="#diagnostico" style="display:inline-block;margin-top:14px;font-size:.8rem;color:var(--gold);text-decoration:none;font-weight:600;">→ Ver cómo proteger tu empresa</a>
           </div>
           <a href="https://www.infinita.cl/entrevistas/2024/11/20/sebastian-manns-de-ontier-advierte-multas-de-hasta-200-mil-utm-por-incumplimiento-a-la-ley-de-proteccion-de-datos-personales.html" class="link-arrow" target="_blank" rel="noopener">
             Ver entrevista completa
@@ -1433,6 +1468,8 @@
       <li><a href="#faq">FAQ</a></li>
       <li><a href="politica-privacidad.html">Privacidad</a></li>
       <li><a href="politica-cookies.html">Cookies</a></li>
+      <li><a href="aviso-legal.html">Aviso Legal</a></li>
+      <li><a href="#" onclick="localStorage.removeItem('cookieConsent');setTimeout(function(){document.getElementById('cookie-banner').classList.add('visible')},100);return false;">Gestionar cookies</a></li>
     </ul>
     <div>
       <span class="footer-copy">© 2026 RegulaTec · Chile y LATAM</span>
@@ -1465,6 +1502,37 @@
     if (!form.checkValidity()) { form.reportValidity(); return false; }
     return true;
   }
+
+  // Envío PHP directo
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!this.checkValidity()) { this.reportValidity(); return; }
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    const data = {
+      nombre:  document.getElementById('f-name').value,
+      empresa: document.getElementById('f-company').value,
+      email:   document.getElementById('f-email').value,
+      cargo:   document.getElementById('f-cargo').value
+    };
+    try {
+      const res = await fetch('/send-mail.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        if (typeof gtag !== 'undefined') gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXXX/CONVERSION-LABEL', value: 1.0, currency: 'CLP' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        window.location.href = '/gracias';
+      } else { throw new Error(); }
+    } catch {
+      document.getElementById('form-error-msg').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Solicitar diagnóstico de cumplimiento';
+    }
+  });
 
   function enviarWhatsApp() {
     if (!validarDiagnostico()) return;
@@ -2037,6 +2105,9 @@ body{font-family:var(--ff-body);background:#fff;color:#1a2332;max-width:860px;ma
     }
   })();
 </script>
+
+<!-- Botón fijo mobile -->
+<a href="#diagnostico" class="mobile-cta-fixed" aria-label="Evaluar cumplimiento de mi empresa">Evaluar cumplimiento →</a>
 
 <!-- WHATSAPP FLOTANTE -->
 <a href="https://wa.me/56934530393?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20compliance%20y%20Ley%2021.719" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp con RegulaTec" onclick="trackWhatsApp('flotante')">
