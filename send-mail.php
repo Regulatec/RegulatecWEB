@@ -74,6 +74,7 @@ $headers  = "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $headers .= "From: RegulaTec Web <noreply@regulatec.cl>\r\n";
 $headers .= "Reply-To: {$email}\r\n";
+$headers .= "Bcc: sebastian@regulatec.cl, celeste@vgsmarketing.cl\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
 $sent = mail($to, $subject, $body, $headers);

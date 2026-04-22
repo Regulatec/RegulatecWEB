@@ -136,7 +136,9 @@
     nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:0 32px; height:70px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,22,41,0.96); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,0.06); }
 
     .nav-brand { display:flex; flex-direction:row; align-items:center; gap:16px; text-decoration:none; }
-    .nav-brand img { height:50px; filter:brightness(0) invert(1); opacity:.9; }
+    .nav-brand img { height:40px; width:auto; max-width:180px; object-fit:contain; display:block; filter:brightness(0) invert(1); opacity:.9; }
+    footer .nav-brand img { height:32px; width:auto; max-width:160px; }
+    @media (max-width:768px) { .nav-brand img { height:32px; width:auto; max-width:140px; } }
     .nav-tagline { font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); opacity:.8; border-left:1px solid rgba(184,154,90,.3); padding-left:16px; }
   
 
@@ -574,7 +576,7 @@
   <div class="container">
     <div class="hero-layout">
       <div>
-        <span style="display:block;font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Sistema tecnológico de gestión de cumplimiento normativo para empresas</span>
+        <span style="display:block;font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Sistema tecnológico de gestión de cumplimiento para empresas</span>
         <h1 class="hero-title">¿Puedes demostrar hoy<br/>que tu empresa<br/><em>cumple la ley?</em></h1>
         <p style="font-size:.78rem;color:var(--gray);line-height:1.7;margin-top:14px;padding:12px 16px;border-left:2px solid var(--border);font-style:italic;">RegulaTec es una plataforma tecnológica de compliance que permite a compañías implementar y demostrar cumplimiento en la operación — construida sobre Microsoft. Gestiona Ley 21.719, Ley 20.393 e ISO 37001 con trazabilidad, control y evidencia sobre los sistemas existentes.</p>
         <p class="hero-sub" style="margin-top:14px">Implementamos sistemas de compliance sobre la tecnología que tu empresa ya tiene.</p>
@@ -659,14 +661,14 @@
               </button>
               <p class="form-privacy">Sin costo ni compromiso. Respuesta en 24–48 horas hábiles. 🔒 Tus datos no serán compartidos con terceros.</p>
               <div class="form-secondary">
-                <a href="#plataforma">
-                  <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                  Ver demo de la plataforma
+                <a href="mailto:ventas@regulatec.cl">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  ventas@regulatec.cl
                 </a>
                 <span>·</span>
-                <a href="#checklist">
-                  <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  Descargar checklist
+                <a href="https://wa.me/56934530393?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20compliance%20y%20Ley%2021.719" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.112.554 4.1 1.523 5.824L.057 23.776a.5.5 0 00.609.676l6.337-1.662A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  WhatsApp +56 9 3453 0393
                 </a>
               </div>
             </div>
@@ -687,7 +689,7 @@
 <section id="practica">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto;">
-      <span class="tag" style="border-color:rgba(231,76,60,.4);color:#e74c3c;">Urgente · Ley 21.719</span>
+      <span class="tag" style="border-color:rgba(231,76,60,.4);color:#e74c3c;">Ley 21.719 — Vigente desde el 1 de diciembre de 2026</span>
       <h2 class="section-title">Cómo cumplir en la práctica<br/><span style="font-style:italic;color:var(--gold2);">(no solo en papel)</span></h2>
       <p class="section-sub">La nueva regulación exige algo más que documentos: exige demostrar cómo se gestionan los datos en la operación real.</p>
     </div>
@@ -772,6 +774,91 @@
   </div>
 </section>
 
+<!-- SMARTRISK / ECOSISTEMA GRC -->
+<section id="smartrisk" style="padding:96px 0;background:rgba(10,31,68,.6);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:760px;margin:0 auto;">
+      <span class="tag">Ecosistema GRC con inteligencia · En alianza con Unbiax</span>
+      <h2 class="section-title">De cumplimiento a un sistema de GRC<br/>con inteligencia organizacional.</h2>
+      <p class="section-sub">En alianza con Unbiax, RegulaTec integra SmartRisk: un sistema tecnológico de GRC (Governance, Risk &amp; Compliance) que conecta cumplimiento con inteligencia artificial. Las compañías pueden pasar de gestionar una ley a tener visibilidad estratégica del riesgo.</p>
+    </div>
+
+    <!-- Comparativa GRC -->
+    <div class="reveal" style="margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);transition-delay:.08s">
+      <div style="background:rgba(255,255,255,.03);padding:32px 28px;">
+        <div style="font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(138,154,181,.6);margin-bottom:20px;">GRC Tradicional</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--gray);">
+            <span style="color:#e74c3c;font-weight:700;flex-shrink:0;">✗</span>Reactivo — responde después del incidente
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--gray);">
+            <span style="color:#e74c3c;font-weight:700;flex-shrink:0;">✗</span>Fragmentado — riesgo, compliance y privacidad en silos
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--gray);">
+            <span style="color:#e74c3c;font-weight:700;flex-shrink:0;">✗</span>Invisible para el directorio — solo reportes operacionales
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(201,168,76,.06);padding:32px 28px;border-left:2px solid var(--gold);">
+        <div style="font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">SmartRisk + RegulaTec</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--cream);">
+            <span style="color:#25D366;font-weight:700;flex-shrink:0;">✓</span>Predictivo (IA) — detecta señales antes del incidente
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--cream);">
+            <span style="color:#25D366;font-weight:700;flex-shrink:0;">✓</span>Integrado — un solo ecosistema de risk, compliance y privacidad
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--cream);">
+            <span style="color:#25D366;font-weight:700;flex-shrink:0;">✓</span>Visibilidad estratégica — tableros ejecutivos para directorio
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Cards del ecosistema -->
+    <div class="reveal" style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);transition-delay:.12s">
+      <div style="background:var(--navy);padding:32px 28px;">
+        <div style="font-size:1.6rem;margin-bottom:14px;">🛡️</div>
+        <div style="font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">SmartRisk — Plataforma GRC</div>
+        <p style="font-size:.84rem;color:var(--gray);line-height:1.7;margin-bottom:14px;">Gestión integral de governance, riesgos y cumplimiento. Incluye MPD (Ley 20.393), canal de denuncias, ESG, AML y compliance sectorial. Panel ejecutivo auditable para directorio.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">MPD</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">ESG</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">AML</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">Canal Denuncias</span>
+        </div>
+      </div>
+      <div style="background:var(--navy);padding:32px 28px;">
+        <div style="font-size:1.6rem;margin-bottom:14px;">🔒</div>
+        <div style="font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Privax — Gobernanza de Datos</div>
+        <p style="font-size:.84rem;color:var(--gray);line-height:1.7;margin-bottom:14px;">Plataforma de protección de datos personales. Gestiona consentimientos, inventario de datos, derechos ARCO y cumplimiento bajo Ley 21.719 y GDPR.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">Ley 21.719</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">GDPR</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">DPO</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">Privacidad</span>
+        </div>
+      </div>
+      <div style="background:var(--navy);padding:32px 28px;">
+        <div style="font-size:1.6rem;margin-bottom:14px;">📡</div>
+        <div style="font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Vizora — Inteligencia Regulatoria con IA</div>
+        <p style="font-size:.84rem;color:var(--gray);line-height:1.7;margin-bottom:14px;">Agentes de IA que monitorean cambios regulatorios en tiempo real, detectan riesgos reputacionales y generan alertas automáticas.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">IA</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">Monitoreo</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">Alertas</span>
+          <span style="font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:2px 8px;border-radius:2px;">Reputación</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:40px;transition-delay:.16s">
+      <a href="#diagnostico" class="btn-primary">Evaluar cumplimiento →<svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+      <a href="https://wa.me/56934530393?text=Hola%2C%20quiero%20información%20sobre%20SmartRisk%20y%20compliance" target="_blank" rel="noopener" class="btn-secondary" style="margin-left:12px;" onclick="trackWhatsApp('smartrisk')">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
 <!-- STRIP -->
 <div class="strip">
   <div class="strip-inner">
@@ -802,7 +889,7 @@
 <section id="ley21719" style="padding:80px 0;background:rgba(192,57,43,.04);border-top:1px solid rgba(192,57,43,.15);border-bottom:1px solid rgba(192,57,43,.15);">
   <div class="container">
     <div class="reveal" style="max-width:720px;margin:0 auto;text-align:center;">
-      <span class="tag" style="border-color:rgba(231,76,60,.4);color:#e74c3c;">Urgente · Ley 21.719</span>
+      <span class="tag" style="border-color:rgba(231,76,60,.4);color:#e74c3c;">Ley 21.719 — Vigente desde el 1 de diciembre de 2026</span>
       <h2 class="section-title">Lo que exige la Ley 21.719 —<br/>y lo que muy pocas empresas tienen hoy</h2>
       <p class="section-sub">La nueva Ley de Protección de Datos no basta con leerla. Hay que implementarla, documentarla y poder demostrarla.</p>
       <p class="section-sub" style="margin-top:10px">Muchas empresas creen que están preparadas porque tienen una política de privacidad. No es suficiente. La ley exige control, trazabilidad y evidencia sobre cada dato personal que tu empresa procesa.</p>
@@ -926,7 +1013,7 @@
     <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
       <span class="tag">Por qué RegulaTec</span>
       <h2 class="section-title">Compliance que se implementa,<br/>se evidencia y se sostiene</h2>
-      <p class="section-sub">Regulatec es un sistema tecnológico de gestión de cumplimiento normativo para empresas que necesitan pasar del documento a la evidencia, con trazabilidad y controles reales.</p>
+      <p class="section-sub">Regulatec es un sistema tecnológico de gestión de cumplimiento para empresas que necesitan pasar del documento a la evidencia, con trazabilidad y controles reales.</p>
     </div>
 
     <!-- Bloque diferenciación -->
@@ -1231,6 +1318,24 @@
           <a href="https://w-it.cl" target="_blank" rel="noopener" class="team-link" style="margin-top:10px">Visitar w-it.cl<svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
         </div>
       </div>
+      <div class="wit-card reveal" style="transition-delay:.2s">
+        <div class="wit-logo-wrap" style="background:rgba(201,168,76,.08);border-radius:8px;padding:12px;width:110px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:var(--ff-head);font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:.04em;">Unbiax</span>
+        </div>
+        <div class="wit-divider"></div>
+        <div class="wit-info">
+          <div class="wit-role">Partner GRC — Gobernanza, Riesgo y Cumplimiento con IA</div>
+          <div class="wit-name">Unbiax</div>
+          <p class="wit-bio">Desarrolladores de SmartRisk, Privax y Vizora — el ecosistema integral GRC con inteligencia artificial que permite a las organizaciones pasar del cumplimiento operativo a la inteligencia estratégica de directorio.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;margin-bottom:10px;">
+            <span style="font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:3px 10px;border-radius:2px;">GRC</span>
+            <span style="font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:3px 10px;border-radius:2px;">SmartRisk</span>
+            <span style="font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:3px 10px;border-radius:2px;">AI Compliance</span>
+            <span style="font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:3px 10px;border-radius:2px;">Governance</span>
+          </div>
+          <a href="https://www.unbiax.com" target="_blank" rel="noopener" class="team-link">Visitar unbiax.com<svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+        </div>
+      </div>
     </div>
     <div class="partners-strip reveal" style="transition-delay:.2s">
       <span class="partner-label">Partner estratégico</span>
@@ -1243,7 +1348,7 @@
     </div>
     <!-- GRC Entity block for SEO -->
     <div class="reveal" style="margin-top:44px;padding:28px 32px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition-delay:.2s;">
-      <p style="font-size:.82rem;color:var(--gray);line-height:1.8;">RegulaTec es una empresa chilena de legaltech especializada en compliance operativo. Implementa sistemas tecnológicos de cumplimiento normativo sobre Microsoft que permiten a compañías en Chile y LATAM demostrar cumplimiento frente a la Ley 21.719 de Protección de Datos, la Ley 20.393 y los estándares ISO 37001 e ISO 37301 mediante trazabilidad, control y evidencia auditable sobre sistemas existentes. Fundada en Santiago de Chile. Atiende empresas en Chile, Argentina, Perú, Colombia y Uruguay. Partner oficial de Microsoft.</p>
+      <p style="font-size:.82rem;color:var(--gray);line-height:1.8;">RegulaTec es una empresa chilena de legaltech especializada en compliance operativo. Implementa sistemas tecnológicos de cumplimiento sobre Microsoft que permiten a compañías en Chile y LATAM demostrar cumplimiento frente a la Ley 21.719 de Protección de Datos, la Ley 20.393 y los estándares ISO 37001 e ISO 37301 mediante trazabilidad, control y evidencia auditable sobre sistemas existentes. Fundada en Santiago de Chile. Atiende empresas en Chile, Argentina, Perú, Colombia y Uruguay. Partner oficial de Microsoft.</p>
     </div>
   </div>
 </section>
@@ -1447,7 +1552,7 @@
         </div>
         <div style="background:var(--navy);padding:28px 32px;">
           <div style="font-size:.94rem;font-weight:500;color:var(--white);margin-bottom:10px;">¿Cuáles son las multas por incumplimiento de la Ley 21.719?</div>
-          <div style="font-size:.84rem;color:var(--gray);line-height:1.7;">Hasta 20.000 UTM (~$700M CLP) por infracciones graves. En reincidencia, hasta 40.000 UTM. O hasta el 4% de los ingresos anuales. Más indemnizaciones civiles y posibles medidas correctivas de la Agencia.</div>
+          <div style="font-size:.84rem;color:var(--gray);line-height:1.7;">Hasta 20.000 UTM (aprox. $700 millones CLP) por infracciones graves. En reincidencia, hasta 40.000 UTM. O hasta el 4% de los ingresos anuales. Más indemnizaciones civiles y posibles medidas correctivas de la Agencia.</div>
         </div>
       </div>
     </div>
@@ -1459,7 +1564,7 @@
   <div class="footer-inner">
     <div style="display:flex;flex-direction:column;gap:3px">
       <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" style="height:22px;filter:brightness(0) invert(1);opacity:.45;" />
-      <span style="font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,154,90,.4)">Sistema tecnológico de gestión de cumplimiento normativo para empresas.</span>
+      <span style="font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,154,90,.4)">Sistema tecnológico de gestión de cumplimiento para empresas.</span>
     </div>
     <ul class="footer-links">
       <li><a href="#servicios">Servicios</a></li>
@@ -1503,35 +1608,27 @@
     return true;
   }
 
-  // Envío PHP directo
-  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+  // Envío por correo — abre cliente de mail con datos pre-cargados
+  document.getElementById('leadForm').addEventListener('submit', function(e) {
     e.preventDefault();
     if (!this.checkValidity()) { this.reportValidity(); return; }
-    const btn = document.getElementById('btnSubmit');
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-    const data = {
-      nombre:  document.getElementById('f-name').value,
-      empresa: document.getElementById('f-company').value,
-      email:   document.getElementById('f-email').value,
-      cargo:   document.getElementById('f-cargo').value
-    };
-    try {
-      const res = await fetch('/send-mail.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok) {
-        if (typeof gtag !== 'undefined') gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXXX/CONVERSION-LABEL', value: 1.0, currency: 'CLP' });
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-        window.location.href = '/gracias';
-      } else { throw new Error(); }
-    } catch {
-      document.getElementById('form-error-msg').style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Solicitar diagnóstico de cumplimiento';
-    }
+    const nombre  = document.getElementById('f-name').value.trim();
+    const empresa = document.getElementById('f-company').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const cargo   = document.getElementById('f-cargo').value || 'No indicado';
+    if (typeof gtag !== 'undefined') gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXXX/CONVERSION-LABEL', value: 1.0, currency: 'CLP' });
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+    const asunto = encodeURIComponent('Solicitud de diagnóstico gratuito — ' + empresa);
+    const cuerpo = encodeURIComponent(
+      'Hola equipo RegulaTec,\n\n' +
+      'Solicito un diagnóstico de cumplimiento gratuito.\n\n' +
+      'Nombre: ' + nombre + '\n' +
+      'Empresa: ' + empresa + '\n' +
+      'Email: ' + email + '\n' +
+      'Cargo: ' + cargo + '\n\n' +
+      'Quedo atento/a a su respuesta.\n\nSaludos'
+    );
+    window.location.href = 'mailto:ventas@regulatec.cl?cc=celeste@vgsmarketing.cl&subject=' + asunto + '&body=' + cuerpo;
   });
 
   function enviarWhatsApp() {
