@@ -77,6 +77,56 @@
     .wa-float { position:fixed; bottom:24px; right:24px; width:56px; height:56px; border-radius:50%; background:#25D366; z-index:9999; display:grid; place-items:center; animation:pulse-wa 4s infinite; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; }
     .wa-float:hover { transform:scale(1.1); animation:none; }
     @media (max-width:600px) { .container, nav { padding-left:20px; padding-right:20px; } .cta-box { padding:36px 20px; } }
+
+    /* ── Assessment Survey ────────────────────────────────────── */
+    .survey-section { padding:60px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+    .survey-intro { font-size:.9rem; color:var(--gray); line-height:1.8; margin-bottom:36px; }
+    .survey-category { margin-bottom:40px; }
+    .survey-cat-header { display:flex; align-items:center; gap:12px; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid rgba(184,154,90,.2); }
+    .survey-cat-num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:rgba(184,154,90,.12); border:1px solid var(--border); font-size:.8rem; font-weight:600; color:var(--gold); flex-shrink:0; }
+    .survey-cat-title { font-family:var(--ff-head); font-size:1.15rem; font-weight:600; color:var(--white); }
+    .survey-question { display:flex; align-items:flex-start; gap:16px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.04); }
+    .survey-question:last-child { border-bottom:none; }
+    .survey-q-text { flex:1; font-size:.86rem; color:var(--gray); line-height:1.7; }
+    .survey-options { display:flex; gap:8px; flex-shrink:0; }
+    .survey-opt { display:none; }
+    .survey-opt + label { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:2px; border:1px solid rgba(255,255,255,.12); font-size:.72rem; font-weight:600; letter-spacing:.05em; cursor:pointer; transition:all .18s; color:var(--gray); user-select:none; }
+    .survey-opt.opt-si + label { --c:#4caf50; }
+    .survey-opt.opt-no + label { --c:#e74c3c; }
+    .survey-opt.opt-parcial + label { --c:#f39c12; }
+    .survey-opt + label:hover { border-color:var(--c,var(--gold)); color:var(--c,var(--gold)); background:rgba(255,255,255,.04); }
+    .survey-opt:checked + label { background:var(--c,var(--gold)); border-color:var(--c,var(--gold)); color:#fff; }
+    .survey-legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
+    .survey-legend span { font-size:.74rem; color:var(--gray); display:flex; align-items:center; gap:6px; }
+    .survey-legend span::before { content:''; display:inline-block; width:12px; height:12px; border-radius:2px; }
+    .survey-legend .leg-si::before { background:#4caf50; }
+    .survey-legend .leg-no::before { background:#e74c3c; }
+    .survey-legend .leg-parcial::before { background:#f39c12; }
+    .survey-progress-wrap { background:rgba(255,255,255,.06); border-radius:2px; height:4px; margin-bottom:8px; }
+    .survey-progress-bar { height:4px; border-radius:2px; background:linear-gradient(90deg,var(--gold),var(--gold2)); width:0%; transition:width .4s var(--ease); }
+    .survey-progress-label { font-size:.72rem; color:var(--gray); margin-bottom:28px; }
+    .survey-result { display:none; margin-top:40px; padding:36px 32px; border:1px solid var(--border); background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(184,154,90,.07) 0%,transparent 60%); position:relative; }
+    .survey-result::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+    .survey-result-title { font-family:var(--ff-head); font-size:1.5rem; font-weight:600; color:var(--white); margin-bottom:8px; }
+    .survey-result-sub { font-size:.86rem; color:var(--gray); margin-bottom:24px; line-height:1.7; }
+    .survey-score-row { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+    .survey-score-circle { width:90px; height:90px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid var(--gold); flex-shrink:0; }
+    .survey-score-num { font-family:var(--ff-head); font-size:2rem; font-weight:600; color:var(--white); line-height:1; }
+    .survey-score-label { font-size:.62rem; color:var(--gray); letter-spacing:.08em; text-transform:uppercase; }
+    .survey-score-text { font-size:.88rem; color:var(--gray); line-height:1.75; }
+    .survey-cat-scores { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+    @media (max-width:500px) { .survey-cat-scores { grid-template-columns:1fr; } }
+    .survey-cat-score-item { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); padding:10px 14px; border-radius:2px; }
+    .survey-cat-score-name { font-size:.72rem; color:var(--gray); margin-bottom:4px; }
+    .survey-cat-score-bar-wrap { background:rgba(255,255,255,.08); border-radius:2px; height:3px; }
+    .survey-cat-score-bar { height:3px; border-radius:2px; transition:width .6s var(--ease); }
+    .bar-high { background:#4caf50; }
+    .bar-mid { background:#f39c12; }
+    .bar-low { background:#e74c3c; }
+    .survey-submit-btn { display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--navy); font-family:var(--ff-body); font-size:.82rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:13px 28px; border-radius:2px; border:none; cursor:pointer; transition:background .2s; margin-top:24px; }
+    .survey-submit-btn:hover { background:var(--gold2); }
+    .survey-submit-btn:disabled { opacity:.45; cursor:default; }
+    @media (max-width:600px) { .survey-options { flex-direction:column; gap:4px; } .survey-question { flex-direction:column; gap:8px; } .survey-options { flex-direction:row; } }
   </style>
 </head>
 <body>
@@ -124,6 +174,147 @@
     <h2>¿Por qué comenzar por un diagnóstico?</h2>
     <p>Implementar compliance sin un diagnóstico previo es como construir sin planos. El Assessment TecnoLegal es el primer paso porque permite priorizar inversiones, identificar las brechas de mayor riesgo y evitar duplicar esfuerzos en áreas que ya están cubiertas. Para el directorio, es el instrumento que demuestra que la empresa está tomando el problema en serio — antes de que llegue una fiscalización.</p>
 
+  </div>
+</section>
+
+<section class="survey-section">
+  <div class="container">
+    <h2>Cuestionario de Auto-Diagnóstico</h2>
+    <p class="survey-intro">Responde las siguientes preguntas para obtener una estimación del nivel de madurez de compliance de tu organización. Al finalizar recibirás un resumen por área con recomendaciones.</p>
+    <div class="survey-legend">
+      <span class="leg-si">Sí / Implementado</span>
+      <span class="leg-parcial">Parcialmente</span>
+      <span class="leg-no">No / No existe</span>
+    </div>
+    <div class="survey-progress-wrap"><div class="survey-progress-bar" id="surveyBar"></div></div>
+    <p class="survey-progress-label" id="surveyProgressLabel">0 de 43 preguntas respondidas</p>
+
+    <form id="assessmentForm" novalidate>
+
+      <!-- 1 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">1</span>
+          <span class="survey-cat-title">Gobernanza y Cumplimiento</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe custodia digital y segura de actas de Directorio?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_1" id="q1_1_si" value="si"><label for="q1_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_1" id="q1_1_p" value="parcial"><label for="q1_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_1" id="q1_1_no" value="no"><label for="q1_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe responsable de Compliance designado por Directorio?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_2" id="q1_2_si" value="si"><label for="q1_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_2" id="q1_2_p" value="parcial"><label for="q1_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_2" id="q1_2_no" value="no"><label for="q1_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay línea de reporte al Directorio/Alta Gerencia (Comité de Cumplimiento o de Ética)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_3" id="q1_3_si" value="si"><label for="q1_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_3" id="q1_3_p" value="parcial"><label for="q1_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_3" id="q1_3_no" value="no"><label for="q1_3_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿El Código de Ética y Conducta está actualizado y comunicado?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_4" id="q1_4_si" value="si"><label for="q1_4_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_4" id="q1_4_p" value="parcial"><label for="q1_4_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_4" id="q1_4_no" value="no"><label for="q1_4_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe mapa normativo con responsables por norma (norma-owner)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_5" id="q1_5_si" value="si"><label for="q1_5_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_5" id="q1_5_p" value="parcial"><label for="q1_5_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_5" id="q1_5_no" value="no"><label for="q1_5_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Las políticas clave están formalizadas y vigentes (anticorrupción, ciberseguridad, privacidad, conflictos de interés)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_6" id="q1_6_si" value="si"><label for="q1_6_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_6" id="q1_6_p" value="parcial"><label for="q1_6_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_6" id="q1_6_no" value="no"><label for="q1_6_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe estructura de poderes y registro de apoderados vigente?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_7" id="q1_7_si" value="si"><label for="q1_7_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_7" id="q1_7_p" value="parcial"><label for="q1_7_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_7" id="q1_7_no" value="no"><label for="q1_7_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay presupuesto y recursos asignados a Compliance?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q1_8" id="q1_8_si" value="si"><label for="q1_8_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q1_8" id="q1_8_p" value="parcial"><label for="q1_8_p">±</label><input class="survey-opt opt-no" type="radio" name="q1_8" id="q1_8_no" value="no"><label for="q1_8_no">No</label></div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">2</span>
+          <span class="survey-cat-title">Gestión de Riesgo</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Están identificados los riesgos legales y operacionales?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q2_1" id="q2_1_si" value="si"><label for="q2_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q2_1" id="q2_1_p" value="parcial"><label for="q2_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q2_1" id="q2_1_no" value="no"><label for="q2_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe matriz de riesgos vigente y actualizada con la Ley de Delitos Económicos?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q2_2" id="q2_2_si" value="si"><label for="q2_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q2_2" id="q2_2_p" value="parcial"><label for="q2_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q2_2" id="q2_2_no" value="no"><label for="q2_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cada riesgo crítico tiene controles definidos y responsables asignados?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q2_3" id="q2_3_si" value="si"><label for="q2_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q2_3" id="q2_3_p" value="parcial"><label for="q2_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q2_3" id="q2_3_no" value="no"><label for="q2_3_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Se realiza evaluación periódica de riesgos?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q2_4" id="q2_4_si" value="si"><label for="q2_4_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q2_4" id="q2_4_p" value="parcial"><label for="q2_4_p">±</label><input class="survey-opt opt-no" type="radio" name="q2_4" id="q2_4_no" value="no"><label for="q2_4_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Se gestionan los riesgos de terceros (due diligence, cláusulas contractuales y monitoreo)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q2_5" id="q2_5_si" value="si"><label for="q2_5_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q2_5" id="q2_5_p" value="parcial"><label for="q2_5_p">±</label><input class="survey-opt opt-no" type="radio" name="q2_5" id="q2_5_no" value="no"><label for="q2_5_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe registro y análisis de incidentes con acciones de mejora?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q2_6" id="q2_6_si" value="si"><label for="q2_6_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q2_6" id="q2_6_p" value="parcial"><label for="q2_6_p">±</label><input class="survey-opt opt-no" type="radio" name="q2_6" id="q2_6_no" value="no"><label for="q2_6_no">No</label></div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">3</span>
+          <span class="survey-cat-title">Indicadores y Seguimiento</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Existen KPI/KRI definidos por temática con meta, fórmula y dueño?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q3_1" id="q3_1_si" value="si"><label for="q3_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q3_1" id="q3_1_p" value="parcial"><label for="q3_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q3_1" id="q3_1_no" value="no"><label for="q3_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay medición y reporte periódico de KPI/KRI?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q3_2" id="q3_2_si" value="si"><label for="q3_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q3_2" id="q3_2_p" value="parcial"><label for="q3_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q3_2" id="q3_2_no" value="no"><label for="q3_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe plataforma para revisar mediciones y reportes de cumplimiento al Directorio/Alta Gerencia?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q3_3" id="q3_3_si" value="si"><label for="q3_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q3_3" id="q3_3_p" value="parcial"><label for="q3_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q3_3" id="q3_3_no" value="no"><label for="q3_3_no">No</label></div></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">4</span>
+          <span class="survey-cat-title">Controles y Tecnología</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Los controles están documentados y con responsables asignados?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_1" id="q4_1_si" value="si"><label for="q4_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_1" id="q4_1_p" value="parcial"><label for="q4_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_1" id="q4_1_no" value="no"><label for="q4_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Los controles clave están automatizados (workflows, alertas, checklists digitales)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_2" id="q4_2_si" value="si"><label for="q4_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_2" id="q4_2_p" value="parcial"><label for="q4_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_2" id="q4_2_no" value="no"><label for="q4_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay trazabilidad y evidencia automática de controles?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_3" id="q4_3_si" value="si"><label for="q4_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_3" id="q4_3_p" value="parcial"><label for="q4_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_3" id="q4_3_no" value="no"><label for="q4_3_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cuentan con un software de gestión de cumplimiento (Compliance Tech)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_4" id="q4_4_si" value="si"><label for="q4_4_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_4" id="q4_4_p" value="parcial"><label for="q4_4_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_4" id="q4_4_no" value="no"><label for="q4_4_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cuentan con software de gestión de documentos y contratos?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_5" id="q4_5_si" value="si"><label for="q4_5_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_5" id="q4_5_p" value="parcial"><label for="q4_5_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_5" id="q4_5_no" value="no"><label for="q4_5_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Usan flujos de aprobación electrónicos (con firma electrónica)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_6" id="q4_6_si" value="si"><label for="q4_6_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_6" id="q4_6_p" value="parcial"><label for="q4_6_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_6" id="q4_6_no" value="no"><label for="q4_6_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Usan almacenamiento en nube con políticas y monitoreo activo?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_7" id="q4_7_si" value="si"><label for="q4_7_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_7" id="q4_7_p" value="parcial"><label for="q4_7_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_7" id="q4_7_no" value="no"><label for="q4_7_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Tienen plan de respuesta a incidentes con playbook, roles y ejercicios anuales?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q4_8" id="q4_8_si" value="si"><label for="q4_8_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q4_8" id="q4_8_p" value="parcial"><label for="q4_8_p">±</label><input class="survey-opt opt-no" type="radio" name="q4_8" id="q4_8_no" value="no"><label for="q4_8_no">No</label></div></div>
+      </div>
+
+      <!-- 5 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">5</span>
+          <span class="survey-cat-title">Procedimientos y Canal de Denuncia</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay plataforma interna de denuncias anónimas que resguarda derechos del denunciado y denunciante?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q5_1" id="q5_1_si" value="si"><label for="q5_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q5_1" id="q5_1_p" value="parcial"><label for="q5_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q5_1" id="q5_1_no" value="no"><label for="q5_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe procedimiento específico para Ley Karin (acoso/violencia en el trabajo)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q5_2" id="q5_2_si" value="si"><label for="q5_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q5_2" id="q5_2_p" value="parcial"><label for="q5_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q5_2" id="q5_2_no" value="no"><label for="q5_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe responsable determinado para conocer las denuncias según su clasificación?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q5_3" id="q5_3_si" value="si"><label for="q5_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q5_3" id="q5_3_p" value="parcial"><label for="q5_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q5_3" id="q5_3_no" value="no"><label for="q5_3_no">No</label></div></div>
+      </div>
+
+      <!-- 6 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">6</span>
+          <span class="survey-cat-title">Protección de Datos Personales</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Tienen política de privacidad y tratamiento de datos vigente?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_1" id="q6_1_si" value="si"><label for="q6_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_1" id="q6_1_p" value="parcial"><label for="q6_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_1" id="q6_1_no" value="no"><label for="q6_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cuentan con Inventario o Registro de tratamientos de datos (ROPA)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_2" id="q6_2_si" value="si"><label for="q6_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_2" id="q6_2_p" value="parcial"><label for="q6_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_2" id="q6_2_no" value="no"><label for="q6_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe plataforma para la gestión de derechos ARCO+P?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_3" id="q6_3_si" value="si"><label for="q6_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_3" id="q6_3_p" value="parcial"><label for="q6_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_3" id="q6_3_no" value="no"><label for="q6_3_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Efectúan análisis de impacto (PIA/DPIA) cuando aplica?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_4" id="q6_4_si" value="si"><label for="q6_4_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_4" id="q6_4_p" value="parcial"><label for="q6_4_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_4" id="q6_4_no" value="no"><label for="q6_4_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Están implementadas las cláusulas contractuales de protección de datos con terceros y proveedores?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_5" id="q6_5_si" value="si"><label for="q6_5_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_5" id="q6_5_p" value="parcial"><label for="q6_5_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_5" id="q6_5_no" value="no"><label for="q6_5_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Está implementado el procedimiento de gestión de brechas de seguridad?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_6" id="q6_6_si" value="si"><label for="q6_6_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_6" id="q6_6_p" value="parcial"><label for="q6_6_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_6" id="q6_6_no" value="no"><label for="q6_6_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe política interna de retención y eliminación de datos?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_7" id="q6_7_si" value="si"><label for="q6_7_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_7" id="q6_7_p" value="parcial"><label for="q6_7_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_7" id="q6_7_no" value="no"><label for="q6_7_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cuentan con capacitación específica en Protección de Datos Personales?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q6_8" id="q6_8_si" value="si"><label for="q6_8_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q6_8" id="q6_8_p" value="parcial"><label for="q6_8_p">±</label><input class="survey-opt opt-no" type="radio" name="q6_8" id="q6_8_no" value="no"><label for="q6_8_no">No</label></div></div>
+      </div>
+
+      <!-- 7 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">7</span>
+          <span class="survey-cat-title">Cultura Ética y Capacitación</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe inducción en ética y compliance para nuevos colaboradores?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q7_1" id="q7_1_si" value="si"><label for="q7_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q7_1" id="q7_1_p" value="parcial"><label for="q7_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q7_1" id="q7_1_no" value="no"><label for="q7_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay plan anual de capacitación en riesgos legales, de cumplimiento y tecnológicos?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q7_2" id="q7_2_si" value="si"><label for="q7_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q7_2" id="q7_2_p" value="parcial"><label for="q7_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q7_2" id="q7_2_no" value="no"><label for="q7_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Se aplican encuestas de clima ético/integridad de forma periódica?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q7_3" id="q7_3_si" value="si"><label for="q7_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q7_3" id="q7_3_p" value="parcial"><label for="q7_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q7_3" id="q7_3_no" value="no"><label for="q7_3_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Está implementada la gestión de conflictos de interés?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q7_4" id="q7_4_si" value="si"><label for="q7_4_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q7_4" id="q7_4_p" value="parcial"><label for="q7_4_p">±</label><input class="survey-opt opt-no" type="radio" name="q7_4" id="q7_4_no" value="no"><label for="q7_4_no">No</label></div></div>
+      </div>
+
+      <!-- 8 -->
+      <div class="survey-category">
+        <div class="survey-cat-header">
+          <span class="survey-cat-num">8</span>
+          <span class="survey-cat-title">Gobernanza de Datos &amp; IA</span>
+        </div>
+        <div class="survey-question"><span class="survey-q-text">¿Existe mapeo de flujos de datos personales y comerciales (linaje de datos)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_1" id="q8_1_si" value="si"><label for="q8_1_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_1" id="q8_1_p" value="parcial"><label for="q8_1_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_1" id="q8_1_no" value="no"><label for="q8_1_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Tienen Política de uso ético de datos e IA?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_2" id="q8_2_si" value="si"><label for="q8_2_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_2" id="q8_2_p" value="parcial"><label for="q8_2_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_2" id="q8_2_no" value="no"><label for="q8_2_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Se realizó segregación de datos estratégicos/sensibles con controles de acceso?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_3" id="q8_3_si" value="si"><label for="q8_3_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_3" id="q8_3_p" value="parcial"><label for="q8_3_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_3" id="q8_3_no" value="no"><label for="q8_3_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Hay trazabilidad de decisiones automatizadas con revisión humana cuando corresponde?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_4" id="q8_4_si" value="si"><label for="q8_4_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_4" id="q8_4_p" value="parcial"><label for="q8_4_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_4" id="q8_4_no" value="no"><label for="q8_4_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Se aplican principios de minimización, limitación y finalidad en el uso de datos?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_5" id="q8_5_si" value="si"><label for="q8_5_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_5" id="q8_5_p" value="parcial"><label for="q8_5_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_5" id="q8_5_no" value="no"><label for="q8_5_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cuentan con Registro de modelos de IA y evaluaciones de riesgo/sesgo?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_6" id="q8_6_si" value="si"><label for="q8_6_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_6" id="q8_6_p" value="parcial"><label for="q8_6_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_6" id="q8_6_no" value="no"><label for="q8_6_no">No</label></div></div>
+        <div class="survey-question"><span class="survey-q-text">¿Cuentan con Política de ciclo de vida de datos (calidad, retención, borrado)?</span><div class="survey-options"><input class="survey-opt opt-si" type="radio" name="q8_7" id="q8_7_si" value="si"><label for="q8_7_si">Sí</label><input class="survey-opt opt-parcial" type="radio" name="q8_7" id="q8_7_p" value="parcial"><label for="q8_7_p">±</label><input class="survey-opt opt-no" type="radio" name="q8_7" id="q8_7_no" value="no"><label for="q8_7_no">No</label></div></div>
+      </div>
+
+      <button type="submit" class="survey-submit-btn" id="surveySubmit">Ver mi resultado →</button>
+    </form>
+
+    <div class="survey-result" id="surveyResult">
+      <div class="survey-result-title" id="resultTitle"></div>
+      <p class="survey-result-sub" id="resultSub"></p>
+      <div class="survey-score-row">
+        <div class="survey-score-circle"><span class="survey-score-num" id="resultScore"></span><span class="survey-score-label">de madurez</span></div>
+        <p class="survey-score-text" id="resultDesc"></p>
+      </div>
+      <div class="survey-cat-scores" id="catScores"></div>
+      <p style="font-size:.82rem;color:var(--gray);line-height:1.7;margin-bottom:0;">Este diagnóstico es orientativo. Para un análisis detallado con informe ejecutivo y mapa de riesgos presentable al directorio, solicita el Assessment TecnoLegal completo.</p>
+    </div>
   </div>
 </section>
 
@@ -175,5 +366,94 @@
 <a href="https://wa.me/56934530393?text=Hola%2C%20quiero%20información%20sobre%20compliance" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.522a.75.75 0 0 0 .92.92l5.668-1.475A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.691-.528-5.209-1.443l-.374-.223-3.365.876.893-3.259-.243-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
+<script>
+(function() {
+  var TOTAL = 43;
+  var CATS = [
+    { id:'1', name:'Gobernanza y Cumplimiento',       qs:['q1_1','q1_2','q1_3','q1_4','q1_5','q1_6','q1_7','q1_8'] },
+    { id:'2', name:'Gestión de Riesgo',               qs:['q2_1','q2_2','q2_3','q2_4','q2_5','q2_6'] },
+    { id:'3', name:'Indicadores y Seguimiento',       qs:['q3_1','q3_2','q3_3'] },
+    { id:'4', name:'Controles y Tecnología',          qs:['q4_1','q4_2','q4_3','q4_4','q4_5','q4_6','q4_7','q4_8'] },
+    { id:'5', name:'Canal de Denuncia',               qs:['q5_1','q5_2','q5_3'] },
+    { id:'6', name:'Protección de Datos',             qs:['q6_1','q6_2','q6_3','q6_4','q6_5','q6_6','q6_7','q6_8'] },
+    { id:'7', name:'Cultura Ética',                   qs:['q7_1','q7_2','q7_3','q7_4'] },
+    { id:'8', name:'Gobernanza de Datos & IA',        qs:['q8_1','q8_2','q8_3','q8_4','q8_5','q8_6','q8_7'] }
+  ];
+
+  function getVal(name) {
+    var el = document.querySelector('input[name="'+name+'"]:checked');
+    return el ? el.value : null;
+  }
+  function score(val) { return val==='si'?2:val==='parcial'?1:0; }
+
+  function countAnswered() {
+    var count = 0;
+    CATS.forEach(function(c){ c.qs.forEach(function(q){ if(getVal(q)) count++; }); });
+    return count;
+  }
+
+  document.getElementById('assessmentForm').addEventListener('change', function() {
+    var answered = countAnswered();
+    var pct = Math.round(answered / TOTAL * 100);
+    document.getElementById('surveyBar').style.width = pct + '%';
+    document.getElementById('surveyProgressLabel').textContent = answered + ' de ' + TOTAL + ' preguntas respondidas';
+  });
+
+  document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var answered = countAnswered();
+    if (answered < TOTAL) {
+      alert('Por favor responde todas las ' + TOTAL + ' preguntas antes de ver el resultado.');
+      return;
+    }
+
+    var totalScore = 0, maxScore = TOTAL * 2;
+    var catResults = CATS.map(function(c) {
+      var s = 0, mx = c.qs.length * 2;
+      c.qs.forEach(function(q){ s += score(getVal(q)); });
+      totalScore += s;
+      return { name: c.name, pct: Math.round(s / mx * 100) };
+    });
+
+    var pct = Math.round(totalScore / maxScore * 100);
+    var title, sub, desc;
+    if (pct >= 75) {
+      title = 'Madurez Alta — Optimización y certificación';
+      sub = 'Tu organización tiene una base sólida de compliance. El foco ahora es la mejora continua, la automatización avanzada y prepararte para auditorías externas.';
+      desc = 'Estás en el cuartil superior. Recomendamos un plan de optimización para cerrar las brechas restantes y elevar el sistema al nivel de certificación.';
+    } else if (pct >= 50) {
+      title = 'Madurez Media — Brechas críticas por cerrar';
+      sub = 'Tu organización tiene avances relevantes pero existen brechas de riesgo alto que deben abordarse antes del 1 de diciembre de 2026.';
+      desc = 'Hay controles implementados pero su cobertura es parcial. Un Assessment completo permitirá priorizar las acciones de mayor impacto para el directorio.';
+    } else if (pct >= 25) {
+      title = 'Madurez Baja — Exposición regulatoria significativa';
+      sub = 'Tu organización tiene exposición importante frente a Ley 20.393, Ley 21.595 y Ley 21.719. Se requiere acción estructurada con urgencia.';
+      desc = 'La mayoría de los controles clave están ausentes o son informales. El riesgo de multas y sanciones es alto. Te recomendamos iniciar el Assessment TecnoLegal de inmediato.';
+    } else {
+      title = 'Madurez Inicial — Riesgo regulatorio crítico';
+      sub = 'Tu organización no cuenta con un sistema de compliance estructurado. La exposición a sanciones es muy alta y el plazo del 1 de diciembre de 2026 está próximo.';
+      desc = 'Es urgente comenzar. El Assessment TecnoLegal de RegulaTec entrega en 1–2 semanas un informe ejecutivo con mapa de riesgos priorizado para el directorio.';
+    }
+
+    document.getElementById('resultTitle').textContent = title;
+    document.getElementById('resultSub').textContent = sub;
+    document.getElementById('resultScore').textContent = pct + '%';
+    document.getElementById('resultDesc').textContent = desc;
+
+    var catHtml = catResults.map(function(r) {
+      var cls = r.pct >= 70 ? 'bar-high' : r.pct >= 40 ? 'bar-mid' : 'bar-low';
+      return '<div class="survey-cat-score-item">'
+        + '<div class="survey-cat-score-name">' + r.name + ' — ' + r.pct + '%</div>'
+        + '<div class="survey-cat-score-bar-wrap"><div class="survey-cat-score-bar ' + cls + '" style="width:' + r.pct + '%"></div></div>'
+        + '</div>';
+    }).join('');
+    document.getElementById('catScores').innerHTML = catHtml;
+
+    var result = document.getElementById('surveyResult');
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
 </body>
 </html>
