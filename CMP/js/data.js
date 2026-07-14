@@ -35,7 +35,7 @@ const COMPONENTS = {
         fn:"Consumen la cola y persisten en Dataverse (idempotente por ID único de evento); generan comprobante PDF para sucursal; disparan notificaciones; job de vencimiento REDEC; generación RDC30 / RDC31.",
         resp:"W-IT", refs:"R115, R108" },
   B4: { badge:"B4", name:"Read store de consulta (CQRS)", tech:"Azure Cosmos DB o Azure SQL (a definir)",
-        fn:"Proyección del estado vigente por RUT / finalidad para la consulta en línea de los sistemas operacionales: baja latencia, sin depender de límites de API de Dataverse. Retorna estado por finalidad, canales Capa 2 y datos REDEC.",
+        fn:"Proyección del estado vigente por RUT / finalidad para la consulta en línea de los sistemas operacionales: baja latencia, sin depender de límites de API de Dataverse. Retorna estado por finalidad, canales Capa 2 y datos REDEC. Sirve además el texto legal vigente y versionado por finalidad/canal: el titular ve exactamente la versión que queda registrada en el evento.",
         resp:"W-IT", refs:"—" },
   B5: { badge:"B5", name:"Repositorio de evidencias", tech:"Azure Blob Storage · inmutabilidad WORM",
         fn:"Consentimiento digitalizado REDEC (PDF/MP3), conservación ≥5 años desde extinción/revocación (NCG 540). Nadie —ni un administrador— puede alterar o borrar. Dataverse guarda metadatos + código encriptado + referencia al archivo.",
@@ -90,9 +90,9 @@ const FLOWS = [
     id:"F1", name:"F1 · Captura de consentimiento",
     desc:"Escritura asíncrona: el canal recibe respuesta inmediata con ID de transacción y el evento se procesa en segundo plano.",
     steps:[
-      {node:"TIT", text:"El titular otorga consentimiento en un canal de la Caja."},
-      {node:"C2",  text:"El canal (frontend) captura la interacción."},
-      {node:"C1",  text:"El Consent ACL orquesta y llama a la API CMP."},
+      {node:"TIT", text:"El titular inicia una gestión en un canal de la Caja."},
+      {node:"C2",  text:"El canal obtiene —vía ACL → API CMP— el texto legal vigente y versionado y lo expone junto al checkbox (sin pre-marcado); el titular otorga su consentimiento."},
+      {node:"C1",  text:"El Consent ACL orquesta y llama a la API CMP con el evento y la versión del texto exhibido."},
       {node:"B1",  text:"API Management valida (OAuth2 / TLS 1.3)."},
       {node:"B2",  text:"El evento se encola en Service Bus → respuesta inmediata con ID de transacción."},
       {node:"B3",  text:"Un worker (Azure Functions) consume la cola, idempotente por ID único."},
@@ -153,7 +153,7 @@ const FLOWS = [
       {node:"A3", text:"En el Mantenedor: crea/edita finalidades, versiona textos legales, habilita/deshabilita canales."},
       {node:"A2", text:"La parametrización se guarda en Dataverse."},
       {node:"B4", text:"Se publica hacia la capa API y el read store."},
-      {node:"C1", text:"Los canales consumen la parametrización vigente vía ACL."}
+      {node:"C1", text:"Los canales consumen la parametrización y el texto legal vigente y versionado vía ACL — el titular ve exactamente la versión que quedará registrada en su evento."}
     ]
   },
   {
