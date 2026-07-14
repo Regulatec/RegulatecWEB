@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arquitectura CMP · Gestor Integral de Consentimientos — W-IT para Caja La Araucana</title>
+<meta name="description" content="Propuesta de arquitectura de W-IT para el Gestor de Consentimiento de Caja La Araucana. El dato nunca sale del dominio de La Araucana." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23173A4D'/%3E%3Ccircle cx='50' cy='50' r='22' fill='none' stroke='%236DB63C' stroke-width='9'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#inicio">
+      <img src="assets/wit-logo.png" alt="W-IT" class="nav__logo" />
+      <span class="nav__divider"></span>
+      <span class="nav__project">Arquitectura CMP</span>
+    </a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#principio">Principio</a>
+      <a href="#diagrama">Arquitectura</a>
+      <a href="#flujos">Flujos</a>
+      <a href="#seguridad">Seguridad</a>
+      <a href="#responsabilidades">Responsabilidades</a>
+      <a href="#hitos">Hitos</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <p class="hero__eyebrow">Propuesta W-IT · Licitación “Gestor de Consentimiento”</p>
+    <h1 class="hero__title">Gestor Integral de<br /><span class="grad">Consentimientos (CMP)</span></h1>
+    <p class="hero__lead">
+      Una plataforma de consentimientos desplegada <strong>dentro del propio tenant de Caja La Araucana</strong>.
+      W-IT implementa, configura y opera el servicio administrado — <strong>sin custodiar los datos personales</strong>.
+    </p>
+    <div class="hero__cta">
+      <a href="#diagrama" class="btn btn--primary">Explorar la arquitectura</a>
+      <a href="#flujos" class="btn btn--ghost">Ver los flujos ▸</a>
+    </div>
+    <div class="hero__stats">
+      <div class="stat"><span class="stat__num">99,90%</span><span class="stat__lbl">Disponibilidad objetivo</span></div>
+      <div class="stat"><span class="stat__num">~1,3M</span><span class="stat__lbl">Titulares (RUT únicos)</span></div>
+      <div class="stat"><span class="stat__num">~13M</span><span class="stat__lbl">Eventos (peor escenario)</span></div>
+      <div class="stat"><span class="stat__num">5 años</span><span class="stat__lbl">Evidencia REDEC (WORM)</span></div>
+    </div>
+  </div>
+  <p class="hero__foot">Fuentes: RFP, Bases de Licitación y consolidado oficial de consultas (citas “R#”).</p>
+</section>
+
+<!-- ===== PRINCIPIO RECTOR ===== -->
+<section class="section section--tint" id="principio">
+  <div class="wrap">
+    <span class="kicker">01 · Principio rector</span>
+    <h2 class="h2">El dato <span class="hl">nunca sale</span> del dominio de La Araucana</h2>
+    <div class="principio">
+      <div class="principio__text">
+        <p>
+          La solución se despliega en un <strong>environment dedicado y aislado de Power Platform</strong>
+          dentro del tenant Microsoft que la Caja ya opera —el mismo de su Dynamics 365 implementado por W-IT—,
+          más una <strong>suscripción Azure de la Caja</strong> para integración y evidencias.
+        </p>
+        <p>
+          El CMP <strong>no expone interfaces de usuario a los canales</strong> (R92): se integra exclusivamente
+          vía APIs REST/OpenAPI con el <strong>Consent ACL</strong>, el servicio intermediario que desarrolla y
+          opera La Araucana (R9, R128). Los frontends los construye la Caja.
+        </p>
+      </div>
+      <ul class="principio__pills">
+        <li><span class="dot dot--green"></span> Tenant del cliente · dato residente</li>
+        <li><span class="dot dot--navy"></span> W-IT: servicio administrado, sin custodia</li>
+        <li><span class="dot dot--green"></span> Integración solo por API (Consent ACL)</li>
+        <li><span class="dot dot--navy"></span> 3 ambientes: DEV / QA / PROD (R14)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIAGRAMA INTERACTIVO ===== -->
+<section class="section" id="diagrama">
+  <div class="wrap">
+    <span class="kicker">02 · Arquitectura de la solución</span>
+    <h2 class="h2">Dominios y componentes</h2>
+    <p class="section__lead">
+      Haz clic en cualquier componente para ver su tecnología, función y responsable. El límite punteado marca
+      todo lo que vive <strong>dentro del tenant de La Araucana</strong>.
+    </p>
+
+    <div class="diagram-legend">
+      <span><i class="lg lg--a"></i> Dominio A · Power Platform</span>
+      <span><i class="lg lg--b"></i> Dominio B · Azure de la Caja</span>
+      <span><i class="lg lg--c"></i> Dominio C · Ecosistema La Araucana</span>
+      <span><i class="lg lg--d"></i> Dominio D · Externos</span>
+      <span class="diagram-legend__hint">▸ Clic en un componente para el detalle</span>
+    </div>
+
+    <div class="diagram" id="diagram">
+      <svg class="diagram__edges" id="edges" aria-hidden="true"></svg>
+
+      <!-- Externos -->
+      <div class="lane lane--d" data-lane="Externos / Titulares">
+        <div class="node node--d" data-id="TIT" tabindex="0"><span class="node__tag">D</span><span class="node__name">Titulares</span><span class="node__tech">~1,3M RUT</span></div>
+        <div class="node node--d" data-id="CMF" tabindex="0"><span class="node__tag">D</span><span class="node__name">CMF · Regulador</span><span class="node__tech">RDC30 / RDC31</span></div>
+      </div>
+
+      <!-- Dominio C -->
+      <div class="lane lane--c" data-lane="La Araucana · GCP y sistemas propios (fuera de alcance W-IT)">
+        <div class="node node--c" data-id="C2" tabindex="0"><span class="node__tag">C2</span><span class="node__name">Canales / Frontends</span><span class="node__tech">Sucursal · Web · WhatsApp</span></div>
+        <div class="node node--c is-hub" data-id="C1" tabindex="0"><span class="node__tag">C1</span><span class="node__name">Consent ACL</span><span class="node__tech">único punto de integración</span></div>
+        <div class="node node--c" data-id="C3" tabindex="0"><span class="node__tag">C3</span><span class="node__name">Sistemas operacionales</span><span class="node__tech">CRM · Créditos · Campañas</span></div>
+        <div class="node node--c" data-id="C4" tabindex="0"><span class="node__tag">C4</span><span class="node__name">Conector CMF</span><span class="node__tech">RDC30 / RDC31</span></div>
+        <div class="node node--c" data-id="C5" tabindex="0"><span class="node__tag">C5</span><span class="node__name">Plataforma de correo</span><span class="node__tech">a definir en diseño</span></div>
+      </div>
+
+      <!-- Tenant Microsoft (contiene B y A) -->
+      <div class="tenant" data-label="Tenant Microsoft de La Araucana">
+        <!-- Dominio B -->
+        <div class="lane lane--b" data-lane="Suscripción Azure de La Araucana">
+          <div class="node node--b" data-id="B1" tabindex="0"><span class="node__tag">B1</span><span class="node__name">API Management</span><span class="node__tech">API CMP · OAuth2 / TLS 1.3</span></div>
+          <div class="node node--b" data-id="B2" tabindex="0"><span class="node__tag">B2</span><span class="node__name">Service Bus</span><span class="node__tech">cola de eventos</span></div>
+          <div class="node node--b" data-id="B3" tabindex="0"><span class="node__tag">B3</span><span class="node__name">Azure Functions</span><span class="node__tech">workers idempotentes</span></div>
+          <div class="node node--b" data-id="B4" tabindex="0"><span class="node__tag">B4</span><span class="node__name">Read store (CQRS)</span><span class="node__tech">consulta en línea</span></div>
+          <div class="node node--b" data-id="B5" tabindex="0"><span class="node__tag">B5</span><span class="node__name">Blob Storage WORM</span><span class="node__tech">evidencias REDEC · 5 años</span></div>
+          <div class="node node--b node--util" data-id="B6" tabindex="0"><span class="node__tag">B6</span><span class="node__name">Azure Monitor</span><span class="node__tech">observabilidad</span></div>
+          <div class="node node--b node--util" data-id="B7" tabindex="0"><span class="node__tag">B7</span><span class="node__name">Key Vault</span><span class="node__tech">secretos</span></div>
+        </div>
+
+        <!-- Dominio A -->
+        <div class="lane lane--a" data-lane="Environment CMP dedicado · Power Platform">
+          <div class="node node--a is-hub" data-id="A2" tabindex="0"><span class="node__tag">A2</span><span class="node__name">Dataverse</span><span class="node__tech">registro · fuente única</span></div>
+          <div class="node node--a" data-id="A3" tabindex="0"><span class="node__tag">A3</span><span class="node__name">Backoffice / Mantenedor</span><span class="node__tech">model-driven app</span></div>
+          <div class="node node--a" data-id="A4" tabindex="0"><span class="node__tag">A4</span><span class="node__name">Motor de reglas</span><span class="node__tech">canal · finalidad · REDEC</span></div>
+          <div class="node node--a" data-id="A5" tabindex="0"><span class="node__tag">A5</span><span class="node__name">Dashboard cumplimiento</span><span class="node__tech">Power BI</span></div>
+          <div class="node node--a node--util" data-id="A6" tabindex="0"><span class="node__tag">A6</span><span class="node__name">Entra ID + MFA</span><span class="node__tech">SSO · roles</span></div>
+          <div class="node node--a node--util" data-id="A1" tabindex="0"><span class="node__tag">A1</span><span class="node__name">Environments</span><span class="node__tech">DEV / QA / PROD</span></div>
+        </div>
+      </div>
+
+      <!-- W-IT -->
+      <div class="lane lane--wit">
+        <div class="node node--wit" data-id="WIT" tabindex="0"><span class="node__tag">W-IT</span><span class="node__name">Servicio administrado</span><span class="node__tech">soporte JIT auditado · sin custodia</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de detalle -->
+  <div class="detail" id="detail" aria-hidden="true">
+    <div class="detail__card" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button class="detail__close" id="detailClose" aria-label="Cerrar">×</button>
+      <span class="detail__badge" id="detailBadge">A2</span>
+      <h3 class="detail__name" id="detailName"></h3>
+      <p class="detail__tech" id="detailTech"></p>
+      <p class="detail__fn" id="detailFn"></p>
+      <div class="detail__meta">
+        <div><span class="detail__lbl">Responsable</span><span id="detailResp"></span></div>
+        <div><span class="detail__lbl">Referencias</span><span id="detailRefs"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLUJOS ===== -->
+<section class="section section--dark" id="flujos">
+  <div class="wrap">
+    <span class="kicker kicker--light">03 · Cómo funciona</span>
+    <h2 class="h2 h2--light">Flujos principales</h2>
+    <p class="section__lead section__lead--light">
+      Selecciona un flujo y reprodúcelo paso a paso: el diagrama iluminará el recorrido del evento por la arquitectura.
+    </p>
+
+    <div class="flow">
+      <div class="flow__tabs" id="flowTabs" role="tablist"></div>
+
+      <div class="flow__stage">
+        <div class="flow__diagram" id="flowDiagram"></div>
+        <div class="flow__panel">
+          <h3 class="flow__title" id="flowTitle"></h3>
+          <p class="flow__desc" id="flowDesc"></p>
+          <ol class="flow__steps" id="flowSteps"></ol>
+          <div class="flow__controls">
+            <button class="btn btn--sm btn--ghost-light" id="flowPrev">‹ Anterior</button>
+            <button class="btn btn--sm btn--primary" id="flowPlay">▶ Reproducir</button>
+            <button class="btn btn--sm btn--ghost-light" id="flowNext">Siguiente ›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEGURIDAD Y CUMPLIMIENTO ===== -->
+<section class="section section--tint" id="seguridad">
+  <div class="wrap">
+    <span class="kicker">04 · Transversal</span>
+    <h2 class="h2">Seguridad y cumplimiento</h2>
+    <div class="cards">
+      <article class="card"><div class="card__ico">🔐</div><h3>Identidad y accesos</h3><p>SSO Entra ID + MFA para administradores y editores; roles de seguridad Dataverse; rotación de credenciales.</p></article>
+      <article class="card"><div class="card__ico">🛡️</div><h3>Cifrado extremo a extremo</h3><p>OAuth 2.0 + TLS 1.3 en todas las integraciones; cifrado de datos sensibles en reposo.</p></article>
+      <article class="card"><div class="card__ico">📦</div><h3>Evidencia inmutable</h3><p>REDEC en almacenamiento WORM; nadie —ni un administrador— puede alterar o borrar. Retención 5 años (NCG 540).</p></article>
+      <article class="card"><div class="card__ico">🚫</div><h3>Prohibiciones embebidas</h3><p>Estado por defecto “nunca otorgado”, evento explícito con evidencia, finalidades independientes, sin cargas heredadas.</p></article>
+      <article class="card"><div class="card__ico">🧪</div><h3>SAST + Ethical Hacking</h3><p>SAST en el ciclo de desarrollo; DAST previo a producción (ventana 5 días hábiles, R90); ambiente de certificación en el tenant.</p></article>
+      <article class="card"><div class="card__ico">♻️</div><h3>Continuidad</h3><p>Respaldos y plan de recuperación; RTO/RPO a proponer en diseño (R17). Sin pasos a producción la última semana del mes (R73).</p></article>
+    </div>
+
+    <div class="sla">
+      <h3 class="sla__title">Niveles de servicio</h3>
+      <div class="sla__grid">
+        <div class="sla__item"><span class="sla__num">99,90%</span><span>Disponibilidad objetivo (R158), excluidas mantenciones informadas</span></div>
+        <div class="sla__item"><span class="sla__num">≤30 min</span><span>Notificación de incidentes; crítico/alto: contacto 30 min, resolución 2 h</span></div>
+        <div class="sla__item"><span class="sla__num">≤24 h</span><span>ICR hábiles para incidentes críticos</span></div>
+        <div class="sla__item"><span class="sla__num">L–V 8:30–18:00</span><span>Soporte W-IT en español, desde Chile (R70, R102)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESPONSABILIDADES ===== -->
+<section class="section" id="responsabilidades">
+  <div class="wrap">
+    <span class="kicker">05 · Modelo de servicio</span>
+    <h2 class="h2">Quién hace qué</h2>
+    <div class="resp">
+      <div class="resp__col resp__col--wit">
+        <div class="resp__head"><img src="assets/wit-logo.png" alt="W-IT" class="resp__logo" /></div>
+        <ul>
+          <li>Implementación y configuración del CMP en el tenant de la Caja</li>
+          <li>API documentada OpenAPI · Backoffice · Motor de reglas</li>
+          <li>Repositorios: registro (Dataverse) + evidencias (Blob WORM)</li>
+          <li>Reportería normativa y dashboard de cumplimiento</li>
+          <li>Capacitación por perfiles</li>
+          <li>Servicio administrado: soporte, monitoreo, mantención y evolución normativa (R37/R103)</li>
+          <li>SAST y acompañamiento de certificación de seguridad</li>
+          <li>Responsabilidad contractual integral como oferente (R101)</li>
+        </ul>
+      </div>
+      <div class="resp__col resp__col--caja">
+        <div class="resp__head"><span class="resp__caja">Caja La Araucana</span></div>
+        <ul>
+          <li>Tenant Microsoft y licenciamiento Power Platform / Dataverse</li>
+          <li>Suscripción Azure</li>
+          <li>Consent ACL y todas las integraciones con canales / sistemas</li>
+          <li>Frontends y Centro de Preferencias</li>
+          <li>Conexión y envíos a la CMF</li>
+          <li>Textos legales, finalidades y políticas</li>
+          <li>Verificación de identidad (R145) · campañas a titulares (R122)</li>
+          <li>Bot WhatsApp / IVR (R23/R24) · administración de usuarios post-producción (R71)</li>
+          <li>Ejecución del Ethical Hacking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HITOS ===== -->
+<section class="section section--tint" id="hitos">
+  <div class="wrap">
+    <span class="kicker">06 · Implementación</span>
+    <h2 class="h2">Hitos del modelo</h2>
+    <div class="timeline">
+      <div class="tl__item"><span class="tl__date">28-07 → 11-08-2026</span><h3>Suscripción del contrato</h3><p>Sandbox disponible desde la suscripción (R157).</p></div>
+      <div class="tl__item tl__item--key"><span class="tl__date">Octubre 2026</span><h3>Ola 1 productiva</h3><p>Flujos de Prioridad 1 + REDEC en producción, antes de la vigencia de la Ley 21.719.</p></div>
+      <div class="tl__item tl__item--law"><span class="tl__date">01-12-2026</span><h3>Vigencia Ley 21.719</h3><p>La solución opera en cumplimiento desde el día uno.</p></div>
+      <div class="tl__item"><span class="tl__date">Olas siguientes</span><h3>Priorización RFP</h3><p>Despliegue incremental según prioridades definidas por la Caja (R81, R118).</p></div>
+    </div>
+
+    <div class="open">
+      <h3 class="open__title">Puntos abiertos <span>· a definir en etapa de diseño</span></h3>
+      <ul class="open__list">
+        <li>Capacidad y licenciamiento Dataverse/Azure en el tenant actual — en validación</li>
+        <li>Gobernanza del tenant y creación de environments</li>
+        <li>Suscripción Azure de la Caja (existencia o creación)</li>
+        <li>Confirmar que el tenant del Dynamics es el mismo del Entra ID híbrido</li>
+        <li>Mecanismo de envío de correos al titular (R15)</li>
+        <li>Read store: Cosmos DB vs. Azure SQL, y RTO/RPO</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <img src="assets/wit-logo.png" alt="W-IT · We Make It Simple" class="footer__logo" />
+    <div class="footer__txt">
+      <p><strong>Propuesta de arquitectura · Gestor Integral de Consentimientos (CMP)</strong></p>
+      <p>W-IT para Caja La Araucana · Licitación “Gestor de Consentimiento”</p>
+      <p class="footer__note">Documento de trabajo para revisión. Los “puntos abiertos” no constituyen definiciones finales. Fuentes: RFP, Bases de Licitación y consolidado oficial de consultas.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
