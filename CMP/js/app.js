@@ -167,9 +167,6 @@
     [...fSteps.children].forEach((li) => {
       li.classList.toggle("is-active", +li.dataset.step === curStep);
     });
-    // scroll current fnode into view within its container
-    const cur = fDiagram.querySelector(".fnode.is-current");
-    if (cur) cur.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
   }
 
   function next() {
