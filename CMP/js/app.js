@@ -59,6 +59,45 @@
     });
   });
 
+  /* ---------- Íconos por tipo de componente ---------- */
+  const ICONS = {
+    database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>',
+    key: '<circle cx="8" cy="15" r="4"/><path d="M10.8 12.2 20 3"/><path d="M16 7l3 3"/><path d="M18.5 4.5 21 7"/>',
+    shield: '<path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    chart: '<path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/>',
+    bolt: '<path d="M13 2 4 14h6l-1 8 9-12h-6z"/>',
+    queue: '<rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/>',
+    braces: '<path d="M8 4c-2 0-2.5 1.5-2.5 3.5S5 11 3.5 11c1.5 0 2 1 2 3.5S6 18 8 18"/><path d="M16 4c2 0 2.5 1.5 2.5 3.5S19 11 20.5 11c-1.5 0-2 1-2 3.5S18 18 16 18"/>',
+    layers: '<path d="M12 2 2 7l10 5 10-5z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/>',
+    sliders: '<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/>',
+    cog: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M4.2 4.2l2.5 2.5M17.3 17.3l2.5 2.5M2 12h3.5M18.5 12H22M4.2 19.8l2.5-2.5M17.3 6.7l2.5-2.5"/>',
+    activity: '<path d="M3 12h4l3 8 4-16 3 8h4"/>',
+    archive: '<rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/><path d="M9.5 12h5"/>',
+    hub: '<circle cx="12" cy="12" r="2.5"/><circle cx="4" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="20" cy="19" r="2"/><path d="m6 6 4 4M6 18l4-4M18 6l-4 4M18 18l-4-4"/>',
+    devices: '<rect x="2" y="4" width="13" height="10" rx="1"/><path d="M2 18h13"/><rect x="17" y="8" width="5" height="12" rx="1"/>',
+    server: '<rect x="3" y="4" width="18" height="7" rx="1"/><rect x="3" y="13" width="18" height="7" rx="1"/><path d="M7 7.5h.01M7 16.5h.01"/>',
+    link: '<path d="M9 15 15 9"/><path d="M8.5 8.5 7 10a4 4 0 0 0 5.7 5.6l1.3-1.3"/><path d="M15.5 15.5 17 14a4 4 0 0 0-5.7-5.6L10 9.7"/>',
+    envelope: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.4"/><path d="M18 20c0-2.4-.9-4.3-2.3-5.4"/>',
+    bank: '<path d="M3 21h18"/><path d="M5 21V9.5M9 21V9.5M15 21V9.5M19 21V9.5"/><path d="M12 3 3.5 8.5h17z"/>',
+    wrench: '<path d="M15 6.5a3.6 3.6 0 0 0-4.8 4.5L3 18.2 5.8 21l7.2-7.2a3.6 3.6 0 0 0 4.5-4.8l-2.4 2.4-2.1-2.1z"/>'
+  };
+  const NODE_ICON = {
+    A1: "layers", A2: "database", A3: "sliders", A4: "cog", A5: "chart", A6: "shield",
+    B1: "braces", B2: "queue", B3: "bolt", B4: "database", B5: "archive", B6: "activity", B7: "key",
+    C1: "hub", C2: "devices", C3: "server", C4: "link", C5: "envelope",
+    TIT: "users", CMF: "bank", WIT: "wrench"
+  };
+  nodes.forEach((n) => {
+    const ic = NODE_ICON[n.dataset.id];
+    if (!ic || !ICONS[ic]) return;
+    const span = document.createElement("span");
+    span.className = "node__icon";
+    span.setAttribute("aria-hidden", "true");
+    span.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[ic]}</svg>`;
+    n.appendChild(span);
+  });
+
   /* ---------- Conectores SVG del diagrama ---------- */
   const diagram = document.getElementById("diagram");
   const svg = document.getElementById("edges");
