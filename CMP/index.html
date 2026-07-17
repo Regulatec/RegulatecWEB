@@ -96,19 +96,27 @@
     <span class="kicker">02 · Arquitectura de la solución</span>
     <h2 class="h2">Dominios y componentes</h2>
     <p class="section__lead">
-      Haz clic en cualquier componente para ver su tecnología, función y responsable. El límite punteado marca
-      todo lo que vive <strong>dentro del tenant de La Araucana</strong>.
+      Haz clic en cualquier componente para ver su detalle. Con los botones puedes recorrer las
+      <strong>tres alternativas de despliegue</strong> propuestas a La Araucana: el límite punteado marca cada tenant
+      y el conector cifrado representa el enlace privado entre nubes.
     </p>
+
+    <div class="diagram-options" id="diagramOptions" role="tablist" aria-label="Alternativas de despliegue">
+      <button class="dopt is-active" data-opt="1" role="tab"><span class="dopt__n">Opción 1</span><span class="dopt__d">Todo en La Araucana</span></button>
+      <button class="dopt" data-opt="2" role="tab"><span class="dopt__n">Opción 2</span><span class="dopt__d">Azure en W-IT · híbrido</span></button>
+      <button class="dopt" data-opt="3" role="tab"><span class="dopt__n">Opción 3</span><span class="dopt__d">CMP en W-IT · SaaS</span></button>
+    </div>
+    <p class="diagram-caption" id="diagramCaption"></p>
 
     <div class="diagram-legend">
       <span><i class="lg lg--a"></i> Dominio A · Power Platform</span>
-      <span><i class="lg lg--b"></i> Dominio B · Azure de la Caja</span>
+      <span><i class="lg lg--b"></i> Dominio B · Azure</span>
       <span><i class="lg lg--c"></i> Dominio C · Ecosistema La Araucana</span>
       <span><i class="lg lg--d"></i> Dominio D · Externos</span>
       <span class="diagram-legend__hint">▸ Clic en un componente para el detalle</span>
     </div>
 
-    <div class="diagram" id="diagram">
+    <div class="diagram" id="diagram" data-opt="1">
       <svg class="diagram__edges" id="edges" aria-hidden="true"></svg>
 
       <!-- Externos -->
@@ -126,10 +134,10 @@
         <div class="node node--c" data-id="C5" tabindex="0"><span class="node__tag">C5</span><span class="node__name">Plataforma de correo</span><span class="node__tech">a definir en diseño</span></div>
       </div>
 
-      <!-- Tenant Microsoft (contiene B y A) -->
-      <div class="tenant" data-label="Tenant Microsoft de La Araucana">
+      <!-- Tenant La Araucana -->
+      <div class="tenant tenant--araucana" id="tenantAraucana" data-label="☁ Tenant Microsoft de La Araucana">
         <!-- Dominio B -->
-        <div class="lane lane--b" data-lane="Suscripción Azure de La Araucana">
+        <div class="lane lane--b" id="laneB" data-lane="Suscripción Azure de La Araucana">
           <div class="node node--b" data-id="B1" tabindex="0"><span class="node__tag">B1</span><span class="node__name">API Management</span><span class="node__tech">API CMP · OAuth2 / TLS 1.3</span></div>
           <div class="node node--b" data-id="B2" tabindex="0"><span class="node__tag">B2</span><span class="node__name">Service Bus</span><span class="node__tech">cola de eventos</span></div>
           <div class="node node--b" data-id="B3" tabindex="0"><span class="node__tag">B3</span><span class="node__name">Azure Functions</span><span class="node__tech">workers idempotentes</span></div>
@@ -140,7 +148,7 @@
         </div>
 
         <!-- Dominio A -->
-        <div class="lane lane--a" data-lane="Environment CMP dedicado · Power Platform">
+        <div class="lane lane--a" id="laneA" data-lane="Environment CMP dedicado · Power Platform">
           <div class="node node--a is-hub" data-id="A2" tabindex="0"><span class="node__tag">A2</span><span class="node__name">Dataverse</span><span class="node__tech">registro · fuente única</span></div>
           <div class="node node--a" data-id="A3" tabindex="0"><span class="node__tag">A3</span><span class="node__name">Backoffice / Mantenedor</span><span class="node__tech">model-driven app</span></div>
           <div class="node node--a" data-id="A4" tabindex="0"><span class="node__tag">A4</span><span class="node__name">Motor de reglas</span><span class="node__tech">canal · finalidad · REDEC</span></div>
@@ -149,6 +157,16 @@
           <div class="node node--a node--util" data-id="A1" tabindex="0"><span class="node__tag">A1</span><span class="node__name">Environments</span><span class="node__tech">DEV / QA / PROD</span></div>
         </div>
       </div>
+
+      <!-- Conector entre nubes (VPN / peering) -->
+      <div class="xcloud is-off" id="xcloud" aria-hidden="true">
+        <span class="xcloud__line"></span>
+        <span class="xcloud__badge">🔒 Conexión privada entre nubes · VPN / peering cifrado (IPsec · TLS 1.3)</span>
+        <span class="xcloud__line"></span>
+      </div>
+
+      <!-- Tenant W-IT (se llena según la opción) -->
+      <div class="tenant tenant--wit-t is-off" id="tenantWit" data-label="☁ Tenant Microsoft de W-IT" aria-hidden="true"></div>
 
       <!-- W-IT -->
       <div class="lane lane--wit">

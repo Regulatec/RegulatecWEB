@@ -98,8 +98,80 @@
     n.appendChild(span);
   });
 
-  /* ---------- Conectores SVG del diagrama ---------- */
+  /* ---------- Alternativas de despliegue (Opción 1/2/3) ---------- */
   const diagram = document.getElementById("diagram");
+  const tAra = document.getElementById("tenantAraucana");
+  const tWit = document.getElementById("tenantWit");
+  const xcloud = document.getElementById("xcloud");
+  const laneA = document.getElementById("laneA");
+  const laneB = document.getElementById("laneB");
+  const witNode = document.querySelector(".node--wit");
+  const witName = witNode.querySelector(".node__name");
+  const witTech = witNode.querySelector(".node__tech");
+  const caption = document.getElementById("diagramCaption");
+
+  const OPTIONS = {
+    "1": {
+      caption: "Alternativa A (recomendada). Todo el CMP —Power Platform y Azure— vive en el tenant y la suscripción de La Araucana. Los datos, las evidencias y el licenciamiento quedan bajo dominio de la Caja; W-IT opera el servicio con accesos JIT auditados, sin custodiar datos personales.",
+      araucana: ["laneB", "laneA"], wit: null, xcloud: false,
+      azureLabel: "Suscripción Azure de La Araucana",
+      witNode: { name: "Servicio administrado", tech: "soporte JIT auditado · sin custodia" }
+    },
+    "2": {
+      caption: "Modelo híbrido. La capa Azure completa (integración, procesamiento y evidencias) se opera en el tenant y la suscripción de W-IT; el registro Dataverse (Power Platform) permanece en el tenant de la Caja. Ambas nubes se unen mediante una conexión privada cifrada. W-IT actúa como encargado de tratamiento de la capa que aloja.",
+      araucana: ["laneA"], wit: ["laneB"], xcloud: true,
+      azureLabel: "Suscripción Azure de W-IT",
+      witNode: { name: "Opera la capa Azure", tech: "encargado de tratamiento · evidencias en W-IT" }
+    },
+    "3": {
+      caption: "SaaS operado por W-IT (Alternativa B). Todo el CMP —Power Platform y Azure— se provee y opera desde el tenant y la suscripción de W-IT; la Caja consume el servicio vía API, sin aprovisionar licenciamiento ni suscripciones propias. W-IT asume la custodia de los datos como encargado de tratamiento (Ley 21.719).",
+      araucana: null, wit: ["laneB", "laneA"], xcloud: true,
+      azureLabel: "Suscripción Azure de W-IT",
+      witNode: { name: "Provee y opera el CMP (SaaS)", tech: "encargado de tratamiento · Ley 21.719" }
+    }
+  };
+  const laneEls = { laneA: laneA, laneB: laneB };
+
+  function applyOption(opt) {
+    const cfg = OPTIONS[opt] || OPTIONS["1"];
+    diagram.dataset.opt = opt;
+    caption.textContent = cfg.caption;
+    laneB.dataset.lane = cfg.azureLabel;
+    witName.textContent = cfg.witNode.name;
+    witTech.textContent = cfg.witNode.tech;
+
+    // Tenant La Araucana
+    if (cfg.araucana) {
+      tAra.classList.remove("is-off");
+      tAra.setAttribute("aria-hidden", "false");
+      cfg.araucana.forEach((id) => tAra.appendChild(laneEls[id]));
+    } else {
+      tAra.classList.add("is-off");
+      tAra.setAttribute("aria-hidden", "true");
+    }
+    // Tenant W-IT
+    if (cfg.wit) {
+      tWit.classList.remove("is-off");
+      tWit.setAttribute("aria-hidden", "false");
+      cfg.wit.forEach((id) => tWit.appendChild(laneEls[id]));
+    } else {
+      tWit.classList.add("is-off");
+      tWit.setAttribute("aria-hidden", "true");
+    }
+    // Conector entre nubes
+    xcloud.classList.toggle("is-off", !cfg.xcloud);
+    xcloud.setAttribute("aria-hidden", cfg.xcloud ? "false" : "true");
+
+    // botones
+    [...document.querySelectorAll(".dopt")].forEach((b) =>
+      b.classList.toggle("is-active", b.dataset.opt === opt)
+    );
+    drawEdges();
+  }
+
+  document.querySelectorAll(".dopt").forEach((b) => {
+    b.addEventListener("click", () => applyOption(b.dataset.opt));
+  });
   const svg = document.getElementById("edges");
   const nodeMap = {};
   nodes.forEach((n) => (nodeMap[n.dataset.id] = n));
@@ -131,6 +203,7 @@
   window.addEventListener("resize", rerender);
   window.addEventListener("load", drawEdges);
   drawEdges();
+  applyOption("1");
 
   /* ---------- Reproductor de flujos ---------- */
   const tabsEl = document.getElementById("flowTabs");

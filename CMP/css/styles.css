@@ -110,6 +110,24 @@ a{color:inherit;text-decoration:none}
 
 .tenant{position:relative;z-index:2;border:2px dashed var(--green);border-radius:calc(var(--radius) + 4px);padding:34px 14px 14px;background:linear-gradient(180deg,rgba(109,182,60,.05),rgba(109,182,60,.01));display:flex;flex-direction:column;gap:16px}
 .tenant::before{content:attr(data-label);position:absolute;top:-13px;left:20px;background:var(--green);color:#fff;font-family:var(--display);font-weight:700;font-size:.76rem;letter-spacing:.04em;padding:5px 15px;border-radius:20px;box-shadow:var(--shadow)}
+.tenant--wit-t{border-color:var(--navy);background:linear-gradient(180deg,rgba(23,58,77,.06),rgba(23,58,77,.01))}
+.tenant--wit-t::before{background:var(--navy)}
+
+/* Botones de alternativas de despliegue */
+.diagram-options{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.dopt{display:flex;flex-direction:column;align-items:flex-start;gap:1px;font-family:var(--display);padding:9px 18px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;transition:.18s;text-align:left}
+.dopt:hover{border-color:var(--green);transform:translateY(-1px)}
+.dopt.is-active{background:var(--navy);border-color:var(--navy);color:#fff}
+.dopt__n{font-weight:800;font-size:.95rem}
+.dopt__d{font-weight:500;font-size:.75rem;opacity:.75}
+.diagram-caption{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:14px 18px;margin-bottom:22px;color:var(--ink);font-size:.94rem}
+
+/* Conector entre nubes (VPN / peering) */
+.xcloud{display:flex;align-items:center;gap:14px;margin:2px 0}
+.xcloud__line{flex:1;height:0;border-top:2px dashed var(--navy-500)}
+.xcloud__badge{font-family:var(--display);font-weight:700;font-size:.82rem;color:var(--navy);background:#fff;border:1.5px solid var(--navy-500);border-radius:20px;padding:8px 16px;text-align:center;box-shadow:var(--shadow)}
+
+.is-off{display:none !important}
 
 .node{position:relative;flex:1 1 160px;min-width:150px;background:#fff;border:1px solid var(--line);border-left-width:4px;border-radius:12px;padding:13px 14px;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column;gap:2px}
 .node:hover,.node:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow);outline:none}
