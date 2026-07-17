@@ -88,8 +88,8 @@
   };
   const NODE_ICON = {
     A1: "layers", A2: "database", A3: "sliders", A4: "cog", A5: "chart", A6: "shield",
-    B1: "braces", B2: "queue", B3: "bolt", B4: "database", B5: "archive", B6: "activity", B7: "key",
-    C1: "hub", C2: "devices", C3: "server", C4: "link", C5: "envelope",
+    B2: "queue", B3: "bolt", B4: "database", B5: "archive", B6: "activity", B7: "key",
+    C1: "hub", C2: "devices", C3: "server", C4: "link", C5: "envelope", C6: "braces",
     TIT: "users", CMF: "bank", WIT: "wrench"
   };
   nodes.forEach((n) => {
@@ -123,7 +123,7 @@
   const witTech = witNode.querySelector(".node__tech");
   const caption = document.getElementById("diagramCaption");
   const bNode = (id) => document.querySelector('.node[data-id="' + id + '"]');
-  const B_ORDER = ["B1", "B2", "B3", "B4", "B5", "B6", "B7"];
+  const B_ORDER = ["B2", "B3", "B4", "B5", "B6", "B7"];
   const dataNote = document.getElementById("dataNote");
   const dataNoteTxt = document.getElementById("dataNoteTxt");
 

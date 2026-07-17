@@ -25,9 +25,6 @@ const COMPONENTS = {
         resp:"Caja (ya lo tiene) · W-IT configura la integración", refs:"R11, R52, R117, R148" },
 
   /* ---- Dominio B · Suscripción Azure de La Araucana ---- */
-  B1: { badge:"B1", name:"Gateway de APIs del CMP", tech:"Azure API Management",
-        fn:"Publica la API CMP (OpenAPI); autenticación OAuth 2.0 client credentials + TLS 1.3 hacia el Consent ACL; throttling, versionamiento y políticas de reintento.",
-        resp:"W-IT implementa y administra · Caja provee suscripción", refs:"—" },
   B2: { badge:"B2", name:"Cola de ingreso de eventos", tech:"Azure Service Bus",
         fn:"Queue-based load leveling: toda escritura se encola y responde de inmediato con ID de transacción; absorbe peaks (peor escenario: 13M eventos); dead-letter queue monitoreada.",
         resp:"W-IT", refs:"R12" },
@@ -63,6 +60,9 @@ const COMPONENTS = {
   C5: { badge:"C5", name:"Plataforma de correo", tech:"A definir en etapa de diseño",
         fn:"Envío del correo confirmatorio al titular. Mecanismo por definir.",
         resp:"Por definir en diseño", refs:"R15" },
+  C6: { badge:"C6", name:"Apigee · API Gateway", tech:"Google Cloud Apigee (plataforma de La Araucana)",
+        fn:"Gateway de APIs que La Araucana ya opera en GCP. Publica y gestiona la API del CMP (OpenAPI): OAuth 2.0, TLS 1.3, throttling, versionamiento y políticas de reintento. Reemplaza a Azure API Management, aprovechando la capacidad Apigee existente de la Caja: el CMP expone sus endpoints y Apigee es el punto de entrada. El Consent ACL consume la API a través de Apigee.",
+        resp:"Caja (GCP / Apigee)", refs:"R38, R39" },
 
   /* ---- Dominio D · Externos ---- */
   TIT:{ badge:"D", name:"Titulares", tech:"Afiliados y no afiliados",
@@ -78,10 +78,10 @@ const COMPONENTS = {
 
 /* Aristas estructurales (fondo tenue del diagrama) */
 const EDGES = [
-  ["TIT","C2"], ["C2","C1"], ["C1","B1"], ["B1","B2"], ["B2","B3"],
-  ["B3","A2"], ["B3","B5"], ["B3","B4"], ["B1","B4"], ["C3","C1"],
+  ["TIT","C2"], ["C2","C1"], ["C1","C6"], ["C6","B2"], ["B2","B3"],
+  ["B3","A2"], ["B3","B5"], ["B3","B4"], ["C6","B4"], ["C3","C1"],
   ["A2","A5"], ["B3","C4"], ["C4","CMF"], ["A3","A2"], ["A6","A3"],
-  ["C5","C1"], ["WIT","A2"], ["WIT","B3"], ["A4","A2"], ["B7","B1"], ["B6","B3"]
+  ["C5","C1"], ["WIT","A2"], ["WIT","B3"], ["A4","A2"], ["B7","B3"], ["B6","B3"]
 ];
 
 /* Flujos — cada paso: {node, text}; edges resaltadas por flujo */
@@ -93,7 +93,7 @@ const FLOWS = [
       {node:"TIT", text:"El titular inicia una gestión en un canal de la Caja."},
       {node:"C2",  text:"El canal obtiene —vía ACL → API CMP— el texto legal vigente y versionado y lo expone junto al checkbox (sin pre-marcado); el titular otorga su consentimiento."},
       {node:"C1",  text:"El Consent ACL orquesta y llama a la API CMP con el evento y la versión del texto exhibido."},
-      {node:"B1",  text:"API Management valida (OAuth2 / TLS 1.3)."},
+      {node:"C6",  text:"Apigee (gateway de APIs de La Araucana) publica la API del CMP, valida OAuth2 / TLS 1.3 y enruta la escritura."},
       {node:"B2",  text:"El evento se encola en Service Bus → respuesta inmediata con ID de transacción."},
       {node:"B3",  text:"Un worker (Azure Functions) consume la cola, idempotente por ID único."},
       {node:"A2",  text:"Persiste el evento en Dataverse (fuente única de verdad)."},
@@ -108,7 +108,7 @@ const FLOWS = [
     steps:[
       {node:"C3", text:"Un sistema operacional necesita saber el estado antes de tratar datos."},
       {node:"C1", text:"El Consent ACL invoca la API CMP de consulta."},
-      {node:"B1", text:"API Management enruta la lectura."},
+      {node:"C6", text:"Apigee (gateway de La Araucana) enruta la consulta a la capa de lectura del CMP."},
       {node:"B4", text:"El read store responde estado por finalidad, canales Capa 2 y datos REDEC — baja latencia y resiliencia."}
     ]
   },
@@ -118,7 +118,7 @@ const FLOWS = [
     steps:[
       {node:"C2", text:"El titular (o un ejecutivo) revoca desde un canal."},
       {node:"C1", text:"El Consent ACL llama a la API CMP."},
-      {node:"B1", text:"API Management valida la solicitud."},
+      {node:"C6", text:"Apigee (gateway de La Araucana) valida y enruta la solicitud de revocación."},
       {node:"B2", text:"El evento de revocación se encola."},
       {node:"B3", text:"El worker procesa la revocación de forma idempotente."},
       {node:"A2", text:"Efecto inmediato en Dataverse."},
