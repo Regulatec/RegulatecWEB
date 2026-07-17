@@ -28,6 +28,7 @@
       <a href="#diagrama">Arquitectura</a>
       <a href="#flujos">Flujos</a>
       <a href="#seguridad">Seguridad</a>
+      <a href="#legal">Respaldo legal</a>
       <a href="#responsabilidades">Responsabilidades</a>
       <a href="#hitos">Hitos</a>
     </nav>
@@ -208,7 +209,9 @@
     <h2 class="h2">Seguridad y cumplimiento</h2>
     <div class="cards">
       <article class="card"><div class="card__ico">🔐</div><h3>Identidad y accesos</h3><p>SSO Entra ID + MFA para administradores y editores; roles de seguridad Dataverse; rotación de credenciales.</p></article>
-      <article class="card"><div class="card__ico">🛡️</div><h3>Cifrado extremo a extremo</h3><p>OAuth 2.0 + TLS 1.3 en todas las integraciones; cifrado de datos sensibles en reposo.</p></article>
+      <article class="card"><div class="card__ico">🛡️</div><h3>Cifrado extremo a extremo</h3><p>OAuth 2.0 + TLS 1.2+/1.3 en todas las integraciones; datos en reposo cifrados por defecto (Dataverse TDE y Azure Storage).</p></article>
+      <article class="card"><div class="card__ico">🏅</div><h3>Certificaciones Microsoft auditadas</h3><p>ISO 27001 / 27017 / 27018 / 27701 y SOC 1/2/3, verificables en el Microsoft Trust Center — evidencia de terceros ante el regulador, no solo del proveedor.</p></article>
+      <article class="card"><div class="card__ico">🔑</div><h3>Soberanía del dato (CMK)</h3><p>Opción de claves administradas por el cliente en el propio Key Vault de la Caja: puede rotar la clave o revocar el acceso de Microsoft a sus datos en cualquier momento.</p></article>
       <article class="card"><div class="card__ico">📦</div><h3>Evidencia inmutable</h3><p>REDEC en almacenamiento WORM; nadie —ni un administrador— puede alterar o borrar. Retención 5 años (NCG 540).</p></article>
       <article class="card"><div class="card__ico">🚫</div><h3>Prohibiciones embebidas</h3><p>Estado por defecto “nunca otorgado”, evento explícito con evidencia, finalidades independientes, sin cargas heredadas.</p></article>
       <article class="card"><div class="card__ico">🧪</div><h3>SAST + Ethical Hacking</h3><p>SAST en el ciclo de desarrollo; DAST previo a producción (ventana 5 días hábiles, R90); ambiente de certificación en el tenant.</p></article>
@@ -227,10 +230,62 @@
   </div>
 </section>
 
+<!-- ===== RESPALDO JURÍDICO / REGULATEC ===== -->
+<section class="section section--legal" id="legal">
+  <div class="wrap">
+    <span class="kicker">05 · Respaldo jurídico</span>
+    <h2 class="h2">Un proyecto <span class="hl">regulatorio</span>, no solo tecnológico</h2>
+    <p class="section__lead">
+      La Ley N°21.719 entra en vigencia el <strong>1 de diciembre de 2026</strong>, contempla multas de hasta
+      <strong>20.000 UTM</strong> y seguirá evolucionando mediante reglamentos y criterios de la nueva Agencia de
+      Protección de Datos Personales. Por eso la oferta integra asesoría jurídica especializada a través de
+      <strong>RegulaTec</strong>, legaltech chilena de compliance operativo sobre tecnología Microsoft, de la cual
+      W-IT es socio fundador y partner tecnológico.
+    </p>
+
+    <div class="legal">
+      <div class="legal__advisor">
+        <div class="legal__advisor-head">
+          <img src="assets/regulatec-logo.png" alt="RegulaTec" class="legal__logo" />
+        </div>
+        <h3 class="legal__name">Sebastián Manns Daza</h3>
+        <p class="legal__role">Abogado · Co-Founder y Director de Compliance de RegulaTec</p>
+        <p class="legal__bio">
+          Más de 10 años liderando compliance y derecho corporativo en multinacionales; ex Director de Compliance y
+          Data Protection de Ontier Abogados. Especialista en Ley N°21.719, Ley N°20.393 y prevención LA/FT, con
+          experiencia ante la UAF y la CMF.
+        </p>
+      </div>
+
+      <div class="legal__pillars">
+        <article class="legal__pillar">
+          <div class="legal__ico">⚖️</div>
+          <h4>Validación jurídica del modelo</h4>
+          <p>Bases de licitud, textos legales y flujos de consentimiento, conforme a la Ley N°21.719 y la NCG N°540.</p>
+        </article>
+        <article class="legal__pillar">
+          <div class="legal__ico">🔭</div>
+          <h4>Vigilancia normativa continua</h4>
+          <p>Cada cambio legal o criterio de la Agencia se traduce en ajustes concretos de la plataforma, por parametrización.</p>
+        </article>
+        <article class="legal__pillar">
+          <div class="legal__ico">🏛️</div>
+          <h4>Preparación ante fiscalizaciones</h4>
+          <p>Evidencia y trazabilidad exigibles por el regulador, más capacitación a los equipos de La Araucana.</p>
+        </article>
+      </div>
+    </div>
+    <p class="legal__note">
+      Asesoría acotada al período de implementación y de soporte contratado (respuesta 35). Sustenta el compromiso de
+      adecuación normativa continua; no constituye un servicio legal permanente ni reemplaza a la Fiscalía de La Araucana.
+    </p>
+  </div>
+</section>
+
 <!-- ===== RESPONSABILIDADES ===== -->
 <section class="section" id="responsabilidades">
   <div class="wrap">
-    <span class="kicker">05 · Modelo de servicio</span>
+    <span class="kicker">06 · Modelo de servicio</span>
     <h2 class="h2">Quién hace qué</h2>
     <div class="resp">
       <div class="resp__col resp__col--wit">
@@ -267,7 +322,7 @@
 <!-- ===== HITOS ===== -->
 <section class="section section--tint" id="hitos">
   <div class="wrap">
-    <span class="kicker">06 · Implementación</span>
+    <span class="kicker">07 · Implementación</span>
     <h2 class="h2">Hitos del modelo</h2>
     <div class="timeline">
       <div class="tl__item"><span class="tl__date">28-07 → 11-08-2026</span><h3>Suscripción del contrato</h3><p>Plazo según bases (R157); sandbox disponible desde la suscripción (R118).</p></div>
@@ -282,7 +337,6 @@
         <li>Capacidad y licenciamiento Dataverse/Azure en el tenant actual — en validación</li>
         <li>Gobernanza del tenant y creación de environments</li>
         <li>Suscripción Azure de la Caja (existencia o creación)</li>
-        <li>Confirmar que el tenant del Dynamics es el mismo del Entra ID híbrido</li>
         <li>Mecanismo de envío de correos al titular (R15)</li>
         <li>Read store: Cosmos DB vs. Azure SQL, y RTO/RPO</li>
       </ul>
