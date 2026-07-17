@@ -275,6 +275,51 @@ a{color:inherit;text-decoration:none}
 .tl__item h3{font-family:var(--display);font-weight:700;color:var(--navy);font-size:1.05rem;margin:8px 0 6px}
 .tl__item p{color:var(--muted);font-size:.9rem}
 
+/* ===== ROADMAP ===== */
+.gantt-wrap{overflow-x:auto;margin-top:10px;padding-bottom:4px}
+.gantt{min-width:780px}
+.gantt__row{display:grid;grid-template-columns:250px repeat(5,1fr);gap:8px;align-items:center;margin-bottom:8px}
+.gantt__head{margin-bottom:12px}
+.gantt__head span:not(.gantt__lbl){font-family:var(--display);font-weight:700;font-size:.74rem;color:var(--muted);text-align:center;text-transform:uppercase;letter-spacing:.03em;border-bottom:2px solid var(--line);padding-bottom:6px}
+.gantt__lbl{font-size:.85rem;color:var(--navy)}
+.gantt__head .gantt__lbl{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:.74rem;letter-spacing:.03em;color:var(--muted)}
+.gantt__lbl b{font-family:var(--display);font-weight:800}
+.gbar{border-radius:9px;padding:10px 12px;color:#fff;font-size:.77rem;font-weight:600;font-family:var(--display);text-align:center;box-shadow:var(--shadow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gbar--ara{background:var(--green-600)}
+.gbar--dev{background:#2f7fb5}
+.gbar--test{background:#c98a2f}
+.gbar--key{background:var(--navy)}
+.gbar--next{background:#2a9d8f}
+.gantt__milestones{display:flex;flex-wrap:wrap;gap:10px 16px;margin:16px 0 8px}
+.ms{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:7px 14px;font-size:.85rem;font-weight:500;color:var(--muted)}
+.ms--key{border-color:var(--green);color:var(--green-700);font-weight:600}
+.ms--law{border-color:var(--navy);color:var(--navy);font-weight:600}
+
+.sub-h{font-family:var(--display);font-weight:800;color:var(--navy);font-size:1.25rem;margin:34px 0 18px}
+.etapas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.etapa{background:#fff;border:1px solid var(--line);border-top:4px solid var(--green);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.etapa--ara{border-top-color:var(--green-600)}
+.etapa--dev{border-top-color:#2f7fb5}
+.etapa--test{border-top-color:#c98a2f}
+.etapa--key{border-top-color:var(--navy);box-shadow:0 0 0 2px rgba(23,58,77,.12),var(--shadow)}
+.etapa--next{border-top-color:#2a9d8f}
+.etapa__n{display:inline-block;font-family:var(--display);font-weight:800;background:var(--navy);color:#fff;border-radius:8px;padding:3px 11px;font-size:.82rem;margin-bottom:9px}
+.etapa--ara .etapa__n{background:var(--green-600)}
+.etapa--dev .etapa__n{background:#2f7fb5}
+.etapa--test .etapa__n{background:#c98a2f}
+.etapa--next .etapa__n{background:#2a9d8f}
+.etapa h4{font-family:var(--display);font-weight:700;color:var(--navy);font-size:1.05rem;line-height:1.2}
+.etapa__when{display:block;color:var(--green-700);font-weight:600;font-size:.82rem;margin:3px 0 11px}
+.etapa p{color:var(--muted);font-size:.9rem;margin-bottom:9px}
+.etapa__deliv{color:var(--navy) !important;font-weight:500;font-size:.85rem !important}
+
+.method{margin-top:34px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:28px}
+.method__t{display:block;font-family:var(--display);font-weight:800;font-size:1.12rem;margin-bottom:16px}
+.method ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.method li{color:#cdddde;font-size:.9rem;padding-left:16px;position:relative;line-height:1.5}
+.method li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--green)}
+.method li b{color:#fff}
+
 /* ===== OPEN POINTS ===== */
 .open{margin-top:40px;background:#fff;border:1px dashed var(--c);border-radius:var(--radius);padding:28px}
 .open__title{font-family:var(--display);font-weight:800;color:var(--navy);font-size:1.15rem;margin-bottom:16px}
@@ -302,6 +347,8 @@ a{color:inherit;text-decoration:none}
   .cards{grid-template-columns:1fr 1fr}
   .sla__grid{grid-template-columns:1fr 1fr}
   .timeline{grid-template-columns:1fr 1fr}
+  .etapas{grid-template-columns:1fr 1fr}
+  .method ul{grid-template-columns:1fr}
   .open__list{grid-template-columns:1fr}
   .diagram__edges{display:none}
 }
@@ -310,7 +357,7 @@ a{color:inherit;text-decoration:none}
   .nav__logo{height:26px}
   .nav__logo--reg{height:28px}
   .section{padding:64px 0}
-  .cards,.sla__grid,.timeline,.hero__stats{grid-template-columns:1fr}
+  .cards,.sla__grid,.timeline,.hero__stats,.etapas{grid-template-columns:1fr}
   .detail__meta{grid-template-columns:1fr}
   .node{flex:1 1 100%}
 }

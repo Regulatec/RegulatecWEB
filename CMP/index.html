@@ -30,7 +30,7 @@
       <a href="#seguridad">Seguridad</a>
       <a href="#legal">Respaldo legal</a>
       <a href="#responsabilidades">Responsabilidades</a>
-      <a href="#hitos">Hitos</a>
+      <a href="#roadmap">Roadmap</a>
     </nav>
     <button class="nav__toggle" id="navToggle" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -354,18 +354,104 @@
   </div>
 </section>
 
-<!-- ===== HITOS ===== -->
-<section class="section section--tint" id="hitos">
+<!-- ===== ROADMAP Y PLAN ===== -->
+<section class="section section--tint" id="roadmap">
   <div class="wrap">
     <span class="kicker">07 · Implementación</span>
-    <h2 class="h2">Hitos del modelo</h2>
-    <div class="timeline">
-      <div class="tl__item"><span class="tl__date">28-07 → 11-08-2026</span><h3>Suscripción del contrato</h3><p>Plazo según bases (R157); sandbox disponible desde la suscripción (R118).</p></div>
-      <div class="tl__item tl__item--key"><span class="tl__date">Octubre 2026</span><h3>Ola 1 productiva</h3><p>Flujos de Prioridad 1 + REDEC en producción, antes de la vigencia de la Ley 21.719.</p></div>
-      <div class="tl__item tl__item--law"><span class="tl__date">01-12-2026</span><h3>Vigencia Ley 21.719</h3><p>La solución opera en cumplimiento desde el día uno.</p></div>
-      <div class="tl__item"><span class="tl__date">Olas siguientes</span><h3>Priorización RFP</h3><p>Despliegue incremental según prioridades definidas por la Caja (R81, R118).</p></div>
+    <h2 class="h2">Roadmap y plan de trabajo</h2>
+    <p class="section__lead">
+      Marco híbrido: ejecución ágil en sprints con hitos formales de aceptación por etapa. La <strong>Ola 1</strong>
+      (flujos de Prioridad 1 + REDEC) entra en producción en <strong>octubre de 2026</strong>, con margen antes de la
+      vigencia de la Ley 21.719 (01-12-2026). Contrato: suscripción 28-07 al 11-08-2026 (R157).
+    </p>
+
+    <!-- Cronograma -->
+    <div class="gantt-wrap">
+      <div class="gantt">
+        <div class="gantt__row gantt__head">
+          <span class="gantt__lbl">Etapa</span>
+          <span>Ago 2026</span><span>Sep 2026</span><span>Oct · 1ª q</span><span>Oct · 3ª sem</span><span>Nov 2026 +</span>
+        </div>
+        <div class="gantt__row">
+          <span class="gantt__lbl"><b>E0–E1</b> · Habilitación y diseño</span>
+          <span class="gbar gbar--ara" style="grid-column:2">Ambientes · contrato de interfaz ACL</span>
+        </div>
+        <div class="gantt__row">
+          <span class="gantt__lbl"><b>E2</b> · Configuración y desarrollo</span>
+          <span class="gbar gbar--dev" style="grid-column:3">Sprints · certificación QA parcial</span>
+        </div>
+        <div class="gantt__row">
+          <span class="gantt__lbl"><b>E3</b> · Integración y certificación</span>
+          <span class="gbar gbar--test" style="grid-column:4">Pruebas ACL · carga · Ethical Hacking</span>
+        </div>
+        <div class="gantt__row">
+          <span class="gantt__lbl"><b>E4</b> · Producción Ola 1</span>
+          <span class="gbar gbar--key" style="grid-column:5">🚀 Puesta en producción</span>
+        </div>
+        <div class="gantt__row">
+          <span class="gantt__lbl"><b>Olas 2+</b> · Priorización RFP</span>
+          <span class="gbar gbar--next" style="grid-column:6">Habilitación por parametrización</span>
+        </div>
+      </div>
+    </div>
+    <p class="gantt__milestones">
+      <span class="ms ms--key">🚀 Ola 1 productiva · 3ª semana de octubre 2026</span>
+      <span class="ms ms--law">⚖️ Ley 21.719 vigente · 01-12-2026</span>
+      <span class="ms">❄️ Sin pasos a producción la última semana del mes (R73)</span>
+    </p>
+
+    <!-- Etapas detalle -->
+    <h3 class="sub-h">Etapas, actividades y entregables</h3>
+    <div class="etapas">
+      <article class="etapa etapa--ara">
+        <span class="etapa__n">E0</span><h4>Habilitación</h4>
+        <span class="etapa__when">Desde la firma · ago 2026</span>
+        <p>Creación de environments y suscripción en el tenant de la Caja, accesos y sandbox operativo.</p>
+        <p class="etapa__deliv">Entregable: ambientes habilitados · plan de proyecto detallado.</p>
+      </article>
+      <article class="etapa etapa--ara">
+        <span class="etapa__n">E1</span><h4>Diseño</h4>
+        <span class="etapa__when">Agosto 2026</span>
+        <p>Co-diseño del contrato de interfaz OpenAPI con el equipo del Consent ACL; definiciones funcionales (permisos, formatos, textos legales); modelo de datos y RTO/RPO.</p>
+        <p class="etapa__deliv">Entregable: especificación de interfaz · diseño funcional y técnico · matriz de casos de prueba.</p>
+      </article>
+      <article class="etapa etapa--dev">
+        <span class="etapa__n">E2</span><h4>Configuración y desarrollo</h4>
+        <span class="etapa__when">Septiembre 2026</span>
+        <p>Mantenedor y modelo de consentimiento, APIs, cola y read store, evidencias REDEC, notificaciones y reportería, en sprints.</p>
+        <p class="etapa__deliv">Entregable: incrementos funcionales certificados por sprint en QA.</p>
+      </article>
+      <article class="etapa etapa--test">
+        <span class="etapa__n">E3</span><h4>Integración y certificación</h4>
+        <span class="etapa__when">1ª quincena octubre 2026</span>
+        <p>Pruebas integradas con el ACL, pruebas de carga al peor escenario, certificación QA, Ethical Hacking (5 días hábiles) y capacitación por perfiles.</p>
+        <p class="etapa__deliv">Entregable: actas de certificación · informe de seguridad · plan de puesta en producción.</p>
+      </article>
+      <article class="etapa etapa--key">
+        <span class="etapa__n">E4</span><h4>Producción y estabilización · Ola 1</h4>
+        <span class="etapa__when">3ª semana octubre 2026</span>
+        <p>Despliegue de los flujos de Prioridad 1 + REDEC, acompañamiento post-salida y traspaso al servicio administrado.</p>
+        <p class="etapa__deliv">Entregable: solución en explotación · documentación final · acta de aceptación.</p>
+      </article>
+      <article class="etapa etapa--next">
+        <span class="etapa__n">Olas 2+</span><h4>Despliegue incremental</h4>
+        <span class="etapa__when">Noviembre 2026 en adelante</span>
+        <p>Flujos de prioridad 2 y siguientes por parametrización y habilitación de canales, sin cambios estructurales, según cronograma acordado.</p>
+        <p class="etapa__deliv">Entregable: nuevos flujos/canales en producción por ola.</p>
+      </article>
     </div>
 
+    <!-- Metodología -->
+    <div class="method">
+      <span class="method__t">Cómo aseguramos los plazos</span>
+      <ul>
+        <li><b>Co-diseño temprano del ACL</b> desde la semana 1 (dependencia crítica), con mocks/stubs para avanzar en paralelo.</li>
+        <li><b>ALM automatizado</b> entre DEV/QA/PROD, con pruebas por sprint y análisis de código (SAST) continuo.</li>
+        <li><b>Gobernanza</b>: comité de proyecto semanal y comité ejecutivo mensual; gestión de riesgos y control de cambios.</li>
+      </ul>
+    </div>
+
+    <!-- Puntos abiertos -->
     <div class="open">
       <h3 class="open__title">Puntos abiertos <span>· a definir en etapa de diseño</span></h3>
       <ul class="open__list">
