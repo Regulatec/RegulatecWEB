@@ -155,17 +155,17 @@
       witNode: { name: "Opera la capa Azure (SaaS)", tech: "encargado de tratamiento · evidencias en W-IT" }
     },
     "3": {
-      caption: "Modelo híbrido, todo en el dominio de La Araucana. El Power Platform y la capa Azure principal (API, colas, procesamiento y secretos) permanecen en su tenant Microsoft; algunos componentes —read store, repositorio de evidencias y monitoreo— se despliegan sobre las propias plataformas GCP / Oracle de la Caja, con servicios equivalentes, donde ella tiene capacidad de administración. Integración privada y cifrada dentro del dominio de la Caja; W-IT no custodia datos.",
-      araucana: ["laneB", "laneA"], wit: null, gcp: true, xcloud: true,
-      gcpNodes: ["B4", "B5", "B6"], azureLabel: "Suscripción Azure de La Araucana",
-      xcloudText: "🔒 Integración privada en el dominio de La Araucana · Azure ↔ GCP / Oracle (cifrada)",
+      caption: "Modelo híbrido. El Power Platform permanece siempre en La Araucana y algunos componentes —read store, repositorio de evidencias y monitoreo— se reemplazan por servicios equivalentes sobre las plataformas propias GCP / Oracle de la Caja. La capa Azure core que resta (API Management, colas, procesamiento y secretos) la opera W-IT desde su suscripción: La Araucana no aprovisiona Azure. Ambos dominios se unen por conexión privada cifrada.",
+      araucana: ["laneA"], wit: ["laneB"], gcp: true, xcloud: true,
+      gcpNodes: ["B4", "B5", "B6"], azureLabel: "Suscripción Azure de W-IT",
+      xcloudText: "🔒 Conexión privada entre nubes · VPN / peering cifrado (IPsec · TLS 1.3) · W-IT (Azure) ↔ La Araucana (Power Platform + GCP / Oracle)",
       nodeOverrides: {
         B4: { name: "Read store (CQRS)", tech: "GCP / Oracle · consulta en línea", fn: "Mismo patrón CQRS de consulta en línea, desplegado sobre las plataformas propias de La Araucana (p. ej. base de datos gestionada en GCP u Oracle) en lugar de Azure. Proyección del estado vigente por RUT / finalidad; baja latencia; sirve además el texto legal vigente y versionado." },
         B5: { name: "Almacenamiento WORM", tech: "GCP / Oracle · evidencias REDEC 5 años", fn: "Repositorio de evidencias REDEC (PDF/MP3) con inmutabilidad y retención de 5 años, sobre almacenamiento de objetos de La Araucana (p. ej. GCP Cloud Storage con bloqueo/retención u Oracle Object Storage), en reemplazo de Azure Blob WORM." },
         B6: { name: "Monitoreo / Observabilidad", tech: "GCP / Oracle · métricas y alertas", fn: "Monitoreo, alertas y dashboards sobre las herramientas propias de La Araucana (p. ej. Google Cloud Operations u Oracle Observability), en reemplazo de Azure Monitor." }
       },
-      dataNote: "Aunque el dato reside en el dominio de La Araucana (Microsoft y sus plataformas GCP / Oracle), si transita por pasarelas o servicios operados por W-IT debe evaluarse su responsabilidad sobre el dato en tránsito y formalizarse el acuerdo o encargo correspondiente (Ley 21.719), con cifrado en tránsito y en reposo. Alcance y cláusulas a validar por la Fiscalía de La Araucana con el apoyo de RegulaTec.",
-      witNode: { name: "Servicio administrado", tech: "soporte JIT auditado · sin custodia" }
+      dataNote: "La capa Azure core (integración, procesamiento y secretos) es operada por W-IT y por ella transita el dato personal: W-IT actúa como encargado de tratamiento (Ley 21.719), con contrato de encargo y salvaguardas —cifrado en tránsito y en reposo, control de accesos y subencargados documentados—. Los componentes reemplazados (read store, evidencias y monitoreo) residen en las plataformas propias de La Araucana. Si algún servicio de W-IT reside fuera de Chile, aplica además el régimen de transferencia internacional de datos. Alcance y cláusulas a validar por la Fiscalía de La Araucana con el apoyo de RegulaTec.",
+      witNode: { name: "Opera la capa Azure core", tech: "encargado de tratamiento · capa Azure" }
     }
   };
   const laneEls = { laneA: laneA, laneB: laneB };
@@ -219,12 +219,14 @@
       show(respA); show(respW); show(tAra); show(tWit); show(xcloud); hide(tGcp);
       put(diagram, [edgesSvg, laneD, respA, xcloud, respW]);
     } else if (opt === "3") {
-      // Todo bajo La Araucana: Power Platform + Azure + GCP/Oracle (subido, dentro de la zona)
-      put(tAra, [laneB, laneA]);
+      // Híbrido: La Araucana (Power Platform + GCP/Oracle, sin Azure) y W-IT (capa Azure core)
+      put(tAra, [laneA]);
       put(tGcp, [laneG]);
-      put(respA, [laneC, tAra, xcloud, tGcp]);
-      show(respA); show(tAra); show(tGcp); show(xcloud); hide(respW); hide(tWit);
-      put(diagram, [edgesSvg, laneD, respA, witLane]);
+      put(tWit, [laneB]);
+      put(respA, [laneC, tAra, tGcp]);
+      put(respW, [tWit, witLane]);
+      show(respA); show(respW); show(tAra); show(tGcp); show(tWit); show(xcloud);
+      put(diagram, [edgesSvg, laneD, respA, xcloud, respW]);
     } else {
       // Todo bajo La Araucana
       put(tAra, [laneB, laneA]);
