@@ -4,6 +4,9 @@
 (function () {
   "use strict";
 
+  // Overrides de nombre/tech por opción activa (p. ej. componentes sobre GCP/Oracle en la opción híbrida)
+  let activeOverrides = {};
+
   /* ---------- NAV móvil ---------- */
   const toggle = document.getElementById("navToggle");
   const links = document.querySelector(".nav__links");
@@ -33,10 +36,11 @@
   function openDetail(id) {
     const c = COMPONENTS[id];
     if (!c) return;
+    const ov = activeOverrides[id] || {};
     set("detailBadge", c.badge);
-    set("detailName", c.name);
-    set("detailTech", c.tech);
-    set("detailFn", c.fn);
+    set("detailName", ov.name || c.name);
+    set("detailTech", ov.tech || c.tech);
+    set("detailFn", ov.fn || c.fn);
     set("detailResp", c.resp);
     set("detailRefs", c.refs);
     detail.classList.add("is-open");
@@ -114,12 +118,25 @@
   const caption = document.getElementById("diagramCaption");
   const bNode = (id) => document.querySelector('.node[data-id="' + id + '"]');
   const B_ORDER = ["B1", "B2", "B3", "B4", "B5", "B6", "B7"];
+  const dataNote = document.getElementById("dataNote");
+  const dataNoteTxt = document.getElementById("dataNoteTxt");
+
+  // Captura nombre/tech originales de los nodos que se relabelan por opción
+  const NODE_DEFAULTS = {};
+  ["B4", "B5", "B6"].forEach((id) => {
+    const n = bNode(id);
+    NODE_DEFAULTS[id] = {
+      name: n.querySelector(".node__name").textContent,
+      tech: n.querySelector(".node__tech").textContent
+    };
+  });
 
   const OPTIONS = {
     "1": {
       caption: "Alternativa base (recomendada). Todo el CMP —Power Platform y la capa Azure— vive en el tenant y la suscripción de La Araucana. Los datos, las evidencias y el licenciamiento quedan bajo dominio de la Caja; W-IT opera el servicio con accesos JIT auditados, sin custodiar datos personales.",
       araucana: ["laneB", "laneA"], wit: null, gcp: false, xcloud: false,
       gcpNodes: [], azureLabel: "Suscripción Azure de La Araucana", xcloudText: "",
+      dataNote: "", nodeOverrides: null,
       witNode: { name: "Servicio administrado", tech: "soporte JIT auditado · sin custodia" }
     },
     "2": {
@@ -127,6 +144,8 @@
       araucana: ["laneA"], wit: ["laneB"], gcp: false, xcloud: true,
       gcpNodes: [], azureLabel: "Suscripción Azure de W-IT",
       xcloudText: "🔒 Conexión privada entre nubes · VPN / peering cifrado (IPsec · TLS 1.3) · Microsoft ↔ W-IT",
+      nodeOverrides: null,
+      dataNote: "En esta modalidad el dato personal transita y reposa en pasarelas y servicios operados por W-IT. Por ello W-IT actúa como encargado de tratamiento (Ley 21.719): debe suscribirse un contrato de encargo de tratamiento y aplicarse salvaguardas —cifrado en tránsito y en reposo, control de accesos y subencargados documentados—. Si algún servicio reside fuera de Chile, aplica además el régimen de transferencia internacional de datos. Alcance y cláusulas a validar por la Fiscalía de La Araucana con el apoyo de RegulaTec.",
       witNode: { name: "Opera la capa Azure (SaaS)", tech: "encargado de tratamiento · evidencias en W-IT" }
     },
     "3": {
@@ -134,6 +153,12 @@
       araucana: ["laneB", "laneA"], wit: null, gcp: true, xcloud: true,
       gcpNodes: ["B4", "B5", "B6"], azureLabel: "Suscripción Azure de La Araucana",
       xcloudText: "🔒 Integración privada en el dominio de La Araucana · Azure ↔ GCP / Oracle (cifrada)",
+      nodeOverrides: {
+        B4: { name: "Read store (CQRS)", tech: "GCP / Oracle · consulta en línea", fn: "Mismo patrón CQRS de consulta en línea, desplegado sobre las plataformas propias de La Araucana (p. ej. base de datos gestionada en GCP u Oracle) en lugar de Azure. Proyección del estado vigente por RUT / finalidad; baja latencia; sirve además el texto legal vigente y versionado." },
+        B5: { name: "Almacenamiento WORM", tech: "GCP / Oracle · evidencias REDEC 5 años", fn: "Repositorio de evidencias REDEC (PDF/MP3) con inmutabilidad y retención de 5 años, sobre almacenamiento de objetos de La Araucana (p. ej. GCP Cloud Storage con bloqueo/retención u Oracle Object Storage), en reemplazo de Azure Blob WORM." },
+        B6: { name: "Monitoreo / Observabilidad", tech: "GCP / Oracle · métricas y alertas", fn: "Monitoreo, alertas y dashboards sobre las herramientas propias de La Araucana (p. ej. Google Cloud Operations u Oracle Observability), en reemplazo de Azure Monitor." }
+      },
+      dataNote: "Aunque el dato reside en el dominio de La Araucana (Microsoft y sus plataformas GCP / Oracle), si transita por pasarelas o servicios operados por W-IT debe evaluarse su responsabilidad sobre el dato en tránsito y formalizarse el acuerdo o encargo correspondiente (Ley 21.719), con cifrado en tránsito y en reposo. Alcance y cláusulas a validar por la Fiscalía de La Araucana con el apoyo de RegulaTec.",
       witNode: { name: "Servicio administrado", tech: "soporte JIT auditado · sin custodia" }
     }
   };
@@ -153,6 +178,25 @@
       if (cfg.gcpNodes.indexOf(id) !== -1) laneG.appendChild(n);
       else laneB.appendChild(n);
     });
+
+    // Relabel de nodos: restaura por defecto y aplica overrides de la opción (p. ej. GCP/Oracle)
+    activeOverrides = cfg.nodeOverrides || {};
+    Object.keys(NODE_DEFAULTS).forEach((id) => {
+      const n = bNode(id);
+      const ov = activeOverrides[id];
+      n.querySelector(".node__name").textContent = ov ? ov.name : NODE_DEFAULTS[id].name;
+      n.querySelector(".node__tech").textContent = ov ? ov.tech : NODE_DEFAULTS[id].tech;
+    });
+
+    // Aviso de responsabilidad sobre el dato (opciones con pasarelas W-IT)
+    if (cfg.dataNote) {
+      dataNoteTxt.textContent = cfg.dataNote;
+      dataNote.classList.remove("is-off");
+      dataNote.setAttribute("aria-hidden", "false");
+    } else {
+      dataNote.classList.add("is-off");
+      dataNote.setAttribute("aria-hidden", "true");
+    }
 
     // Tenant La Araucana
     if (cfg.araucana) {
