@@ -127,6 +127,10 @@
     <div class="diagram" id="diagram" data-opt="1">
       <svg class="diagram__edges" id="edges" aria-hidden="true"></svg>
 
+      <!-- Zonas de responsabilidad (se llenan por opción) -->
+      <div class="resp-zone resp-zone--ara" id="respAraucana" data-label="🛡 La Araucana · Responsable del tratamiento (controlador)"></div>
+      <div class="resp-zone resp-zone--wit is-off" id="respWit" data-label="🛡 W-IT · Encargado del tratamiento" aria-hidden="true"></div>
+
       <!-- Externos -->
       <div class="lane lane--d" data-lane="Externos / Titulares">
         <div class="node node--d" data-id="TIT" tabindex="0"><span class="node__tag">D</span><span class="node__name">Titulares</span><span class="node__tech">~1,3M RUT</span></div>
@@ -134,7 +138,7 @@
       </div>
 
       <!-- Dominio C -->
-      <div class="lane lane--c" data-lane="La Araucana · GCP y sistemas propios (fuera de alcance W-IT)">
+      <div class="lane lane--c" id="laneC" data-lane="La Araucana · GCP y sistemas propios (fuera de alcance W-IT)">
         <div class="node node--c" data-id="C2" tabindex="0"><span class="node__tag">C2</span><span class="node__name">Canales / Frontends</span><span class="node__tech">Sucursal · Web · WhatsApp</span></div>
         <div class="node node--c is-hub" data-id="C1" tabindex="0"><span class="node__tag">C1</span><span class="node__name">Consent ACL</span><span class="node__tech">único punto de integración</span></div>
         <div class="node node--c" data-id="C3" tabindex="0"><span class="node__tag">C3</span><span class="node__name">Sistemas operacionales</span><span class="node__tech">CRM · Créditos · Campañas</span></div>
@@ -182,7 +186,7 @@
       </div>
 
       <!-- W-IT -->
-      <div class="lane lane--wit">
+      <div class="lane lane--wit" id="witLane">
         <div class="node node--wit" data-id="WIT" tabindex="0"><span class="node__tag">W-IT</span><span class="node__name">Servicio administrado</span><span class="node__tech">soporte JIT auditado · sin custodia</span></div>
       </div>
     </div>

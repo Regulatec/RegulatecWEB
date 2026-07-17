@@ -107,6 +107,12 @@
   const tAra = document.getElementById("tenantAraucana");
   const tWit = document.getElementById("tenantWit");
   const tGcp = document.getElementById("tenantGcp");
+  const respA = document.getElementById("respAraucana");
+  const respW = document.getElementById("respWit");
+  const laneC = document.getElementById("laneC");
+  const laneD = document.querySelector(".lane--d");
+  const witLane = document.getElementById("witLane");
+  const edgesSvg = document.getElementById("edges");
   const xcloud = document.getElementById("xcloud");
   const xcloudBadge = xcloud.querySelector(".xcloud__badge");
   const laneA = document.getElementById("laneA");
@@ -198,32 +204,34 @@
       dataNote.setAttribute("aria-hidden", "true");
     }
 
-    // Tenant La Araucana
-    if (cfg.araucana) {
-      tAra.classList.remove("is-off");
-      tAra.setAttribute("aria-hidden", "false");
-      cfg.araucana.forEach((id) => tAra.appendChild(laneEls[id]));
-    } else {
-      tAra.classList.add("is-off");
-      tAra.setAttribute("aria-hidden", "true");
-    }
-    // Tenant W-IT
-    if (cfg.wit) {
-      tWit.classList.remove("is-off");
-      tWit.setAttribute("aria-hidden", "false");
-      cfg.wit.forEach((id) => tWit.appendChild(laneEls[id]));
-    } else {
-      tWit.classList.add("is-off");
-      tWit.setAttribute("aria-hidden", "true");
-    }
-    // Dominio GCP / Oracle de La Araucana
-    tGcp.classList.toggle("is-off", !cfg.gcp);
-    tGcp.setAttribute("aria-hidden", cfg.gcp ? "false" : "true");
-
-    // Conector (entre nubes o interno de La Araucana)
-    xcloud.classList.toggle("is-off", !cfg.xcloud);
-    xcloud.setAttribute("aria-hidden", cfg.xcloud ? "false" : "true");
+    // Ensamblaje por zonas de responsabilidad
+    const show = (el) => { el.classList.remove("is-off"); el.setAttribute("aria-hidden", "false"); };
+    const hide = (el) => { el.classList.add("is-off"); el.setAttribute("aria-hidden", "true"); };
+    const put = (parent, els) => els.forEach((e) => parent.appendChild(e));
     if (cfg.xcloud) xcloudBadge.textContent = cfg.xcloudText;
+
+    if (opt === "2") {
+      // Dos responsables: La Araucana (Power Platform) y W-IT (capa Azure)
+      put(tAra, [laneA]);
+      put(tWit, [laneB]);
+      put(respA, [laneC, tAra]);
+      put(respW, [tWit, witLane]);
+      show(respA); show(respW); show(tAra); show(tWit); show(xcloud); hide(tGcp);
+      put(diagram, [edgesSvg, laneD, respA, xcloud, respW]);
+    } else if (opt === "3") {
+      // Todo bajo La Araucana: Power Platform + Azure + GCP/Oracle (subido, dentro de la zona)
+      put(tAra, [laneB, laneA]);
+      put(tGcp, [laneG]);
+      put(respA, [laneC, tAra, xcloud, tGcp]);
+      show(respA); show(tAra); show(tGcp); show(xcloud); hide(respW); hide(tWit);
+      put(diagram, [edgesSvg, laneD, respA, witLane]);
+    } else {
+      // Todo bajo La Araucana
+      put(tAra, [laneB, laneA]);
+      put(respA, [laneC, tAra]);
+      show(respA); show(tAra); hide(respW); hide(tWit); hide(tGcp); hide(xcloud);
+      put(diagram, [edgesSvg, laneD, respA, witLane]);
+    }
 
     // botones
     [...document.querySelectorAll(".dopt")].forEach((b) =>
