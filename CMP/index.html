@@ -360,9 +360,11 @@
     <span class="kicker">07 · Implementación</span>
     <h2 class="h2">Roadmap y plan de trabajo</h2>
     <p class="section__lead">
-      Marco híbrido: ejecución ágil en sprints con hitos formales de aceptación por etapa. La <strong>Ola 1</strong>
-      (flujos de Prioridad 1 + REDEC) entra en producción en <strong>octubre de 2026</strong>, con margen antes de la
-      vigencia de la Ley 21.719 (01-12-2026). Contrato: suscripción 28-07 al 11-08-2026 (R157).
+      Marco híbrido con etapas que se <strong>solapan</strong> (ejecución en paralelo): el desarrollo arranca junto al
+      diseño y las pruebas de integración se adelantan con <strong>mocks / stubs (APIs simuladas)</strong> mientras el
+      Consent ACL se termina. La <strong>Ola 1</strong> (flujos de Prioridad 1 + REDEC) entra en producción en
+      <strong>octubre de 2026</strong>, con margen antes de la vigencia de la Ley 21.719 (01-12-2026). Contrato:
+      suscripción 28-07 al 11-08-2026 (R157).
     </p>
 
     <!-- Cronograma -->
@@ -370,27 +372,35 @@
       <div class="gantt">
         <div class="gantt__row gantt__head">
           <span class="gantt__lbl">Etapa</span>
-          <span>Ago 2026</span><span>Sep 2026</span><span>Oct · 1ª q</span><span>Oct · 3ª sem</span><span>Nov 2026 +</span>
+          <span style="grid-column:2/4">Ago 2026</span>
+          <span style="grid-column:4/6">Sep 2026</span>
+          <span style="grid-column:6/8">Oct 2026</span>
+          <span style="grid-column:8/10">Nov 2026 +</span>
         </div>
         <div class="gantt__row">
-          <span class="gantt__lbl"><b>E0–E1</b> · Habilitación y diseño</span>
-          <span class="gbar gbar--ara" style="grid-column:2">Ambientes · contrato de interfaz ACL</span>
+          <span class="gantt__lbl"><b>E0</b> · Habilitación</span>
+          <span class="gbar gbar--ara" style="grid-column:2/3">Ambientes · sandbox</span>
+        </div>
+        <div class="gantt__row">
+          <span class="gantt__lbl"><b>E1</b> · Diseño</span>
+          <span class="gbar gbar--ara" style="grid-column:2/4">Diseño · co-diseño del contrato de interfaz ACL</span>
         </div>
         <div class="gantt__row">
           <span class="gantt__lbl"><b>E2</b> · Configuración y desarrollo</span>
-          <span class="gbar gbar--dev" style="grid-column:3">Sprints · certificación QA parcial</span>
+          <span class="gbar gbar--dev" style="grid-column:3/7">Configuración y desarrollo en sprints · certificación QA parcial</span>
         </div>
         <div class="gantt__row">
           <span class="gantt__lbl"><b>E3</b> · Integración y certificación</span>
-          <span class="gbar gbar--test" style="grid-column:4">Pruebas ACL · carga · Ethical Hacking</span>
+          <span class="gbar gbar--mock" style="grid-column:4/6">Pruebas con mocks / stubs (APIs simuladas)</span>
+          <span class="gbar gbar--test" style="grid-column:6/7">Integración real ACL · carga · Ethical Hacking</span>
         </div>
         <div class="gantt__row">
           <span class="gantt__lbl"><b>E4</b> · Producción Ola 1</span>
-          <span class="gbar gbar--key" style="grid-column:5">🚀 Puesta en producción</span>
+          <span class="gbar gbar--key" style="grid-column:7/8">🚀 Producción · 3ª sem oct</span>
         </div>
         <div class="gantt__row">
           <span class="gantt__lbl"><b>Olas 2+</b> · Priorización RFP</span>
-          <span class="gbar gbar--next" style="grid-column:6">Habilitación por parametrización</span>
+          <span class="gbar gbar--next" style="grid-column:8/10">Habilitación por parametrización</span>
         </div>
       </div>
     </div>
@@ -417,14 +427,14 @@
       </article>
       <article class="etapa etapa--dev">
         <span class="etapa__n">E2</span><h4>Configuración y desarrollo</h4>
-        <span class="etapa__when">Septiembre 2026</span>
-        <p>Mantenedor y modelo de consentimiento, APIs, cola y read store, evidencias REDEC, notificaciones y reportería, en sprints.</p>
+        <span class="etapa__when">Mediados de agosto → mediados de octubre 2026</span>
+        <p>Mantenedor y modelo de consentimiento, APIs, cola y read store, evidencias REDEC, notificaciones y reportería, en sprints. Arranca en paralelo al diseño.</p>
         <p class="etapa__deliv">Entregable: incrementos funcionales certificados por sprint en QA.</p>
       </article>
       <article class="etapa etapa--test">
         <span class="etapa__n">E3</span><h4>Integración y certificación</h4>
-        <span class="etapa__when">1ª quincena octubre 2026</span>
-        <p>Pruebas integradas con el ACL, pruebas de carga al peor escenario, certificación QA, Ethical Hacking (5 días hábiles) y capacitación por perfiles.</p>
+        <span class="etapa__when">Desde septiembre (mocks/stubs) · certificación 1ª quincena de octubre 2026</span>
+        <p>Las pruebas de integración se adelantan usando <strong>mocks / stubs (APIs simuladas)</strong> mientras el Consent ACL se termina, para avanzar en paralelo. Luego: integración real con el ACL, pruebas de carga al peor escenario, certificación QA, Ethical Hacking (5 días hábiles) y capacitación.</p>
         <p class="etapa__deliv">Entregable: actas de certificación · informe de seguridad · plan de puesta en producción.</p>
       </article>
       <article class="etapa etapa--key">
