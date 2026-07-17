@@ -112,6 +112,12 @@ a{color:inherit;text-decoration:none}
 .tenant::before{content:attr(data-label);position:absolute;top:-13px;left:20px;background:var(--green);color:#fff;font-family:var(--display);font-weight:700;font-size:.76rem;letter-spacing:.04em;padding:5px 15px;border-radius:20px;box-shadow:var(--shadow)}
 .tenant--wit-t{border-color:var(--navy);background:linear-gradient(180deg,rgba(23,58,77,.06),rgba(23,58,77,.01))}
 .tenant--wit-t::before{background:var(--navy)}
+.tenant--gcp{border-color:#2a9d8f;background:linear-gradient(180deg,rgba(42,157,143,.06),rgba(42,157,143,.01))}
+.tenant--gcp::before{background:#2a9d8f}
+.lane--g::before{background:#2a9d8f}
+.lane--g{display:flex;flex-wrap:wrap;gap:12px}
+.tenant--gcp .node{border-left-color:#2a9d8f}
+.tenant--gcp .node__icon{color:#2a9d8f}
 
 /* Botones de alternativas de despliegue */
 .diagram-options{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}

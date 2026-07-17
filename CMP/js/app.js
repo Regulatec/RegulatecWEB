@@ -102,32 +102,39 @@
   const diagram = document.getElementById("diagram");
   const tAra = document.getElementById("tenantAraucana");
   const tWit = document.getElementById("tenantWit");
+  const tGcp = document.getElementById("tenantGcp");
   const xcloud = document.getElementById("xcloud");
+  const xcloudBadge = xcloud.querySelector(".xcloud__badge");
   const laneA = document.getElementById("laneA");
   const laneB = document.getElementById("laneB");
+  const laneG = document.getElementById("laneG");
   const witNode = document.querySelector(".node--wit");
   const witName = witNode.querySelector(".node__name");
   const witTech = witNode.querySelector(".node__tech");
   const caption = document.getElementById("diagramCaption");
+  const bNode = (id) => document.querySelector('.node[data-id="' + id + '"]');
+  const B_ORDER = ["B1", "B2", "B3", "B4", "B5", "B6", "B7"];
 
   const OPTIONS = {
     "1": {
-      caption: "Alternativa A (recomendada). Todo el CMP —Power Platform y Azure— vive en el tenant y la suscripción de La Araucana. Los datos, las evidencias y el licenciamiento quedan bajo dominio de la Caja; W-IT opera el servicio con accesos JIT auditados, sin custodiar datos personales.",
-      araucana: ["laneB", "laneA"], wit: null, xcloud: false,
-      azureLabel: "Suscripción Azure de La Araucana",
+      caption: "Alternativa base (recomendada). Todo el CMP —Power Platform y la capa Azure— vive en el tenant y la suscripción de La Araucana. Los datos, las evidencias y el licenciamiento quedan bajo dominio de la Caja; W-IT opera el servicio con accesos JIT auditados, sin custodiar datos personales.",
+      araucana: ["laneB", "laneA"], wit: null, gcp: false, xcloud: false,
+      gcpNodes: [], azureLabel: "Suscripción Azure de La Araucana", xcloudText: "",
       witNode: { name: "Servicio administrado", tech: "soporte JIT auditado · sin custodia" }
     },
     "2": {
-      caption: "Modelo híbrido. La capa Azure completa (integración, procesamiento y evidencias) se opera en el tenant y la suscripción de W-IT; el registro Dataverse (Power Platform) permanece en el tenant de la Caja. Ambas nubes se unen mediante una conexión privada cifrada. W-IT actúa como encargado de tratamiento de la capa que aloja.",
-      araucana: ["laneA"], wit: ["laneB"], xcloud: true,
-      azureLabel: "Suscripción Azure de W-IT",
-      witNode: { name: "Opera la capa Azure", tech: "encargado de tratamiento · evidencias en W-IT" }
+      caption: "W-IT SaaS (capa Azure). El registro Dataverse y todo el backoffice (Power Platform) permanecen siempre en el tenant de La Araucana; solo la capa Azure —integración, procesamiento y evidencias— se provee y opera desde el tenant y la suscripción de W-IT, que la Caja consume vía API. Ambas nubes se unen por conexión privada cifrada. W-IT actúa como encargado de tratamiento de esa capa (Ley 21.719).",
+      araucana: ["laneA"], wit: ["laneB"], gcp: false, xcloud: true,
+      gcpNodes: [], azureLabel: "Suscripción Azure de W-IT",
+      xcloudText: "🔒 Conexión privada entre nubes · VPN / peering cifrado (IPsec · TLS 1.3) · Microsoft ↔ W-IT",
+      witNode: { name: "Opera la capa Azure (SaaS)", tech: "encargado de tratamiento · evidencias en W-IT" }
     },
     "3": {
-      caption: "SaaS operado por W-IT (Alternativa B). Todo el CMP —Power Platform y Azure— se provee y opera desde el tenant y la suscripción de W-IT; la Caja consume el servicio vía API, sin aprovisionar licenciamiento ni suscripciones propias. W-IT asume la custodia de los datos como encargado de tratamiento (Ley 21.719).",
-      araucana: null, wit: ["laneB", "laneA"], xcloud: true,
-      azureLabel: "Suscripción Azure de W-IT",
-      witNode: { name: "Provee y opera el CMP (SaaS)", tech: "encargado de tratamiento · Ley 21.719" }
+      caption: "Modelo híbrido, todo en el dominio de La Araucana. El Power Platform y la capa Azure principal (API, colas, procesamiento y secretos) permanecen en su tenant Microsoft; algunos componentes —read store, repositorio de evidencias y monitoreo— se despliegan sobre las propias plataformas GCP / Oracle de la Caja, con servicios equivalentes, donde ella tiene capacidad de administración. Integración privada y cifrada dentro del dominio de la Caja; W-IT no custodia datos.",
+      araucana: ["laneB", "laneA"], wit: null, gcp: true, xcloud: true,
+      gcpNodes: ["B4", "B5", "B6"], azureLabel: "Suscripción Azure de La Araucana",
+      xcloudText: "🔒 Integración privada en el dominio de La Araucana · Azure ↔ GCP / Oracle (cifrada)",
+      witNode: { name: "Servicio administrado", tech: "soporte JIT auditado · sin custodia" }
     }
   };
   const laneEls = { laneA: laneA, laneB: laneB };
@@ -139,6 +146,13 @@
     laneB.dataset.lane = cfg.azureLabel;
     witName.textContent = cfg.witNode.name;
     witTech.textContent = cfg.witNode.tech;
+
+    // Reparte los nodos B entre la capa Azure (laneB) y GCP/Oracle (laneG), en orden canónico
+    B_ORDER.forEach((id) => {
+      const n = bNode(id);
+      if (cfg.gcpNodes.indexOf(id) !== -1) laneG.appendChild(n);
+      else laneB.appendChild(n);
+    });
 
     // Tenant La Araucana
     if (cfg.araucana) {
@@ -158,9 +172,14 @@
       tWit.classList.add("is-off");
       tWit.setAttribute("aria-hidden", "true");
     }
-    // Conector entre nubes
+    // Dominio GCP / Oracle de La Araucana
+    tGcp.classList.toggle("is-off", !cfg.gcp);
+    tGcp.setAttribute("aria-hidden", cfg.gcp ? "false" : "true");
+
+    // Conector (entre nubes o interno de La Araucana)
     xcloud.classList.toggle("is-off", !cfg.xcloud);
     xcloud.setAttribute("aria-hidden", cfg.xcloud ? "false" : "true");
+    if (cfg.xcloud) xcloudBadge.textContent = cfg.xcloudText;
 
     // botones
     [...document.querySelectorAll(".dopt")].forEach((b) =>

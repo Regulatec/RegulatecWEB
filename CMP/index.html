@@ -103,8 +103,8 @@
 
     <div class="diagram-options" id="diagramOptions" role="tablist" aria-label="Alternativas de despliegue">
       <button class="dopt is-active" data-opt="1" role="tab"><span class="dopt__n">Opción 1</span><span class="dopt__d">Todo en La Araucana</span></button>
-      <button class="dopt" data-opt="2" role="tab"><span class="dopt__n">Opción 2</span><span class="dopt__d">Azure en W-IT · híbrido</span></button>
-      <button class="dopt" data-opt="3" role="tab"><span class="dopt__n">Opción 3</span><span class="dopt__d">CMP en W-IT · SaaS</span></button>
+      <button class="dopt" data-opt="2" role="tab"><span class="dopt__n">Opción 2</span><span class="dopt__d">W-IT SaaS · capa Azure</span></button>
+      <button class="dopt" data-opt="3" role="tab"><span class="dopt__n">Opción 3</span><span class="dopt__d">Híbrido · multi-nube Caja</span></button>
     </div>
     <p class="diagram-caption" id="diagramCaption"></p>
 
@@ -167,6 +167,11 @@
 
       <!-- Tenant W-IT (se llena según la opción) -->
       <div class="tenant tenant--wit-t is-off" id="tenantWit" data-label="☁ Tenant Microsoft de W-IT" aria-hidden="true"></div>
+
+      <!-- Dominio GCP / Oracle de La Araucana (opción híbrida) -->
+      <div class="tenant tenant--gcp is-off" id="tenantGcp" data-label="☁ La Araucana · GCP / Oracle (dominio propio)" aria-hidden="true">
+        <div class="lane lane--g" id="laneG" data-lane="Componentes sobre plataformas propias de La Araucana (servicios equivalentes)"></div>
+      </div>
 
       <!-- W-IT -->
       <div class="lane lane--wit">
