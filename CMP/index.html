@@ -56,6 +56,7 @@
       <a href="#legal">Respaldo legal</a>
       <a href="#responsabilidades">Responsabilidades</a>
       <a href="#roadmap">Roadmap</a>
+      <a href="#economica">Económica</a>
     </nav>
     <button class="nav__toggle" id="navToggle" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -496,6 +497,113 @@
         <li>Mecanismo de envío de correos al titular (R15)</li>
         <li>Read store: Cosmos DB vs. Azure SQL, y RTO/RPO</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROPUESTA ECONÓMICA ===== -->
+<section class="section" id="economica">
+  <div class="wrap">
+    <span class="kicker">08 · Propuesta económica</span>
+    <h2 class="h2">Inversión y costo total de propiedad</h2>
+    <p class="section__lead">
+      Valores en <strong>UF netas, sin IVA</strong>, según el Formato Único de Costos de La Araucana.
+      Horizonte de evaluación: <strong>3 años</strong>. La implementación se factura <strong>por hitos contra acta
+      de aceptación</strong>, no por adelantado.
+    </p>
+
+    <div class="econ-heads">
+      <div class="econ-head">
+        <span class="econ-head__n">UF 1.800</span>
+        <span class="econ-head__l">Inversión inicial<br /><b>pagada por hitos</b></span>
+      </div>
+      <div class="econ-head">
+        <span class="econ-head__n">UF 75<small>/mes</small></span>
+        <span class="econ-head__l">Servicio administrado W-IT<br /><b>UF 900 al año</b></span>
+      </div>
+      <div class="econ-head econ-head--key">
+        <span class="econ-head__n">UF 6.255</span>
+        <span class="econ-head__l">TCO a 3 años<br /><b>todo incluido</b></span>
+      </div>
+    </div>
+
+    <!-- Cero variable -->
+    <div class="econ-zero">
+      <div class="econ-zero__big">UF 0</div>
+      <div>
+        <strong class="econ-zero__t">Sin componente variable por volumen</strong>
+        <p>
+          Sobre la volumetría oficial de <b>13.000.000 de eventos al año</b>: cero cobro por evento de consentimiento,
+          por consulta de estado, por titular y por documento almacenado. Los <b>12 canales del RFP se habilitan por
+          parametrización</b>, sin costo por canal adicional ni desarrollo.
+        </p>
+      </div>
+    </div>
+
+    <!-- Costos únicos -->
+    <h3 class="sub-h">Costos únicos (one-shot)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Ítem</th><th>Concepto</th><th class="tbl--r">UF</th><th>Hito de pago</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2.1</td><td>Set-up y habilitación de plataforma</td><td class="tbl--r">360</td><td>Acta de diseño aprobado (Etapas 0–1)</td></tr>
+          <tr><td>2.2</td><td>Desarrollo / parametrización del alcance funcional</td><td class="tbl--r">990</td><td>Incrementos certificados en QA (720) + acta de aceptación (270)</td></tr>
+          <tr class="tbl--zero"><td>2.3</td><td>Migración / regularización de consentimientos</td><td class="tbl--r">0</td><td>No aplica — sin consentimientos históricos (R19)</td></tr>
+          <tr><td>2.4</td><td>Certificación de seguridad (SAST + apoyo Ethical Hacking)</td><td class="tbl--r">270</td><td>Actas de certificación (Etapa 3)</td></tr>
+          <tr><td>2.5</td><td>Capacitación y transferencia de conocimiento</td><td class="tbl--r">180</td><td>Actas de certificación (Etapa 3)</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">TOTAL COSTOS ÚNICOS</td><td class="tbl--r">1.800</td><td></td></tr></tfoot>
+      </table>
+    </div>
+
+    <!-- Recurrentes -->
+    <h3 class="sub-h">Costos recurrentes fijos (por año)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Ítem</th><th>Concepto</th><th class="tbl--r">UF/año</th><th>Quién factura</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3.2</td><td>Soporte y mesa de ayuda (L–V 8:30–18:00, SLA del RFP)</td><td class="tbl--r">540</td><td><span class="pill pill--wit">W-IT</span></td></tr>
+          <tr><td>3.4</td><td>Mantenimiento correctivo, evolutivo y normativo</td><td class="tbl--r">270</td><td><span class="pill pill--wit">W-IT</span></td></tr>
+          <tr><td>3.7</td><td>Monitoreo e informe mensual de SLA</td><td class="tbl--r">90</td><td><span class="pill pill--wit">W-IT</span></td></tr>
+          <tr><td>3.1</td><td>Licenciamiento Power Platform / Dataverse / Power BI</td><td class="tbl--r">385</td><td><span class="pill pill--ms">Microsoft · contrata la Caja</span></td></tr>
+          <tr><td>3.5</td><td>Consumo Azure (Service Bus, Functions, read store, Blob WORM, monitoreo)</td><td class="tbl--r">200</td><td><span class="pill pill--ms">Microsoft · contrata la Caja</span></td></tr>
+          <tr class="tbl--zero"><td>3.6</td><td>Almacenamiento de evidencia y conservación legal (5 años)</td><td class="tbl--r">0</td><td>Sin cobro por volumen</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">TOTAL RECURRENTE POR AÑO</td><td class="tbl--r">1.485</td><td></td></tr></tfoot>
+      </table>
+    </div>
+    <p class="econ-note">
+      El servicio administrado integral de W-IT es <b>UF 900 al año (UF 75/mes)</b> — ítems 3.2 + 3.4 + 3.7 — e incluye
+      la <b>evolución normativa del ámbito del consentimiento sin costo adicional</b> (Ley 21.719, NCG N°540, criterios
+      APDP/CMF). El licenciamiento y el consumo Microsoft los contrata directamente La Araucana, con el gasto visible
+      en su propio portal: <b>W-IT no aplica margen sobre ellos</b>.
+    </p>
+
+    <!-- TCO -->
+    <h3 class="sub-h">TCO consolidado a 3 años</h3>
+    <div class="tco">
+      <div class="tco__rows">
+        <div class="tco__row"><span>A · Costos únicos</span><b>UF 1.800</b><span class="tco__pct">28,8%</span></div>
+        <div class="tco__row"><span>B · Recurrentes (3 años)</span><b>UF 4.455</b><span class="tco__pct">71,2%</span></div>
+        <div class="tco__row"><span>C · Variables por volumen</span><b>UF 0</b><span class="tco__pct">0%</span></div>
+        <div class="tco__row tco__row--total"><span>TCO TOTAL 3 AÑOS</span><b>UF 6.255</b><span class="tco__pct">100%</span></div>
+      </div>
+      <div class="tco__split">
+        <span class="tco__split-t">Composición del TCO</span>
+        <div class="tco__bar"><span class="tco__bar-wit" style="width:72%">W-IT · 72%</span><span class="tco__bar-ms" style="width:28%">Microsoft · 28%</span></div>
+        <ul class="tco__legend">
+          <li><i class="sw sw--wit"></i> <b>UF 4.500</b> — servicios W-IT (implementación + servicio administrado)</li>
+          <li><i class="sw sw--ms"></i> <b>UF 1.755</b> — licenciamiento y consumo Microsoft, contratado directo por la Caja</li>
+        </ul>
+        <p class="tco__equiv">
+          Referencia: <b>≈ CLP 65 por titular al año</b> sobre la cartera de 1.300.000 titulares
+          (<b>≈ CLP 6,5 por evento</b> de consentimiento), calculado con el valor UF oficial del formato.
+        </p>
+      </div>
     </div>
   </div>
 </section>
