@@ -437,7 +437,9 @@ a{color:inherit;text-decoration:none}
 .sim-field__lbl{font-size:.82rem;font-weight:600;color:var(--navy)}
 .sim-field__in{padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--font);font-size:.9rem;color:var(--ink);background:#fff;width:100%}
 .sim-field__in:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(109,182,60,.14)}
-.sim__env{display:grid;grid-template-columns:1fr 220px;gap:14px;padding:16px 18px;background:var(--navy);border-bottom:1px solid var(--line)}
+.sim__env{display:grid;grid-template-columns:1.4fr 1fr 1fr 0.7fr;gap:12px;padding:16px 18px;background:var(--navy);border-bottom:1px solid var(--line)}
+.sim-tab--esquema{border-style:dashed}
+.sim-tab--conectividad.is-active,.sim-tab--esquema.is-active{background:var(--green-600);border-color:var(--green-600)}
 .sim__env .sim-field__lbl{color:#a9c0c3}
 .sim__env .sim-field__in{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18);color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem}
 .sim__env .sim-field__in:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(109,182,60,.2)}
