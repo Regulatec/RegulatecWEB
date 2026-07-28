@@ -16,7 +16,7 @@ var DV = {
   version: "v9.2",
   prefix: "wit_",
   tablaConsent: "wit_consentimientos",
-  tablaTextos: "wit_textoslegales"
+  tablaTextos: "wit_plantillasdeconsentimiento"
 };
 
 var CANALES = [
@@ -116,46 +116,60 @@ var API_OPS = [
   },
   {
     id: "texto",
-    nombre: "Texto legal vigente por canal y finalidad",
+    nombre: "Plantilla de consentimiento vigente",
     grupo: "Negocio",
-    objetivo: "Obtener el texto legal versionado que el canal debe exhibir al titular antes de capturar el consentimiento. Si dejas canal o finalidad en «Todos», no se filtra por ese campo y la columna se incluye en la respuesta para identificar cada registro.",
+    objetivo: "Obtener la plantilla publicada y vigente que el canal debe exhibir al titular: texto de la cláusula, versión y condiciones de vigencia. Regla del modelo: una plantilla con «Canal» vacío aplica a TODOS los canales, por lo que al consultar un canal específico también se devuelven las plantillas sin canal asignado.",
     flujo: "F1 / F6",
     tabla: "tablaTextos",
     vars: [
-      { k: "canal", label: "Canal", type: "select", options: CANALES, def: "sucursal-virtual" },
-      { k: "finalidad", label: "Finalidad", type: "select", options: FINALIDADES, def: "comunicaciones-comerciales" }
+      { k: "canal", label: "Canal (vacío = todos)", type: "select", options: CANALES, def: "sucursal-virtual" },
+      { k: "finalidad", label: "Finalidad", type: "select", options: FINALIDADES, def: "comunicaciones-comerciales" },
+      { k: "soloPublicadas", label: "Solo plantillas publicadas y vigentes", type: "select", options: [["si", "Sí"], ["no", "No — todas las versiones"]], def: "si" }
     ],
     path: function (v, c) {
-      var p = c.prefix, cols = [p + "version", p + "texto", p + "vigenciadesde"], f = [];
-      if (v.canal) f.push(p + "canal eq '" + v.canal + "'"); else cols.push(p + "canal");
+      var p = c.prefix;
+      var cols = [p + "codigo", p + "nombre", p + "version", p + "textoclausula", p + "vigentedesde", p + "vigenciavalor", p + "vigenciaunidad"];
+      var f = [];
       if (v.finalidad) f.push(p + "finalidad eq '" + v.finalidad + "'"); else cols.push(p + "finalidad");
-      f.push(p + "vigente eq true");
-      return odata(c.tablaTextos, cols, f, p + "vigenciadesde desc");
+      // Canal vacío = plantilla aplicable a todos los canales
+      if (v.canal) { f.push("(" + p + "canal eq '" + v.canal + "' or " + p + "canal eq null)"); cols.push(p + "canal"); }
+      else cols.push(p + "canal");
+      if (v.soloPublicadas === "si") {
+        f.push(p + "estado eq 'Publicada'");
+        f.push("(" + p + "vigentehasta eq null or " + p + "vigentehasta ge " + new Date().toISOString().slice(0, 10) + ")");
+      }
+      return odata(c.tablaTextos, cols, f, p + "version desc");
     },
     resp: function (v, c) {
       var p = c.prefix;
-      function row(canal, fin) {
+      function row(codigo, nombre, canal, fin, texto) {
         var r = {};
-        r[p + "version"] = "v3.2";
-        r[p + "vigenciadesde"] = "2026-10-01";
-        if (!v.canal) r[p + "canal"] = canal;
+        r[p + "codigo"] = codigo;
+        r[p + "nombre"] = nombre;
+        r[p + "version"] = 1;
+        r[p + "textoclausula"] = texto;
+        r[p + "vigentedesde"] = "2025-09-01T13:00:00Z";
+        r[p + "vigenciavalor"] = fin === "redec" ? 15 : 24;
+        r[p + "vigenciaunidad"] = fin === "redec" ? "Días hábiles bancarios" : "Meses";
         if (!v.finalidad) r[p + "finalidad"] = fin;
-        r[p + "texto"] = fin === "redec"
-          ? "Autorizo a Caja La Araucana a consultar mi información en el Registro de Deuda Consolidada (REDEC), conforme a la Ley N°21.680 y la NCG N°540, por 15 días hábiles bancarios."
-          : "Autorizo a Caja La Araucana al tratamiento de mis datos personales con la finalidad indicada, conforme a la Ley N°21.719. Puedo revocar este consentimiento en cualquier momento.";
+        r[p + "canal"] = canal;
         return r;
       }
-      var rows = [];
-      if (!v.canal && !v.finalidad) {
-        rows = [row("sucursal-virtual", "comunicaciones-comerciales"), row("whatsapp", "redec"), row("web-publica", "evaluacion-crediticia")];
-      } else if (!v.canal) {
-        rows = [row("sucursal-virtual", v.finalidad), row("whatsapp", v.finalidad)];
-      } else if (!v.finalidad) {
-        rows = [row(v.canal, "comunicaciones-comerciales"), row(v.canal, "redec")];
-      } else {
-        rows = [row(v.canal, v.finalidad)];
+      var rows = [
+        row("PLT-01005", "Cesión de datos a empresas asociadas v1", null,
+          v.finalidad || "cesion-datos-empresas",
+          "Autorizo a Caja de Compensación La Araucana a comunicar mis datos de contacto a aseguradoras y otras empresas de servicios con las que mantenga acuerdos comerciales, con el fin de que puedan contactarme directamente con ofertas de productos y servicios.")
+      ];
+      if (v.canal) {
+        rows.unshift(row("PLT-01012", "Cláusula específica de canal v2", v.canal,
+          v.finalidad || "comunicaciones-comerciales",
+          "Autorizo el tratamiento de mis datos personales con la finalidad indicada, conforme a la Ley N°21.719. Puedo revocar este consentimiento en cualquier momento."));
       }
-      return { "@odata.context": "$metadata#" + c.tablaTextos, value: rows };
+      return {
+        "@odata.context": "$metadata#" + c.tablaTextos,
+        "//regla": "La fila con " + p + "canal = null es la plantilla que aplica a todos los canales.",
+        value: rows
+      };
     }
   },
   {
