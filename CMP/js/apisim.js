@@ -16,8 +16,20 @@ var DV = {
   version: "v9.2",
   prefix: "wit_",
   tablaConsent: "wit_consentimientos",
-  tablaTextos: "wit_plantillasdeconsentimiento"
+  tablaTextos: "wit_plantillaconsentimientos"
 };
+
+/* Códigos reales de finalidad (clave de negocio wit_finalidadbk) */
+var FINALIDADES_BK = [
+  ["COMCOM", "COMCOM — Comunicaciones comerciales"],
+  ["CESION", "CESION — Cesión de datos a empresas asociadas"],
+  ["REDEC", "REDEC — Registro de Deuda Consolidada"],
+  ["PERFIL", "PERFIL — Perfilamiento"],
+  ["PUBDIG", "PUBDIG — Publicidad digital"],
+  ["INFOBL-CTR", "INFOBL-CTR"],
+  ["INFOBL-LEG", "INFOBL-LEG"],
+  ["INFOBL-INT", "INFOBL-INT"]
+];
 
 var CANALES = [
   ["", "— Todos los canales —"],
@@ -138,57 +150,99 @@ var API_OPS = [
     id: "texto",
     nombre: "Plantilla de consentimiento vigente",
     grupo: "Negocio",
-    objetivo: "Obtener la plantilla publicada y vigente que el canal debe exhibir al titular: texto de la cláusula, versión y condiciones de vigencia. Regla del modelo: una plantilla con «Canal» vacío aplica a TODOS los canales, por lo que al consultar un canal específico también se devuelven las plantillas sin canal asignado.",
+    objetivo: "Obtener la plantilla publicada y vigente que el canal debe exhibir al titular. Regla del modelo: el canal se resuelve por la clave de negocio wit_canalbk y el centinela de «todos los canales» es la cadena 'TODOS' (no null). Una plantilla específica del canal SIEMPRE gana sobre la genérica, por lo que la resolución correcta son dos consultas encadenadas.",
     flujo: "F1 / F6",
     tabla: "tablaTextos",
     vars: [
-      { k: "canal", label: "Canal (vacío = todos)", type: "select", options: CANALES, def: "sucursal-virtual" },
-      { k: "finalidad", label: "Finalidad", type: "select", options: FINALIDADES, def: "comunicaciones-comerciales" },
-      { k: "soloPublicadas", label: "Solo plantillas publicadas y vigentes", type: "select", options: [["si", "Sí"], ["no", "No — todas las versiones"]], def: "si" }
+      { k: "finalidad", label: "Finalidad (wit_finalidadbk)", type: "select", options: FINALIDADES_BK, def: "COMCOM" },
+      { k: "canal", label: "Canal (wit_canalbk) — ej. SUCVIRT, WSPIN", type: "text", def: "SUCVIRT" },
+      {
+        k: "estrategia", label: "Estrategia de resolución", type: "select", def: "paso1",
+        options: [
+          ["paso1", "Paso 1 · plantilla específica del canal"],
+          ["paso2", "Paso 2 · fallback a TODOS (si el paso 1 da 0 filas)"],
+          ["combinada", "Una sola llamada · canal o TODOS"],
+          ["atajo", "Atajo · vigente por finalidad, resolver en cliente"]
+        ]
+      }
     ],
     path: function (v, c) {
       var p = c.prefix;
-      var cols = [p + "codigo", p + "nombre", p + "version", p + "textoclausula", p + "vigentedesde", p + "vigenciavalor", p + "vigenciaunidad"];
-      var f = [];
-      if (v.finalidad) f.push(p + "finalidad eq '" + v.finalidad + "'"); else cols.push(p + "finalidad");
-      // Canal vacío = plantilla aplicable a todos los canales
-      if (v.canal) { f.push("(" + p + "canal eq '" + v.canal + "' or " + p + "canal eq null)"); cols.push(p + "canal"); }
-      else cols.push(p + "canal");
-      if (v.soloPublicadas === "si") {
-        f.push(p + "estado eq 'Publicada'");
-        f.push("(" + p + "vigentehasta eq null or " + p + "vigentehasta ge " + new Date().toISOString().slice(0, 10) + ")");
+      var cols = [p + "codigo", p + "nombre", p + "version", p + "textoclausula",
+                  p + "finalidadbk", p + "canalbk", p + "estado",
+                  p + "vigentedesde", p + "vigentehasta", p + "vigenciavalor", p + "vigenciaunidad"];
+      var hoy = new Date().toISOString().slice(0, 10) + "T00:00:00Z";
+      var vigencia = "(" + p + "vigentehasta eq null or " + p + "vigentehasta ge " + hoy + ")";
+      var f = [p + "finalidadbk eq '" + v.finalidad + "'"];
+
+      if (v.estrategia === "atajo") {
+        f.push(p + "estado eq 2");
+        f.push(p + "vigentehasta eq null");
+        return odata(c.tablaTextos, cols, f, p + "version desc");
       }
+      if (v.estrategia === "paso1") {
+        f.push(p + "canalbk eq '" + v.canal + "'");
+        f.push(p + "estado eq 2"); f.push(vigencia);
+        return odata(c.tablaTextos, cols, f, p + "version desc", 1);
+      }
+      if (v.estrategia === "paso2") {
+        f.push(p + "canalbk eq 'TODOS'");
+        f.push(p + "estado eq 2"); f.push(vigencia);
+        return odata(c.tablaTextos, cols, f, p + "version desc", 1);
+      }
+      f.push("(" + p + "canalbk eq '" + v.canal + "' or " + p + "canalbk eq 'TODOS')");
+      f.push(p + "estado eq 2"); f.push(vigencia);
       return odata(c.tablaTextos, cols, f, p + "version desc");
     },
     resp: function (v, c) {
       var p = c.prefix;
-      function row(codigo, nombre, canal, fin, texto) {
+      function row(codigo, nombre, version, canalbk, texto) {
         var r = {};
         r[p + "codigo"] = codigo;
         r[p + "nombre"] = nombre;
-        r[p + "version"] = 1;
-        r[p + "textoclausula"] = texto;
+        r[p + "version"] = version;
+        r[p + "finalidadbk"] = v.finalidad;
+        r[p + "canalbk"] = canalbk;
+        r[p + "estado"] = 2;
+        r[p + "estado@OData.Community.Display.V1.FormattedValue"] = "Publicada";
         r[p + "vigentedesde"] = "2025-09-01T13:00:00Z";
-        r[p + "vigenciavalor"] = fin === "redec" ? 15 : 24;
-        r[p + "vigenciaunidad"] = fin === "redec" ? "Días hábiles bancarios" : "Meses";
-        if (!v.finalidad) r[p + "finalidad"] = fin;
-        r[p + "canal"] = canal;
+        r[p + "vigentehasta"] = null;
+        r[p + "vigenciavalor"] = v.finalidad === "REDEC" ? 15 : 24;
+        r[p + "vigenciaunidad@OData.Community.Display.V1.FormattedValue"] = v.finalidad === "REDEC" ? "Días hábiles bancarios" : "Meses";
+        r[p + "textoclausula"] = texto;
         return r;
       }
-      var rows = [
-        row("PLT-01005", "Cesión de datos a empresas asociadas v1", null,
-          v.finalidad || "cesion-datos-empresas",
-          "Autorizo a Caja de Compensación La Araucana a comunicar mis datos de contacto a aseguradoras y otras empresas de servicios con las que mantenga acuerdos comerciales, con el fin de que puedan contactarme directamente con ofertas de productos y servicios.")
-      ];
-      if (v.canal) {
-        rows.unshift(row("PLT-01012", "Cláusula específica de canal v2", v.canal,
-          v.finalidad || "comunicaciones-comerciales",
-          "Autorizo el tratamiento de mis datos personales con la finalidad indicada, conforme a la Ley N°21.719. Puedo revocar este consentimiento en cualquier momento."));
+      var generica = row("PLT-01002", "Comunicaciones comerciales v3", 3, "TODOS",
+        "Autorizo a Caja de Compensación La Araucana al tratamiento de mis datos personales con la finalidad indicada, conforme a la Ley N°21.719. Puedo revocar este consentimiento en cualquier momento.");
+      var especifica = row("PLT-01014", "Cláusula WhatsApp v1", 1, v.canal,
+        "Autorizo el tratamiento de mis datos personales para ser contactado por WhatsApp con la finalidad indicada, conforme a la Ley N°21.719.");
+      var esWsp = (v.canal || "").toUpperCase() === "WSPIN";
+
+      if (v.estrategia === "paso1") {
+        return {
+          "@odata.context": "$metadata#" + c.tablaTextos,
+          "//paso": "Paso 1 — específica del canal '" + v.canal + "'. Si devuelve 0 filas, ejecutar el Paso 2.",
+          value: esWsp ? [especifica] : []
+        };
+      }
+      if (v.estrategia === "paso2") {
+        return {
+          "@odata.context": "$metadata#" + c.tablaTextos,
+          "//paso": "Paso 2 — fallback a la plantilla genérica (canal 'TODOS').",
+          value: [generica]
+        };
+      }
+      if (v.estrategia === "atajo") {
+        return {
+          "@odata.context": "$metadata#" + c.tablaTextos,
+          "//resolucion": "Elegir en el cliente la fila cuyo " + p + "canalbk coincida con el canal; si ninguna coincide, usar la de 'TODOS'.",
+          value: esWsp ? [especifica, generica] : [generica]
+        };
       }
       return {
         "@odata.context": "$metadata#" + c.tablaTextos,
-        "//regla": "La fila con " + p + "canal = null es la plantilla que aplica a todos los canales.",
-        value: rows
+        "//advertencia": "Con una sola llamada, $orderby=version desc NO garantiza que la específica gane sobre 'TODOS'. Preferir la resolución en dos pasos.",
+        value: esWsp ? [especifica, generica] : [generica]
       };
     }
   },
