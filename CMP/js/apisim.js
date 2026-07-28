@@ -69,8 +69,28 @@ var API_OPS = [
     }
   },
   {
+    id: "servicedoc",
+    nombre: "② Listar TODAS las tablas (service document)",
+    grupo: "Esquema",
+    objetivo: "Devuelve el documento de servicio OData con el nombre exacto de todos los entity sets del ambiente. Es la consulta más simple y confiable para encontrar el nombre real de una tabla: ábrela y busca «plantilla» o «consentimiento» con Ctrl+F. No lleva filtros, por lo que no puede fallar por sintaxis.",
+    vars: [],
+    path: function () { return ""; },
+    resp: function () {
+      return {
+        "@odata.context": "$metadata",
+        value: [
+          { name: "accounts", kind: "EntitySet", url: "accounts" },
+          { name: "…", kind: "…", url: "…" },
+          { name: "<prefijo>_plantilladeconsentimientos", kind: "EntitySet", url: "<prefijo>_plantilladeconsentimientos" },
+          { name: "<prefijo>_consentimientos", kind: "EntitySet", url: "<prefijo>_consentimientos" }
+        ],
+        "//nota": "Copia el valor exacto de 'name' y pégalo en los campos de tabla de la cabecera del simulador."
+      };
+    }
+  },
+  {
     id: "tablas",
-    nombre: "② Descubrir tablas del CMP",
+    nombre: "③ Descubrir tablas personalizadas",
     grupo: "Esquema",
     objetivo: "Lista las tablas personalizadas publicadas en el ambiente con su nombre lógico real. Sirve para identificar los nombres exactos del modelo de consentimientos y configurarlos en la cabecera del simulador. Funciona sin conocer el esquema.",
     vars: [{ k: "busca", label: "Filtrar por texto en el nombre (opcional)", type: "text", def: "" }],
@@ -93,7 +113,7 @@ var API_OPS = [
   },
   {
     id: "columnas",
-    nombre: "③ Descubrir columnas de una tabla",
+    nombre: "④ Descubrir columnas de una tabla",
     grupo: "Esquema",
     objetivo: "Lista las columnas de una tabla con su nombre lógico y tipo de dato. Permite confirmar los nombres exactos de los campos antes de construir las consultas de negocio.",
     vars: [{ k: "tabla", label: "Nombre lógico de la tabla", type: "text", def: "wit_consentimiento" }],
