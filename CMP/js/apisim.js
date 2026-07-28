@@ -16,7 +16,8 @@ var DV = {
   version: "v9.2",
   prefix: "wit_",
   tablaConsent: "wit_consentimientos",
-  tablaTextos: "wit_plantillaconsentimientos"
+  tablaTextos: "wit_plantillaconsentimientos",
+  tablaAcciones: "wit_accionconsentimientos"
 };
 
 /* Códigos reales de finalidad (clave de negocio wit_finalidadbk) */
@@ -54,9 +55,10 @@ var FINALIDADES = [
 ];
 
 /* Construye la query OData sin cláusulas vacías ni "and" colgantes */
-function odata(entity, cols, filters, orderby, top) {
+function odata(entity, cols, filters, orderby, top, expand) {
   var parts = [];
   if (cols && cols.length) parts.push("$select=" + cols.join(","));
+  if (expand) parts.push("$expand=" + expand);
   if (filters && filters.length) parts.push("$filter=" + filters.join(" and "));
   if (orderby) parts.push("$orderby=" + orderby);
   if (top) parts.push("$top=" + top);
@@ -250,38 +252,50 @@ var API_OPS = [
     id: "estado",
     nombre: "Estado de consentimiento por RUT",
     grupo: "Negocio",
-    objetivo: "Consultar el estado vigente del titular antes de tratar sus datos. Con finalidad en «Todas» devuelve una fila por finalidad, incluyendo la columna de finalidad para identificarlas.",
+    objetivo: "Consultar los consentimientos del titular antes de tratar sus datos. El RUT se filtra por wit_titularbk (no existe wit_rut en Consentimiento: ese campo vive en Contact) y la fecha del otorgamiento es wit_fechahoraotorgamiento. El número de versión del texto NO vive en el consentimiento: el registro guarda wit_plantillabk (ej. PLT-01001) y para traer la versión hay que expandir el lookup wit_plantilla.",
     flujo: "F2",
     tabla: "tablaConsent",
     vars: [
-      { k: "rut", label: "RUT del titular", type: "text", def: "12345678-5" },
-      { k: "finalidad", label: "Finalidad", type: "select", options: FINALIDADES, def: "" },
-      { k: "canal", label: "Canal de origen", type: "select", options: CANALES, def: "" }
+      { k: "rut", label: "RUT del titular (wit_titularbk)", type: "text", def: "15255910-0" },
+      { k: "finalidad", label: "Finalidad (wit_finalidadbk)", type: "select", options: [["", "— Todas las finalidades —"]].concat(FINALIDADES_BK), def: "COMCOM" },
+      { k: "canal", label: "Canal (wit_canalbk) — vacío = todos", type: "text", def: "WSPIN" },
+      {
+        k: "expandir", label: "Versión del texto", type: "select", def: "si",
+        options: [["si", "Expandir plantilla (trae wit_version)"], ["no", "Solo wit_plantillabk (más liviano)"]]
+      }
     ],
     path: function (v, c) {
-      var p = c.prefix, cols = [p + "estado", p + "fechaevento", p + "versiontexto"], f = [];
-      if (v.rut) f.push(p + "rut eq '" + v.rut + "'");
-      if (v.finalidad) f.push(p + "finalidad eq '" + v.finalidad + "'"); else cols.push(p + "finalidad");
-      if (v.canal) f.push(p + "canal eq '" + v.canal + "'"); else cols.push(p + "canal");
-      return odata(c.tablaConsent, cols, f, p + "fechaevento desc");
+      var p = c.prefix;
+      var cols = [p + "idaraucana", p + "estado", p + "fechahoraotorgamiento", p + "plantillabk"];
+      var f = [];
+      if (v.rut) f.push(p + "titularbk eq '" + v.rut + "'");
+      if (v.finalidad) f.push(p + "finalidadbk eq '" + v.finalidad + "'"); else cols.push(p + "finalidadbk");
+      if (v.canal) f.push(p + "canalbk eq '" + v.canal + "'"); else cols.push(p + "canalbk");
+      var expand = v.expandir === "si" ? p + "plantilla($select=" + p + "version," + p + "nombre)" : null;
+      return odata(c.tablaConsent, cols, f, p + "fechahoraotorgamiento desc", null, expand);
     },
     resp: function (v, c) {
       var p = c.prefix;
-      function row(fin, canal, estado) {
+      function row(fin, canal, plantillabk, version, nombre) {
         var r = {};
-        r[p + "estado"] = estado;
-        r[p + "fechaevento"] = "2026-10-14T11:32:07Z";
-        r[p + "versiontexto"] = "v3.2";
-        if (!v.finalidad) r[p + "finalidad"] = fin;
-        if (!v.canal) r[p + "canal"] = canal;
+        r[p + "idaraucana"] = "CCLA000000000001299";
+        r[p + "estado@OData.Community.Display.V1.FormattedValue"] = "Vigente";
+        r[p + "estado"] = 1;
+        r[p + "fechahoraotorgamiento"] = "2026-02-01T17:41:00Z";
+        r[p + "plantillabk"] = plantillabk;
+        if (!v.finalidad) r[p + "finalidadbk"] = fin;
+        if (!v.canal) r[p + "canalbk"] = canal;
+        if (v.expandir === "si") {
+          r[p + "plantilla"] = {};
+          r[p + "plantilla"][p + "version"] = version;
+          r[p + "plantilla"][p + "nombre"] = nombre;
+        }
         return r;
       }
       var rows = v.finalidad
-        ? [row(v.finalidad, v.canal || "sucursal-virtual", "otorgado")]
-        : [row("comunicaciones-comerciales", "sucursal-virtual", "otorgado"),
-           row("evaluacion-crediticia", "web-publica", "otorgado"),
-           row("redec", "sucursal-fisica", "vigente"),
-           row("datos-sensibles-salud", "sucursal-virtual", "nunca_otorgado")];
+        ? [row(v.finalidad, v.canal || "WSPIN", "PLT-01001", 2, "Comunicaciones comerciales v2")]
+        : [row("COMCOM", "WSPIN", "PLT-01001", 2, "Comunicaciones comerciales v2"),
+           row("CESION", "SUCVIRT", "PLT-01005", 1, "Cesión de datos a empresas asociadas v1")];
       return { "@odata.context": "$metadata#" + c.tablaConsent, value: rows };
     }
   },
@@ -292,57 +306,63 @@ var API_OPS = [
     objetivo: "Obtener el código interno de gestión, el código encriptado, la referencia a la evidencia digitalizada y el vencimiento de los 15 días hábiles bancarios, insumo de los reportes RDC30/RDC31.",
     flujo: "F4 / F5",
     tabla: "tablaConsent",
-    vars: [{ k: "rut", label: "RUT del titular (vacío = todos)", type: "text", def: "12345678-5" }],
+    vars: [{ k: "rut", label: "RUT del titular (wit_titularbk) — vacío = todos", type: "text", def: "15255910-0" }],
     path: function (v, c) {
       var p = c.prefix;
-      var cols = [p + "codigointerno", p + "codigoencriptado", p + "vencimiento", p + "evidenciaref"];
-      var f = [p + "finalidad eq 'redec'"];
-      if (v.rut) f.push(p + "rut eq '" + v.rut + "'"); else cols.push(p + "rut");
-      return odata(c.tablaConsent, cols, f, p + "vencimiento asc");
+      var cols = [p + "idaraucana", p + "estado", p + "fechahoraotorgamiento", p + "plantillabk", p + "titularbk"];
+      var f = [p + "finalidadbk eq 'REDEC'"];
+      if (v.rut) f.push(p + "titularbk eq '" + v.rut + "'");
+      return odata(c.tablaConsent, cols, f, p + "fechahoraotorgamiento desc");
     },
     resp: function (v, c) {
       var p = c.prefix, r = {};
-      if (!v.rut) r[p + "rut"] = "12345678-5";
-      r[p + "codigointerno"] = "RDC-2026-004871";
-      r[p + "codigoencriptado"] = "AES256:7d4f…c92e";
-      r[p + "vencimiento"] = "2026-11-04";
-      r[p + "evidenciaref"] = "evd/2026/10/RDC-2026-004871.pdf";
-      return { "@odata.context": "$metadata#" + c.tablaConsent, value: [r] };
+      r[p + "idaraucana"] = "CCLA000000000001341";
+      r[p + "estado@OData.Community.Display.V1.FormattedValue"] = "Vigente";
+      r[p + "fechahoraotorgamiento"] = "2026-10-14T11:32:07Z";
+      r[p + "plantillabk"] = "PLT-01009";
+      r[p + "titularbk"] = v.rut || "15255910-0";
+      return {
+        "@odata.context": "$metadata#" + c.tablaConsent,
+        "//nota": "Los campos específicos de REDEC (código interno, código encriptado, vencimiento y referencia a la evidencia) están pendientes de verificar contra EntityDefinitions.",
+        value: [r]
+      };
     }
   },
   {
     id: "auditoria",
-    nombre: "Historial auditable de eventos",
+    nombre: "Bitácora de acciones (historial auditable)",
     grupo: "Negocio",
-    objetivo: "Recuperar el historial inmutable de un titular para responder derechos de acceso (ARCO+PB) o una fiscalización: cada otorgamiento, modificación y revocación con su método de verificación y metadatos.",
+    objetivo: "Recuperar el historial inmutable para responder derechos de acceso (ARCO+PB) o una fiscalización. La bitácora vive en la tabla wit_accionconsentimiento, con la marca temporal en wit_fechahora: es una tabla distinta del consentimiento, que solo guarda el estado vigente.",
     flujo: "F5",
-    tabla: "tablaConsent",
+    tabla: "tablaAcciones",
     vars: [
-      { k: "rut", label: "RUT del titular (vacío = todos)", type: "text", def: "12345678-5" },
+      { k: "rut", label: "RUT del titular (vacío = todos)", type: "text", def: "15255910-0" },
       { k: "top", label: "Máximo de eventos", type: "text", def: "10" }
     ],
     path: function (v, c) {
       var p = c.prefix;
-      var cols = [p + "tipoevento", p + "finalidad", p + "canal", p + "fechaevento", p + "metodoverificacion"];
+      var cols = [p + "fechahora", p + "titularbk", p + "finalidadbk", p + "canalbk"];
       var f = [];
-      if (v.rut) f.push(p + "rut eq '" + v.rut + "'"); else cols.push(p + "rut");
-      return odata(c.tablaConsent, cols, f, p + "fechaevento desc", v.top);
+      if (v.rut) f.push(p + "titularbk eq '" + v.rut + "'");
+      return odata(c.tablaAcciones, cols, f, p + "fechahora desc", v.top);
     },
     resp: function (v, c) {
       var p = c.prefix;
-      function ev(tipo, fin, canal, fecha) {
+      function ev(fin, canal, fecha) {
         var r = {};
-        if (!v.rut) r[p + "rut"] = "12345678-5";
-        r[p + "tipoevento"] = tipo; r[p + "finalidad"] = fin; r[p + "canal"] = canal;
-        r[p + "fechaevento"] = fecha; r[p + "metodoverificacion"] = "clave-unica";
+        r[p + "fechahora"] = fecha;
+        r[p + "titularbk"] = v.rut || "15255910-0";
+        r[p + "finalidadbk"] = fin;
+        r[p + "canalbk"] = canal;
         return r;
       }
       return {
-        "@odata.context": "$metadata#" + c.tablaConsent,
+        "@odata.context": "$metadata#" + c.tablaAcciones,
+        "//nota": "Nombres de columna de la bitácora pendientes de verificar contra EntityDefinitions.",
         value: [
-          ev("revocacion", "perfilamiento", "centro-contacto", "2026-10-18T09:14:55Z"),
-          ev("otorgamiento", "redec", "sucursal-fisica", "2026-10-14T11:32:07Z"),
-          ev("otorgamiento", "comunicaciones-comerciales", "sucursal-virtual", "2026-09-02T16:48:19Z")
+          ev("PERFIL", "CCONT", "2026-10-18T09:14:55Z"),
+          ev("REDEC", "SUCFIS", "2026-10-14T11:32:07Z"),
+          ev("COMCOM", "WSPIN", "2026-02-01T17:41:00Z")
         ]
       };
     }
@@ -381,7 +401,8 @@ var API_OPS = [
       host: (ins.host.value || DV.host).replace(/\/+$/, ""),
       prefix: ins.prefix.value || "",
       tablaConsent: ins.tablaConsent.value || DV.tablaConsent,
-      tablaTextos: ins.tablaTextos.value || DV.tablaTextos
+      tablaTextos: ins.tablaTextos.value || DV.tablaTextos,
+      tablaAcciones: DV.tablaAcciones
     };
   }
 
