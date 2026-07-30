@@ -1,14 +1,20 @@
 """
 Plataforma de Gestión de Consentimientos — Flask backend para Azure App Service
 Recibe el formulario "Solicitar demo" y:
-  1) crea un Lead en Dynamics 365
+  1) crea una Oportunidad en el Centro de Ventas de Dynamics 365
+     (ambiente comercial real de W-IT: w-it.crm2.dynamics.com)
   2) envía un correo de notificación vía Microsoft Graph (mismo App Registration)
 
 Patrón basado en la guía de integración validada en el proyecto SIGALU
 (App Service Linux + gunicorn, no Azure Functions Flex Consumption — ver
-GUIA-INTEGRACION-DYNAMICS.md en la raíz de este backend para el detalle
-de las trampas ya resueltas: comando de inicio, URLs OData con espacios,
-CORS, variables de entorno leídas en tiempo de petición, etc.)
+GUIA-BASE-SIGALU.md en esta misma carpeta para el detalle de las trampas ya
+resueltas: comando de inicio, URLs OData con espacios, CORS, variables de
+entorno leídas en tiempo de petición, etc.)
+
+La creación de la Oportunidad es intencionalmente parcial: solo escribe
+campos estándar sin riesgo (name, description). Ver el comentario sobre
+create_opportunity() y README.md para los campos personalizados obligatorios
+del ambiente que todavía faltan por confirmar.
 """
 import os, json, logging, urllib.request, urllib.parse, urllib.error
 from flask import Flask, request, jsonify
@@ -105,25 +111,43 @@ def graph(token, method, path, payload=None):
 
 
 # ---------------------------------------------------------------------------
-# Dynamics: crear el Lead
+# Dynamics: crear la Oportunidad (Centro de ventas, w-it.crm2.dynamics.com)
 #
-# A diferencia de un Caso (Incident), el Lead NO exige un customerid: es la
-# entidad pensada justamente para un prospecto todavía sin calificar. Se usan
-# solo campos estándar (subject, firstname, lastname, emailaddress1,
-# telephone1, companyname, jobtitle, description) presentes en cualquier
-# ambiente Dynamics sin personalizar — evita el error "Invalid property 'X'"
-# que sí puede ocurrir con campos personalizados que cambian de nombre según
-# el ambiente (ver GUIA-INTEGRACION-DYNAMICS.md, nota tras la sección 5d).
+# ⚠️ ESTADO: implementación PARCIAL a propósito.
 #
-# Los datos que no tienen un campo estándar equivalente (industria, volumen
-# de titulares, intereses, evidencia del consentimiento del propio
-# formulario) se incorporan al campo "description" en texto legible, en vez
-# de adivinar el nombre de un campo personalizado que podría no existir.
+# El formulario real de Oportunidad en este ambiente tiene varios campos
+# PERSONALIZADOS marcados como obligatorios en el formulario (según captura
+# compartida): Cuenta*, Con Microsoft*, Requerimiento*, Venta de licencias*,
+# Consultor principal*, además de Orden de Compra, Tipo de cuenta, AM de
+# Microsoft, Congelar, Es licitación, Situación actual, Necesidad del
+# cliente, Solución propuesta. Ninguno de esos es un campo estándar de
+# Dataverse — sus nombres lógicos (schema name) son específicos de este
+# ambiente y NO deben adivinarse: la lección del simulador de la propuesta
+# CMP mostró que un nombre "razonable" casi nunca es el nombre lógico real,
+# y un valor de choice (opción de lista) mal adivinado puede crear un
+# registro con datos incorrectos en vez de fallar limpiamente.
+#
+# Por eso este código solo escribe los dos campos estándar y sin riesgo:
+#   - name        (Tema)
+#   - description (todo el resto del formulario web, en texto legible)
+#
+# Si el ambiente exige alguno de los campos personalizados para poder CREAR
+# el registro (no solo para avanzarlo de etapa), esta llamada fallará con un
+# 400 cuyo mensaje indica exactamente qué campo falta — se captura y no
+# rompe el flujo completo: la notificación por correo (send_notification)
+# de todas formas se envía, así ninguna solicitud se pierde mientras se
+# completa el mapeo de campos personalizados (ver README.md, sección
+# "Pendiente para completar Oportunidad").
 # ---------------------------------------------------------------------------
 def build_description(d, ip):
     intereses = ", ".join(d.get("intereses") or []) or "—"
     return (
         f"Solicitud de demo — Plataforma de Gestión de Consentimientos\n\n"
+        f"Contacto: {d['nombre']} {d['apellido']}\n"
+        f"Correo: {d['email']}\n"
+        f"Teléfono: {d.get('telefono') or '—'}\n"
+        f"Empresa: {d['empresa']}\n"
+        f"Cargo: {d.get('cargo') or '—'}\n"
         f"Industria: {d.get('industria') or '—'}\n"
         f"Volumen de titulares: {d.get('volumen_titulares') or '—'}\n"
         f"Necesita resolver: {intereses}\n\n"
@@ -139,23 +163,20 @@ def build_description(d, ip):
     )
 
 
-def create_lead(cfg, d, ip):
+def create_opportunity(cfg, d, ip):
     payload = {
-        "subject":       f"Solicitud de demo — {d['empresa']}",
-        "firstname":     d["nombre"],
-        "lastname":      d["apellido"],
-        "emailaddress1": d["email"],
-        "companyname":   d["empresa"],
-        "description":   build_description(d, ip),
+        "name":        f"{d['empresa']} — Solicitud demo Plataforma de Consentimientos",
+        "description": build_description(d, ip),
+        # TODO una vez confirmados los nombres lógicos reales (ver README):
+        # "<campo_con_microsoft>": <valor choice>,
+        # "<campo_requerimiento>": <valor choice>,
+        # "<campo_venta_licencias>": <valor choice>,
+        # "<campo_consultor_principal>@odata.bind": "/systemusers(<guid>)",
+        # "customerid_account@odata.bind": f"/accounts({account_id})",  # si "Cuenta" es el lookup estándar
     }
-    if d.get("telefono"):
-        payload["telephone1"] = d["telefono"]
-    if d.get("cargo"):
-        payload["jobtitle"] = d["cargo"]
-
     token = get_token(cfg, f"{cfg['url']}/.default")
-    lead = d365(cfg, token, "POST", "leads", payload)
-    return lead.get("leadid", ""), lead.get("fullname", d["nombre"])
+    opp = d365(cfg, token, "POST", "opportunities", payload)
+    return opp.get("opportunityid", ""), opp.get("name", d["empresa"])
 
 
 # ---------------------------------------------------------------------------
@@ -183,11 +204,12 @@ def build_email_body(d, lead_note):
     )
 
 
-def send_notification(cfg, d, lead_id):
+def send_notification(cfg, d, opportunity_id):
     if not (cfg["mail_from"] and cfg["mail_to"]):
         logging.warning("MAIL_FROM/MAIL_TO no configurados: se omite el correo")
         return False
-    note = f"Lead creado en Dynamics: {lead_id}" if lead_id else "⚠️ No se pudo crear el Lead en Dynamics — revisar logs."
+    note = (f"Oportunidad creada en Dynamics: {opportunity_id}" if opportunity_id
+            else "⚠️ No se pudo crear la Oportunidad en Dynamics — revisar logs (probable campo personalizado obligatorio faltante).")
     token = get_token(cfg, "https://graph.microsoft.com/.default")
     message = {
         "message": {
@@ -269,23 +291,26 @@ def lead():
             "referrer": body.get("referrer", ""),
         }
 
-        lead_id, lead_ok, mail_ok = "", False, False
+        opportunity_id, opp_ok, mail_ok = "", False, False
         try:
-            lead_id, _ = create_lead(cfg, d, ip)
-            lead_ok = bool(lead_id)
+            opportunity_id, _ = create_opportunity(cfg, d, ip)
+            opp_ok = bool(opportunity_id)
         except Exception:
-            logging.exception("Error creando el Lead en Dynamics")
+            logging.exception("Error creando la Oportunidad en Dynamics")
 
         try:
-            mail_ok = send_notification(cfg, d, lead_id)
+            mail_ok = send_notification(cfg, d, opportunity_id)
         except Exception:
             logging.exception("Error enviando la notificación por correo")
 
         # El envío se considera exitoso si al menos uno de los dos canales
         # (CRM o correo) funcionó — así una falla puntual de un canal no
-        # hace perder la solicitud completa.
-        if lead_ok or mail_ok:
-            return jsonify({"ok": True, "leadid": lead_id, "mail_sent": mail_ok})
+        # hace perder la solicitud completa. Mientras falten por confirmar
+        # los campos personalizados obligatorios de Oportunidad (ver
+        # README.md), es normal que opp_ok sea False y el correo sea el
+        # canal que efectivamente entrega la solicitud.
+        if opp_ok or mail_ok:
+            return jsonify({"ok": True, "opportunityid": opportunity_id, "mail_sent": mail_ok})
         return jsonify({"ok": False, "msg": "No se pudo registrar la solicitud. Intente nuevamente o escríbanos directamente."}), 502
 
     except Exception as e:
