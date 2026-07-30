@@ -2,19 +2,24 @@
    Formulario de solicitud de demo → CRM
    Plataforma de Gestión de Consentimientos · W-IT + RegulaTec
 
-   CONFIGURACIÓN (único punto a editar):
-   Pegue en CRM.endpoint la URL del flujo de Power Automate con
-   trigger "Cuando se recibe una solicitud HTTP" (o del endpoint
-   equivalente: Logic App, Azure Function o /api de Static Web Apps).
-   Mientras esté vacío, el formulario valida y cae a correo, de modo
-   que nunca se pierde un lead.
+   CONFIGURACIÓN (dos puntos a editar cuando esté desplegado el backend):
+   1) CRM.endpoint: la URL del App Service, ej.
+      "https://lead-a-dynamics.azurewebsites.net/api/lead"
+      (ver backend/lead-a-dynamics/ en el repo). Mientras esté vacío, el
+      formulario valida y cae a correo, de modo que nunca se pierde un lead.
+   2) RECAPTCHA.siteKey: el "site key" de google.com/recaptcha/admin (v2).
+      Mientras esté vacío, el formulario funciona igual, sin captcha.
    ============================================================ */
 
 var CRM = {
-  endpoint: "",                                 // ej: "https://prod-00.brazilsouth.logic.azure.com:443/workflows/..."
+  endpoint: "",                                 // ej: "https://lead-a-dynamics.azurewebsites.net/api/lead"
   fallbackEmail: "ventas@regulatec.cl",
   consentVersion: "v1.0",
   origen: "web-plataforma-consentimientos"
+};
+
+var RECAPTCHA = {
+  siteKey: ""                                   // ej: "6Lc...ABC" (site key de reCAPTCHA v2)
 };
 
 (function () {
@@ -27,6 +32,26 @@ var CRM = {
   var okTxt = document.getElementById("formOkTxt");
   var btn = document.getElementById("leadSubmit");
   var resetBtn = document.getElementById("formReset");
+  var captchaEl = document.getElementById("leadCaptcha");
+
+  /* El widget solo se activa si hay site key configurado. Si no, se oculta
+     y el formulario funciona igual (sin captcha). */
+  if (captchaEl) {
+    if (RECAPTCHA.siteKey) captchaEl.setAttribute("data-sitekey", RECAPTCHA.siteKey);
+    else captchaEl.style.display = "none";
+  }
+
+  function captchaActive() {
+    return !!(captchaEl && captchaEl.hasAttribute("data-sitekey"));
+  }
+  function captchaToken() {
+    try { return (captchaActive() && window.grecaptcha) ? window.grecaptcha.getResponse() : ""; }
+    catch (e) { return ""; }
+  }
+  function captchaReset() {
+    try { if (captchaActive() && window.grecaptcha) window.grecaptcha.reset(); }
+    catch (e) {}
+  }
 
   var REQUIRED = {
     nombre: "Indique su nombre.",
@@ -54,6 +79,7 @@ var CRM = {
   function validate(data) {
     var firstBad = null;
     clearErrs();
+    showErr("captcha", "");
     Object.keys(REQUIRED).forEach(function (k) {
       var bad = false;
       if (k === "consentimiento") bad = !form.querySelector('[name="consentimiento"]').checked;
@@ -61,6 +87,10 @@ var CRM = {
       else bad = !(data[k] || "").trim();
       if (bad) { showErr(k, REQUIRED[k]); if (!firstBad) firstBad = k; }
     });
+    if (captchaActive() && !captchaToken()) {
+      showErr("captcha", "Confirme que no es un robot.");
+      if (!firstBad) firstBad = "captcha";
+    }
     if (firstBad) {
       var el = form.querySelector('[name="' + firstBad + '"]');
       if (el && el.focus) el.focus();
@@ -91,6 +121,7 @@ var CRM = {
       origen: CRM.origen,
       url: location.href,
       referrer: document.referrer || "",
+      captchaToken: captchaToken(),
       _hp: fd.get("_hp") || ""
     };
   }
@@ -151,6 +182,7 @@ var CRM = {
     }).catch(function () {
       btn.disabled = false;
       btn.textContent = original;
+      captchaReset();
       showErr("email", "No pudimos enviar la solicitud. Reintente o escríbanos a " + CRM.fallbackEmail + ".");
     });
   });
@@ -159,6 +191,7 @@ var CRM = {
     resetBtn.addEventListener("click", function () {
       form.reset();
       clearErrs();
+      captchaReset();
       btn.disabled = false;
       btn.textContent = "Enviar solicitud";
       okBox.hidden = true;

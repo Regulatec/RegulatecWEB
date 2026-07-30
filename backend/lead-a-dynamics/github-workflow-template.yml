@@ -1,0 +1,72 @@
+# TEMPLATE — no copiar tal cual a .github/workflows/.
+#
+# Cuando conectes este App Service a GitHub desde el "Centro de
+# implementación" de Azure (ver GUIA-INTEGRACION-DYNAMICS.md, sección 8),
+# Azure va a generar automáticamente un archivo
+# .github/workflows/main_<nombre-app>.yml en este repo, con los secretos
+# OIDC (AZUREAPPSERVICE_CLIENTID_..., etc.) ya cargados — no hay que crear
+# esos secretos a mano.
+#
+# Ese archivo autogenerado asume que el código Flask vive en la RAÍZ del
+# repositorio. Como en este repo el backend vive en backend/lead-a-dynamics/
+# (junto al sitio estático de Regulatec y el CMP), hay que reemplazar el
+# contenido autogenerado por este, ajustando <nombre-app> y los nombres de
+# secreto exactos que Azure haya creado (verificarlos en Settings → Secrets
+# and variables → Actions del repo).
+#
+# Cambios sobre la plantilla original de la guía:
+#   - agrega un filtro "paths" para que este workflow NO se dispare en cada
+#     push al sitio estático o al CMP, solo cuando cambie este backend.
+
+name: Build and deploy lead-a-dynamics to Azure Web App
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/lead-a-dynamics/**'
+  workflow_dispatch:
+
+env:
+  APP_PATH: 'backend/lead-a-dynamics'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          cd ${{ env.APP_PATH }}
+          pip install -r requirements.txt
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app
+          path: ${{ env.APP_PATH }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-app
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_XXXX }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_XXXX }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_XXXX }}
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: '<nombre-app>'
+          slot-name: 'Production'
+          package: '.'

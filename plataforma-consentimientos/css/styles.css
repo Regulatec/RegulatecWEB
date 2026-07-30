@@ -214,6 +214,7 @@ a{color:inherit;text-decoration:none}
 .consent strong{color:var(--navy)}
 .consent i{color:#c0392b;font-style:normal}
 .consent a{color:var(--green-700);text-decoration:underline}
+.g-recaptcha{margin:14px 0 4px}
 .form__submit{width:100%;margin-top:16px}
 .form__note{margin-top:12px;color:var(--muted);font-size:.78rem;text-align:center}
 .form__note i{color:#c0392b;font-style:normal}
