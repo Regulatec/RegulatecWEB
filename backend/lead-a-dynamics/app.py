@@ -163,17 +163,51 @@ def build_description(d, ip):
     )
 
 
+# Campos personalizados confirmados contra EntityDefinitions de
+# w-it.crm2.dynamics.com (entidad "opportunity", IsCustomAttribute eq true).
+# "Cuenta" NO aparece en esa lista de campos personalizados: es el lookup
+# polimórfico estándar `customerid` (Account/Contact).
+OPP_DEFAULTS = {
+    # wit_conmicrosoft (Boolean) — ¿la oportunidad involucra a Microsoft
+    # (co-venta/referido)? Ajustar si para este producto el default debiera
+    # ser True (la plataforma se construye sobre Power Platform/Dataverse).
+    "con_microsoft": False,
+    # wit_ventadelicencias (Boolean) — ¿incluye venta de licencias Microsoft?
+    "venta_licencias": False,
+}
+
+# wit_requerimiento (Picklist) — falta el valor numérico de la opción
+# "Otro". Obtenerlo con:
+#   GET {D365_URL}/api/data/v9.2/EntityDefinitions(LogicalName='opportunity')
+#       /Attributes(LogicalName='wit_requerimiento')
+#       /Microsoft.Dynamics.CRM.PicklistAttributeMetadata?$select=LogicalName&$expand=OptionSet
+# y completar aquí:
+REQUERIMIENTO_OTRO = None  # ej. 100000003 — reemplazar cuando se confirme
+
+# wit_consultorprincipalid (Lookup a systemusers) — GUID del usuario/equipo
+# que debe quedar como dueño por defecto de las oportunidades entrantes por
+# el formulario web. Sin este dato, se omite: la Oportunidad quedará sin
+# ese campo obligatorio y Dynamics rechazará la creación (ver docstring de
+# esta función) hasta que se decida y se complete.
+CONSULTOR_PRINCIPAL_DEFAULT_ID = None  # ej. "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+
+
 def create_opportunity(cfg, d, ip):
     payload = {
-        "name":        f"{d['empresa']} — Solicitud demo Plataforma de Consentimientos",
-        "description": build_description(d, ip),
-        # TODO una vez confirmados los nombres lógicos reales (ver README):
-        # "<campo_con_microsoft>": <valor choice>,
-        # "<campo_requerimiento>": <valor choice>,
-        # "<campo_venta_licencias>": <valor choice>,
-        # "<campo_consultor_principal>@odata.bind": "/systemusers(<guid>)",
-        # "customerid_account@odata.bind": f"/accounts({account_id})",  # si "Cuenta" es el lookup estándar
+        "name":                 f"{d['empresa']} — Solicitud demo Plataforma de Consentimientos",
+        "description":          build_description(d, ip),
+        "wit_conmicrosoft":     OPP_DEFAULTS["con_microsoft"],
+        "wit_ventadelicencias": OPP_DEFAULTS["venta_licencias"],
     }
+    if REQUERIMIENTO_OTRO is not None:
+        payload["wit_requerimiento"] = REQUERIMIENTO_OTRO
+    if CONSULTOR_PRINCIPAL_DEFAULT_ID:
+        payload["wit_consultorprincipalid@odata.bind"] = f"/systemusers({CONSULTOR_PRINCIPAL_DEFAULT_ID})"
+    # "Cuenta" (customerid) deliberadamente sin enlazar: buscar/crear una
+    # Cuenta por nombre de empresa es frágil (nombres que no calzan exacto
+    # generan duplicados) y es una decisión de negocio, no técnica — ver
+    # README.md, sección "Cómo tratar Cuenta".
+
     token = get_token(cfg, f"{cfg['url']}/.default")
     opp = d365(cfg, token, "POST", "opportunities", payload)
     return opp.get("opportunityid", ""), opp.get("name", d["empresa"])

@@ -32,55 +32,50 @@ presentes en el formulario: Orden de Compra, Tipo de cuenta, AM de
 Microsoft, Congelar, Es licitación, Situación actual, Necesidad del
 cliente, Solución propuesta.
 
-Ninguno de esos es un campo estándar de Dataverse: sus **nombres lógicos**
-(schema name) son específicos de este ambiente. La lección del simulador de
-API de la propuesta CMP mostró que adivinar esos nombres —o el valor
-numérico de una opción de lista (choice)— casi nunca acierta, y en el peor
-caso no falla limpiamente sino que **crea el registro con datos
-incorrectos**. Por eso `create_opportunity()` en `app.py` hoy solo escribe:
+### Ya confirmado contra `EntityDefinitions` (entidad `opportunity`)
 
-- `name` (Tema) — con el nombre de la empresa
-- `description` — con todo el resto de los datos del formulario, en texto
+| Campo del formulario | Nombre lógico | Tipo | Estado |
+|---|---|---|---|
+| Cuenta * | `customerid` (estándar — no aparece entre los personalizados) | Lookup polimórfico (Account/Contact) | Sin enlazar por decisión (ver abajo) |
+| Con Microsoft * | `wit_conmicrosoft` | Boolean | ✅ Implementado (`OPP_DEFAULTS`, `app.py`) |
+| Venta de licencias * | `wit_ventadelicencias` | Boolean | ✅ Implementado (`OPP_DEFAULTS`, `app.py`) |
+| Consultor principal * | `wit_consultorprincipalid` | Lookup → `systemusers` | ⏳ Falta el GUID por defecto (`CONSULTOR_PRINCIPAL_DEFAULT_ID`) |
+| Requerimiento * | `wit_requerimiento` | Picklist | ⏳ Falta el valor numérico de "Otro" (`REQUERIMIENTO_OTRO`) |
+| Congelar | `wit_congelar` | Boolean | No implementado (no obligatorio) |
+| Es licitación | `wit_esilicitacion` | Boolean | No implementado (no obligatorio) |
+| Orden de Compra | `wit_ordendecompra` | String | No implementado (no obligatorio) |
+| Tipo de cuenta | `wit_tipodecuenta` | Picklist | No implementado (no obligatorio) |
+| AM de Microsoft | `wit_accountmanager` | Lookup | No implementado (no obligatorio) |
+| Situación actual / Necesidad del cliente / Solución propuesta | no encontrados en la metadata leída | — | Van dentro de `description` (texto libre, sin riesgo) |
 
-Si el ambiente exige alguno de los campos personalizados para poder
-**crear** el registro (no solo para avanzarlo de etapa en el proceso de
-venta), la llamada a Dynamics fallará con 400 y el mensaje de error exacto
-quedará en los logs de Application Insights. Esa falla **no rompe la
-solicitud**: el correo de notificación (Graph) se envía de todas formas, así
-que ninguna solicitud del formulario se pierde mientras se completa el
-mapeo.
+Si algún campo marcado con `*` en el formulario resulta ser obligatorio
+también **a nivel de API** (no solo en ese formulario/etapa del proceso de
+venta) y no está completo, la creación de la Oportunidad fallará con 400 y
+el mensaje de error exacto quedará en los logs de Application Insights.
+Esa falla **no rompe la solicitud**: el correo de notificación (Graph) se
+envía de todas formas, así que ninguna solicitud del formulario se pierde
+mientras se completa lo que falta.
 
-### Qué se necesita para completar el mapeo (pendiente)
+### Pendiente para completar Oportunidad
 
-Para cada uno de estos, el nombre lógico exacto y — si es una lista de
-opciones (choice) — los valores numéricos válidos:
-
-- [ ] **Cuenta** — ¿es el lookup polimórfico estándar (`customerid`) o un
-      campo personalizado? Si hay que enlazar una Cuenta existente por
-      nombre de empresa, definir la lógica de búsqueda/creación (ver
-      "Cuenta u contacto" en `GUIA-BASE-SIGALU.md`, sección 5d, para el
-      patrón equivalente ya resuelto con Contactos).
-- [ ] **Con Microsoft** (choice Sí/No) — nombre lógico + valores.
-- [ ] **Requerimiento** (choice, incluye "Otro") — nombre lógico + lista completa de valores.
-- [ ] **Venta de licencias** (choice Sí/No) — nombre lógico + valores.
-- [ ] **Consultor principal** (lookup a usuario) — nombre lógico + a
-      quién/qué equipo asignar por defecto las oportunidades que llegan por
-      el formulario web (no hay una persona "obvia" para un lead entrante,
-      hay que decidirlo).
-- [ ] Confirmar cuáles de los campos anteriores son realmente obligatorios
-      **a nivel de API** al crear el registro (vs. solo obligatorios en ese
-      formulario/etapa específica del proceso de venta) — la forma más
-      directa de saberlo es probar la creación y leer el mensaje de error.
-
-**Cómo obtener los nombres lógicos** (mismo método que en el simulador CMP,
-ver `app.py` función `d365()` y usarlo con una consulta de solo lectura):
-
-```
-GET https://w-it.crm2.dynamics.com/api/data/v9.2/EntityDefinitions(LogicalName='opportunity')/Attributes?$select=LogicalName,DisplayName,AttributeType&$filter=IsCustomAttribute eq true
-```
-
-(requiere sesión autenticada en ese ambiente, o el token del App
-Registration una vez creado — ver checklist de configuración más abajo).
+- [ ] **Requerimiento** — obtener el valor numérico de la opción "Otro":
+  ```
+  GET https://w-it.crm2.dynamics.com/api/data/v9.2/EntityDefinitions(LogicalName='opportunity')/Attributes(LogicalName='wit_requerimiento')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata?$select=LogicalName&$expand=OptionSet
+  ```
+  y completar `REQUERIMIENTO_OTRO` en `app.py`.
+- [ ] **Consultor principal** — decidir el GUID del usuario/equipo que debe
+      quedar como dueño por defecto de las oportunidades entrantes por el
+      formulario web (no hay una persona "obvia" para un lead entrante),
+      y completar `CONSULTOR_PRINCIPAL_DEFAULT_ID` en `app.py`.
+- [ ] **Cuenta** (`customerid`) — decisión de negocio, no técnica: ¿se busca
+      o crea automáticamente la Cuenta por nombre de empresa (riesgo:
+      nombres que no calzan exacto generan duplicados), o se deja sin
+      enlazar y el vendedor la vincula manualmente al revisar el correo de
+      notificación? Mientras no se decida, queda sin enlazar.
+- [ ] Confirmar si `wit_conmicrosoft` / `wit_ventadelicencias` deberían
+      quedar en `True` por defecto para este producto específico (se
+      construye sobre Power Platform/Dataverse) — hoy están en `False`
+      (`OPP_DEFAULTS` en `app.py`).
 
 ## Variables de entorno
 
