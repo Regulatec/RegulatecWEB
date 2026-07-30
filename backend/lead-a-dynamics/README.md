@@ -94,9 +94,21 @@ Ver `.env.example`. Resumen de lo que hay que reunir antes de configurar Azure:
 
 ## Checklist de configuración (pasos manuales — solo el equipo puede hacerlos)
 
-- [ ] Crear o reutilizar la **App Registration** en Entra ID; generar el Client Secret.
-- [ ] Crear el **Application User** en `w-it.crm2.dynamics.com` con esa App ID y asignarle rol de seguridad sobre `opportunities`.
+- [x] Crear o reutilizar la **App Registration** en Entra ID; generar el Client Secret.
+      Reutilizada: `WIT-CRM-CCR` (ya existente). Secreto `WEBLEADS` generado — ⚠️
+      pendiente rotarlo antes de producción (quedó expuesto en un chat de
+      configuración; ver nota de seguridad más abajo).
+- [x] Crear el **Application User** en `w-it.crm2.dynamics.com` con esa App ID y asignarle rol de seguridad sobre `opportunities`.
+      Ya existía para `WIT-CRM-CCR`. **Temporalmente con rol "Administrador del
+      sistema"** para agilizar las pruebas end-to-end — ⚠️ **pendiente antes de
+      producción:** crear el rol acotado `WIT - Integración Web Oportunidades`
+      (Crear + Leer sobre Oportunidad, Leer sobre Cuenta, a nivel Organización)
+      y reemplazar el rol de Administrador por este.
 - [ ] Agregar el permiso de aplicación **Mail.Send** (Graph) a la App Registration y otorgar consentimiento de administrador.
+- [ ] **Antes de ir a producción:** rotar el secreto `WEBLEADS` (generar uno
+      nuevo y cargarlo directo en las variables de entorno de Azure, sin
+      pasarlo por chat/email) y bajar el Application User del rol
+      Administrador del sistema al rol acotado.
 - [ ] Confirmar el **buzón MAIL_FROM** (licencia Exchange Online activa).
 - [ ] Obtener los **nombres lógicos y valores de choice** de los campos personalizados de Oportunidad (ver sección de arriba) y completar `create_opportunity()` en `app.py`.
 - [ ] Decidir el **Consultor principal por defecto** para oportunidades entrantes desde el formulario web.
