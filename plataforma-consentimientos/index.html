@@ -341,23 +341,139 @@
   </div>
 </section>
 
-<!-- ===== CONTACTO ===== -->
+<!-- ===== CONTACTO / FORMULARIO ===== -->
 <section class="section section--cta" id="contacto">
-  <div class="wrap cta-wrap">
-    <h2 class="cta__title">Conversemos sobre su caso</h2>
-    <p class="cta__lead">
-      Le mostramos la plataforma funcionando y revisamos con usted qué finalidades, canales y evidencia necesita
-      para llegar preparado a la entrada en vigencia de la ley.
-    </p>
-    <div class="cta__actions">
-      <a class="btn btn--primary btn--lg" href="mailto:ventas@regulatec.cl?subject=Plataforma%20de%20Gesti%C3%B3n%20de%20Consentimientos%20-%20solicitud%20de%20demo">Solicitar una demo</a>
-      <a class="btn btn--ghost btn--lg" href="mailto:ventas@regulatec.cl?subject=Plataforma%20de%20Gesti%C3%B3n%20de%20Consentimientos%20-%20consulta">Hacer una consulta</a>
-    </div>
-    <p class="cta__mail">ventas@regulatec.cl</p>
-    <div class="cta__links">
-      <a href="https://w-it.cl" target="_blank" rel="noopener noreferrer">w-it.cl ↗</a>
-      <span>·</span>
-      <a href="https://regulatec.cl" target="_blank" rel="noopener noreferrer">regulatec.cl ↗</a>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="cta-pitch">
+        <h2 class="cta__title">Solicite una demo</h2>
+        <p class="cta__lead">
+          Le mostramos la plataforma funcionando y revisamos con usted qué finalidades, canales y evidencia
+          necesita para llegar preparado a la entrada en vigencia de la ley.
+        </p>
+        <ul class="cta__list">
+          <li>Demostración en vivo del backoffice y de las APIs</li>
+          <li>Revisión inicial de su escenario, sin costo</li>
+          <li>Participa un especialista técnico y uno legal</li>
+          <li>Sesión de 45 minutos, en línea o presencial</li>
+        </ul>
+        <div class="cta__direct">
+          <span class="cta__direct-t">O escríbanos directamente</span>
+          <a class="cta__mail" href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a>
+          <div class="cta__links">
+            <a href="https://w-it.cl" target="_blank" rel="noopener noreferrer">w-it.cl ↗</a>
+            <span>·</span>
+            <a href="https://regulatec.cl" target="_blank" rel="noopener noreferrer">regulatec.cl ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <form id="leadForm" novalidate>
+          <div class="fgrid">
+            <label class="field">
+              <span class="field__lbl">Nombre <i>*</i></span>
+              <input class="field__in" type="text" name="nombre" autocomplete="given-name" required />
+              <span class="field__err" data-err="nombre"></span>
+            </label>
+            <label class="field">
+              <span class="field__lbl">Apellido <i>*</i></span>
+              <input class="field__in" type="text" name="apellido" autocomplete="family-name" required />
+              <span class="field__err" data-err="apellido"></span>
+            </label>
+            <label class="field">
+              <span class="field__lbl">Correo corporativo <i>*</i></span>
+              <input class="field__in" type="email" name="email" autocomplete="email" required />
+              <span class="field__err" data-err="email"></span>
+            </label>
+            <label class="field">
+              <span class="field__lbl">Teléfono</span>
+              <input class="field__in" type="tel" name="telefono" autocomplete="tel" placeholder="+56 9 ..." />
+            </label>
+            <label class="field">
+              <span class="field__lbl">Empresa u organización <i>*</i></span>
+              <input class="field__in" type="text" name="empresa" autocomplete="organization" required />
+              <span class="field__err" data-err="empresa"></span>
+            </label>
+            <label class="field">
+              <span class="field__lbl">Cargo</span>
+              <input class="field__in" type="text" name="cargo" autocomplete="organization-title" />
+            </label>
+            <label class="field">
+              <span class="field__lbl">Industria</span>
+              <select class="field__in" name="industria">
+                <option value="">Seleccione…</option>
+                <option>Banca y financiero</option>
+                <option>Cajas de compensación</option>
+                <option>Seguros</option>
+                <option>Retail y e-commerce</option>
+                <option>Salud y prestadores</option>
+                <option>Educación</option>
+                <option>Telecomunicaciones</option>
+                <option>Servicios básicos</option>
+                <option>Turismo</option>
+                <option>Inmobiliario</option>
+                <option>Logística</option>
+                <option>Sector público</option>
+                <option>Otra</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field__lbl">Volumen de titulares</span>
+              <select class="field__in" name="volumen_titulares">
+                <option value="">Seleccione…</option>
+                <option>Menos de 50.000</option>
+                <option>50.000 – 250.000</option>
+                <option>250.000 – 1.000.000</option>
+                <option>Más de 1.000.000</option>
+                <option>Aún no lo tengo dimensionado</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="fset">
+            <legend class="field__lbl">¿Qué necesita resolver?</legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="interes" value="Cumplir la Ley 21.719" /><span>Cumplir la Ley 21.719</span></label>
+              <label class="chip"><input type="checkbox" name="interes" value="Centralizar consentimientos" /><span>Centralizar consentimientos</span></label>
+              <label class="chip"><input type="checkbox" name="interes" value="Evidencia ante fiscalización" /><span>Evidencia ante fiscalización</span></label>
+              <label class="chip"><input type="checkbox" name="interes" value="Responder derechos ARCO+PB" /><span>Derechos ARCO+PB</span></label>
+              <label class="chip"><input type="checkbox" name="interes" value="REDEC / CMF" /><span>REDEC / CMF</span></label>
+              <label class="chip"><input type="checkbox" name="interes" value="Consentimiento omnicanal" /><span>Consentimiento omnicanal</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span class="field__lbl">Cuéntenos brevemente su escenario</span>
+            <textarea class="field__in field__in--ta" name="mensaje" rows="3" placeholder="Canales que maneja, plazos, quién lidera el proyecto…"></textarea>
+          </label>
+
+          <!-- Anti-spam: campo oculto que un humano nunca completa -->
+          <div class="hp" aria-hidden="true"><label>No completar<input type="text" name="_hp" tabindex="-1" autocomplete="off" /></label></div>
+
+          <label class="consent">
+            <input type="checkbox" name="consentimiento" id="leadConsent" required />
+            <span>
+              Autorizo a <strong>W-IT y RegulaTec</strong> a tratar los datos de este formulario con la finalidad
+              exclusiva de <strong>contactarme para atender esta solicitud</strong>. Puedo revocar esta autorización
+              en cualquier momento escribiendo a ventas@regulatec.cl.
+              <a href="https://regulatec.cl/politica-privacidad.html" target="_blank" rel="noopener noreferrer">Ver política de privacidad ↗</a>
+              <i>*</i>
+            </span>
+          </label>
+          <span class="field__err" data-err="consentimiento"></span>
+
+          <button type="submit" class="btn btn--primary btn--lg form__submit" id="leadSubmit">Enviar solicitud</button>
+          <p class="form__note">Los campos marcados con <i>*</i> son obligatorios. No compartimos sus datos con terceros.</p>
+        </form>
+
+        <div class="form-ok" id="formOk" hidden>
+          <div class="form-ok__ico">✓</div>
+          <h3>Solicitud enviada</h3>
+          <p id="formOkTxt">Gracias por su interés. Un especialista se pondrá en contacto con usted a la brevedad.</p>
+          <button class="btn btn--ghost btn--sm" id="formReset">Enviar otra solicitud</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -382,5 +498,6 @@
 </footer>
 
 <script src="js/app.js"></script>
+<script src="js/lead.js"></script>
 </body>
 </html>
