@@ -193,7 +193,7 @@
   }
   function logout() { state.user = null; store('rt-demo-user', null); location.hash = '#/login'; render(); }
   function head(title, crumbs, actions) {
-    return '<div class="view__head"><div>' + (crumbs ? '<div class="crumbs">' + crumbs + '</div>' : '') + '<h1>' + title + '</h1></div>' + (actions ? '<div style="display:flex;gap:8px;flex-wrap:wrap">' + actions + '</div>' : '') + '</div>';
+    return '<div class="view__head"><div>' + (crumbs ? '<div class="crumbs">' + crumbs + '</div>' : '') + '<h1>' + title + '<span class="demo-badge" title="Toda la información de esta demo es ficticia">Datos demostrativos</span></h1></div>' + (actions ? '<div style="display:flex;gap:8px;flex-wrap:wrap">' + actions + '</div>' : '') + '</div>';
   }
   function hint(text) {
     if (!state.hint) return '';
@@ -247,7 +247,7 @@
       '</div>' +
       '<div class="grid g-2">' +
       '<div class="card"><div class="card__head"><h3>Próximas actividades de mantención</h3><a class="small" href="#/planes">Planes →</a></div><div class="list">' +
-      proximas.map(function (x) { var e = estadoAct(x.a); return '<div class="list__item" data-go="#/planes/' + x.plan.id + '?act=' + x.a.id + '"><div class="list__icon" style="background:var(--gold-soft);color:#7d6531">' + ic('cal', 16) + '</div><div class="list__main"><b>' + esc(x.a.nombre) + '</b><p>' + esc(x.plan.nombre) + ' · ' + esc(persona(x.a.resp).nombre) + '</p></div><div class="list__meta">' + pill(e.t, e.c) + '<div style="margin-top:4px">' + fechaCorta(x.a.fin) + ' · ' + relativo(x.a.fin) + '</div></div></div>'; }).join('') +
+      proximas.map(function (x) { var e = estadoAct(x.a); return '<div class="list__item" data-go="#/planes/' + x.plan.id + '?act=' + x.a.id + '"><div class="list__icon" style="background:var(--gold-soft);color:var(--accent-ink)">' + ic('cal', 16) + '</div><div class="list__main"><b>' + esc(x.a.nombre) + '</b><p>' + esc(x.plan.nombre) + ' · ' + esc(persona(x.a.resp).nombre) + '</p></div><div class="list__meta">' + pill(e.t, e.c) + '<div style="margin-top:4px">' + fechaCorta(x.a.fin) + ' · ' + relativo(x.a.fin) + '</div></div></div>'; }).join('') +
       '</div></div>' +
       '<div class="card"><div class="card__head"><h3>Alertas sin leer</h3><a class="small" href="#/alertas">Todas →</a></div><div class="list">' +
       (alertas.length ? alertas.map(alertaItem).join('') : '<div class="empty">Sin alertas pendientes.</div>') +
@@ -264,7 +264,7 @@
     evidencia: { i: 'doc', bg: 'var(--amber-bg)', c: 'var(--amber)', t: 'Evidencia' },
     denuncia: { i: 'msg', bg: 'var(--red-bg)', c: 'var(--red)', t: 'Denuncia' },
     riesgo: { i: 'risk', bg: 'var(--red-bg)', c: 'var(--red)', t: 'Riesgo' },
-    datos: { i: 'lock', bg: 'var(--gold-soft)', c: '#7d6531', t: 'Datos personales' }
+    datos: { i: 'lock', bg: 'var(--gold-soft)', c: 'var(--accent-ink)', t: 'Datos personales' }
   };
   function alertaItem(a) {
     var t = ALERTA_TIPO[a.tipo];
@@ -608,7 +608,7 @@
     var html = head('Reportes', '<a href="#/inicio">Inicio</a> / Gestión', '') +
       hint('Genera reportes con un clic a partir de los datos vivos de la plataforma. Prueba el <b>Informe semestral al Directorio</b>.') +
       '<div class="grid g-3">' + D.reportes.map(function (r) {
-        return '<div class="card"><div class="card__body"><div class="list__icon" style="background:var(--gold-soft);color:#7d6531;margin-bottom:12px">' + ic(r.icon) + '</div><b style="display:block;margin-bottom:4px">' + esc(r.nombre) + '</b><p class="small muted" style="margin-bottom:14px;line-height:1.5">' + esc(r.desc) + '</p><button class="btn btn--navy btn--sm" data-rep="' + r.id + '">Generar</button></div></div>';
+        return '<div class="card"><div class="card__body"><div class="list__icon" style="background:var(--gold-soft);color:var(--accent-ink);margin-bottom:12px">' + ic(r.icon) + '</div><b style="display:block;margin-bottom:4px">' + esc(r.nombre) + '</b><p class="small muted" style="margin-bottom:14px;line-height:1.5">' + esc(r.desc) + '</p><button class="btn btn--navy btn--sm" data-rep="' + r.id + '">Generar</button></div></div>';
       }).join('') + '</div>';
     shell('reportes', html); bindHint();
     $$('[data-rep]').forEach(function (b) { b.addEventListener('click', function () { generarReporte(b.dataset.rep); }); });

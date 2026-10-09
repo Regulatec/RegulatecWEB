@@ -552,15 +552,23 @@
     .demo-cta { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; margin-top:28px; padding:18px 22px; border:1px solid var(--border); border-radius:4px; background:rgba(184,154,90,.06); }
     .demo-cta p { font-size:.86rem; color:var(--gray); line-height:1.6; flex:1; min-width:220px; }
     .demo-cta p b { color:var(--white); font-weight:500; }
-    .demo-modal { position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(5,10,20,.78); backdrop-filter:blur(3px); }
-    .demo-modal.is-open { display:flex; }
-    .demo-modal__box { position:relative; width:min(1320px,100%); height:min(860px,100%); background:#f4f2ee; border-radius:8px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.5); display:flex; flex-direction:column; }
-    .demo-modal__bar { display:flex; align-items:center; gap:12px; padding:8px 12px 8px 16px; background:var(--navy); border-bottom:1px solid var(--border); color:var(--gray); font-size:.74rem; letter-spacing:.06em; }
-    .demo-modal__bar b { color:var(--gold2); font-weight:600; text-transform:uppercase; letter-spacing:.12em; }
-    .demo-modal__close { margin-left:auto; background:none; border:1px solid var(--border); color:var(--cream); width:32px; height:32px; border-radius:4px; cursor:pointer; font-size:1.1rem; line-height:1; }
-    .demo-modal__close:hover { border-color:var(--gold); color:var(--gold2); }
-    .demo-modal iframe { flex:1; width:100%; border:0; background:#f4f2ee; }
-    @media (max-width:768px) { .demo-modal { padding:0; } .demo-modal__box { border-radius:0; height:100%; } }
+    /* Marco de la demo con identidad propia (violeta/índigo) para distinguirla del sitio. */
+    .demo-modal { position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; padding:28px; background:radial-gradient(circle at 50% 0%, rgba(109,74,255,.28), transparent 60%), rgba(8,7,22,.82); backdrop-filter:blur(6px); }
+    .demo-modal.is-open { display:flex; animation:demoIn .28s cubic-bezier(.16,1,.3,1); }
+    @keyframes demoIn { from { opacity:0; transform:scale(.98); } }
+    .demo-modal__box { position:relative; width:min(1320px,100%); height:min(860px,100%); border-radius:18px; overflow:hidden; display:flex; flex-direction:column;
+      border:2px solid transparent; background:linear-gradient(#f5f6fb,#f5f6fb) padding-box, linear-gradient(135deg,#8b6dff,#3b82f6 55%,#22d3ee) border-box;
+      box-shadow:0 0 0 6px rgba(109,74,255,.16), 0 30px 90px rgba(0,0,0,.55); }
+    .demo-modal__bar { display:flex; align-items:center; gap:12px; padding:10px 12px 10px 16px; background:#fff; border-bottom:1px solid #e7e9f2; color:#475569; font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif; font-size:.8rem; }
+    .demo-modal__pill { display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg,#6d4aff,#3b82f6); color:#fff; font-weight:700; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; padding:6px 12px; border-radius:999px; white-space:nowrap; }
+    .demo-modal__pill::before { content:''; width:7px; height:7px; border-radius:50%; background:#fff; animation:demoDot 1.6s ease-in-out infinite; }
+    @keyframes demoDot { 50% { opacity:.35; } }
+    .demo-modal__bar strong { color:#0f172a; font-weight:600; }
+    .demo-modal__close { margin-left:auto; background:#f5f6fb; border:1px solid #e7e9f2; color:#475569; width:34px; height:34px; border-radius:10px; cursor:pointer; font-size:1.2rem; line-height:1; transition:background .15s,color .15s,border-color .15s; }
+    .demo-modal__close:hover { background:#6d4aff; border-color:#6d4aff; color:#fff; }
+    .demo-modal iframe { flex:1; width:100%; border:0; background:#f5f6fb; }
+    @media (max-width:768px) { .demo-modal { padding:0; } .demo-modal__box { border-radius:0; border-width:0; height:100%; box-shadow:none; } .demo-modal__bar span.long { display:none; } }
+    @media (prefers-reduced-motion:reduce) { .demo-modal.is-open, .demo-modal__pill::before { animation:none; } }
   </style>
 </head>
 <body>
@@ -2241,7 +2249,7 @@ body{font-family:var(--ff-body);background:#fff;color:#1a2332;max-width:860px;ma
 <!-- DEMO NAVEGABLE (popup). La demo vive en /demo/ con datos 100% ficticios; se carga en iframe solo al abrirla. -->
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-label="Demo de la plataforma RegulaTec" hidden>
   <div class="demo-modal__box">
-    <div class="demo-modal__bar"><b>Demo interactiva</b><span>Datos ficticios · no ingreses información real</span>
+    <div class="demo-modal__bar"><span class="demo-modal__pill">Demo interactiva</span><span><strong>Datos demostrativos</strong><span class="long"> · empresa y personas ficticias, no ingreses información real</span></span>
       <button type="button" class="demo-modal__close" data-demo-close aria-label="Cerrar demo">&times;</button></div>
     <iframe title="Demo de la plataforma RegulaTec" data-src="/demo/" loading="lazy"></iframe>
   </div>
