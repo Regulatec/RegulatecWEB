@@ -486,6 +486,22 @@
       }
     }
     .demo-badge { display:inline-block; margin-left:8px; font-size:.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); background:var(--gold2); padding:3px 8px; border-radius:2px; vertical-align:middle; white-space:nowrap; }
+
+    /* Demo navegable de la plataforma (popup) */
+    .nav-demo-link { color:var(--gold2) !important; display:inline-flex; align-items:center; gap:6px; }
+    .nav-demo-link::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(184,154,90,.25); }
+    .demo-cta { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; margin-top:28px; padding:18px 22px; border:1px solid var(--border); border-radius:4px; background:rgba(184,154,90,.06); }
+    .demo-cta p { font-size:.86rem; color:var(--gray); line-height:1.6; flex:1; min-width:220px; }
+    .demo-cta p b { color:var(--white); font-weight:500; }
+    .demo-modal { position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(5,10,20,.78); backdrop-filter:blur(3px); }
+    .demo-modal.is-open { display:flex; }
+    .demo-modal__box { position:relative; width:min(1320px,100%); height:min(860px,100%); background:#f4f2ee; border-radius:8px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.5); display:flex; flex-direction:column; }
+    .demo-modal__bar { display:flex; align-items:center; gap:12px; padding:8px 12px 8px 16px; background:var(--navy); border-bottom:1px solid var(--border); color:var(--gray); font-size:.74rem; letter-spacing:.06em; }
+    .demo-modal__bar b { color:var(--gold2); font-weight:600; text-transform:uppercase; letter-spacing:.12em; }
+    .demo-modal__close { margin-left:auto; background:none; border:1px solid var(--border); color:var(--cream); width:32px; height:32px; border-radius:4px; cursor:pointer; font-size:1.1rem; line-height:1; }
+    .demo-modal__close:hover { border-color:var(--gold); color:var(--gold2); }
+    .demo-modal iframe { flex:1; width:100%; border:0; background:#f4f2ee; }
+    @media (max-width:768px) { .demo-modal { padding:0; } .demo-modal__box { border-radius:0; height:100%; } }
   </style>
 </head>
 <body>
@@ -505,6 +521,7 @@
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#plataforma">Plataforma</a></li>
+    <li><a href="/demo/" class="nav-demo-link" data-demo-open>Explora la plataforma</a></li>
     <li><a href="ley-21719-chile.html">Ley 21.719</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
@@ -1015,6 +1032,10 @@
         </div>
       </div>
     </div>
+    <div class="demo-cta reveal">
+      <p><b>Explora la plataforma por dentro.</b> Navega como un usuario real por una empresa ficticia: matriz de riesgos, controles, planes de mantención, alertas, canal de denuncias, Ley 21.719 y reportes. Sin registro.</p>
+      <a href="/demo/" class="btn-primary" data-demo-open>Abrir demo interactiva<svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+    </div>
   </div>
 </section>
 
@@ -1374,5 +1395,41 @@
   <span class="wa-tooltip">Escríbenos por WhatsApp</span>
   <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.112.554 4.1 1.523 5.824L.057 23.776a.5.5 0 00.609.676l6.337-1.662A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
 </a>
+
+<!-- DEMO NAVEGABLE (popup). La demo vive en /demo/ con datos 100% ficticios; se carga en iframe solo al abrirla. -->
+<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-label="Demo de la plataforma RegulaTec" hidden>
+  <div class="demo-modal__box">
+    <div class="demo-modal__bar"><b>Demo interactiva</b><span>Datos ficticios · no ingreses información real</span>
+      <button type="button" class="demo-modal__close" data-demo-close aria-label="Cerrar demo">&times;</button></div>
+    <iframe title="Demo de la plataforma RegulaTec" data-src="/demo/" loading="lazy"></iframe>
+  </div>
+</div>
+<script>
+  (function () {
+    var modal = document.getElementById('demoModal');
+    if (!modal) return;
+    var frame = modal.querySelector('iframe'), lastFocus = null;
+    function abrir(e) {
+      if (e) e.preventDefault();
+      lastFocus = document.activeElement;
+      if (!frame.getAttribute('src')) frame.setAttribute('src', frame.getAttribute('data-src'));
+      modal.hidden = false; modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('[data-demo-close]').focus();
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'demo_plataforma_abierta' });
+    }
+    function cerrar() {
+      modal.classList.remove('is-open'); modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    document.querySelectorAll('[data-demo-open]').forEach(function (a) { a.addEventListener('click', abrir); });
+    modal.querySelector('[data-demo-close]').addEventListener('click', cerrar);
+    modal.addEventListener('click', function (e) { if (e.target === modal) cerrar(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) cerrar(); });
+    if (location.hash === '#demo') abrir();
+  })();
+</script>
 </body>
 </html>
