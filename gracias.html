@@ -8,24 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Google Ads conversion — REEMPLAZAR IDs cuando estén listos -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXXX"></script>
+  <!-- Medición condicionada al consentimiento (nota técnica §4.6) -->
+  <script src="/js/medicion.js"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-XXXXXXXXXX');
-    // Disparar conversión al cargar esta página
-    gtag('event', 'conversion', {
-      send_to: 'AW-XXXXXXXXXX/CONVERSION-LABEL',
-      value: 1.0, currency: 'CLP'
-    });
-  </script>
-  <!-- Meta Pixel Lead -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXXX');
-    fbq('track', 'Lead');
+    // Evento de conversión: solo si se llega desde un envío exitoso del formulario (no en recargas ni visitas directas).
+    try {
+      if (sessionStorage.getItem('rtLeadEnviado') === '1') {
+        sessionStorage.removeItem('rtLeadEnviado');
+        rtTrack('conversion', { formulario: 'diagnostico_home' });
+      }
+    } catch (e) {}
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -187,10 +179,9 @@
     <div class="check-icon">✓</div>
     <h1>¡Gracias por contactarnos!</h1>
     <p class="subtitle">Hemos recibido tu solicitud de diagnóstico.</p>
-    <p class="highlight">Un especialista de RegulaTec te contactará en menos de 24 horas.</p>
+    <p class="highlight">Un especialista de RegulaTec te contactará dentro de 24–48 horas hábiles.</p>
     <div class="privacy-note">
-      🔒 Sus datos están protegidos y no serán compartidos con terceros.<br />
-      Este sitio opera bajo estándares de cumplimiento alineados a la Ley 21.719.
+      🔒 Sus datos están protegidos y no serán compartidos con terceros.
     </div>
     <a href="/" class="btn-home">Volver al inicio →</a>
 
@@ -198,7 +189,7 @@
       <h3>¿Qué pasa ahora?</h3>
       <div class="step">
         <div class="step-num">1</div>
-        <div>Un especialista revisará tu solicitud y te contactará por email o WhatsApp en menos de 24 horas hábiles.</div>
+        <div>Un especialista revisará tu solicitud y te contactará por email o WhatsApp dentro de 24–48 horas hábiles.</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -213,7 +204,7 @@
 </main>
 
 <footer>
-  <p>© 2026 RegulaTec · Chile y LATAM ·
+  <p>© 2026 RegulaTec by W-IT · Marca operada por W-IT Products SpA · Chile y LATAM ·
     <a href="/politica-privacidad.html">Privacidad</a> ·
     <a href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a>
   </p>
