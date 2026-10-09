@@ -1,0 +1,7 @@
+{
+  "name": "regulatec-web-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API administrada del Static Web App de www.regulatec.cl (formulario principal).",
+  "engines": { "node": ">=18" }
+}
