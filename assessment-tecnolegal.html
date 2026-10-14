@@ -128,6 +128,8 @@
     .survey-submit-btn:disabled { opacity:.45; cursor:default; }
     @media (max-width:600px) { .survey-options { flex-direction:column; gap:4px; } .survey-question { flex-direction:column; gap:8px; } .survey-options { flex-direction:row; } }
   </style>
+  <!-- Medición condicionada al consentimiento (Nota de ejecución técnica §4.6) -->
+  <script src="/js/medicion.js"></script>
 </head>
 <body>
 <nav>
@@ -162,7 +164,7 @@
     </ul>
 
     <h2>¿Qué entrega el Assessment?</h2>
-    <p>Al finalizar el Assessment TecnoLegal, RegulaTec entrega un informe ejecutivo completo presentable directamente al directorio o gerencia general.</p>
+    <p>Al finalizar el Assessment TecnoLegal, RegulaTec entrega un informe ejecutivo presentable directamente al directorio o gerencia general.</p>
     <ul>
       <li>Mapa de riesgos priorizado por nivel de criticidad (alto / medio / bajo)</li>
       <li>Inventario de brechas legales y tecnológicas</li>
@@ -313,7 +315,7 @@
         <p class="survey-score-text" id="resultDesc"></p>
       </div>
       <div class="survey-cat-scores" id="catScores"></div>
-      <p style="font-size:.82rem;color:var(--gray);line-height:1.7;margin-bottom:0;">Este diagnóstico es orientativo. Para un análisis detallado con informe ejecutivo y mapa de riesgos presentable al directorio, solicita el Assessment TecnoLegal completo.</p>
+      <p style="font-size:.82rem;color:var(--gray);line-height:1.7;margin-bottom:0;">Este diagnóstico es orientativo. Para un análisis detallado con informe ejecutivo y mapa de riesgos presentable al directorio, solicita el Assessment TecnoLegal.</p>
     </div>
   </div>
 </section>
@@ -389,7 +391,9 @@
     return count;
   }
 
+  var iniciado = false;
   document.getElementById('assessmentForm').addEventListener('change', function() {
+    if (!iniciado) { iniciado = true; if (window.rtTrack) rtTrack('diagnostico_start', { formulario: 'autodiagnostico_43' }); }
     var answered = countAnswered();
     var pct = Math.round(answered / TOTAL * 100);
     document.getElementById('surveyBar').style.width = pct + '%';
@@ -421,7 +425,7 @@
     } else if (pct >= 50) {
       title = 'Madurez Media — Brechas críticas por cerrar';
       sub = 'Tu organización tiene avances relevantes pero existen brechas de riesgo alto que deben abordarse antes del 1 de diciembre de 2026.';
-      desc = 'Hay controles implementados pero su cobertura es parcial. Un Assessment completo permitirá priorizar las acciones de mayor impacto para el directorio.';
+      desc = 'Hay controles implementados pero su cobertura es parcial. El Assessment TecnoLegal permitirá priorizar las acciones de mayor impacto para el directorio.';
     } else if (pct >= 25) {
       title = 'Madurez Baja — Exposición regulatoria significativa';
       sub = 'Tu organización tiene exposición importante frente a Ley 20.393, Ley 21.595 y Ley 21.719. Se requiere acción estructurada con urgencia.';
@@ -448,6 +452,7 @@
 
     var result = document.getElementById('surveyResult');
     result.style.display = 'block';
+    if (window.rtTrack) rtTrack('diagnostico_complete', { formulario: 'autodiagnostico_43', madurez_pct: pct });
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 })();

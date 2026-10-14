@@ -78,6 +78,14 @@
   };
   window.trackWhatsApp = function (origen) { window.rtTrack('whatsapp_click', { origen: origen }); };
 
+  // whatsapp_click en todo el sitio: enlaces a wa.me sin onclick propio (los que ya llaman a
+  // trackWhatsApp no se cuentan dos veces).
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me/"]') : null;
+    if (!a || /trackWhatsApp/.test(a.getAttribute('onclick') || '')) return;
+    window.trackWhatsApp(location.pathname);
+  }, true);
+
   // Atribución de primer toque en la sesión (UTM, referrer, página de entrada) para el formulario.
   try {
     if (!sessionStorage.getItem('rtAtribucion')) {

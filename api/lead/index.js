@@ -16,10 +16,10 @@
  */
 const crypto = require('crypto');
 
+const { limpiar, ipDe, excedeLimite, guardarEnTabla, tokenGraph, enviarCorreo, tablaHtml } = require('../shared/comun');
+
 const LIMITE_POR_IP = 5;
-const VENTANA_MS = 10 * 60 * 1000;
 const TIEMPO_MINIMO_MS = 3000;
-const intentos = new Map(); // por instancia; complementa (no reemplaza) una protección perimetral
 
 const CAMPOS_TEXTO = {
   contacto: 120, organizacion: 160, email: 160, cargo: 80, telefono: 40,
@@ -27,67 +27,6 @@ const CAMPOS_TEXTO = {
   fuente: 40, canal: 60, pagina_origen: 200, pagina_entrada: 200, referrer: 300,
   utm_source: 100, utm_medium: 100, utm_campaign: 150, utm_content: 150, utm_term: 150
 };
-
-function limpiar(v, max) {
-  return String(v == null ? '' : v).replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, max);
-}
-
-function escaparHtml(v) {
-  return String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
-function ipDe(req) {
-  const xff = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
-  return xff.replace(/:\d+$/, '') || 'desconocida';
-}
-
-function excedeLimite(ip) {
-  const ahora = Date.now();
-  const lista = (intentos.get(ip) || []).filter(t => ahora - t < VENTANA_MS);
-  lista.push(ahora);
-  intentos.set(ip, lista);
-  return lista.length > LIMITE_POR_IP;
-}
-
-async function guardarEnTabla(registro) {
-  const url = process.env.LEAD_TABLE_SAS_URL;
-  if (!url) return { omitido: true };
-  const r = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json;odata=nometadata',
-      Prefer: 'return-no-content',
-      'x-ms-version': '2019-02-02'
-    },
-    body: JSON.stringify(registro)
-  });
-  if (!r.ok) throw new Error('Table Storage ' + r.status + ': ' + (await r.text()).slice(0, 300));
-  return { ok: true };
-}
-
-async function tokenGraph() {
-  const { GRAPH_TENANT_ID, GRAPH_CLIENT_ID, GRAPH_CLIENT_SECRET } = process.env;
-  const r = await fetch(`https://login.microsoftonline.com/${GRAPH_TENANT_ID}/oauth2/v2.0/token`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      client_id: GRAPH_CLIENT_ID, client_secret: GRAPH_CLIENT_SECRET,
-      scope: 'https://graph.microsoft.com/.default', grant_type: 'client_credentials'
-    })
-  });
-  if (!r.ok) throw new Error('Token Graph ' + r.status);
-  return (await r.json()).access_token;
-}
-
-async function enviarCorreo(token, mensaje) {
-  const r = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(process.env.MAIL_SENDER)}/sendMail`, {
-    method: 'POST',
-    headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: mensaje, saveToSentItems: true })
-  });
-  if (!r.ok) throw new Error('Graph sendMail ' + r.status + ': ' + (await r.text()).slice(0, 300));
-}
 
 function correoInterno(reg) {
   const filas = [
@@ -100,10 +39,7 @@ function correoInterno(reg) {
     ['UTM', [reg.utm_source, reg.utm_medium, reg.utm_campaign, reg.utm_content, reg.utm_term].filter(Boolean).join(' / ') || '—'],
     ['ID registro', reg.RowKey]
   ];
-  const html = '<h2 style="font-family:Arial,sans-serif">Nueva solicitud de diagnóstico — www.regulatec.cl</h2>' +
-    '<table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">' +
-    filas.map(([k, v]) => `<tr><td style="padding:6px 12px;background:#f3f4f6;font-weight:bold">${escaparHtml(k)}</td><td style="padding:6px 12px">${escaparHtml(v)}</td></tr>`).join('') +
-    '</table>';
+  const html = tablaHtml('Nueva solicitud de diagnóstico — www.regulatec.cl', filas);
   const mensaje = {
     subject: 'Nueva solicitud de diagnóstico — ' + reg.organizacion,
     body: { contentType: 'HTML', content: html },
@@ -137,7 +73,7 @@ module.exports = async function (context, req) {
   // Spam: honeypot con datos o envío demasiado rápido -> respuesta exitosa silenciosa, sin procesar.
   if (d.website || Number(d.ms_en_formulario) < TIEMPO_MINIMO_MS) return responder(200, { ok: true });
 
-  if (excedeLimite(ipDe(req))) return responder(429, { ok: false, error: 'demasiadas_solicitudes' });
+  if (excedeLimite('lead:' + ipDe(req), LIMITE_POR_IP)) return responder(429, { ok: false, error: 'demasiadas_solicitudes' });
 
   const reg = {};
   for (const [campo, max] of Object.entries(CAMPOS_TEXTO)) reg[campo] = limpiar(d[campo], max);

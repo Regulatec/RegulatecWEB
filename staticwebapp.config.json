@@ -3,6 +3,15 @@
     "apiRuntime": "node:20"
   },
   "routes": [
-    { "route": "/*.php", "statusCode": 404 }
-  ]
+    { "route": "/*.php", "statusCode": 404 },
+    { "route": "/contacto.html", "redirect": "/#diagnostico", "statusCode": 301 },
+    { "route": "/contacto", "redirect": "/#diagnostico", "statusCode": 301 }
+  ],
+  "globalHeaders": {
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()"
+  }
 }

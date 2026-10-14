@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revocar consentimiento | RegulaTec by W-IT</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <!--
+    Mecanismo de revocación de consentimiento (Nota de ejecución técnica §4.5). Envía a POST /api/revocacion,
+    que registra fecha/hora, canal y alcance en el almacenamiento persistente de leads y avisa a ventas@.
+    PENDIENTE APROBACIÓN DE COPY (Celeste) y descripción del mecanismo en politica-privacidad.html (Dirección Legal).
+    Los textos de esta página son funcionales y mínimos; no enlazar desde la política hasta que se aprueben.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="/js/medicion.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0b1629; --navy2:#112040; --gold:#b89a5a; --cream:#f5f1ea; --gray:#8a9ab5; --ff-head:'Cormorant Garamond',serif; --ff-body:'DM Sans',sans-serif; }
+    body { font-family:var(--ff-body); background:var(--navy); color:var(--cream); min-height:100vh; display:flex; flex-direction:column; }
+    header { padding:20px 32px; border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav-brand img { height:28px; filter:brightness(0) invert(1); opacity:.85; }
+    main { flex:1; display:flex; justify-content:center; padding:64px 16px; }
+    .box { width:100%; max-width:520px; }
+    h1 { font-family:var(--ff-head); font-size:clamp(1.8rem,5vw,2.6rem); font-weight:700; line-height:1.15; margin-bottom:12px; }
+    .sub { color:var(--gray); font-size:.95rem; line-height:1.6; margin-bottom:28px; }
+    form { display:grid; gap:18px; background:var(--navy2); border:1px solid rgba(184,154,90,.2); padding:28px 24px; }
+    label { font-size:.85rem; font-weight:600; display:block; margin-bottom:6px; }
+    input[type=email] { width:100%; padding:12px 14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.18); color:var(--cream); font:inherit; border-radius:2px; }
+    input:focus-visible, button:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+    fieldset { border:0; display:grid; gap:10px; }
+    legend { font-size:.85rem; font-weight:600; margin-bottom:8px; }
+    .op { display:flex; gap:10px; align-items:flex-start; font-size:.88rem; color:var(--cream); line-height:1.5; }
+    .op input { margin-top:3px; accent-color:var(--gold); }
+    .hp { position:absolute; left:-9999px; }
+    button { background:var(--gold); color:var(--navy); border:0; padding:14px; font:inherit; font-weight:700; cursor:pointer; border-radius:2px; }
+    button[disabled] { opacity:.6; cursor:wait; }
+    .msg { font-size:.88rem; line-height:1.6; padding:12px 14px; display:none; }
+    .msg.ok { display:block; background:rgba(30,132,73,.15); border:1px solid rgba(30,132,73,.5); }
+    .msg.err { display:block; background:rgba(192,57,43,.12); border:1px solid rgba(192,57,43,.5); }
+    .msg a { color:var(--gold); }
+    footer { padding:20px 32px; border-top:1px solid rgba(255,255,255,.06); text-align:center; font-size:.7rem; color:rgba(138,154,181,.7); }
+    footer a { color:var(--gold); text-decoration:none; }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="nav-brand"><img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" /></a>
+</header>
+
+<main>
+  <div class="box">
+    <h1>Revocar consentimiento</h1>
+    <p class="sub">Indica el correo con el que nos contactaste y qué consentimiento quieres revocar.</p>
+
+    <form id="revForm" novalidate>
+      <div>
+        <label for="r-email">Correo electrónico</label>
+        <input type="email" id="r-email" name="email" autocomplete="email" required />
+      </div>
+      <fieldset>
+        <legend>¿Qué quieres revocar?</legend>
+        <label class="op"><input type="radio" name="alcance" value="marketing" required /> Solo las comunicaciones comerciales</label>
+        <label class="op"><input type="radio" name="alcance" value="todo" /> Todo tratamiento de mis datos basado en consentimiento</label>
+      </fieldset>
+      <div class="hp" aria-hidden="true"><label for="r-web">No completar</label><input type="text" id="r-web" name="website" tabindex="-1" autocomplete="off" /></div>
+      <div class="msg" id="r-msg" role="status" aria-live="polite"></div>
+      <button type="submit" id="r-btn">Enviar revocación</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 RegulaTec by W-IT · Marca operada por W-IT Products SpA · <a href="/politica-privacidad.html">Privacidad</a></p>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('revForm'), btn = document.getElementById('r-btn'), msg = document.getElementById('r-msg');
+  function mostrar(tipo, html) { msg.className = 'msg ' + tipo; msg.innerHTML = html; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.email.value.trim(), alc = form.querySelector('input[name="alcance"]:checked');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || !alc) {
+      mostrar('err', 'Ingresa un correo válido y elige qué quieres revocar.');
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Enviando…'; msg.className = 'msg';
+    fetch('/api/revocacion', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, alcance: alc.value, website: form.website.value, pagina_origen: location.pathname })
+    }).then(function (r) {
+      if (!r.ok) throw r;
+      form.reset();
+      mostrar('ok', 'Registramos tu revocación. La aplicaremos en nuestras listas y sistemas.');
+    }).catch(function () {
+      mostrar('err', 'No pudimos registrar la revocación. Reintenta o escríbenos a <a href="mailto:contacto@regulatec.cl">contacto@regulatec.cl</a>.');
+    }).then(function () { btn.disabled = false; btn.textContent = 'Enviar revocación'; });
+  });
+})();
+</script>
+</body>
+</html>
