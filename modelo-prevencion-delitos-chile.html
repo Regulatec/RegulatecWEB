@@ -78,13 +78,51 @@
     .wa-float:hover { transform:scale(1.1); animation:none; }
     @media (max-width:600px) { .container, nav { padding-left:20px; padding-right:20px; } .cta-box { padding:36px 20px; } }
   </style>
+  <!-- Medición condicionada al consentimiento (Nota de ejecución técnica §4.6) -->
+  <script src="/js/medicion.js"></script>
+  <link rel="stylesheet" href="/css/sitio.css" />
 </head>
 <body>
-<nav>
+<nav class="rt-nav" aria-label="Menú principal">
   <a href="/" class="nav-brand">
-    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" />
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" />
+    <span class="nav-tagline">Gestión de riesgos legales y regulatorios</span>
   </a>
-  <a href="/#diagnostico" class="nav-cta">Diagnóstico gratuito →</a>
+  <ul class="rt-menu">
+    <li>
+      <button type="button" aria-expanded="false" aria-haspopup="true">Soluciones<svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></button>
+      <ul class="rt-sub">
+        <li class="rt-sub-label">Frentes regulatorios</li>
+        <li><a href="/ley-21719-chile.html">Protección de datos personales<small>Ley 21.719</small></a></li>
+        <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos<small>Ley 20.393 · Modelo de Prevención de Delitos</small></a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT<small>Debida diligencia, listas y monitoreo</small></a></li>
+        <li><a href="/iso-37001-37301-chile.html">Antisoborno y sistemas de compliance<small>ISO 37001 · ISO 37301</small></a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC<small>Obligaciones, riesgos y controles</small></a></li>
+        <li><hr /></li>
+        <li class="rt-sub-label">Servicios continuos</li>
+        <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
+        <li><a href="/cco-as-a-service-chile.html">Compliance Officer as a Service</a></li>
+      </ul>
+    </li>
+    <li><a href="/#plataforma">Plataforma</a></li>
+    <li><a href="/demo/" class="rt-demo-link" data-demo-open>Explora la plataforma</a></li>
+    <li><a href="/#como-trabajamos">Cómo trabajamos</a></li>
+    <li>
+      <button type="button" aria-expanded="false" aria-haspopup="true">Recursos<svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></button>
+      <ul class="rt-sub">
+        <li><a href="/ley-21719-chile.html">Ley 21.719: qué exige y cómo implementarla</a></li>
+        <li><a href="/ley-20393-chile.html">Ley 20.393: responsabilidad penal de las personas jurídicas</a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo en Chile</a></li>
+        <li><a href="/sistema-cumplimiento-empresas.html">Sistema de cumplimiento para empresas</a></li>
+        <li><a href="/compliance-360-microsoft.html">Compliance sobre Microsoft 365 y Power Platform</a></li>
+        <li><a href="/#faq">Preguntas frecuentes</a></li>
+      </ul>
+    </li>
+    <li><a href="/#empresa">Empresa</a></li>
+    <li class="rt-menu-cta"><a href="/#diagnostico">Solicitar diagnóstico sin costo</a></li>
+  </ul>
+  <a href="/#diagnostico" class="rt-cta"><span class="rt-cta-long">Solicitar diagnóstico sin costo</span><span class="rt-cta-short">Diagnóstico sin costo</span><svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+  <button type="button" class="rt-burger" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
 </nav>
 
 <section class="page-hero">
@@ -93,7 +131,7 @@
     <span class="page-tag">Ley 20.393 · MPD</span>
     <h1>Modelo de Prevención de Delitos (MPD) en Chile: qué es, qué exige y cómo implementarlo</h1>
     <div class="aeo-block">El Modelo de Prevención de Delitos (MPD) es el sistema que exige la Ley 20.393 para que las empresas en Chile prevengan delitos como cohecho, lavado de activos y financiamiento del terrorismo. Un MPD efectivo incluye un encargado de prevención, canal de denuncias, capacitación documentada y controles auditables — no solo un manual.</div>
-    <div class="urgency-bar">⚠️ Plazo: 1 de diciembre de 2026 · Multas hasta 20.000 UTM · Comenzar ahora</div>
+    <!-- Banner de urgencia retirado (reposicionamiento oct-2026; Nota de contenido §1: sin urgencia artificial ni venta desde multas). -->
   </div>
 </section>
 
@@ -172,20 +210,56 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 RegulaTec. Todos los derechos reservados.</span>
-    <ul class="footer-links">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/#servicios">Servicios</a></li>
-      <li><a href="ley-21719-chile.html">Ley 21.719</a></li>
-      <li><a href="mailto:ventas@regulatec.cl">Contacto</a></li>
-    </ul>
+<footer class="rt-footer">
+  <div class="rt-footer-grid">
+    <div class="rt-footer-brand">
+      <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" />
+      <p>Gestión de riesgos legales y regulatorios: convertimos obligaciones en controles, responsables y evidencia que se puede demostrar.</p>
+    </div>
+    <div>
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="/ley-21719-chile.html">Protección de datos personales</a></li>
+        <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos</a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT</a></li>
+        <li><a href="/iso-37001-37301-chile.html">ISO 37001 · ISO 37301</a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC</a></li>
+        <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
+        <li><a href="/cco-as-a-service-chile.html">Compliance Officer as a Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>RegulaTec</h4>
+      <ul>
+        <li><a href="/#plataforma">Plataforma</a></li>
+        <li><a href="/#demo">Explora la plataforma</a></li>
+        <li><a href="/#como-trabajamos">Cómo trabajamos</a></li>
+        <li><a href="/#empresa">Empresa</a></li>
+        <li><a href="/#faq">Preguntas frecuentes</a></li>
+        <li><a href="/#diagnostico">Solicitar diagnóstico</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto y legal</h4>
+      <ul>
+        <li><a href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a></li>
+        <li><a href="tel:+56934530393">+56 9 3453 0393</a></li>
+        <li><a href="/politica-privacidad.html">Política de privacidad</a></li>
+        <li><a href="/politica-cookies.html">Política de cookies</a></li>
+        <li><a href="/aviso-legal.html">Aviso legal</a></li>
+        <li><a href="#" data-cookies-config>Gestionar cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rt-footer-legal">
+    <span>© 2026 RegulaTec by W-IT. RegulaTec by W-IT es una marca operada por W-IT Products SpA.</span>
+    <span>Santiago, Chile</span>
   </div>
 </footer>
 
 <a href="https://wa.me/56934530393?text=Hola%2C%20quiero%20información%20sobre%20compliance" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.057 23.522a.75.75 0 0 0 .92.92l5.668-1.475A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.691-.528-5.209-1.443l-.374-.223-3.365.876.893-3.259-.243-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
+<script src="/js/sitio.js" defer></script>
 </body>
 </html>

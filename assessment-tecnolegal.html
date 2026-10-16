@@ -13,7 +13,7 @@
   <meta property="og:locale" content="es_CL" />
   <meta name="robots" content="index, follow" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto tarda el Assessment TecnoLegal?","acceptedAnswer":{"@type":"Answer","text":"El Assessment inicial puede completarse en 1 a 2 semanas dependiendo del tamaño de la empresa. El informe ejecutivo se entrega en los 5 días hábiles siguientes a la recopilación de información."}},{"@type":"Question","name":"¿El Assessment tiene costo?","acceptedAnswer":{"@type":"Answer","text":"El diagnóstico inicial de RegulaTec no tiene costo. El Assessment TecnoLegal completo con informe ejecutivo tiene un valor que se cotiza según el tamaño y complejidad de la organización."}},{"@type":"Question","name":"¿Qué pasa después del Assessment?","acceptedAnswer":{"@type":"Answer","text":"RegulaTec presenta el informe al directorio o gerencia general, propone un plan de implementación priorizado y puede comenzar la ejecución de inmediato. El cliente decide el ritmo y alcance del proyecto."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.regulatec.cl/"},{"@type":"ListItem","position":2,"name":"Assessment TecnoLegal","item":"https://www.regulatec.cl/assessment-tecnolegal"}]}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto tarda el Assessment TecnoLegal?","acceptedAnswer":{"@type":"Answer","text":"El Assessment inicial puede completarse en 1 a 2 semanas dependiendo del tamaño de la empresa. El informe ejecutivo se entrega en los 5 días hábiles siguientes a la recopilación de información."}},{"@type":"Question","name":"¿Qué pasa después del Assessment?","acceptedAnswer":{"@type":"Answer","text":"RegulaTec presenta el informe al directorio o gerencia general, propone un plan de implementación priorizado y puede comenzar la ejecución de inmediato. El cliente decide el ritmo y alcance del proyecto."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.regulatec.cl/"},{"@type":"ListItem","position":2,"name":"Assessment TecnoLegal","item":"https://www.regulatec.cl/assessment-tecnolegal"}]}]}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -128,13 +128,51 @@
     .survey-submit-btn:disabled { opacity:.45; cursor:default; }
     @media (max-width:600px) { .survey-options { flex-direction:column; gap:4px; } .survey-question { flex-direction:column; gap:8px; } .survey-options { flex-direction:row; } }
   </style>
+  <!-- Medición condicionada al consentimiento (Nota de ejecución técnica §4.6) -->
+  <script src="/js/medicion.js"></script>
+  <link rel="stylesheet" href="/css/sitio.css" />
 </head>
 <body>
-<nav>
+<nav class="rt-nav" aria-label="Menú principal">
   <a href="/" class="nav-brand">
-    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" />
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" />
+    <span class="nav-tagline">Gestión de riesgos legales y regulatorios</span>
   </a>
-  <a href="/#diagnostico" class="nav-cta">Diagnóstico gratuito →</a>
+  <ul class="rt-menu">
+    <li>
+      <button type="button" aria-expanded="false" aria-haspopup="true">Soluciones<svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></button>
+      <ul class="rt-sub">
+        <li class="rt-sub-label">Frentes regulatorios</li>
+        <li><a href="/ley-21719-chile.html">Protección de datos personales<small>Ley 21.719</small></a></li>
+        <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos<small>Ley 20.393 · Modelo de Prevención de Delitos</small></a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT<small>Debida diligencia, listas y monitoreo</small></a></li>
+        <li><a href="/iso-37001-37301-chile.html">Antisoborno y sistemas de compliance<small>ISO 37001 · ISO 37301</small></a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC<small>Obligaciones, riesgos y controles</small></a></li>
+        <li><hr /></li>
+        <li class="rt-sub-label">Servicios continuos</li>
+        <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
+        <li><a href="/cco-as-a-service-chile.html">Compliance Officer as a Service</a></li>
+      </ul>
+    </li>
+    <li><a href="/#plataforma">Plataforma</a></li>
+    <li><a href="/demo/" class="rt-demo-link" data-demo-open>Explora la plataforma</a></li>
+    <li><a href="/#como-trabajamos">Cómo trabajamos</a></li>
+    <li>
+      <button type="button" aria-expanded="false" aria-haspopup="true">Recursos<svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></button>
+      <ul class="rt-sub">
+        <li><a href="/ley-21719-chile.html">Ley 21.719: qué exige y cómo implementarla</a></li>
+        <li><a href="/ley-20393-chile.html">Ley 20.393: responsabilidad penal de las personas jurídicas</a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo en Chile</a></li>
+        <li><a href="/sistema-cumplimiento-empresas.html">Sistema de cumplimiento para empresas</a></li>
+        <li><a href="/compliance-360-microsoft.html">Compliance sobre Microsoft 365 y Power Platform</a></li>
+        <li><a href="/#faq">Preguntas frecuentes</a></li>
+      </ul>
+    </li>
+    <li><a href="/#empresa">Empresa</a></li>
+    <li class="rt-menu-cta"><a href="/#diagnostico">Solicitar diagnóstico sin costo</a></li>
+  </ul>
+  <a href="/#diagnostico" class="rt-cta"><span class="rt-cta-long">Solicitar diagnóstico sin costo</span><span class="rt-cta-short">Diagnóstico sin costo</span><svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+  <button type="button" class="rt-burger" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
 </nav>
 
 <section class="page-hero">
@@ -143,7 +181,7 @@
     <span class="page-tag">Assessment TecnoLegal</span>
     <h1>Assessment TecnoLegal: el diagnóstico de cumplimiento que su empresa necesita antes del 1 de diciembre de 2026</h1>
     <div class="aeo-block">El Assessment TecnoLegal es el diagnóstico inicial de RegulaTec que identifica brechas reales de cumplimiento normativo en una empresa. Combina análisis legal y tecnológico para determinar el nivel de madurez del sistema de compliance, genera un mapa de riesgos priorizado y entrega un plan de acción ejecutivo presentable al directorio.</div>
-    <div class="urgency-bar">⚠️ Plazo: 1 de diciembre de 2026 · Multas hasta 20.000 UTM · Comenzar ahora</div>
+    <!-- Banner de urgencia retirado (reposicionamiento oct-2026; Nota de contenido §1: sin urgencia artificial ni venta desde multas). -->
   </div>
 </section>
 
@@ -162,7 +200,7 @@
     </ul>
 
     <h2>¿Qué entrega el Assessment?</h2>
-    <p>Al finalizar el Assessment TecnoLegal, RegulaTec entrega un informe ejecutivo completo presentable directamente al directorio o gerencia general.</p>
+    <p>Al finalizar el Assessment TecnoLegal, RegulaTec entrega un informe ejecutivo presentable directamente al directorio o gerencia general.</p>
     <ul>
       <li>Mapa de riesgos priorizado por nivel de criticidad (alto / medio / bajo)</li>
       <li>Inventario de brechas legales y tecnológicas</li>
@@ -313,7 +351,7 @@
         <p class="survey-score-text" id="resultDesc"></p>
       </div>
       <div class="survey-cat-scores" id="catScores"></div>
-      <p style="font-size:.82rem;color:var(--gray);line-height:1.7;margin-bottom:0;">Este diagnóstico es orientativo. Para un análisis detallado con informe ejecutivo y mapa de riesgos presentable al directorio, solicita el Assessment TecnoLegal completo.</p>
+      <p style="font-size:.82rem;color:var(--gray);line-height:1.7;margin-bottom:0;">Este diagnóstico es orientativo. Para un análisis detallado con informe ejecutivo y mapa de riesgos presentable al directorio, solicita el Assessment TecnoLegal.</p>
     </div>
   </div>
 </section>
@@ -326,10 +364,7 @@
         <div class="faq-q">¿Cuánto tarda el Assessment TecnoLegal?</div>
         <div class="faq-a">El Assessment inicial puede completarse en 1 a 2 semanas dependiendo del tamaño de la empresa. El informe ejecutivo se entrega en los 5 días hábiles siguientes a la recopilación de información.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">¿El Assessment tiene costo?</div>
-        <div class="faq-a">El diagnóstico inicial de RegulaTec no tiene costo. El Assessment TecnoLegal completo con informe ejecutivo tiene un valor que se cotiza según el tamaño y complejidad de la organización.</div>
-      </div>
+      <!-- Nota técnica §4.3: se retiró la FAQ "¿El Assessment tiene costo?" (contradecía la gratuidad declarada en otras páginas). Vuelve cuando exista la ficha del Diagnóstico. -->
       <div class="faq-item">
         <div class="faq-q">¿Qué pasa después del Assessment?</div>
         <div class="faq-a">RegulaTec presenta el informe al directorio o gerencia general, propone un plan de implementación priorizado y puede comenzar la ejecución de inmediato. El cliente decide el ritmo y alcance del proyecto.</div>
@@ -351,15 +386,50 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <span class="footer-copy">© 2026 RegulaTec. Todos los derechos reservados.</span>
-    <ul class="footer-links">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/#servicios">Servicios</a></li>
-      <li><a href="ley-21719-chile.html">Ley 21.719</a></li>
-      <li><a href="mailto:ventas@regulatec.cl">Contacto</a></li>
-    </ul>
+<footer class="rt-footer">
+  <div class="rt-footer-grid">
+    <div class="rt-footer-brand">
+      <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" />
+      <p>Gestión de riesgos legales y regulatorios: convertimos obligaciones en controles, responsables y evidencia que se puede demostrar.</p>
+    </div>
+    <div>
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="/ley-21719-chile.html">Protección de datos personales</a></li>
+        <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos</a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT</a></li>
+        <li><a href="/iso-37001-37301-chile.html">ISO 37001 · ISO 37301</a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC</a></li>
+        <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
+        <li><a href="/cco-as-a-service-chile.html">Compliance Officer as a Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>RegulaTec</h4>
+      <ul>
+        <li><a href="/#plataforma">Plataforma</a></li>
+        <li><a href="/#demo">Explora la plataforma</a></li>
+        <li><a href="/#como-trabajamos">Cómo trabajamos</a></li>
+        <li><a href="/#empresa">Empresa</a></li>
+        <li><a href="/#faq">Preguntas frecuentes</a></li>
+        <li><a href="/#diagnostico">Solicitar diagnóstico</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto y legal</h4>
+      <ul>
+        <li><a href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a></li>
+        <li><a href="tel:+56934530393">+56 9 3453 0393</a></li>
+        <li><a href="/politica-privacidad.html">Política de privacidad</a></li>
+        <li><a href="/politica-cookies.html">Política de cookies</a></li>
+        <li><a href="/aviso-legal.html">Aviso legal</a></li>
+        <li><a href="#" data-cookies-config>Gestionar cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rt-footer-legal">
+    <span>© 2026 RegulaTec by W-IT. RegulaTec by W-IT es una marca operada por W-IT Products SpA.</span>
+    <span>Santiago, Chile</span>
   </div>
 </footer>
 
@@ -392,7 +462,9 @@
     return count;
   }
 
+  var iniciado = false;
   document.getElementById('assessmentForm').addEventListener('change', function() {
+    if (!iniciado) { iniciado = true; if (window.rtTrack) rtTrack('diagnostico_start', { formulario: 'autodiagnostico_43' }); }
     var answered = countAnswered();
     var pct = Math.round(answered / TOTAL * 100);
     document.getElementById('surveyBar').style.width = pct + '%';
@@ -424,8 +496,9 @@
     } else if (pct >= 50) {
       title = 'Madurez Media — Brechas críticas por cerrar';
       sub = 'Tu organización tiene avances relevantes pero existen brechas de riesgo alto que deben abordarse antes del 1 de diciembre de 2026.';
-      desc = 'Hay controles implementados pero su cobertura es parcial. Un Assessment completo permitirá priorizar las acciones de mayor impacto para el directorio.';
+      desc = 'Hay controles implementados pero su cobertura es parcial. El Assessment TecnoLegal permitirá priorizar las acciones de mayor impacto para el directorio.';
     } else if (pct >= 25) {
+      // PENDIENTE aprobación de copy (Celeste) + Dirección Legal: los resultados del autodiagnóstico usan lenguaje de urgencia/multas ("con urgencia", "Es urgente comenzar", plazo 1-dic-2026) que la Nota de contenido §1 prohíbe. No reescrito desde desarrollo.
       title = 'Madurez Baja — Exposición regulatoria significativa';
       sub = 'Tu organización tiene exposición importante frente a Ley 20.393, Ley 21.595 y Ley 21.719. Se requiere acción estructurada con urgencia.';
       desc = 'La mayoría de los controles clave están ausentes o son informales. El riesgo de multas y sanciones es alto. Te recomendamos iniciar el Assessment TecnoLegal de inmediato.';
@@ -451,9 +524,11 @@
 
     var result = document.getElementById('surveyResult');
     result.style.display = 'block';
+    if (window.rtTrack) rtTrack('diagnostico_complete', { formulario: 'autodiagnostico_43', madurez_pct: pct });
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 })();
 </script>
+<script src="/js/sitio.js" defer></script>
 </body>
 </html>

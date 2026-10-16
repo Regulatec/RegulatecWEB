@@ -175,7 +175,7 @@
       }).join('') + '</nav>' +
       '<div class="side__foot">Demo con datos ficticios.<br/>Fecha simulada: ' + fecha(D.hoy) + '</div></aside>' +
       '<div class="main">' +
-      '<div class="ribbon">' + ic('info', 14) + '<span><b>Modo demo</b><span class="long"> · Empresa y datos ficticios. Los cambios que hagas se pierden al cerrar.</span></span><a href="' + D.ctaUrl + '" target="_top">Solicitar diagnóstico →</a></div>' +
+      '<div class="ribbon">' + ic('info', 14) + '<span><b>Vista demo · datos ilustrativos</b><span class="long"> · Empresa y datos ficticios. Los cambios que hagas se pierden al cerrar.</span></span><a href="' + D.ctaUrl + '" target="_top">Solicitar diagnóstico →</a></div>' +
       '<header class="top">' +
       '<button class="icon-btn top__menu" id="menuBtn" aria-label="Abrir menú">' + ic('menu') + '</button>' +
       '<form class="top__search" id="searchForm" role="search">' + ic('search', 16) + '<input id="q" placeholder="Buscar riesgo, control, denuncia, tratamiento…" aria-label="Buscar" /></form>' +

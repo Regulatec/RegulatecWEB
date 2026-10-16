@@ -8,24 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Google Ads conversion — REEMPLAZAR IDs cuando estén listos -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXXX"></script>
+  <!-- Medición condicionada al consentimiento (nota técnica §4.6) -->
+  <script src="/js/medicion.js"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-XXXXXXXXXX');
-    // Disparar conversión al cargar esta página
-    gtag('event', 'conversion', {
-      send_to: 'AW-XXXXXXXXXX/CONVERSION-LABEL',
-      value: 1.0, currency: 'CLP'
-    });
-  </script>
-  <!-- Meta Pixel Lead -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXXX');
-    fbq('track', 'Lead');
+    // Evento de conversión: solo si se llega desde un envío exitoso del formulario (no en recargas ni visitas directas).
+    try {
+      if (sessionStorage.getItem('rtLeadEnviado') === '1') {
+        sessionStorage.removeItem('rtLeadEnviado');
+        rtTrack('conversion', { formulario: 'diagnostico_home' });
+      }
+    } catch (e) {}
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -170,8 +162,50 @@
     footer a { color: rgba(184,154,90,.6); text-decoration: none; }
     footer a:hover { color: var(--gold); }
   </style>
+  <link rel="stylesheet" href="/css/sitio.css" />
 </head>
 <body>
+<nav class="rt-nav" aria-label="Menú principal">
+  <a href="/" class="nav-brand">
+    <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" />
+    <span class="nav-tagline">Gestión de riesgos legales y regulatorios</span>
+  </a>
+  <ul class="rt-menu">
+    <li>
+      <button type="button" aria-expanded="false" aria-haspopup="true">Soluciones<svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></button>
+      <ul class="rt-sub">
+        <li class="rt-sub-label">Frentes regulatorios</li>
+        <li><a href="/ley-21719-chile.html">Protección de datos personales<small>Ley 21.719</small></a></li>
+        <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos<small>Ley 20.393 · Modelo de Prevención de Delitos</small></a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT<small>Debida diligencia, listas y monitoreo</small></a></li>
+        <li><a href="/iso-37001-37301-chile.html">Antisoborno y sistemas de compliance<small>ISO 37001 · ISO 37301</small></a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC<small>Obligaciones, riesgos y controles</small></a></li>
+        <li><hr /></li>
+        <li class="rt-sub-label">Servicios continuos</li>
+        <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
+        <li><a href="/cco-as-a-service-chile.html">Compliance Officer as a Service</a></li>
+      </ul>
+    </li>
+    <li><a href="/#plataforma">Plataforma</a></li>
+    <li><a href="/demo/" class="rt-demo-link" data-demo-open>Explora la plataforma</a></li>
+    <li><a href="/#como-trabajamos">Cómo trabajamos</a></li>
+    <li>
+      <button type="button" aria-expanded="false" aria-haspopup="true">Recursos<svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></button>
+      <ul class="rt-sub">
+        <li><a href="/ley-21719-chile.html">Ley 21.719: qué exige y cómo implementarla</a></li>
+        <li><a href="/ley-20393-chile.html">Ley 20.393: responsabilidad penal de las personas jurídicas</a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo en Chile</a></li>
+        <li><a href="/sistema-cumplimiento-empresas.html">Sistema de cumplimiento para empresas</a></li>
+        <li><a href="/compliance-360-microsoft.html">Compliance sobre Microsoft 365 y Power Platform</a></li>
+        <li><a href="/#faq">Preguntas frecuentes</a></li>
+      </ul>
+    </li>
+    <li><a href="/#empresa">Empresa</a></li>
+    <li class="rt-menu-cta"><a href="/#diagnostico">Solicitar diagnóstico sin costo</a></li>
+  </ul>
+  <a href="/#diagnostico" class="rt-cta"><span class="rt-cta-long">Solicitar diagnóstico sin costo</span><span class="rt-cta-short">Diagnóstico sin costo</span><svg viewBox="0 0 14 14" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+  <button type="button" class="rt-burger" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+</nav>
 <header>
   <a href="/" class="nav-brand">
     <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec" />
@@ -187,10 +221,9 @@
     <div class="check-icon">✓</div>
     <h1>¡Gracias por contactarnos!</h1>
     <p class="subtitle">Hemos recibido tu solicitud de diagnóstico.</p>
-    <p class="highlight">Un especialista de RegulaTec te contactará en menos de 24 horas.</p>
+    <p class="highlight">Un especialista de RegulaTec te contactará dentro de 24–48 horas hábiles.</p>
     <div class="privacy-note">
-      🔒 Sus datos están protegidos y no serán compartidos con terceros.<br />
-      Este sitio opera bajo estándares de cumplimiento alineados a la Ley 21.719.
+      🔒 Sus datos están protegidos y no serán compartidos con terceros.
     </div>
     <a href="/" class="btn-home">Volver al inicio →</a>
 
@@ -198,7 +231,7 @@
       <h3>¿Qué pasa ahora?</h3>
       <div class="step">
         <div class="step-num">1</div>
-        <div>Un especialista revisará tu solicitud y te contactará por email o WhatsApp en menos de 24 horas hábiles.</div>
+        <div>Un especialista revisará tu solicitud y te contactará por email o WhatsApp dentro de 24–48 horas hábiles.</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -212,11 +245,52 @@
   </div>
 </main>
 
-<footer>
-  <p>© 2026 RegulaTec · Chile y LATAM ·
-    <a href="/politica-privacidad.html">Privacidad</a> ·
-    <a href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a>
-  </p>
+<footer class="rt-footer">
+  <div class="rt-footer-grid">
+    <div class="rt-footer-brand">
+      <img src="https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png" alt="RegulaTec by W-IT" />
+      <p>Gestión de riesgos legales y regulatorios: convertimos obligaciones en controles, responsables y evidencia que se puede demostrar.</p>
+    </div>
+    <div>
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="/ley-21719-chile.html">Protección de datos personales</a></li>
+        <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos</a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT</a></li>
+        <li><a href="/iso-37001-37301-chile.html">ISO 37001 · ISO 37301</a></li>
+        <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC</a></li>
+        <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
+        <li><a href="/cco-as-a-service-chile.html">Compliance Officer as a Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>RegulaTec</h4>
+      <ul>
+        <li><a href="/#plataforma">Plataforma</a></li>
+        <li><a href="/#demo">Explora la plataforma</a></li>
+        <li><a href="/#como-trabajamos">Cómo trabajamos</a></li>
+        <li><a href="/#empresa">Empresa</a></li>
+        <li><a href="/#faq">Preguntas frecuentes</a></li>
+        <li><a href="/#diagnostico">Solicitar diagnóstico</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto y legal</h4>
+      <ul>
+        <li><a href="mailto:ventas@regulatec.cl">ventas@regulatec.cl</a></li>
+        <li><a href="tel:+56934530393">+56 9 3453 0393</a></li>
+        <li><a href="/politica-privacidad.html">Política de privacidad</a></li>
+        <li><a href="/politica-cookies.html">Política de cookies</a></li>
+        <li><a href="/aviso-legal.html">Aviso legal</a></li>
+        <li><a href="#" data-cookies-config>Gestionar cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rt-footer-legal">
+    <span>© 2026 RegulaTec by W-IT. RegulaTec by W-IT es una marca operada por W-IT Products SpA.</span>
+    <span>Santiago, Chile</span>
+  </div>
 </footer>
+<script src="/js/sitio.js" defer></script>
 </body>
 </html>
