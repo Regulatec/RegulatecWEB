@@ -22,7 +22,7 @@ const LIMITE_POR_IP = 5;
 const TIEMPO_MINIMO_MS = 3000;
 
 const CAMPOS_TEXTO = {
-  contacto: 120, organizacion: 160, email: 160, cargo: 80, telefono: 40,
+  contacto: 120, organizacion: 160, email: 160, cargo: 80, frente_interes: 80, telefono: 40,
   version_texto_consentimiento: 120, texto_consentimiento_respuesta: 600, texto_consentimiento_marketing: 600,
   fuente: 40, canal: 60, pagina_origen: 200, pagina_entrada: 200, referrer: 300,
   utm_source: 100, utm_medium: 100, utm_campaign: 150, utm_content: 150, utm_term: 150
@@ -31,7 +31,7 @@ const CAMPOS_TEXTO = {
 function correoInterno(reg) {
   const filas = [
     ['Fecha/hora', reg.fecha_hora], ['Organización', reg.organizacion], ['Contacto', reg.contacto],
-    ['Cargo', reg.cargo || '—'], ['Email', reg.email], ['Teléfono', reg.telefono || '—'],
+    ['Cargo', reg.cargo || '—'], ['Frente de interés', reg.frente_interes || '—'], ['Email', reg.email], ['Teléfono', reg.telefono || '—'],
     ['Consentimiento respuesta', reg.consentimiento_respuesta ? 'Sí' : 'No'],
     ['Consentimiento comercial', reg.consentimiento_marketing ? 'Sí' : 'No'],
     ['Versión textos', reg.version_texto_consentimiento], ['Canal', reg.canal],

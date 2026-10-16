@@ -4,6 +4,7 @@
   },
   "routes": [
     { "route": "/*.php", "statusCode": 404 },
+    { "route": "/tools/*", "statusCode": 404 },
     { "route": "/contacto.html", "redirect": "/#diagnostico", "statusCode": 301 },
     { "route": "/contacto", "redirect": "/#diagnostico", "statusCode": 301 }
   ],
