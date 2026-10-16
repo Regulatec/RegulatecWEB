@@ -22,6 +22,7 @@ PAGINAS = [
     "plataforma-proteccion-datos-chile.html", "sistema-cumplimiento-empresas.html",
     "software-compliance-chile.html", "aviso-legal.html", "politica-cookies.html",
     "politica-privacidad.html", "gracias.html", "revocar-consentimiento.html",
+    "prevencion-la-ft-chile.html",
 ]
 
 LOGO = "https://witpublicimages.blob.core.windows.net/public/FOTOSREGULATEC/regulatecLogo.png"
@@ -38,7 +39,7 @@ NAV = f"""<nav class="rt-nav" aria-label="Menú principal">
         <li class="rt-sub-label">Frentes regulatorios</li>
         <li><a href="/ley-21719-chile.html">Protección de datos personales<small>Ley 21.719</small></a></li>
         <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos<small>Ley 20.393 · Modelo de Prevención de Delitos</small></a></li>
-        <li><a href="/#frentes">Prevención LA/FT<small>Debida diligencia, listas y monitoreo</small></a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT<small>Debida diligencia, listas y monitoreo</small></a></li>
         <li><a href="/iso-37001-37301-chile.html">Antisoborno y sistemas de compliance<small>ISO 37001 · ISO 37301</small></a></li>
         <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC<small>Obligaciones, riesgos y controles</small></a></li>
         <li><hr /></li>
@@ -79,6 +80,7 @@ FOOTER = f"""<footer class="rt-footer">
       <ul>
         <li><a href="/ley-21719-chile.html">Protección de datos personales</a></li>
         <li><a href="/modelo-prevencion-delitos-chile.html">Prevención de delitos</a></li>
+        <li><a href="/prevencion-la-ft-chile.html">Prevención LA/FT</a></li>
         <li><a href="/iso-37001-37301-chile.html">ISO 37001 · ISO 37301</a></li>
         <li><a href="/compliance-normativo-chile.html">Compliance normativo y GRC</a></li>
         <li><a href="/dpo-as-a-service-chile.html">DPO as a Service</a></li>
