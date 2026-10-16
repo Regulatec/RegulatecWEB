@@ -355,12 +355,12 @@
 <body>
 
 <!-- Barra de estado regulatorio (Nota de contenido §4.1): cadena exacta, sin variantes, sin contador
-     y sin número de boletín. PENDIENTE: [FECHA] se completa y revalida con fuente primaria
-     (Dirección Legal) antes de cada publicación. En el nuevo posicionamiento se presenta como
+     y sin número de boletín. Se retiró el prefijo "Actualización al [FECHA]" (decisión 16-oct-2026);
+     el texto se revalida con fuente primaria (Dirección Legal) antes de cada publicación. En el nuevo posicionamiento se presenta como
      "Actualidad regulatoria" con estilo neutro (no rojo, no urgencia). -->
 <div class="top-bar" role="status">
   <b>Actualidad regulatoria</b>
-  <span>Actualización al <span class="rt-fecha-estado">[FECHA]</span>: la fecha vigente de entrada en vigor de la Ley 21.719 continúa siendo el 1 de diciembre de 2026. Existe un proyecto en tramitación que propone postergarla al 1 de diciembre de 2027. La fecha se discute. El marco de implementación sigue avanzando.</span>
+  <span>La fecha vigente de entrada en vigor de la Ley 21.719 continúa siendo el 1 de diciembre de 2026. Existe un proyecto en tramitación que propone postergarla al 1 de diciembre de 2027. La fecha se discute. El marco de implementación sigue avanzando.</span>
   <a href="/ley-21719-chile.html">Ver Ley 21.719 →</a>
 </div>
 
@@ -492,11 +492,8 @@
               <input type="checkbox" id="consent" name="consentimiento_respuesta" required data-version="respuesta-v1" />
               <label for="consent" id="consent-label">Acepto el tratamiento de mis datos personales conforme a la <a href="/politica-privacidad.html" target="_blank">Política de Privacidad</a> de RegulaTec. *</label>
             </div>
-            <div class="consent-row">
-              <input type="checkbox" id="consent-mkt" name="consentimiento_marketing" data-version="marketing-PENDIENTE" />
-              <!-- PENDIENTE Dirección Legal: texto del consentimiento opcional para comunicaciones comerciales. -->
-              <label for="consent-mkt" id="consent-mkt-label">[PENDIENTE — texto de consentimiento opcional para comunicaciones comerciales, a entregar por Dirección Legal]</label>
-            </div>
+            <!-- Consentimiento opcional para comunicaciones comerciales: retirado por ahora (decisión 16-oct-2026)
+                 hasta que Dirección Legal entregue el texto. Sin esa casilla no se envían comunicaciones comerciales. -->
             <button type="submit" class="btn-form" id="btnSubmit">
               <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               <span id="btnSubmitText">Solicitar diagnóstico sin costo</span>
@@ -1022,7 +1019,6 @@
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
       var atrib = window.rtAtribucion ? rtAtribucion() : {};
-      var mkt = document.getElementById('consent-mkt');
       var datos = {
         contacto: document.getElementById('f-name').value.trim(),
         organizacion: document.getElementById('f-company').value.trim(),
@@ -1031,10 +1027,10 @@
         frente_interes: document.getElementById('f-frente').value || '',
         telefono: '',
         consentimiento_respuesta: document.getElementById('consent').checked,
-        consentimiento_marketing: mkt.checked,
-        version_texto_consentimiento: document.getElementById('consent').dataset.version + '|' + mkt.dataset.version,
+        consentimiento_marketing: false,
+        version_texto_consentimiento: document.getElementById('consent').dataset.version,
         texto_consentimiento_respuesta: textoDe('consent-label'),
-        texto_consentimiento_marketing: textoDe('consent-mkt-label'),
+        texto_consentimiento_marketing: '',
         fuente: 'web',
         canal: 'formulario_diagnostico_home',
         pagina_origen: location.pathname,
